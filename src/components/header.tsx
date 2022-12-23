@@ -24,11 +24,11 @@ export const Header: React.FC = () => {
                   교육 콘텐츠
                 </Link>
               </li>
-              {/* <li>
-                <Link to="/createEdu" className="Header-link-inquiry">
+              <li>
+                <Link to="/applyEdu" className="Header-link-inquiry">
                   교육 신청
                 </Link>
-              </li> */}
+              </li>
               <li>
                 <Link
                   to="/posts"

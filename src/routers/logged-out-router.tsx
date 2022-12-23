@@ -10,7 +10,9 @@ import { Post } from "../pages/post";
 import { Posts } from "../pages/posts";
 import { CreateUser } from "../pages/user/createUser";
 import { Login } from "../pages/user/login";
-import { CreateEdu } from "../pages/createEdu";
+import { ApplyEdu } from "../pages/applyEdu";
+import { MakeNewApplication } from "../pages/makeNewApplication";
+import { ShowApplication } from "../pages/showApplication";
 import { ShowDetailContent } from "../pages/showDetailContent";
 
 import { Walking } from "../pages/educontents/walking";
@@ -51,7 +53,9 @@ export const LoggedOutRouter = () => {
         <Route path="/post/:id/edit" element={<EditPost />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="*" element={<NotFound />}></Route>
-        <Route path="/createEdu" element={<CreateEdu/>}></Route>
+        <Route path="/applyEdu" element={<ApplyEdu />}></Route>
+        <Route path="/makeNewApplication" element={<MakeNewApplication />}></Route>
+        <Route path="/showApplication" element={<ShowApplication />}></Route>
         <Route path="/showDetailContent" element={<ShowDetailContent />}></Route>
 
         <Route path="/walking" element={<Walking />}></Route>

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/applyEdu.css";
 
 import {
   gql,
@@ -16,11 +17,10 @@ import {
   useForm,
   useWatch,
 } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { isLoggedInVar } from "../apollo";
 import { Banner } from "../components/banner";
 import { createEdu, createEduVariables } from "../__generated__/createEdu";
-// import createPostRoute from "../images/createPostRoute.png"; // to do
+import createEduRoute from "../images/bannerCategory/createEdu.png";
 import { Helmet } from "react-helmet-async";
 import infoConfirm from "../images/Frame68.svg";
 import {
@@ -109,8 +109,17 @@ interface ICheckAuthForm {
   phoneNumber: string;
 }
 
-export const CreateEdu = () => {
+export const ShowApplication = () => {
   const [startDate, setapplyDate] = useState(new Date());
+  const navigate = useNavigate();
+ 
+  const navigateToMakeNewApplication = () => {
+    navigate("/makeNewApplication");
+  };
+
+  const navigateToShowApplication = () => {
+      navigate("/showApplication");
+    };
   const { register, getValues, handleSubmit, formState, control } =
     useForm<ICreateEduForm>({
       defaultValues: {
@@ -145,7 +154,6 @@ export const CreateEdu = () => {
   });
 
   const [isHovering, setIsHovering] = useState(0);
-  const navigate = useNavigate();
 
   const onCompleted = (data: SendAuthNum) => {
     console.log("oncompleted");
@@ -298,15 +306,24 @@ export const CreateEdu = () => {
         <title>Create | DORO</title>
       </Helmet>
       <Banner
-        wid={5.444}
-        route=""
+        wid={10.278}
+        route={createEduRoute}
         contentClass="Subtitle-bigFont"
         title="교육 신청"
         subtitle="Education Application"
         content="희망 교육과 문의 사항을 작성해주시면 빠르게 답변해드리겠습니다."
+        rightImg="none"
       />
+        <div className="typeSelect-container">
+            <button onClick={navigateToMakeNewApplication} className="typeSelect-button">
+                교육 신청하기
+            </button>
+            <button onClick={navigateToShowApplication} className="typeSelect-button">
+                교육 신청내역 확인하기
+            </button>          
+        </div>
       <div className="CreateEdu-content-root">
-        <div className="CreateEdu-title">신청자 정보</div>
+        <div className="CreateEdu-title">교육 신청 내역 확인하기</div>
         <form
           className="Create-post-form"
           onSubmit={handleSubmit(onSubmit_create, onInvalid_create)}
@@ -324,36 +341,6 @@ export const CreateEdu = () => {
                 className="Create-post-input-input-content"
                 name="name"
                 placeholder="신청자 성함"
-              />
-            </div>
-          </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                소속 기관명
-              </span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("institution_name", { required: true })}
-                name="institution_name"
-                placeholder="도로 초등학교"
-                className="Create-post-input-input-content"
-              />
-            </div>
-          </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">직위</span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("position", { required: true })}
-                name="position"
-                placeholder="진로 선생님"
-                className="Create-post-input-input-content"
               />
             </div>
           </div>
@@ -404,171 +391,26 @@ export const CreateEdu = () => {
             </div>
           </div>
 
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">이메일</span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("email", {
-                  required: true,
-                  validate: (email: string) => email.includes("@"),
-                })}
-                name="email"
-                placeholder="E-Mail"
-                className="Create-post-input-input-content"
-              />
-            </div>
-          </div>
-
-          {/* 교육생 정보 */}
-          <div className="CreateEdu-title">교육생 정보</div>
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                교육 학생 수
-              </span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("student_count", { required: true })}
-                className="Create-post-input-input-content"
-                name="student_count"
-                placeholder="총 학생 수를 입력해주세요."
-              />
-            </div>
-          </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                학생 정보
-              </span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("institution_name", { required: true })}
-                name="institution_name"
-                placeholder="초등학교 1학년, 3학년"
-                className="Create-post-input-input-content"
-              />
-            </div>
-          </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                교육 예산
-              </span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("position", { required: true })}
-                name="position"
-                placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
-                className="Create-post-input-input-content"
-              />
-            </div>
-          </div>
-
-          <div className="CreateEdu-title">학급별 교육 일정</div>
-          <div>
-            {fields.map((field, index) => {
-              return (
-                <div key={field.id}>
-                  <section className={"section"} key={field.id}>
-                    <button type="button" onClick={() => remove(index)}>
-                      DELETE
-                    </button>
-                    <div>
-                      <span>학급 이름</span>
-                      <input
-                        placeholder="6학년 3반"
-                        {...register(
-                          `detail_classes.${index}.class_name` as const,
-                          {
-                            required: true,
-                          }
-                        )}
-                        name={`detail_classes.${index}.class_name`}
-                      />
-                    </div>
-                    <div>
-                      <span>교육 컨셉</span>
-                      <input
-                        placeholder="AI, 로봇"
-                        {...register(
-                          `detail_classes.${index}.edu_concept` as const,
-                          {
-                            required: true,
-                          }
-                        )}
-                        name={`detail_classes.${index}.edu_concept`}
-                      />
-                    </div>
-                    <div>
-                      <span>학생 수</span>
-                      <input
-                        placeholder="120"
-                        type="number"
-                        {...register(
-                          `detail_classes.${index}.student_number` as const,
-                          {
-                            valueAsNumber: true,
-                            required: true,
-                          }
-                        )}
-                        name={`detail_classes.${index}.student_number`}
-                      />
-                    </div>
-                    <div>
-                      <span>교육 날짜</span>
-                      <DatePicker weekDays={weekDays} />
-                    </div>
-                  </section>
-                </div>
-              );
-            })}
-
-            <button type="button" onClick={() => click_append_buttion()}>
-              APPEND
-            </button>
-          </div>
-
-          <div className="CreateEdu-title">교육 특이사항</div>
-
-          <div className=" Create-post-input-textarea-parent">
-            <div className="Create-post-input-textarea-span-box">
-              <span className="Create-post-input-description-text">
-                교육 특이사항
-              </span>
-            </div>
-            <div className="Create-post-input-textarea-div">
-              <textarea
-                {...register("overall_remark", { required: true })}
-                name="overall_remark"
-                placeholder="교육 특이사항을 입력해주세요"
-                className="Create-post-textarea"
-              />
-            </div>
-          </div>
-
-          <div className=" Create-post-submit-button-parent">
-            <button
-              className={`${
-                formState.isValid
-                  ? "Create-post-submit-button-on"
-                  : "Create-post-submit-button-off"
-              }`}
-            >
-              {/* {loading ? (
-                <span className="Create-post-submit-text">로딩 중</span>
-              ) : ( */}
-              <span className="Create-post-submit-text">접수하기</span>
-              {/* )} */}
-            </button>
-          </div>
         </form>
+
+        <div className="h-screen Posts-container">
+          <div style={{ fontSize: "0.778rem", marginBottom: "0.583rem" }}>
+            <span>총 </span>
+            <span style={{ color: "#005c97" }}>
+            </span>
+            <span>건</span>
+          </div>
+          <>
+            <div className="Posts-postlist w-full flex flex-col">
+            </div>
+          </>
+
+          <div className="flex items-center justify-between Posts-bottom-container">
+            <div className="Posts-empty"></div>
+            <div className="Posts-pagination-container">
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
