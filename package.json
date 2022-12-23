@@ -18,6 +18,7 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/react-router-dom": "^5.3.3",
+    "@types/react-slick": "^0.23.10",
     "@types/styled-components": "^5.1.26",
     "apollo": "^2.11.1",
     "bcrypt": "^5.1.0",

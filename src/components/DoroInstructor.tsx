@@ -86,7 +86,7 @@ const Container = styled.div`
     position: relative;
 &:hover ${BlurBox}{
         display: block;
-        animation: fadeInUp 1.5s;
+        animation: fadeInUp 0.8s;
         @keyframes fadeInUp {
         0% {
             opacity: 0;

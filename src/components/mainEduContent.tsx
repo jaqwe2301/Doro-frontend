@@ -58,7 +58,7 @@ const Line = styled.div`
     flex-grow: 0;
     background-color: var(--doro-deep);
 `
-// 컨텐츠 박스
+// 콘텐츠 박스
 const Container = styled.div`
     width: 15.556rem;
     height: 23.5rem;
@@ -142,63 +142,67 @@ const Rightarrow = styled.img`
 
 const MainEduContent = () => {
     const dummyData = [
-        {   imgURL : robot,
-            title : "ROBOT",
+        {
+            imgURL: robot,
+            title: "ROBOT",
             textBold: "설계, 조립, 제어 원리 이해를 통해 로봇공학적 사고력",
-            textNormalFirst : "로봇의 원리와 구성을 공학적으로 이해하고 ",
-            textNormalLast : "을 키웁니다.",
-            link : " "
+            textNormalFirst: "로봇의 원리와 구성을 공학적으로 이해하고 ",
+            textNormalLast: "을 키웁니다.",
+            link: " "
         },
-        {   imgURL : software,
-            title : "SOFTWARE",
+        {
+            imgURL: software,
+            title: "SOFTWARE",
             textBold: "HTML/CSS/JS 부터 로봇 소프트웨어 코딩에 필요한 C++,C, 아두이노",
-            textNormalFirst : "웹 개발에 사용되는",
-            textNormalLast : "까지 고객 맞춤형소프트웨어 교육을 진행합니다.",
-            link : " "
+            textNormalFirst: "웹 개발에 사용되는",
+            textNormalLast: "까지 고객 맞춤형소프트웨어 교육을 진행합니다.",
+            link: " "
         },
-        {   imgURL : printer,
-            title : "MAKER",
+        {
+            imgURL: printer,
+            title: "MAKER",
             textBold: " 3D 프린팅을 체험하고 출력물을 이용해 키트를 직접 조립",
-            textNormalFirst : "4차 산업혁명 핵심기술 중 하나인",
-            textNormalLast : "해보는 교육 프로그램 입니다.",
-            link : " "
+            textNormalFirst: "4차 산업혁명 핵심기술 중 하나인",
+            textNormalLast: "해보는 교육 프로그램 입니다.",
+            link: " "
         },
-        {   imgURL : ai,
-            title : "AI",
+        {
+            imgURL: ai,
+            title: "AI",
             textBold: " Ai 예제 이해 교육을 통해 인공지능의 원리를 이해",
-            textNormalFirst : "머신러닝 학습도구 티처블 머신(Teachable Machine)을 이용한 교육과 ",
-            textNormalLast : "합니다.",
-            link : " "
+            textNormalFirst: "머신러닝 학습도구 티처블 머신(Teachable Machine)을 이용한 교육과 ",
+            textNormalLast: "합니다.",
+            link: " "
         }
     ]
-    return(
+    return (
         <MainContainer>
-                <p>
-                    DORO 대표 교육 컨텐츠
-                </p>
-                <Line></Line>
-                <p>
-                    청소년들에게 4차산업혁명 핵심기술의 경험을 전달합니다.
-                </p>
+            <p>
+                DORO 대표 교육 콘텐츠
+            </p>
+            <Line></Line>
+            <p>
+                청소년들에게 4차산업혁명 핵심기술의 경험을 전달합니다.
+            </p>
             <Box>
-                
-            {dummyData.map((data,idx) => 
-                <Container key={idx}>
-                    <Image src={data.imgURL} alt="icon" />
-                    <p>
-                        {data.title}
-                    </p>
-                    
-                    <p>
-                        {data.textNormalFirst} 
-                        <strong>{data.textBold}</strong>
-                        {data.textNormalLast}
-                    </p>
-                    <span>교육 커리큘럼 보기</span>
-                    <Link to={data.link}></Link>
-                    <Rightarrow src={rightarrow} />
-                </Container>
-            )}
+
+                {dummyData.map((data, idx) =>
+                    <Container key={idx}>
+                        <Image src={data.imgURL} alt="icon" />
+                        <p>
+                            {data.title}
+                        </p>
+
+                        <p>
+                            {data.textNormalFirst}
+                            <strong>{data.textBold}</strong>
+                            {data.textNormalLast}
+                        </p>
+                        <span>교육 커리큘럼 보기</span>
+                        <Link to={data.link}></Link>
+                        <Rightarrow src={rightarrow} />
+                    </Container>
+                )}
             </Box>
         </MainContainer>
     )

@@ -1,25 +1,24 @@
 .Banner-container {
-  height: 17.778rem;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  padding: 2.444rem 0;
+  justify-content: center;
+  width: 100%;
+  height: 17.778rem;
   background-color: var(--doro-medium);
 }
 
 .Banner-content-container {
-  width: 65.571rem;
-  margin-left: auto;
-  margin-right: auto;
-  height: 11.056rem;
-  flex-grow: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 45px;
+  justify-content: space-between;
+  width: 65.571rem;
+  height: 11.056rem;
+}
+
+.Banner-contents {
+  margin-top: 2.5rem;
+}
+
+.Banner-rightImg {
+  height: 15rem;
 }
 
 .Banner-route {
@@ -72,7 +71,24 @@
   color: #d9d9d9;
 }
 
-.Banner-content {
+.Subtitle-bigFont {
+  margin-top: 2.5rem;
+  font-family: Pretendard;
+  font-size: 1.333rem;
+  line-height: 1.833rem;
+  color: #f8f9fd;
+}
+
+.Subtitle-smallFont {
+  margin-top: 2.056rem;
+  font-family: Pretendard;
+  font-size: 1.111rem;
+  line-height: 1.833rem;
+  color: #f8f9fd;
+  
+}
+
+/* .Banner-content {
   height: 1.611rem;
   flex-grow: 0;
   font-family: Pretendard;
@@ -85,3 +101,17 @@
   text-align: left;
   color: #fff;
 }
+
+.Banner-content-small {
+  height: 1.611rem;
+  flex-grow: 0;
+  font-family: Pretendard;
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-align: left;
+  color: #fff;
+} */

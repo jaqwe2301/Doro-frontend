@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { isLoggedInVar } from "../apollo";
 import { Banner } from "../components/banner";
 import { createEdu, createEduVariables } from "../__generated__/createEdu";
-import createPostRoute from "../images/createPostRoute.png"; // to do
+// import createPostRoute from "../images/createPostRoute.png"; // to do
 import { Helmet } from "react-helmet-async";
 import infoConfirm from "../images/Frame68.svg";
 import {
@@ -299,7 +299,8 @@ export const CreateEdu = () => {
       </Helmet>
       <Banner
         wid={5.444}
-        route={createPostRoute}
+        route=""
+        contentClass="Subtitle-bigFont"
         title="교육 신청"
         subtitle="Education Application"
         content="희망 교육과 문의 사항을 작성해주시면 빠르게 답변해드리겠습니다."

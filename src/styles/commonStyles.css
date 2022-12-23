@@ -162,24 +162,8 @@
   line-height: 1.21;
   letter-spacing: normal;
 }
-.Subtitle-1 {
-  font-family: Pretendard;
-  font-size: 1.889rem;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.21;
-  letter-spacing: normal;
-}
-.Subtitle-2 {
-  font-family: Pretendard;
-  font-size: 1.333rem;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.21;
-  letter-spacing: normal;
-}
+
+
 .Body-1 {
   font-family: Pretendard;
   font-size: 1rem;

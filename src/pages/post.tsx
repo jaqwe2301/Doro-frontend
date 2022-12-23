@@ -260,6 +260,8 @@ export const Post = () => {
             title="문의 게시판"
             subtitle="Education inquiry board"
             content="문의 답변을 확인할 수 있습니다"
+            contentClass="Subtitle-bigFont"
+            rightImg="none"
           />{" "}
           <div className="Education-inquiry-board_after-answer ">
             <div className=" Post-title-frame63-parent">

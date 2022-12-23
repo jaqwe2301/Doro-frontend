@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback} from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import instructor1 from "../images/instructor1.png";
 import instructor2 from "../images/instructor2.png";
@@ -155,14 +155,14 @@ export const HomePage = () => {
           </div>
         </div>
 
-        {/* DORO 대표 교육 컨텐츠 */}
+        {/* DORO 대표 교육 콘텐츠 */}
         <div className="Item-center">
-          <MainEduContent/>
+          <MainEduContent />
         </div>
 
         {/* DORO 교육 수행 유형 */}
         <div className="Item-center">
-          <MainEduType/>
+          <MainEduType />
         </div>
 
         {/* DORO 메이킹 7종 키트 */}
@@ -390,7 +390,7 @@ export const HomePage = () => {
         <div className="Main2">
           <div className="Main2-content-container">
             <div className="Item-center"  {...main2BottomAnimation}>
-              <DoroInstructor/>
+              <DoroInstructor />
             </div>
           </div>
         </div>
@@ -399,10 +399,10 @@ export const HomePage = () => {
           <div className="Main9-content-container">
             <div className="Main9-letter-container" {...main9TopAnimation}>
               <p className="Main9-title">
-                전문가에게 배우는 미래형 진로교육
+                대학생에게 배우는 미래형 진로교육
               </p>
               <p className="Main9-subtitle">
-              DORO의 모든 교육은 학생의 시야를 넓혀주기 위한 진로 교육을 포함하고 있습니다.
+                DORO의 모든 교육은 학생의 시야를 넓혀주기 위한 진로 교육을 포함하고 있습니다.
               </p>
             </div>
             <div className="Main9-image-container" {...main9BottomAnimation}>
@@ -458,9 +458,9 @@ export const HomePage = () => {
                   <span className="Main5-data5-letter">강의 출강 지도</span>
                   <span
                     className="Main5-data5-number"
-                    // {...main5Count4Animation}
+                  // {...main5Count4Animation}
                   >
-                  <DialogButton onClick={onClickToggleModal}>지도 보기</DialogButton>
+                    <DialogButton onClick={onClickToggleModal}>지도 보기</DialogButton>
                   </span>
                 </div>
               </div>
@@ -475,10 +475,10 @@ export const HomePage = () => {
           </div>
         </div>
         {isOpenModal && (
-                    <ModalMap onClickToggleModal={onClickToggleModal}>
-                      <img src={doromap}></img>
-                    </ModalMap>
-                  )}
+          <ModalMap onClickToggleModal={onClickToggleModal}>
+            <img src={doromap}></img>
+          </ModalMap>
+        )}
 
         <div className="Main4">
           <div className="Main4-content-container">
@@ -579,7 +579,7 @@ export const HomePage = () => {
                   ></img>
                 </div>
               </SwiperSlide>
-              
+
               <SwiperSlide>
                 <div className="Main6-bottom-image-container">
                   <img
@@ -609,7 +609,7 @@ export const HomePage = () => {
                   ></img>
                 </div>
               </SwiperSlide>
-              
+
               <SwiperSlide>
                 <div className="Main6-bottom-image-container">
                   <img
