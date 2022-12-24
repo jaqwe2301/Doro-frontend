@@ -1,6 +1,6 @@
 import React, { useEffect} from "react";
 import { Link } from "react-router-dom";
-import styled, { keyframes } from "styled-components" ;
+import styled, { keyframes } from "styled-components";
 
 import type1 from "../images/icon_people1.png";
 import type2 from "../images/icon_people2.png";
@@ -54,7 +54,7 @@ const MainContainer = styled.div`
         margin-top: 15.778rem;
     }
 
-    // 컨텐츠 별 메인 글자
+    // 콘텐츠 별 메인 글자
     p:nth-child(3){
         width: 25.111rem;
         height: 1.444rem;
@@ -84,7 +84,7 @@ const Line = styled.div`
     margin-bottom: 2.944rem;
     background-color: var(--doro-deep);
 `
-const Container = styled.div<{ hoverimg:string }>`
+const Container = styled.div<{ hoverimg: string }>`
     width: 26.667rem;
     height: 17.556rem;
     border-radius: 9.9px;
@@ -244,71 +244,75 @@ const MainEduContent = () => {
     }, [])
 
     const dummyData = [
-        {   iconURL : type1,
-            title : "찾아가는 현장 교육",
+        {
+            iconURL: type1,
+            title: "찾아가는 현장 교육",
             textblue: "현장에서 생생하게",
             textBold: "교육 현장에 DORO 선생님들이 직접 방문하여 ",
-            textNormalFirst : " 각 지역별 학교, 학원, 청소년 재단, 문화센터 등의 ",
-            textNormalLast : "교육을 진행합니다.",
-            hoverimg :type1_photo,
+            textNormalFirst: " 각 지역별 학교, 학원, 청소년 재단, 문화센터 등의 ",
+            textNormalLast: "교육을 진행합니다.",
+            hoverimg: type1_photo,
             hovertext: "현장교육"
         },
-        {   iconURL : type2,
-            title : "체험형 교육 부스",
+        {
+            iconURL: type2,
+            title: "체험형 교육 부스",
             textblue: "부스에서 만나는 4차 산업혁명",
             textBold: " DORO 선생님들이 기술 체험의 경험을 전달",
-            textNormalFirst : "과학 축제, 진로 체험 축제, 청소년 축제 등의 현장에서",
-            textNormalLast : "합니다.",
-            hoverimg : type2_photo,
+            textNormalFirst: "과학 축제, 진로 체험 축제, 청소년 축제 등의 현장에서",
+            textNormalLast: "합니다.",
+            hoverimg: type2_photo,
             hovertext: "교육부스"
         },
-        {   iconURL : type3,
-            title : "DORO 챌린지",
+        {
+            iconURL: type3,
+            title: "DORO 챌린지",
             textblue: "창의적인 문제해결능력 향상",
             textBold: " 문제를 해결해 나가며 최종적으로 청소년에게 성취감을 제공",
-            textNormalFirst : "라인 트레이싱 대회, 해커톤 등의 대회를 개최합니다. 팀원들과 함께",
-            textNormalLast : "합니다.",
-            hoverimg : type3_photo,
+            textNormalFirst: "라인 트레이싱 대회, 해커톤 등의 대회를 개최합니다. 팀원들과 함께",
+            textNormalLast: "합니다.",
+            hoverimg: type3_photo,
             hovertext: "DORO 챌린지"
         },
-        {   iconURL : type4,
-            title : "비대면 온라인 교육",
+        {
+            iconURL: type4,
+            title: "비대면 온라인 교육",
             textblue: "실시간 소통하며 집에서도 안전하게",
             textBold: " 비대면 온라인 교육을 진행",
-            textNormalFirst : "DORO 선생님들이 직접 방문하기 어려울 경우",
-            textNormalLast : "합니다.",
-            hoverimg : type4_photo,
+            textNormalFirst: "DORO 선생님들이 직접 방문하기 어려울 경우",
+            textNormalLast: "합니다.",
+            hoverimg: type4_photo,
             hovertext: "온라인 교육"
         }
     ]
-    return(
+    return (
         <MainContainer>
-                <p>
-                    DORO 교육 수행 유형
-                </p>
-                <Line></Line>
+            <p>
+                DORO 교육 수행 유형
+            </p>
+            <Line></Line>
             <Box>
-                
-            {dummyData.map((data,idx) => 
-                <Container key={idx}hoverimg={data.hoverimg}>
-                    <img src={data.iconURL} alt="icon" />
-                    <p>
-                        {data.textblue}
-                    </p>
-                    <p>
-                        {data.title}
-                    </p>
-                    
-                    <p>
-                        {data.textNormalFirst} 
-                        <strong>{data.textBold}</strong>
-                        {data.textNormalLast}
-                    </p>
-                    <p>
-                        {data.hovertext} 
-                    </p>
-                </Container>
-            )}
+
+                {dummyData.map((data, idx) =>
+                    <Container key={idx} hoverimg={data.hoverimg}>
+                        <img src={data.iconURL} alt="icon" />
+                        <p>
+                            {data.textblue}
+                        </p>
+                        <p>
+                            {data.title}
+                        </p>
+
+                        <p>
+                            {data.textNormalFirst}
+                            <strong>{data.textBold}</strong>
+                            {data.textNormalLast}
+                        </p>
+                        <p>
+                            {data.hovertext}
+                        </p>
+                    </Container>
+                )}
             </Box>
         </MainContainer>
     )

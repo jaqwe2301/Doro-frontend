@@ -1,4 +1,4 @@
-.MainCategory-container{
+.MainCategory-container {
     display: grid;
     justify-content: center;
     margin-top: 3.778rem;
@@ -13,6 +13,7 @@
     align-items: center;
     font-family: Pretendard;
     font-size: 1.111rem;
+    border: 1px solid transparent;
     background: #0072b9;
     color: #f8f9fd;
 }
@@ -28,13 +29,13 @@
     color: #777777;
 }
 
-.SubCategory{
+.SubCategory {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.SubCategory-container{
+.SubCategory-container {
     display: flex;
     margin-top: 0.994rem;
     width: 65.556rem;
@@ -69,9 +70,9 @@
     justify-content: center;
     margin-top: 4.611rem;
     margin-bottom: 4.611rem;
-    grid-template-columns: 21.111rem 21.111rem 21.111rem ;
+    grid-template-columns: 21.111rem 21.111rem 21.111rem;
     grid-template-rows: 21.111rem;
-    gap:1.111rem;
+    gap: 1.111rem;
 }
 
 .EduDetail-click-off {
@@ -117,4 +118,3 @@
     font-size: 1.889rem;
     font-weight: Bold;
 }
-
