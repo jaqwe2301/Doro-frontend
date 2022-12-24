@@ -66,7 +66,6 @@ import ModalMap from "../components/ModalMap";
 //   }
 // `
 const DialogButton = styled.button`
-  width: 10.833rem;
   height: 3.222rem;
   flex-grow: 0;
   cursor: pointer;
@@ -388,6 +387,7 @@ export const HomePage = () => {
           </div>
         </div>
 
+        {/* 전공 지식을 갖춘 대학생 강사 */}
         <div className="Main2">
           <div className="Main2-content-container">
             <div className="Item-center"  {...main2BottomAnimation}>
@@ -400,7 +400,7 @@ export const HomePage = () => {
           <div className="Main9-content-container">
             <div className="Main9-letter-container" {...main9TopAnimation}>
               <p className="Main9-title">
-                전문가에게 배우는 미래형 진로교육
+                대학생에게 배우는 미래형 진로교육
               </p>
               <p className="Main9-subtitle">
               DORO의 모든 교육은 학생의 시야를 넓혀주기 위한 진로 교육을 포함하고 있습니다.
