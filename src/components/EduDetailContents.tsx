@@ -487,7 +487,7 @@ const DetailContents = () => {
 
       {/* ------------------메인 카테고리------------------  */}
 
-      <div className="MainCategory-container">
+      <div className="MainCategory-container" style={{marginBottom: main2 || main3 || main4 ? "3.272rem" : ""}}>
         <button
           className={(main1 ? "MainCategory-click" : "MainCategory-click-off")}
           type="button"

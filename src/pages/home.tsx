@@ -66,7 +66,6 @@ import ModalMap from "../components/ModalMap";
 //   }
 // `
 const DialogButton = styled.button`
-  width: 10.833rem;
   height: 3.222rem;
   flex-grow: 0;
   cursor: pointer;
@@ -388,6 +387,7 @@ export const HomePage = () => {
           </div>
         </div>
 
+        {/* 전공 지식을 갖춘 대학생 강사 */}
         <div className="Main2">
           <div className="Main2-content-container">
             <div className="Item-center"  {...main2BottomAnimation}>

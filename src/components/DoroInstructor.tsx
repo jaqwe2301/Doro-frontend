@@ -61,44 +61,6 @@ const Line = styled.div`
     flex-grow: 0;
     background-color: var(--doro-deep);
 `
-const BlurBox = styled.div`
-    position: absolute;
-    bottom: 0;
-    width: 15.556rem;
-    height: 10.697rem;
-    flex-grow: 0;
-    border-radius: 10px;
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-    background-color: rgba(0, 0, 0, 0.45);
-    display: none;
-    
-`
-const Container = styled.div`
-    width: 16.556rem;
-    height: 23.333rem;
-    flex-grow: 0;
-    border-radius: 10px;
-    margin-top: 2.944rem;
-    background-color: var(--doro-super-light-grey);
-    text-align: center;
-    justify-content: center;
-    position: relative;
-&:hover ${BlurBox}{
-        display: block;
-        animation: fadeInUp 0.8s;
-        @keyframes fadeInUp {
-        0% {
-            opacity: 0;
-            transform: translate3d(0, 50%, 0);
-        }
-        to {
-            opacity: 1;
-            transform: translateZ(0);
-        }
-    }
-    }
-`
 
 const Image = styled.img`
     width: 15.557rem;
@@ -109,8 +71,28 @@ const Image = styled.img`
 `
 const Instructor_box = styled.img`
     width: 100%;
-    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    border-radius: 10px;
 `
+
+const Container = styled.div`
+    width: 16.556rem;
+    height: 23.333rem;
+    flex-grow: 0;
+    border-radius: 10px;
+    margin-top: 2.944rem;
+    background-color: var(--doro-super-light-grey);
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+        &:hover ${Instructor_box}{
+            -webkit-transform:  translateY(-171.141px);
+            -webkit-transition-duration: 0.8s;
+        }
+    }
+`
+
 
 const MainEduContent = () => {
     const dummyData = [
@@ -140,9 +122,7 @@ const MainEduContent = () => {
             {dummyData.map((data,idx) => 
                 <Container key={idx}>
                     <Image src={data.imgURL} alt="icon" />
-                    <BlurBox>
-                        <Instructor_box src={data.boxURL}/>
-                    </BlurBox>
+                    <Instructor_box src={data.boxURL}/>
                 </Container>
             )}
             </Box>
