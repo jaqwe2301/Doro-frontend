@@ -87,19 +87,6 @@ interface ICreateEduForm {
   detail_classes: Detail_class_item[];
 }
 
-interface ICreateEduForm {
-  name: string;
-  institution_name: string;
-  position: string;
-  phone_number: string;
-  email: string;
-  student_count: number;
-  school_rank: string;
-  budget: number;
-  overall_remark: string;
-  detail_classes: Detail_class_item[];
-}
-
 interface ISendAuthNumForm {
   name: string;
   phoneNumber: string;
