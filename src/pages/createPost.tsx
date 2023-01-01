@@ -7,7 +7,6 @@ import { Banner } from "../components/banner";
 import { useMe } from "../hooks/useMe";
 import { createPost, createPostVariables } from "../__generated__/createPost";
 import infoConfirm from "../images/Frame68.svg";
-import customerInquiry from "../images/bannerCategory/customerInquiry.png";
 import { Helmet } from "react-helmet-async";
 
 const CREATE_POST_MUTATION = gql`
@@ -92,8 +91,8 @@ export const CreatePost = () => {
         <title>Create | DORO</title>
       </Helmet>
       <Banner
-        wid={5.444}
-        route={customerInquiry}
+        routeName1="• 교육문의"
+        route1=""
         title="교육문의"
         subtitle="Education inquiry"
         content="궁금하신 점이나 상담을 원하시는 부분은 언제든 문의주시면 신속하게 답변 드리도록 하겠습니다."

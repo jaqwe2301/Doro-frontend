@@ -5,16 +5,17 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import walkingImg from "../../images/detailContents/walking.png";
-import walkingKitImg1 from "../../images/detailContents/slide/Education_detail_walking/walkingImage1.png";
-import walkingKitImg2 from "../../images/detailContents/slide/Education_detail_walking/walkingImage2.png";
-import walkingClass1 from "../../images/detailContents/slide/Education_detail_walking/walkingClassImage11.png";
-import walkingClass2 from "../../images/detailContents/slide/Education_detail_walking/walkingClassImage12.png";
-import walkingClass3 from "../../images/detailContents/slide/Education_detail_walking/walkingClassImage13.png";
-import walkingClass4 from "../../images/detailContents/slide/Education_detail_walking/walkingClassImage14.png";
-import walkingClass5 from "../../images/detailContents/slide/Education_detail_walking/walkingClassImage15.png";
 
-export const Walking: React.FC = () => {
+import moodLightImg from "../../images/detailContents/slide/Education_detail_moodLight/banner-moodLight.png";
+import moodLightKitImg1 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightImage.png";
+import moodLightKitImg2 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightPartImage.png";
+import moodLightClass1 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightClassImage1.png";
+import moodLightClass2 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightClassImage2.png";
+import moodLightClass3 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightClassImage3.png";
+import moodLightClass4 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightClassImage4.png";
+import moodLightClass5 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightClassImage5.png";
+
+export const MoonLight: React.FC = () => {
   return (
     <>
       <Banner
@@ -22,15 +23,17 @@ export const Walking: React.FC = () => {
         routeName1="교육 콘텐츠"
         route1="/showDetailContent"
         route1Opacity={0.7}
+
         routeDot2="•"
-        routeName2="DIY 워킹 로봇"
-        route2="/walking"
+        routeName2="DIY 스마트 무드등"
+        route2="/moodLight"
         route2Opacity={1}
-        title="DIY 워킹 로봇"
-        subtitle="DIY walking robot"
+
+        title="DIY 스마트 무드등"
+        subtitle="DIY Smart mood light"
         content="동물처름 두발로 걷는 로봇, 스마트 워킹로봇 만들기"
         contentClass="Subtitle-smallFont"
-        contentsImg={walkingImg}
+        contentsImg={moodLightImg}
       />
 
       <EduTable
@@ -39,12 +42,12 @@ export const Walking: React.FC = () => {
         tabletitle2="기대 효과"
         tabletitle3="교육 형태"
         contents1_1="초등학생, 중학생, 고등학생"
-        contents2_1="&nbsp; • ‘스마트 워킹로봇’이라는 창의적 구조물, 창작물 제작을 통한 심미적 감성과 창의적 사고력 향상을 기대한다."
-        contents2_2="&nbsp; • 일반 바퀴형 이동 수단과 직립 보행 이동 수단의 차이를 이해하고 ‘생체 모방 공학’을 통해 창의적 문제해결 능력을 배양한다."
-        contents2_3="&nbsp; • 자신의 불편함을 로봇 공학적 지식을 바탕으로 스스로 해결하는 메이커 문화를 직접 체험."
+        contents2_1=" 로봇전문가는 어떤 일을 하는지 예시를 통해 이해한다."
+        contents2_2=" ‘무드등’이라는 창의적 구조물, 창작물 제작을 통한 심미적 감성과 창의적 사고력 향상을 기대한다."
+        contents2_3=" 일반 무드등과 스마트 무드등의 차이를 이해하고 불편함을 해결하는 과정을 통해 창의적 문제해결 능력을 배양한다."
         contents3_1="찾아 가는 현장교육, 체험형 교육 부스"
         liClass1="EduTable-table-subContents"
-        liClass2="EduTable-table-subContents"
+        liClass2="EduTable-table-subContents List-style-dics"
         liClass3="EduTable-table-subContents"
         titleMarginTop={5}
       />
@@ -54,15 +57,19 @@ export const Walking: React.FC = () => {
         tabletitle1="준비단계"
         tabletitle2="실행단계"
         tabletitle3="마무리 단계"
+
         contents1_1="1. 로봇공학 전문가 선생님을 통해 로봇공학 학문을 이해한다."
         contents1_2="2. 로봇의 구성요소(센서, 모터, 연산장치)중 센서와 모터의 개념을 살펴본다. (초, 중)"
-        contents1_3="3. IR센서가 물체와의 거리를 측정하는 원리를 이해하고, 실제 로봇에 사용된 예시를 본다."
-        contents1_4="4. 제작하는 로봇의 부품의 기구학 개념을 동물의 다리구조와 비교하며 이해한다."
+        contents1_3="3. 조도센서가 빛의 밝기를 측정하는 원리를 이해하고, 실제 로봇에 사용된 예시를 본다."
+        contents1_4="4. 제작하는 무드등의 부품이 어떻게 사용되는지 이해한다."
+        contents1_5="5. 기존 무드등과 센서를 이용한 무드등의 차이를 이해하고 왜 로봇에 센서를 사용하는 공감한다."
+
         contents2_1="1. 회로도에 맞춰 각 전자 부품을 직접 연결하여 로봇 전자회로를 제작한다."
-        contents2_2="2. 로봇 외관을 조립하고 IR센서에 따라 로봇의 이동이 달라지는 것을 확인한다."
-        contents3_1="1. 일반적인 바퀴와 달리 다리를 통해 보행하는 로봇의 장점을 이해한다."
-        contents3_2="2. 모터의 원형 운동을 보행 운동으로 변경한 기구학 개념을 이해한다."
-        contents3_3="3. 생활 속 서비스로봇에 사용되는 IR센서와 스마트 워킹로봇의 IR센서의 공통점과 차이점을 이해한다."
+        contents2_2="2. 무드등을 조립하고 실제 밝기에 따라 달라지는 LED 빛을 확인한다."
+
+        contents3_1="1. 일반적인 스위치로 만들어진 무드등의 문제점을 해결하는 과정에서 로봇공학지식이 어떻게 사용 되었는지 이해한다."
+        contents3_2="2. 일상 속 개선되었으면 하는 물품을 찾아보고 센서를 이용한 무드등처럼 불편함을 해결하는 방법을 고안해 본다."
+
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"
@@ -72,15 +79,15 @@ export const Walking: React.FC = () => {
       <LearningObjective
         title="수업 목표"
         titleMarginTop={12.222}
-        contents1="로봇의 원리와 구성을 공학적으로 이해하고, 현시점에서 개발된 다양한 로봇의 사례를 학습한다."
-        contents2="DC모터, 스위치, IR센서의 활동으로, 설계, 조립, 제어 원리 이해를 통해 로봇공학적 사고력을 키운다."
+        contents1="로봇의 구성을 이해하고, 로봇에서 사용되는 ‘센서’의 개념을 이해한다."
+        contents2="저항, 트렌지스터, LED, CDS센서, 스위치를 직접 다루어 보면서 기초 공학 지식을 습득한다."
       />
 
       <KitPicture
         title="키트 사진"
         titleMarginTop={12.222}
-        imgSrc1={walkingKitImg1}
-        imgSrc2={walkingKitImg2}
+        imgSrc1={moodLightKitImg1}
+        imgSrc2={moodLightKitImg2}
         // 사진이 1개이면 gridTemplateColumns2을 0으로
         gridTemplateColumns1={32.222}
         gridTemplateColumns2={32.222}
@@ -89,11 +96,11 @@ export const Walking: React.FC = () => {
       <ContentsSlide
         title="교육 사진"
         titleMarginTop={12.222}
-        imgSrc1={walkingClass1}
-        imgSrc2={walkingClass2}
-        imgSrc3={walkingClass3}
-        imgSrc4={walkingClass4}
-        imgSrc5={walkingClass5}
+        imgSrc1={moodLightClass1}
+        imgSrc2={moodLightClass2}
+        imgSrc3={moodLightClass3}
+        imgSrc4={moodLightClass4}
+        imgSrc5={moodLightClass5}
       />
 
       <Notice

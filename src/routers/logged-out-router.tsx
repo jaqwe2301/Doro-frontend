@@ -14,29 +14,25 @@ import { ApplyNewEducation } from "../pages/applyNewEducation";
 import { ShowDetailContent } from "../pages/showDetailContent";
 
 import { Walking } from "../pages/educontents/walking";
-import { Balancing } from './../pages/educontents/balancing';
-import { BizCool } from './../pages/educontents/bizCool';
-import { Chemical } from './../pages/educontents/chemical';
-import { GameDevice } from './../pages/educontents/gameDevice';
-import { GoogleAI } from './../pages/educontents/googleAI';
-import { GoogleEarth } from './../pages/educontents/googleEarth';
-import { GoogleOpen } from './../pages/educontents/googleOpen';
-import { IRcar } from './../pages/educontents/IRcar';
-import { Literacy } from './../pages/educontents/literacy';
-import { Luminol } from './../pages/educontents/luminol';
-import { MoonLight } from './../pages/educontents/moonLight';
-import { Pen } from './../pages/educontents/pen';
-import { Printer } from './../pages/educontents/printer';
-import { Pygame } from './../pages/educontents/pygame';
-import { Python } from './../pages/educontents/python';
-import { Speaker } from './../pages/educontents/speaker';
-import { Tinkercad } from './../pages/educontents/tinkercad';
-import { Tracer } from './../pages/educontents/tracer';
-import { UltrasonicWave } from './../pages/educontents/ultrasonicWave';
-
-
-
-
+import { Balancing } from "./../pages/educontents/balancing";
+import { BizCool } from "./../pages/educontents/bizCool";
+import { Chemical } from "./../pages/educontents/chemical";
+import { GameConsole } from "../pages/educontents/gameConsole";
+import { GoogleAI } from "./../pages/educontents/googleAI";
+import { GoogleEarth } from "./../pages/educontents/googleEarth";
+import { GoogleOpen } from "./../pages/educontents/googleOpen";
+import { IRcar } from "./../pages/educontents/IRcar";
+import { Literacy } from "./../pages/educontents/literacy";
+import { Luminol } from "./../pages/educontents/luminol";
+import { MoonLight } from "../pages/educontents/moodLight";
+import { Pen } from "./../pages/educontents/pen";
+import { Printer } from "./../pages/educontents/printer";
+import { Pygame } from "./../pages/educontents/pygame";
+import { Python } from "./../pages/educontents/python";
+import { Speaker } from "./../pages/educontents/speaker";
+import { Tinkercad } from "./../pages/educontents/tinkercad";
+import { Tracer } from "./../pages/educontents/tracer";
+import { Piano } from "../pages/educontents/piano";
 
 export const LoggedOutRouter = () => {
   return (
@@ -51,21 +47,27 @@ export const LoggedOutRouter = () => {
         <Route path="/post/:id/edit" element={<EditPost />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="*" element={<NotFound />}></Route>
-        <Route path="/applyNewEducation" element={<ApplyNewEducation />}></Route>
-        <Route path="/showDetailContent" element={<ShowDetailContent />}></Route>
+        <Route
+          path="/applyNewEducation"
+          element={<ApplyNewEducation />}
+        ></Route>
+        <Route
+          path="/showDetailContent"
+          element={<ShowDetailContent />}
+        ></Route>
 
         <Route path="/walking" element={<Walking />}></Route>
         <Route path="/balancing" element={<Balancing />}></Route>
         <Route path="/bizcool" element={<BizCool />}></Route>
         <Route path="/chemical" element={<Chemical />}></Route>
-        <Route path="/gamedevice" element={<GameDevice />}></Route>
+        <Route path="/gameconsole" element={<GameConsole />}></Route>
         <Route path="/googleai" element={<GoogleAI />}></Route>
         <Route path="/googleearth" element={<GoogleEarth />}></Route>
         <Route path="/googleopen" element={<GoogleOpen />}></Route>
         <Route path="/ircar" element={<IRcar />}></Route>
         <Route path="/literacy" element={<Literacy />}></Route>
         <Route path="/luminol" element={<Luminol />}></Route>
-        <Route path="/moonLight" element={<MoonLight />}></Route>
+        <Route path="/moodLight" element={<MoonLight />}></Route>
         <Route path="/pen" element={<Pen />}></Route>
         <Route path="/printer" element={<Printer />}></Route>
         <Route path="/pygame" element={<Pygame />}></Route>
@@ -73,8 +75,7 @@ export const LoggedOutRouter = () => {
         <Route path="/speaker" element={<Speaker />}></Route>
         <Route path="/tinkercad" element={<Tinkercad />}></Route>
         <Route path="/tracer" element={<Tracer />}></Route>
-        <Route path="/ultrasonicwave" element={<UltrasonicWave />}></Route>
-
+        <Route path="/piano" element={<Piano />}></Route>
       </Routes>
       <Foot />
     </BrowserRouter>

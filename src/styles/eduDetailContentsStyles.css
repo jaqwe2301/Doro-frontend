@@ -1,51 +1,60 @@
-.EduTabble-container {
-    width: 65.556rem;
+.EduTable-container {
+  width: 65.556rem;
 }
 
-.EduDetailContents-title-box{
-    width: 7.1rem;
-    border-bottom: 0.194rem solid #005c97;
+.EduDetailContents-title-box {
+  width: 7.1rem;
+  border-bottom: 0.194rem solid #005c97;
 }
 
 .EduDetailContents-title {
-    font-size: 1.889rem;
-    font-family: Pretendard;
-    font-weight: 600;
+  font-size: 1.889rem;
+  font-family: Pretendard;
+  font-weight: 600;
 }
 
-.EduTabble-table{
-    width: 65.556rem;
-    margin-top: 2.333rem;
-    border-top: 0.056rem solid #d9d9d9;
-    border-bottom: 0.056rem solid #d9d9d9;
-    
-    font-family: Pretendard;
-    font-size: 1rem;
+.EduTable-table {
+  width: 65.556rem;
+  margin-top: 2.333rem;
+ 
+  font-family: Pretendard;
+  font-size: 1rem;
+  border-bottom: 0.056rem solid #d9d9d9;
+
 }
 
-.EduTabble-table th, td {
-    border-top: 0.056rem solid #d9d9d9;
+.EduTable-table th, td {
+  border-top: 0.056rem solid #d9d9d9;
 }
 
-.EduTabble-table th {
-    border-right: 0.056rem solid #d9d9d9;
-    color: #212121;
-    background-color: #f8f9fd;
+.EduTable-table th {
+  width: 10rem;
+  /* border-right: 0.056rem solid #d9d9d9; */
+  color: #212121;
+  background-color: #f8f9fd;
+  font-weight: 500;
+  letter-spacing: 0.9px;
 }
 
-.EduTabble-table td {
-    padding: 0.889rem 0;
-    letter-spacing: 0.9px;
+.EduTable-table td {
+  padding: 0.889rem 0;
+  font-weight: 400;
+  font-size: 0.986rem;
+  letter-spacing: 0.9px;
 }
 
-.EduTabble-table-subContents {
-    margin-left: 1.111rem;
-    color: #777777;
+.EduTable-table-subContents {
+  margin-left: 1.111rem;
+  color: #777777;
 }
 
 .List-style-dics {
-    margin-left: 2.9rem;
-    list-style-type: disc;
+  margin-left: 2.9rem;
+  list-style-type: disc;
+}
+
+.List-style-none {
+  list-style: none;
 }
 
 
@@ -59,110 +68,108 @@
 }
 
 .LearningObjective-content-container {
-    display: flex;
-    align-items: center;
-    padding-left: 2.056rem;
-    border: 1px solid #d9d9d9;
-    background-color: #f8f9fd;
-    font-family: Pretendard;
-    font-weight: bold;
-    font-size: 1rem;
-    letter-spacing: 0.9px;
-    color: #0072b9;
+  display: flex;
+  align-items: center;
+  padding-left: 2.056rem;
+  border: 1px solid #d9d9d9;
+  background-color: #f8f9fd;
+  font-family: Pretendard;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 0.9px;
+  color: #0072b9;
 }
 
 /* ------------------------------------- 키트 사진 ---------------------------------------- */
 
 .KitPicture-container {
-    display: grid;
-    grid-template-columns: 32.222rem 32.222rem;
-    grid-template-rows: 19.722rem;
-    gap: 1.111rem;
-    margin-top: 2.444rem;
+  display: grid;
+  grid-template-rows: 19.722rem;
+  gap: 1.111rem;
+  margin-top: 2.444rem;
 }
 
 /* ------------------------------------- 슬라이드 ------------------------------------ */
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2.278rem;
-  }
-  
-  .slide {
-    display: flex;
-    align-items: center;
-    margin-top: 1.444rem;
-  }
-  
-  .window {
-    width: 43.333rem;
-    height: 25rem;
-    overflow: hidden;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.278rem;
+}
 
-  .position {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .flexbox {
-    display: flex;
-    transition: all 0.3s ease-out;
-  }
-  
-  .img {
-    width: 43.333rem;
-    height: 25rem;
-    background-position: 50% 50%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    flex: none;
-  }
-  
-  .btn {
-    display: flex;
-    align-items: center;
-    width: 1.966rem;
-    height: 3.933rem;
-    cursor: pointer;
-    margin: 0 3.5rem;
-  }
-    
-  .dot {
-    background: lightgray;
-    border-radius: 100%;
-    height: 0.5rem;
-    width: 0.5rem;
-  }
-  .dot + .dot {
-    margin-left: 0.571rem;
-  }
-    
-  .current {
-    background: gray;
-  }
+.slide {
+  display: flex;
+  align-items: center;
+  margin-top: 1.444rem;
+}
 
-  /* -------------------------------- 공지사항 ------------------------------------ */
+.window {
+  width: 43.333rem;
+  height: 25rem;
+  overflow: hidden;
+}
 
- .Notice-container {
-    display: grid;
-    gap: 0.722rem;
-    grid-template-rows: 1.444rem 1.444rem 1.444rem 1.444rem 1.444rem 1.444rem;
-    align-content: center;
+.position {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
 
-    margin: 2.444rem 0 12.222rem 0;
-    width: 65.556rem; 
-    height: 15.167rem;
-    padding-left: 1.444rem;
-    background-color: #f8f9fd;
-    border: 1px solid #d9d9d9;
+.flexbox {
+  display: flex;
+  transition: all 0.3s ease-out;
+}
 
-    font-family: Pretendard;
-    font-size: 1rem;
-    color: #777777;
-    letter-spacing: 0.9px;
-    
- }
+.img {
+  width: 43.333rem;
+  height: 25rem;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex: none;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  width: 1.966rem;
+  height: 3.933rem;
+  cursor: pointer;
+  margin: 0 3.5rem;
+}
+
+.dot {
+  background: lightgray;
+  border-radius: 100%;
+  height: 0.5rem;
+  width: 0.5rem;
+}
+.dot + .dot {
+  margin-left: 0.571rem;
+}
+
+.current {
+  background: gray;
+}
+
+/* -------------------------------- 공지사항 ------------------------------------ */
+
+.Notice-container {
+  display: grid;
+  gap: 0.722rem;
+  grid-template-rows: 1.444rem 1.444rem 1.444rem 1.444rem 1.444rem 1.444rem;
+  align-content: center;
+
+  margin: 2.444rem 0 12.222rem 0;
+  width: 65.556rem;
+  height: 15.167rem;
+  padding-left: 1.444rem;
+  background-color: #f8f9fd;
+  border: 1px solid #d9d9d9;
+
+  font-family: Pretendard;
+  font-size: 1rem;
+  color: #777777;
+  letter-spacing: 0.9px;
+}
