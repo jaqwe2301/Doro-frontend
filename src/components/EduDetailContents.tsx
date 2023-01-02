@@ -154,14 +154,14 @@ const EduDetailContents = () => {
         img: 'literacy',
         hash: '#디지털리터러시 #디지털역량 #정보활용',
         title: '디지털 리터러시',
-        link: "/literacy"
+        link: ""
 
       },
       {
         img: "googleEarth",
         hash: "#구글 #구글어스 #정보활용",
         title: "Google 어스",
-        link: "/googleearth"
+        link: ""
 
       },
       {
@@ -184,7 +184,7 @@ const EduDetailContents = () => {
         img: '3Dprinter',
         hash: '#3D프린터 #메이커 #창작활동',
         title: '3D 프린터 교육',
-        link: "/pinter"
+        link: "/printer"
 
       },
       {
