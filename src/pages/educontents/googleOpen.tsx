@@ -5,13 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-
-import aiexampleImg from "../../images/detailContents/slide/Education_detail_aiexample/upperBannerAIExample.png";
-import aiexampleClass1 from "../../images/detailContents/slide/Education_detail_aiexample/AIExampleClassImage1.png";
-import aiexampleClass2 from "../../images/detailContents/slide/Education_detail_aiexample/AIExampleClassImage2.png";
-import aiexampleClass3 from "../../images/detailContents/slide/Education_detail_aiexample/AIExampleClassImage3.png";
-import aiexampleClass4 from "../../images/detailContents/slide/Education_detail_aiexample/AIExampleClassImage4.png";
-import aiexampleClass5 from "../../images/detailContents/slide/Education_detail_aiexample/AIExampleClassImage5.png";
+import aiexampleImg from "../../images/detailContents/slide/education_detail_aiexample/upperBannerAIExample.png";
+import aiexampleClass1 from "../../images/detailContents/slide/education_detail_aiexample/AIExampleClassImage1.png";
+import aiexampleClass2 from "../../images/detailContents/slide/education_detail_aiexample/AIExampleClassImage2.png";
+import aiexampleClass3 from "../../images/detailContents/slide/education_detail_aiexample/AIExampleClassImage3.png";
+import aiexampleClass4 from "../../images/detailContents/slide/education_detail_aiexample/AIExampleClassImage4.png";
+import aiexampleClass5 from "../../images/detailContents/slide/education_detail_aiexample/AIExampleClassImage5.png";
 
 export const GoogleOpen: React.FC = () => {
   return (
@@ -21,12 +20,10 @@ export const GoogleOpen: React.FC = () => {
         routeName1="교육 콘텐츠"
         route1="/showDetailContent"
         route1Opacity={0.7}
-
         routeDot2="•"
         routeName2="Google AI 예제 원리 이해"
         route2="/googleopen"
         route2Opacity={1}
-
         title="Google AI 예제 원리 이해"
         subtitle="Google AI Example Principles"
         content="Google에서 제공하는 3가지 AI 예제 실습을 통해 학습된 인공지능을 만나보며 원리 이해하기기"
@@ -45,11 +42,9 @@ export const GoogleOpen: React.FC = () => {
         contents2_3=" 미래 인공지능의 발전 방향을 고민하고, 상상하며 창의적 사고를 발달시킨다."
         contents3_1="찾아 가는 현장교육, 체험형 교육 부스"
         liClass1="EduTable-table-subContents"
-
         liClass2_1="EduTable-table-subContents List-style-dics"
         liClass2_2="EduTable-table-subContents List-style-dics"
         liClass2_3="EduTable-table-subContents List-style-dics"
-
         liClass3="EduTable-table-subContents"
         titleMarginTop={5}
       />
@@ -59,11 +54,9 @@ export const GoogleOpen: React.FC = () => {
         tabletitle1="준비단계"
         tabletitle2="실행단계"
         tabletitle3="마무리 단계"
-
         contents1_1="1. 영상과 사진을 통해 인공지능의 개념 확립하기"
         contents1_2="2. 사람의 지능과 인공지능을 비교하며 AI의 학습 과정 알아보기"
         contents1_3="3. 일상생활 속 인공지능 찾아보기"
-
         contents2_1="AI Gahaku"
         contents2_2="1. 검색창에서 인물 이미지를 검색하고, AI Gahaku 사이트에 업로드한 뒤 바뀌는 화풍 확인해보기"
         contents2_3="2. 웹캠으로 자신의 얼굴을 촬영하고 AI Gahaku 사이트에 업로드 한 뒤 바뀌는 화풍 관찰해보기"
@@ -73,10 +66,8 @@ export const GoogleOpen: React.FC = () => {
         contents2_7="Quick Draw"
         contents2_8="1. 인공지능이 제안하는 6개의 단어에 맞춰 20초 동안 그림을 그리고, AI가 정답을 맞히는지 확인하기"
         contents2_9="2. 내가 그린 그림이 학습 데이터가 되는 과정과 인공지능의 학습 원리 이해하기"
-
         contents3_1="1. 인공지능 체험을 통해 느낀점 친구들과 공유하기"
         contents3_2="2. 인공지능을 활용하여 만들고 싶은 아이디어 친구들과 공유하기"
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"

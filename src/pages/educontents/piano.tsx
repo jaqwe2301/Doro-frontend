@@ -5,14 +5,13 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-
-import pianoImg from "../../images/detailContents/slide/Education_detail_piano/upperBannerPiano.png";
-import pianoKitImg1 from "../../images/detailContents/slide/Education_detail_piano/pianoImage.png";
-import pianoClass1 from "../../images/detailContents/slide/Education_detail_piano/pianoClassImage1.png";
-import pianoClass2 from "../../images/detailContents/slide/Education_detail_piano/pianoClassImage2.png";
-import pianoClass3 from "../../images/detailContents/slide/Education_detail_piano/pianoClassImage3.png";
-import pianoClass4 from "../../images/detailContents/slide/Education_detail_piano/pianoClassImage4.png";
-import pianoClass5 from "../../images/detailContents/slide/Education_detail_piano/pianoClassImage5.png";
+import pianoImg from "../../images/detailContents/slide/education_detail_piano/upperBannerPiano.png";
+import pianoKitImg1 from "../../images/detailContents/slide/education_detail_piano/pianoImage.png";
+import pianoClass1 from "../../images/detailContents/slide/education_detail_piano/pianoClassImage1.png";
+import pianoClass2 from "../../images/detailContents/slide/education_detail_piano/pianoClassImage2.png";
+import pianoClass3 from "../../images/detailContents/slide/education_detail_piano/pianoClassImage3.png";
+import pianoClass4 from "../../images/detailContents/slide/education_detail_piano/pianoClassImage4.png";
+import pianoClass5 from "../../images/detailContents/slide/education_detail_piano/pianoClassImage5.png";
 
 export const Piano: React.FC = () => {
   return (
@@ -22,12 +21,10 @@ export const Piano: React.FC = () => {
         routeName1="교육 콘텐츠"
         route1="/showDetailContent"
         route1Opacity={0.7}
-
         routeDot2="•"
         routeName2="초음파 피아노"
         route2="/piano"
         route2Opacity={1}
-
         title="초음파 피아노"
         subtitle="Ultrasonic Sensor piano"
         content="IOT를 이해하고 기초 아두이노 코딩 실습을 통한 초음파 피아노 제작하기"
@@ -56,21 +53,17 @@ export const Piano: React.FC = () => {
         tabletitle1="준비단계"
         tabletitle2="실행단계"
         tabletitle3="마무리 단계"
-
         contents1_1="1. 강사 전공 소개 및 진로 교육"
         contents1_2="2. 아두이노 원리 및 C언어 기초 개념 소개"
         contents1_3="3. 아두이노 설치하기"
-
         contents2_1="1. LCD 이용해서 Hello word 찍어보기 (영어, 한글)"
         contents2_2="&nbsp;&nbsp;&nbsp;  1-1. 미션 : 본인 이름 LCD에 나오게 하기"
         contents2_3="2. LED, 3색 LED 켜보기"
         contents2_4="3. 조건문을 통해 가변저항, 스위치 사용해보기"
         contents2_5="&nbsp;&nbsp;&nbsp;  3-1. 미션 : 시간에 따라 LED가 켜지는 무지개, 가변저항에 따라 LED가 켜지는 무지개 만들기"
-
         contents3_1="1. 배열과 caes문을 활용하여 데이터 저장하기"
         contents3_2="2. 부저 및 초음파 센서 사용하기"
         contents3_3="&nbsp;&nbsp;&nbsp; 2-1. 미션 : 피아노 완성 후 배열을 활용하여 “도~시”음계로 노래 만들기"
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"

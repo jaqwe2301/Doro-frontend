@@ -7,13 +7,13 @@ import { Notice } from "../../components/eduDetailContents/notice";
 
 import eduContents from "../../images/bannerCategory/eduContents.png";
 import speakerImg from "../../images/detailContents/speaker.png";
-import speakerKitImg1 from "../../images/detailContents/slide/Education_detail_speaker/speakerImage.png";
-import speakerKitImg2 from "../../images/detailContents/slide/Education_detail_speaker/speakerPartImage.png";
-import speakerClass1 from "../../images/detailContents/slide/Education_detail_speaker/speakerClassImage1.png";
-import speakerClass2 from "../../images/detailContents/slide/Education_detail_speaker/speakerClassImage2.png";
-import speakerClass3 from "../../images/detailContents/slide/Education_detail_speaker/speakerClassImage3.png";
-import speakerClass4 from "../../images/detailContents/slide/Education_detail_speaker/speakerClassImage4.png";
-import speakerClass5 from "../../images/detailContents/slide/Education_detail_speaker/speakerClassImage5.png";
+import speakerKitImg1 from "../../images/detailContents/slide/education_detail_speaker/speakerImage.png";
+import speakerKitImg2 from "../../images/detailContents/slide/education_detail_speaker/speakerPartImage.png";
+import speakerClass1 from "../../images/detailContents/slide/education_detail_speaker/speakerClassImage1.png";
+import speakerClass2 from "../../images/detailContents/slide/education_detail_speaker/speakerClassImage2.png";
+import speakerClass3 from "../../images/detailContents/slide/education_detail_speaker/speakerClassImage3.png";
+import speakerClass4 from "../../images/detailContents/slide/education_detail_speaker/speakerClassImage4.png";
+import speakerClass5 from "../../images/detailContents/slide/education_detail_speaker/speakerClassImage5.png";
 
 export const Speaker: React.FC = () => {
   return (

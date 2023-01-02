@@ -5,15 +5,14 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-
-import moodLightImg from "../../images/detailContents/slide/Education_detail_moodLight/banner-moodLight.png";
-import moodLightKitImg1 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightImage.png";
-import moodLightKitImg2 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightPartImage.png";
-import moodLightClass1 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightClassImage1.png";
-import moodLightClass2 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightClassImage2.png";
-import moodLightClass3 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightClassImage3.png";
-import moodLightClass4 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightClassImage4.png";
-import moodLightClass5 from "../../images/detailContents/slide/Education_detail_moodLight/moodLightClassImage5.png";
+import moodLightImg from "../../images/detailContents/slide/education_detail_moodLight/banner-moodLight.png";
+import moodLightKitImg1 from "../../images/detailContents/slide/education_detail_moodLight/moodLightImage.png";
+import moodLightKitImg2 from "../../images/detailContents/slide/education_detail_moodLight/moodLightPartImage.png";
+import moodLightClass1 from "../../images/detailContents/slide/education_detail_moodLight/moodLightClassImage1.png";
+import moodLightClass2 from "../../images/detailContents/slide/education_detail_moodLight/moodLightClassImage2.png";
+import moodLightClass3 from "../../images/detailContents/slide/education_detail_moodLight/moodLightClassImage3.png";
+import moodLightClass4 from "../../images/detailContents/slide/education_detail_moodLight/moodLightClassImage4.png";
+import moodLightClass5 from "../../images/detailContents/slide/education_detail_moodLight/moodLightClassImage5.png";
 
 export const MoonLight: React.FC = () => {
   return (
@@ -23,12 +22,10 @@ export const MoonLight: React.FC = () => {
         routeName1="교육 콘텐츠"
         route1="/showDetailContent"
         route1Opacity={0.7}
-
         routeDot2="•"
         routeName2="DIY 스마트 무드등"
         route2="/moodLight"
         route2Opacity={1}
-
         title="DIY 스마트 무드등"
         subtitle="DIY Smart mood light"
         content="동물처름 두발로 걷는 로봇, 스마트 워킹로봇 만들기"
@@ -57,19 +54,15 @@ export const MoonLight: React.FC = () => {
         tabletitle1="준비단계"
         tabletitle2="실행단계"
         tabletitle3="마무리 단계"
-
         contents1_1="1. 로봇공학 전문가 선생님을 통해 로봇공학 학문을 이해한다."
         contents1_2="2. 로봇의 구성요소(센서, 모터, 연산장치)중 센서와 모터의 개념을 살펴본다. (초, 중)"
         contents1_3="3. 조도센서가 빛의 밝기를 측정하는 원리를 이해하고, 실제 로봇에 사용된 예시를 본다."
         contents1_4="4. 제작하는 무드등의 부품이 어떻게 사용되는지 이해한다."
         contents1_5="5. 기존 무드등과 센서를 이용한 무드등의 차이를 이해하고 왜 로봇에 센서를 사용하는 공감한다."
-
         contents2_1="1. 회로도에 맞춰 각 전자 부품을 직접 연결하여 로봇 전자회로를 제작한다."
         contents2_2="2. 무드등을 조립하고 실제 밝기에 따라 달라지는 LED 빛을 확인한다."
-
         contents3_1="1. 일반적인 스위치로 만들어진 무드등의 문제점을 해결하는 과정에서 로봇공학지식이 어떻게 사용 되었는지 이해한다."
         contents3_2="2. 일상 속 개선되었으면 하는 물품을 찾아보고 센서를 이용한 무드등처럼 불편함을 해결하는 방법을 고안해 본다."
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"

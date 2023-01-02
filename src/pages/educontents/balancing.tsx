@@ -5,14 +5,14 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import balancingImg from "../../images/detailContents/slide/Education_detail_balancing/upperBannerImageBalancing.png";
-import balancingKitImg1 from "../../images/detailContents/slide/Education_detail_balancing/balancingImageFront.png";
-import balancingKitImg2 from "../../images/detailContents/slide/Education_detail_balancing/balancingImageSide.png";
-import balancingClass1 from "../../images/detailContents/slide/Education_detail_balancing/balancingClassImage1.png";
-import balancingClass2 from "../../images/detailContents/slide/Education_detail_balancing/balancingClassImage2.png";
-import balancingClass3 from "../../images/detailContents/slide/Education_detail_balancing/balancingClassImage3.png";
-import balancingClass4 from "../../images/detailContents/slide/Education_detail_balancing/balancingClassImage4.png";
-import balancingClass5 from "../../images/detailContents/slide/Education_detail_balancing/balancingClassImage5.png";
+import balancingImg from "../../images/detailContents/slide/education_detail_balancing/upperBannerImageBalancing.png";
+import balancingKitImg1 from "../../images/detailContents/slide/education_detail_balancing/balancingImageFront.png";
+import balancingKitImg2 from "../../images/detailContents/slide/education_detail_balancing/balancingImageSide.png";
+import balancingClass1 from "../../images/detailContents/slide/education_detail_balancing/balancingClassImage1.png";
+import balancingClass2 from "../../images/detailContents/slide/education_detail_balancing/balancingClassImage2.png";
+import balancingClass3 from "../../images/detailContents/slide/education_detail_balancing/balancingClassImage3.png";
+import balancingClass4 from "../../images/detailContents/slide/education_detail_balancing/balancingClassImage4.png";
+import balancingClass5 from "../../images/detailContents/slide/education_detail_balancing/balancingClassImage5.png";
 
 export const Balancing: React.FC = () => {
   return (

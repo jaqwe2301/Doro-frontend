@@ -5,13 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-
-import pyGameImg from "../../images/detailContents/slide/Education_detail_pygame/upperBannerPyGame.png";
-import pyGameClass1 from "../../images/detailContents/slide/Education_detail_pygame/pyGameClassImage1.png";
-import pyGameClass2 from "../../images/detailContents/slide/Education_detail_pygame/pyGameClassImage2.png";
-import pyGameClass3 from "../../images/detailContents/slide/Education_detail_pygame/pyGameClassImage3.png";
-import pyGameClass4 from "../../images/detailContents/slide/Education_detail_pygame/pyGameClassImage4.png";
-import pyGameClass5 from "../../images/detailContents/slide/Education_detail_pygame/pyGameClassImage5.png";
+import pyGameImg from "../../images/detailContents/slide/education_detail_pygame/upperBannerPyGame.png";
+import pyGameClass1 from "../../images/detailContents/slide/education_detail_pygame/pyGameClassImage1.png";
+import pyGameClass2 from "../../images/detailContents/slide/education_detail_pygame/pyGameClassImage2.png";
+import pyGameClass3 from "../../images/detailContents/slide/education_detail_pygame/pyGameClassImage3.png";
+import pyGameClass4 from "../../images/detailContents/slide/education_detail_pygame/pyGameClassImage4.png";
+import pyGameClass5 from "../../images/detailContents/slide/education_detail_pygame/pyGameClassImage5.png";
 
 export const Pygame: React.FC = () => {
   return (
@@ -21,12 +20,10 @@ export const Pygame: React.FC = () => {
         routeName1="교육 콘텐츠"
         route1="/showDetailContent"
         route1Opacity={0.7}
-
         routeDot2="•"
         routeName2="파이게임 모듈 활용 파이썬 교육"
         route2="/googleai"
         route2Opacity={1}
-
         title="파이게임 모듈 활용 파이썬 교육"
         subtitle="Python training using pygame module"
         content="코드의 기본 동작원리와 예시를 학습하고 제시된 게임 코드에서 빈칸을 채우며 파이썬 학습"
@@ -45,11 +42,9 @@ export const Pygame: React.FC = () => {
         contents2_3=" 빈칸을 채우는 방식의 미션을 통해 코드의 흐름과 인과관계를 파악, 논리적 사고력 향상"
         contents3_1="비대면 온라인 교육, 찾아 가는 현장교육"
         liClass1="EduTable-table-subContents"
-
         liClass2_1="EduTable-table-subContents List-style-dics"
         liClass2_2="EduTable-table-subContents List-style-dics"
         liClass2_3="EduTable-table-subContents List-style-dics"
-
         liClass3="EduTable-table-subContents"
         titleMarginTop={5}
       />
@@ -59,19 +54,15 @@ export const Pygame: React.FC = () => {
         tabletitle1="준비단계"
         tabletitle2="실행단계"
         tabletitle3="마무리 단계"
-
         contents1_1="1. 강사 및 학과 전공 소개"
         contents1_2="2. 코딩 학습의 필요성 전달, 학생 개인 진로 상담"
         contents1_3="3. 파이썬 및 파이게임 모듈 설치"
-
         contents2_1="1. 코딩 기초 문법인 변수 선언, 반복문, 모듈과 객체 개념 학습"
         contents2_2="2. 벽돌, 공 등의 게임 객체 생성"
-
         contents3_1="1. (공 움직이기) 공의 이동 및 벽 튕기기 구현"
         contents3_2="2. (바(bar) 조종하기) 키보드를 이용해 바를 조종, 공이 튕기는 기능 구현"
         contents3_3="3. (벽돌 깨기) 공에 벽돌이 충돌하면 깨지는 기능 구현"
         contents3_4="4. (인공지능 맛보기) 강화학습이 적용된 ATARI breakout 게임 예시 학습, 학생과 인공지능 게임 점수 대결"
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"

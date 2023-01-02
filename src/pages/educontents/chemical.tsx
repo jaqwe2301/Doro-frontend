@@ -5,14 +5,13 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-
-import chemicalGardenImg from "../../images/detailContents/slide/Education_detail_chemicalgarden/upperBannerChemicalGarden.png";
-import chemicalGardenKitImg1 from "../../images/detailContents/slide/Education_detail_chemicalgarden/chemicalGardenImage.png";
-import chemicalGardenClass1 from "../../images/detailContents/slide/Education_detail_chemicalgarden/chemicalGardenClassImage1.png";
-import chemicalGardenClass2 from "../../images/detailContents/slide/Education_detail_chemicalgarden/chemicalGardenClassImage2.png";
-import chemicalGardenClass3 from "../../images/detailContents/slide/Education_detail_chemicalgarden/chemicalGardenClassImage3.png";
-import chemicalGardenClass4 from "../../images/detailContents/slide/Education_detail_chemicalgarden/chemicalGardenClassImage4.png";
-import chemicalGardenClass5 from "../../images/detailContents/slide/Education_detail_chemicalgarden/chemicalGardenClassImage5.png";
+import chemicalGardenImg from "../../images/detailContents/slide/education_detail_chemicalgarden/upperBannerChemicalGarden.png";
+import chemicalGardenKitImg1 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenImage.png";
+import chemicalGardenClass1 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenClassImage1.png";
+import chemicalGardenClass2 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenClassImage2.png";
+import chemicalGardenClass3 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenClassImage3.png";
+import chemicalGardenClass4 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenClassImage4.png";
+import chemicalGardenClass5 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenClassImage5.png";
 
 export const Chemical: React.FC = () => {
   return (
@@ -22,12 +21,10 @@ export const Chemical: React.FC = () => {
         routeName1="교육 콘텐츠"
         route1="/showDetailContent"
         route1Opacity={0.7}
-
         routeDot2="•"
         routeName2="금속 반응 화학정원"
         route2="/googleai"
         route2Opacity={1}
-
         title="금속 반응 화학정원"
         subtitle="Metallic Reaction Chemical Garden"
         content="금속염의 결정 형성과 삼투 현상을 이해하고, 생화학적 원리를 활용한 화학 정원 제작해보기"
@@ -45,13 +42,10 @@ export const Chemical: React.FC = () => {
         contents2_2=" 일상에 널리 존재하는 삼투 현상을 본인이 직접 관찰하며 공학적, 과학적 흥미도를 높인다."
         contents2_3=" 결정 생성 및 삼투 현상의 개념을 이해하고 학생들의 공학적 상상력을 자극한다."
         contents3_1="찾아 가는 현장교육, 체험형 교육 부스"
-
         liClass1="EduTable-table-subContents"
-
         liClass2_1="List-style-dics"
         liClass2_2="List-style-dics"
         liClass2_3="List-style-dics"
-
         liClass3="EduTable-table-subContents"
         titleMarginTop={5}
       />
@@ -61,37 +55,27 @@ export const Chemical: React.FC = () => {
         tabletitle1="준비단계"
         tabletitle2="실행단계"
         tabletitle3="마무리 단계"
-
         contents1_1=" 선생님의 고민, 10대 시절의 가장 큰 고민 "
         contents1_2=" 선생님이 좋아하는 것과 잘했던 것 그리고 도전했던 이야기"
         contents1_3=" 내가 잘하는 것과 좋아하는 것은 무엇일까 ? (4인 1조가 되어 서로 소개하기)"
-
         contents2_1=" 잘하는 것과 좋아하는 것의 공통점 찾아내기"
         contents2_2=" 생명나노공학과 강사 선생님의 생명나노공학과 소개"
         contents2_3=" 삼투 현상, 화학 : 금속염 결정 형상 과정 및 이론 개념 이해하기"
-
         contents3_1=" 화학정원 키트 직접 제작하기"
         contents3_2=" 서로 다른 금속염을 사용해 다른 친구들이 만든 다양한 결정 모습 관찰해보기"
         contents3_3=" 왜 결정이 형성되는지 결정형성 과정의 화학적 원리와 생명과학에 연관된 삼투현상 이해하기"
-
         liClass1="EduTable-table-subContents"
-
         liClass1_1="List-style-dics"
         liClass1_2="List-style-dics"
         liClass1_3="List-style-dics"
-
         liClass2="EduTable-table-subContents"
-
         liClass2_1="List-style-dics"
         liClass2_2="List-style-dics"
         liClass2_3="List-style-dics"
-
         liClass3="EduTable-table-subContents"
-
         liClass3_1="List-style-dics"
         liClass3_2="List-style-dics"
         liClass3_3="List-style-dics"
-
         titleMarginTop={12.222}
       />
 

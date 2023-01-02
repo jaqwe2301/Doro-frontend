@@ -5,12 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import bizCoolImg from "../../images/detailContents/slide/Education_detail_bizcool/upperBanneBizCool.png";
-import bizCoolClass1 from "../../images/detailContents/slide/Education_detail_bizcool/bizCoolClassImage1.png";
-import bizCoolClass2 from "../../images/detailContents/slide/Education_detail_bizcool/bizCoolClassImage2.png";
-import bizCoolClass3 from "../../images/detailContents/slide/Education_detail_bizcool/bizCoolClassImage3.png";
-import bizCoolClass4 from "../../images/detailContents/slide/Education_detail_bizcool/bizCoolClassImage4.png";
-import bizCoolClass5 from "../../images/detailContents/slide/Education_detail_bizcool/bizCoolClassImage5.png";
+import bizCoolImg from "../../images/detailContents/slide/education_detail_bizcool/upperBanneBizCool.png";
+import bizCoolClass1 from "../../images/detailContents/slide/education_detail_bizcool/bizCoolClassImage1.png";
+import bizCoolClass2 from "../../images/detailContents/slide/education_detail_bizcool/bizCoolClassImage2.png";
+import bizCoolClass3 from "../../images/detailContents/slide/education_detail_bizcool/bizCoolClassImage3.png";
+import bizCoolClass4 from "../../images/detailContents/slide/education_detail_bizcool/bizCoolClassImage4.png";
+import bizCoolClass5 from "../../images/detailContents/slide/education_detail_bizcool/bizCoolClassImage5.png";
 
 export const BizCool: React.FC = () => {
   return (
@@ -55,15 +55,12 @@ export const BizCool: React.FC = () => {
         contents1_1="1. 비즈니스의 구성과 시장경제 체제를 이해한다."
         contents1_2="2. 창업 예시 사례를 통해 기업가 정신을 습득한다."
         contents1_3="3. 제조 창업을 이해하고 창업 아이템 도출 방법을 이해한다."
-        
         contents2_1="1. 디자인씽킹 통해 프로토타입 제품을 기획한다."
         contents2_2="2. 팅커캐드를 이용하여 프로토타입을 3D 설계 한다."
         contents2_3="2. 전자 회로 및 아두이노를 이용하여 제품의 기초 기능을 구현한다."
-
         contents3_1="1. 제작한 제품을 구매하는 고객 여정지도를 완성한다."
         contents3_2="2. 제품을 직접 3D프린터를 이용하여 프로토타입을 출력한다."
         contents3_3="2. 해당 제품과 기존 제품의 차별화 포인트를 발표하며 시장 이해도를 높인다."
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"
@@ -76,7 +73,6 @@ export const BizCool: React.FC = () => {
         contents1="비즈니스의 원리와 창업 개념을 이해하며 기업가 정신을 함양한다."
         contents2="제조 기반 창업을 위한 프로토타입제작 방법을 습득한다."
       />
-
 
       <ContentsSlide
         title="교육 사진"

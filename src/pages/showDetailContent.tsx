@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Banner } from "../components/banner";
-import DetailContents from "../components/EduDetailContents";
+import EduDetailContents from "../components/EduDetailContents";
 import { LOCALSTORAGE_TOKEN } from "./../constants";
 
 import "../styles/eduContentStyles.css";
@@ -23,7 +23,7 @@ export const ShowDetailContent: React.FC = () => {
         rightImg="none"
       />
 
-      <DetailContents />
+      <EduDetailContents />
     </>
   );
 };

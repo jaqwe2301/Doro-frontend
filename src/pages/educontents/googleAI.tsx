@@ -5,13 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-
-import teachableImg from "../../images/detailContents/slide/Education_detail_teachable/upperBannerTeachable.png";
-// import teachableClass1 from "../../images/detailContents/slide/Education_detail_teachable/teachableClassImage1.png";
-import teachableClass2 from "../../images/detailContents/slide/Education_detail_teachable/teachableClassImage2.png";
-import teachableClass3 from "../../images/detailContents/slide/Education_detail_teachable/teachableClassImage3.png";
-import teachableClass4 from "../../images/detailContents/slide/Education_detail_teachable/teachableClassImage4.png";
-import teachableClass5 from "../../images/detailContents/slide/Education_detail_teachable/teachableClassImage5.png";
+import teachableImg from "../../images/detailContents/slide/education_detail_teachable/upperBannerTeachable.png";
+import teachableClass1 from "../../images/detailContents/slide/education_detail_teachable/teachableClassImage1.png";
+import teachableClass2 from "../../images/detailContents/slide/education_detail_teachable/teachableClassImage2.png";
+import teachableClass3 from "../../images/detailContents/slide/education_detail_teachable/teachableClassImage3.png";
+import teachableClass4 from "../../images/detailContents/slide/education_detail_teachable/teachableClassImage4.png";
+import teachableClass5 from "../../images/detailContents/slide/education_detail_teachable/teachableClassImage5.png";
 
 export const GoogleAI: React.FC = () => {
   return (
@@ -21,12 +20,10 @@ export const GoogleAI: React.FC = () => {
         routeName1="교육 콘텐츠"
         route1="/showDetailContent"
         route1Opacity={0.7}
-
         routeDot2="•"
         routeName2="Google 티쳐블 머신"
         route2="/googleai"
         route2Opacity={1}
-
         title="Google 티쳐블 머신"
         subtitle="Google teachable machine"
         content="구글 제공 AI 교육 프로그램인 티쳐블 머신을 활용하여 아이디어 구현하기"
@@ -45,11 +42,9 @@ export const GoogleAI: React.FC = () => {
         contents2_3=" 대학생 전공 강사와의 멘토링을 통해 인공지능, 프로그래밍지식을 학습하며 진로경험을 함양한다."
         contents3_1="찾아 가는 현장교육, 체험형 교육 부스"
         liClass1="EduTable-table-subContents"
-
         liClass2_1="EduTable-table-subContents List-style-dics"
         liClass2_2="EduTable-table-subContents List-style-dics"
         liClass2_3="EduTable-table-subContents List-style-dics"
-
         liClass3="EduTable-table-subContents"
         titleMarginTop={5}
       />
@@ -59,18 +54,14 @@ export const GoogleAI: React.FC = () => {
         tabletitle1="준비단계"
         tabletitle2="실행단계"
         tabletitle3="마무리 단계"
-
         contents1_1="1. 강사 전공소개 및 진로교육"
         contents1_2="2. 프로그래밍의 개념과 아두이노 소개"
         contents1_3="3. 아두이노 설치 및 간단한 LED 제어해보기"
-
         contents2_1="1. 아두이노로 스피커, 모터 등등 다양한 모듈 제어해보기"
         contents2_2="2. 인공지능의 원리와 개념 소개"
         contents2_3="3. Google 티쳐블 머신 소개"
-
         contents3_1="1. 인공지능의 현재 활용 예시와 각 자의 아이디어 구상해보기"
         contents3_2="2. 구상한 아이디어로 직접 인공지능 만들어보기"
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"
@@ -87,7 +78,7 @@ export const GoogleAI: React.FC = () => {
       <ContentsSlide
         title="교육 사진"
         titleMarginTop={12.222}
-        // imgSrc1={teachableClass1}
+        imgSrc1={teachableClass1}
         imgSrc2={teachableClass2}
         imgSrc3={teachableClass3}
         imgSrc4={teachableClass4}

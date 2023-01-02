@@ -6,13 +6,13 @@ import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
 import walkingImg from "../../images/detailContents/walking.png";
-import walkingKitImg1 from "../../images/detailContents/slide/Education_detail_walking/walkingImage1.png";
-import walkingKitImg2 from "../../images/detailContents/slide/Education_detail_walking/walkingImage2.png";
-import walkingClass1 from "../../images/detailContents/slide/Education_detail_walking/walkingClassImage11.png";
-import walkingClass2 from "../../images/detailContents/slide/Education_detail_walking/walkingClassImage12.png";
-import walkingClass3 from "../../images/detailContents/slide/Education_detail_walking/walkingClassImage13.png";
-import walkingClass4 from "../../images/detailContents/slide/Education_detail_walking/walkingClassImage14.png";
-import walkingClass5 from "../../images/detailContents/slide/Education_detail_walking/walkingClassImage15.png";
+import walkingKitImg1 from "../../images/detailContents/slide/education_detail_walking/walkingImage1.png";
+import walkingKitImg2 from "../../images/detailContents/slide/education_detail_walking/walkingImage2.png";
+import walkingClass1 from "../../images/detailContents/slide/education_detail_walking/walkingClassImage11.png";
+import walkingClass2 from "../../images/detailContents/slide/education_detail_walking/walkingClassImage12.png";
+import walkingClass3 from "../../images/detailContents/slide/education_detail_walking/walkingClassImage13.png";
+import walkingClass4 from "../../images/detailContents/slide/education_detail_walking/walkingClassImage14.png";
+import walkingClass5 from "../../images/detailContents/slide/education_detail_walking/walkingClassImage15.png";
 
 export const Walking: React.FC = () => {
   return (

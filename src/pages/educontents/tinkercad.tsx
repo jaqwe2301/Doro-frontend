@@ -5,13 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-
-import thinkerCADImg from "../../images/detailContents/slide/Education_detail_thinkercad/upperBannerTinkerCAD.png";
-import thinkerCADClass1 from "../../images/detailContents/slide/Education_detail_thinkercad/thinkerCADClassImage1.png";
-import thinkerCADClass2 from "../../images/detailContents/slide/Education_detail_thinkercad/thinkerCADClassImage2.png";
-import thinkerCADClass3 from "../../images/detailContents/slide/Education_detail_thinkercad/thinkerCADClassImage3.png";
-import thinkerCADClass4 from "../../images/detailContents/slide/Education_detail_thinkercad/thinkerCADClassImage4.png";
-import thinkerCADClass5 from "../../images/detailContents/slide/Education_detail_thinkercad/thinkerCADClassImage5.png";
+import thinkerCADImg from "../../images/detailContents/slide/education_detail_thinkercad/upperBannerTinkerCAD.png";
+import thinkerCADClass1 from "../../images/detailContents/slide/education_detail_thinkercad/thinkerCADClassImage1.png";
+import thinkerCADClass2 from "../../images/detailContents/slide/education_detail_thinkercad/thinkerCADClassImage2.png";
+import thinkerCADClass3 from "../../images/detailContents/slide/education_detail_thinkercad/thinkerCADClassImage3.png";
+import thinkerCADClass4 from "../../images/detailContents/slide/education_detail_thinkercad/thinkerCADClassImage4.png";
+import thinkerCADClass5 from "../../images/detailContents/slide/education_detail_thinkercad/thinkerCADClassImage5.png";
 
 export const Tinkercad: React.FC = () => {
   return (
@@ -21,12 +20,10 @@ export const Tinkercad: React.FC = () => {
         routeName1="교육 콘텐츠"
         route1="/showDetailContent"
         route1Opacity={0.7}
-
         routeDot2="•"
         routeName2="팅커캐드 아두이노 시뮬레이션"
         route2="/googleai"
         route2Opacity={1}
-
         title="팅커캐드 아두이노 시뮬레이션"
         subtitle="Thinkercad Arduino simulation"
         content="아두이노와 팅커캐드를 처음 접하는 사람들도 쉽게 배울수 있는 시뮬레이션 학습"
@@ -44,9 +41,7 @@ export const Tinkercad: React.FC = () => {
         contents2_2=" &nbsp; • 시뮬레이션을 사용하기 때문에 교육 후에도 아두이노와 센서들을 구입하지 않고도 자기주도 학습이 가능하다."
         contents3_1="비대면 온라인 교육, 찾아 가는 현장교육"
         liClass1="EduTable-table-subContents"
-
         liClass2="EduTable-table-subContents"
-        
         liClass3="EduTable-table-subContents"
         titleMarginTop={5}
       />
@@ -56,20 +51,16 @@ export const Tinkercad: React.FC = () => {
         tabletitle1="준비단계"
         tabletitle2="실행단계"
         tabletitle3="마무리 단계"
-
         contents1_1="1. Thinkercad와 아두이노란?"
         contents1_2="2. Thinkercad 아이디 가입 및 간단한 구조 설명"
-
         contents2_1="1. 아두이노 원리 및 개념 설명"
         contents2_2="2. 아두이노 문법 설명"
         contents2_3="3. 아두이노 실습 (Thinkercad 내에서 시뮬레이션 실행)"
         contents2_4="&nbsp;&nbsp;&nbsp; 3-1. LED 센서 켜기 ( 깜빡임, 시간 간격 자유롭게 )"
-
         contents3_1="1. 아두이노 실습 ( 중간 단계 )"
         contents3_2="&nbsp;&nbsp;&nbsp; 1-1. 가변 저항을 이용한 LED 밝기 조절"
         contents3_3="&nbsp;&nbsp;&nbsp; 1-2. 서보 모터 제어"
         contents3_4="&nbsp;&nbsp;&nbsp; 1-3. LED 및 서보 모터를 이용해 시계 제작"
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"

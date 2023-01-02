@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const DetailContents = () => {
+const EduDetailContents = () => {
 
   const [main1, setMainBtn1] = useState(true);
   const [main2, setMainBtn2] = useState(false);
@@ -617,4 +617,4 @@ const DetailContents = () => {
 
 };
 
-export default DetailContents;
+export default EduDetailContents;

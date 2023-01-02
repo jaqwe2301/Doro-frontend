@@ -5,15 +5,14 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-
-import IRcarImg from "../../images/detailContents/slide/Education_detail_IRcar/upperBannerIR.png";
-import IRcarKitImg1 from "../../images/detailContents/slide/Education_detail_IRcar/IRImage1.png";
-import IRcarKitImg2 from "../../images/detailContents/slide/Education_detail_IRcar/IRImage2.png";
-import IRcarClass1 from "../../images/detailContents/slide/Education_detail_IRcar/IRClassImage1.png";
-import IRcarClass2 from "../../images/detailContents/slide/Education_detail_IRcar/IRClassImage2.png";
-import IRcarClass3 from "../../images/detailContents/slide/Education_detail_IRcar/IRClassImage3.png";
-import IRcarClass4 from "../../images/detailContents/slide/Education_detail_IRcar/IRClassImage4.png";
-import IRcarClass5 from "../../images/detailContents/slide/Education_detail_IRcar/IRClassImage5.png";
+import IRcarImg from "../../images/detailContents/slide/education_detail_IRcar/upperBannerIR.png";
+import IRcarKitImg1 from "../../images/detailContents/slide/education_detail_IRcar/IRImage1.png";
+import IRcarKitImg2 from "../../images/detailContents/slide/education_detail_IRcar/IRImage2.png";
+import IRcarClass1 from "../../images/detailContents/slide/education_detail_IRcar/IRClassImage1.png";
+import IRcarClass2 from "../../images/detailContents/slide/education_detail_IRcar/IRClassImage2.png";
+import IRcarClass3 from "../../images/detailContents/slide/education_detail_IRcar/IRClassImage3.png";
+import IRcarClass4 from "../../images/detailContents/slide/education_detail_IRcar/IRClassImage4.png";
+import IRcarClass5 from "../../images/detailContents/slide/education_detail_IRcar/IRClassImage5.png";
 
 export const IRcar: React.FC = () => {
   return (
@@ -23,12 +22,10 @@ export const IRcar: React.FC = () => {
         routeName1="교육 콘텐츠"
         route1="/showDetailContent"
         route1Opacity={0.7}
-
         routeDot2="•"
         routeName2="DIY IR 자동차"
         route2="/IRcar"
         route2Opacity={1}
-
         title="DIY IR 자동차"
         subtitle="DIY IR car"
         content="IR 모바일 로봇 제작 및 Auto Following, Obstacle Recognition 구현"
@@ -57,19 +54,15 @@ export const IRcar: React.FC = () => {
         tabletitle1="준비단계"
         tabletitle2="실행단계"
         tabletitle3="마무리 단계"
-
         contents1_1="1. 로봇공학 전문가 선생님을 통해 로봇공학 학문을 이해한다."
         contents1_2="2. 로봇의 구성요소(센서, 모터, 연산장치)중 센서와 모터의 개념을 살펴본다. (초, 중)"
         contents1_3="3. IR센서가 물체와의 거리를 측정하는 원리를 이해하고, 실제 로봇에 사용된 예시를 본다."
         contents1_4="4. Auto Following, Obstacle Recognition의 적용사례를 공부한다."
-
         contents2_1="1. 회로도에 맞춰 각 전자 부품을 직접 연결하여 로봇 전자회로를 제작한다."
         contents2_2="2. 로봇 외관을 조립하고 회로 구성과 IR센서에 따라 로봇의 이동이 달라지는 것을 확인한다."
-
         contents3_1="1. Auto Following 모드를 이해하고 실습한다."
         contents3_2="2. Obstacle Recognition 모드를 이해하고 실습한다."
         contents3_3="2. 생활 속 서비스로봇에 사용되는 IR센서와 스마트 워킹로봇의 IR센서의 공통점과 차이점을 이해한다."
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"

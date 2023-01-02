@@ -5,15 +5,14 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-
-import gameConsoleImg from "../../images/detailContents/slide/Education_detail_gameConsole/upperBannerGameConsole.png";
-import gameConsoleKitImg1 from "../../images/detailContents/slide/Education_detail_gameConsole/gameConsoleImage1.png";
-import gameConsoleKitImg2 from "../../images/detailContents/slide/Education_detail_gameConsole/gameConsoleImage2.png";
-import gameConsoleClass1 from "../../images/detailContents/slide/Education_detail_gameConsole/gameConsoleClassImage1.png";
-import gameConsoleClass2 from "../../images/detailContents/slide/Education_detail_gameConsole/gameConsoleClassImage2.png";
-import gameConsoleClass3 from "../../images/detailContents/slide/Education_detail_gameConsole/gameConsoleClassImage3.png";
-import gameConsoleClass4 from "../../images/detailContents/slide/Education_detail_gameConsole/gameConsoleClassImage4.png";
-import gameConsoleClass5 from "../../images/detailContents/slide/Education_detail_gameConsole/gameConsoleClassImage5.png";
+import gameConsoleImg from "../../images/detailContents/slide/education_detail_gameConsole/upperBannerGameConsole.png";
+import gameConsoleKitImg1 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleImage1.png";
+import gameConsoleKitImg2 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleImage2.png";
+import gameConsoleClass1 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleClassImage1.png";
+import gameConsoleClass2 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleClassImage2.png";
+import gameConsoleClass3 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleClassImage3.png";
+import gameConsoleClass4 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleClassImage4.png";
+import gameConsoleClass5 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleClassImage5.png";
 
 export const GameConsole: React.FC = () => {
   return (
@@ -23,12 +22,10 @@ export const GameConsole: React.FC = () => {
         routeName1="교육 콘텐츠"
         route1="/showDetailContent"
         route1Opacity={0.7}
-
         routeDot2="•"
         routeName2="DIY 아두이노 게임기"
         route2="/gameConsole"
         route2Opacity={1}
-
         title="DIY 아두이노 게임기"
         subtitle="DIY Arduino game console"
         content="프로그래머와 함께하는 ‘아두이노’를 이용한 러닝 점프 게임기 제작"
@@ -47,7 +44,6 @@ export const GameConsole: React.FC = () => {
         contents2_3="&nbsp; • LCD 화면에 출력되는 비트맵 이미지를 이용해 게임을 만드는 프로그래밍을 이해한다."
         contents3_1="찾아 가는 현장교육, 체험형 교육 부스"
         liClass1="EduTable-table-subContents"
-        
         liClass2="EduTable-table-subContents"
         liClass2_1="List-style-dics"
         liClass2_2="List-style-dics"
@@ -58,7 +54,6 @@ export const GameConsole: React.FC = () => {
         liClass2_7="List-style-none"
         liClass2_8="List-style-none"
         liClass2_9="List-style-none"
-
         liClass3="EduTable-table-subContents"
         titleMarginTop={5}
       />
@@ -68,17 +63,13 @@ export const GameConsole: React.FC = () => {
         tabletitle1="준비단계"
         tabletitle2="실행단계"
         tabletitle3="마무리 단계"
-
         contents1_1="1. 로봇공학과 대학생의 전공, 로봇공학입문설계 수업에서 다룬 임베디드보드(아두이노)의 원리를 간단히 살펴보고 이해한다."
         contents1_2="2. 프로그래머의 핵심 활동인 코딩의 예시를 보며, 수업에 사용되는 코딩 개념을 학습한다."
         contents1_3="3. 프로그램 결과를 출력하는 하드웨어(LCD, 브레드 보드, 전자회로)의 원리를 이해한다."
-
         contents2_1="1. 브레드 보드, LCD, 아두이노, 스위치를 점퍼선을 이용해 연결한다."
         contents2_2="2. 외부 전원을 입력하고 LCD가 정상작동 하는지 확인한다."
-
         contents3_1="1. 간단한 비트맵 이미지를 이용해 게임을 만드는 과정을 습득한다."
         contents3_2="2. 아두이노와 LCD를 이용해 구현할 수 있는 게임 아이디어를 함께 공유한다."
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"
