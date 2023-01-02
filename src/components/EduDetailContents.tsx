@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-const DetailContents = () => {
+const EduDetailContents = () => {
 
   const [main1, setMainBtn1] = useState(true);
   const [main2, setMainBtn2] = useState(false);
@@ -63,10 +63,10 @@ const DetailContents = () => {
     ],
     a2: [
       {
-        img: 'gameDevice',
+        img: 'gameConsole',
         hash: '#임베디드 #중급회로 #아두이노 #코딩',
         title: 'DIY 아두이노 게임기',
-        link: "/gamedevice"
+        link: "/gameconsole"
 
       },
       {
@@ -77,10 +77,10 @@ const DetailContents = () => {
 
       },
       {
-        img: "ultrasonicWave",
+        img: "piano",
         hash: "#초음파센서 #아두이노 #코딩",
         title: "초음파 피아노",
-        link: "/ultrasonicWave"
+        link: "/piano"
 
       },
       {
@@ -93,10 +93,10 @@ const DetailContents = () => {
     ],
     a3: [
       {
-        img: 'gameDevice',
+        img: 'gameConsole',
         hash: '#임베디드 #중급회로 #아두이노 #코딩',
         title: 'DIY 아두이노 게임기',
-        link: "/gamedevice"
+        link: "/gameconsole"
 
       },
       {
@@ -114,10 +114,10 @@ const DetailContents = () => {
 
       },
       {
-        img: "moonLight",
+        img: "moodLight",
         hash: "#기초회로 #조도센서 #전자공학",
         title: "스마트 무드등",
-        link: "/moonlight"
+        link: "/moodlight"
 
       },
       {
@@ -226,10 +226,10 @@ const DetailContents = () => {
     ],
     b: [
       {
-        img: 'gameDevice',
+        img: 'gameConsole',
         hash: '#임베디드 #중급회로 #아두이노 #코딩',
         title: 'DIY 아두이노 게임기',
-        link: "/gamedevice"
+        link: "/gameconsole"
 
       },
       {
@@ -247,10 +247,10 @@ const DetailContents = () => {
 
       },
       {
-        img: "moonLight",
+        img: "moodLight",
         hash: "#기초회로 #조도센서 #전자공학",
         title: "스마트 무드등",
-        link: "/moonlight"
+        link: "/moodlight"
 
       },
       {
@@ -359,11 +359,11 @@ const DetailContents = () => {
     return nested.a1.map(function (a) {
       return (
         <button className="EduDetail-content-container">
-          {/* <Link to={a.link}> */}
-          <img src={require('../images/detailContents/' + a.img + '.png')} />
-          <p className="HashTag-text">{a.hash}</p>
-          <p className="Title-text">{a.title}</p>
-          { /* </Link> */}
+          <Link to={a.link}>
+            <img src={require('../images/detailContents/' + a.img + '.png')} />
+            <p className="HashTag-text">{a.hash}</p>
+            <p className="Title-text">{a.title}</p>
+          </Link>
         </button>
       );
     });
@@ -373,11 +373,11 @@ const DetailContents = () => {
     return nested.a2.map(function (a) {
       return (
         <button className="EduDetail-content-container">
-          {/* <Link to={a.link}> */}
-          <img src={require('../images/detailContents/' + a.img + '.png')} />
-          <p className="HashTag-text">{a.hash}</p>
-          <p className="Title-text">{a.title}</p>
-          { /* </Link> */}
+          <Link to={a.link}>
+            <img src={require('../images/detailContents/' + a.img + '.png')} />
+            <p className="HashTag-text">{a.hash}</p>
+            <p className="Title-text">{a.title}</p>
+          </Link>
         </button>
       );
     });
@@ -387,11 +387,11 @@ const DetailContents = () => {
     return nested.a3.map(function (a) {
       return (
         <button className="EduDetail-content-container">
-          {/* <Link to={a.link}> */}
-          <img src={require('../images/detailContents/' + a.img + '.png')} />
-          <p className="HashTag-text">{a.hash}</p>
-          <p className="Title-text">{a.title}</p>
-          { /* </Link> */}
+          <Link to={a.link}>
+            <img src={require('../images/detailContents/' + a.img + '.png')} />
+            <p className="HashTag-text">{a.hash}</p>
+            <p className="Title-text">{a.title}</p>
+          </Link>
         </button>
       );
     });
@@ -401,11 +401,11 @@ const DetailContents = () => {
     return nested.a4.map(function (a) {
       return (
         <button className="EduDetail-content-container">
-          {/* <Link to={a.link}> */}
-          <img src={require('../images/detailContents/' + a.img + '.png')} />
-          <p className="HashTag-text">{a.hash}</p>
-          <p className="Title-text">{a.title}</p>
-          { /* </Link> */}
+          <Link to={a.link}>
+            <img src={require('../images/detailContents/' + a.img + '.png')} />
+            <p className="HashTag-text">{a.hash}</p>
+            <p className="Title-text">{a.title}</p>
+          </Link>
         </button>
       );
     });
@@ -415,11 +415,11 @@ const DetailContents = () => {
     return nested.a5.map(function (a) {
       return (
         <button className="EduDetail-content-container">
-          {/* <Link to={a.link}> */}
-          <img src={require('../images/detailContents/' + a.img + '.png')} />
-          <p className="HashTag-text">{a.hash}</p>
-          <p className="Title-text">{a.title}</p>
-          { /* </Link> */}
+          <Link to={a.link}>
+            <img src={require('../images/detailContents/' + a.img + '.png')} />
+            <p className="HashTag-text">{a.hash}</p>
+            <p className="Title-text">{a.title}</p>
+          </Link>
         </button>
       );
     });
@@ -429,11 +429,11 @@ const DetailContents = () => {
     return nested.a6.map(function (a) {
       return (
         <button className="EduDetail-content-container">
-          {/* <Link to={a.link}> */}
-          <img src={require('../images/detailContents/' + a.img + '.png')} />
-          <p className="HashTag-text">{a.hash}</p>
-          <p className="Title-text">{a.title}</p>
-          { /* </Link> */}
+          <Link to={a.link}>
+            <img src={require('../images/detailContents/' + a.img + '.png')} />
+            <p className="HashTag-text">{a.hash}</p>
+            <p className="Title-text">{a.title}</p>
+          </Link>
         </button>
       );
     });
@@ -443,11 +443,11 @@ const DetailContents = () => {
     return nested.b.map(function (a) {
       return (
         <button className="EduDetail-content-container">
-          {/* <Link to={a.link}> */}
-          <img src={require('../images/detailContents/' + a.img + '.png')} />
-          <p className="HashTag-text">{a.hash}</p>
-          <p className="Title-text">{a.title}</p>
-          { /* </Link> */}
+          <Link to={a.link}>
+            <img src={require('../images/detailContents/' + a.img + '.png')} />
+            <p className="HashTag-text">{a.hash}</p>
+            <p className="Title-text">{a.title}</p>
+          </Link>
         </button>
       );
     });
@@ -457,11 +457,11 @@ const DetailContents = () => {
     return nested.c.map(function (a) {
       return (
         <button className="EduDetail-content-container">
-          {/* <Link to={a.link}> */}
-          <img src={require('../images/detailContents/' + a.img + '.png')} />
-          <p className="HashTag-text">{a.hash}</p>
-          <p className="Title-text">{a.title}</p>
-          { /* </Link> */}
+          <Link to={a.link}>
+            <img src={require('../images/detailContents/' + a.img + '.png')} />
+            <p className="HashTag-text">{a.hash}</p>
+            <p className="Title-text">{a.title}</p>
+          </Link>
         </button>
       );
     });
@@ -471,12 +471,12 @@ const DetailContents = () => {
     return nested.d.map(function (a) {
       return (
         <button className="EduDetail-content-container">
-          {/* <Link to={a.link}> */}
-          <img src={require('../images/detailContents/' + a.img + '.png')} />
-          <p className="HashTag-text-Main4">{a.hash}</p>
-          <p className="Title-text-Main4">{a.title1}</p>
-          <p className="Title-text">{a.title2}</p>
-          { /* </Link> */}
+          <Link to={a.link}>
+            <img src={require('../images/detailContents/' + a.img + '.png')} />
+            <p className="HashTag-text-Main4">{a.hash}</p>
+            <p className="Title-text-Main4">{a.title1}</p>
+            <p className="Title-text">{a.title2}</p>
+          </Link>
         </button>
       );
     });
@@ -617,4 +617,4 @@ const DetailContents = () => {
 
 };
 
-export default DetailContents;
+export default EduDetailContents;

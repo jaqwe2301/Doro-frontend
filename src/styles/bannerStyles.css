@@ -13,17 +13,33 @@
   height: 11.056rem;
 }
 
+.Banner-route-container {
+  display: flex;
+  align-items: center;
+}
+
 .Banner-contents {
   margin-top: 2.5rem;
 }
 
 .Banner-rightImg {
   height: 15rem;
+  margin-top: 0.5rem;
 }
 
 .Banner-route {
-  flex-grow: 0;
-  margin: 0 4.167rem 1.167rem 0.333rem;
+  height: 0.941rem;
+  width: 0.91rem;
+  margin-right: 0.712rem;
+}
+
+.Banner-route-font {
+  font-family: Pretendard;
+  font-size: 0.778rem;
+  font-weight: 500;
+  padding-top: 0.04rem;
+  margin-right: 0.611rem;
+  color: #fff;
 }
 
 .Banner-con {

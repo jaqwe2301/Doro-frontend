@@ -151,12 +151,13 @@ export const Posts = () => {
         <title>Board | DORO</title>
       </Helmet>
       <Banner
-        route={postsRoute}
+        routeName1="• 커뮤니티"
+        routeName2="• 문의게시판"
+        route1=""
         title="문의 게시판"
         subtitle="Education inquiry board"
         content="문의 답변을 확인할 수 있습니다."
         contentClass="Subtitle-bigFont"
-        wid={10.278}
         rightImg="none"
       />
       {!loading && (

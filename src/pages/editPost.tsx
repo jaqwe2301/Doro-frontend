@@ -10,7 +10,6 @@ import { useMe } from "../hooks/useMe";
 import { findPost, findPostVariables } from "../__generated__/findPost";
 
 import { updatePost, updatePostVariables } from "../__generated__/updatePost";
-import customerInquiry from "../images/bannerCategory/customerInquiry.png";
 import { NotFound } from "./404";
 
 const EDIT_POST_MUTATION = gql`
@@ -163,8 +162,8 @@ export const EditPost = () => {
       {state ? (
         <>
           <Banner
-            wid={5.444}
-            route={customerInquiry}
+            routeName1="• 교육문의"
+            route1=""
             title="교육문의"
             subtitle="Education inquiry"
             content="궁금하신 점이나 상담을 원하시는 부분은 언제든 문의주시면 신속하게 답변 드리도록 하겠습니다."
