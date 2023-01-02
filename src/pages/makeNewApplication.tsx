@@ -87,28 +87,11 @@ interface ICreateEduForm {
   detail_classes: Detail_class_item[];
 }
 
-interface ICreateEduForm {
-  name: string;
-  institution_name: string;
-  position: string;
-  phone_number: string;
-  email: string;
-  student_count: number;
-  school_rank: string;
-  budget: number;
-  overall_remark: string;
-  detail_classes: Detail_class_item[];
-}
-
-interface ISendAuthNumForm {
+interface IAuthForm {
   name: string;
   phoneNumber: string;
-  Option: sendOption;
-}
-
-interface ICheckAuthForm {
   authNum: string;
-  phoneNumber: string;
+  Option: sendOption;
 }
 
 export const MakeNewApplication = () => {
@@ -128,15 +111,10 @@ export const MakeNewApplication = () => {
       },
     });
   const {
-    register: register_send,
-    getValues: getValues_send,
-    handleSubmit: handleSubmit_send,
-  } = useForm<ISendAuthNumForm>();
-  const {
-    register: register_check,
-    getValues: getValues_check,
-    handleSubmit: handleSubmit_check,
-  } = useForm<ICheckAuthForm>();
+    register: register_auth,
+    getValues: getValues_auth,
+    handleSubmit: handleSubmit_auth,
+  } = useForm<IAuthForm>();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -201,8 +179,8 @@ export const MakeNewApplication = () => {
 
   const onInvalid_send = () => {
     try {
-      const { name, phoneNumber } = getValues_send();
-      console.log(name, phoneNumber);
+      const { name, phone_number } = getValues();
+      console.log(name, phone_number);
       console.log("try)");
     } catch (error) {
       console.log(error);
@@ -211,15 +189,15 @@ export const MakeNewApplication = () => {
   };
 
   const onSubmit_send = () => {
-    const { name, phoneNumber } = getValues_send();
-    console.log(name, phoneNumber);
+    const { name, phone_number } = getValues();
+    console.log(name, phone_number);
     console.log("submit");
     try {
       sendAuthNumMutation({
         variables: {
           input: {
             name,
-            phoneNumber,
+            phoneNumber: phone_number,
             Option: sendOption.auth,
           },
         },
@@ -231,12 +209,13 @@ export const MakeNewApplication = () => {
   };
 
   const onSubmit_check = () => {
-    const { authNum, phoneNumber } = getValues_check();
+    const { authNum } = getValues_auth();
+    const { phone_number } = getValues();
     checkAuthNumQuery({
       variables: {
         input: {
           authNum,
-          phoneNumber,
+          phoneNumber: phone_number,
         },
       },
     });
@@ -323,7 +302,6 @@ export const MakeNewApplication = () => {
             <div className="Create-post-input-input-box">
               <input
                 {...register("name", { required: true })}
-                {...register_send("name", { required: true })}
                 className="Create-post-input-input-content"
                 name="name"
                 placeholder="신청자 성함"
@@ -369,17 +347,15 @@ export const MakeNewApplication = () => {
             </div>
             <div>
               <input
-                {...register_send("phoneNumber", { required: true })}
-                // {...register("phone_number", { required: true })}
-                {...register_check("phoneNumber", { required: true })}
-                name="phoneNumber"
+                {...register("phone_number", { required: true })}
+                name="phone_number"
                 placeholder="01012345678"
                 // className="Create-post-input-input-content"
               />
 
               <button
                 className="Create-post-input-input-content"
-                onClick={handleSubmit_send(onSubmit_send, onInvalid_send)}
+                onClick={handleSubmit_auth(onSubmit_send, onInvalid_send)}
               >
                 카카오톡 인증
               </button>
@@ -394,13 +370,13 @@ export const MakeNewApplication = () => {
             </div>
             <div>
               <input
-                {...register_check("authNum", { required: true })}
+                {...register_auth("authNum", { required: true })}
                 name="authNum"
                 placeholder="인증번호 입력"
               />
               <button
                 className="Create-post-input-input-content"
-                onClick={handleSubmit_check(onSubmit_check)}
+                onClick={handleSubmit_auth(onSubmit_check)}
               >
                 인증 하기
               </button>
