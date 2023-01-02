@@ -25,5 +25,3 @@ yarn-error.log*
 /src/styles/styles.css
 
 yarn.lock
-
-/__generated__
