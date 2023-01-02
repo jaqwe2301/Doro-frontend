@@ -7,7 +7,7 @@ import { Notice } from "../../components/eduDetailContents/notice";
 
 
 import teachableImg from "../../images/detailContents/slide/Education_detail_teachable/upperBannerTeachable.png";
-import teachableClass1 from "../../images/detailContents/slide/Education_detail_teachable/teachableClassImage1.png";
+// import teachableClass1 from "../../images/detailContents/slide/Education_detail_teachable/teachableClassImage1.png";
 import teachableClass2 from "../../images/detailContents/slide/Education_detail_teachable/teachableClassImage2.png";
 import teachableClass3 from "../../images/detailContents/slide/Education_detail_teachable/teachableClassImage3.png";
 import teachableClass4 from "../../images/detailContents/slide/Education_detail_teachable/teachableClassImage4.png";
@@ -87,7 +87,7 @@ export const GoogleAI: React.FC = () => {
       <ContentsSlide
         title="교육 사진"
         titleMarginTop={12.222}
-        imgSrc1={teachableClass1}
+        // imgSrc1={teachableClass1}
         imgSrc2={teachableClass2}
         imgSrc3={teachableClass3}
         imgSrc4={teachableClass4}
