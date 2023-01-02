@@ -6,19 +6,19 @@
 import { CreateEduInput } from "./globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: createEdu
+// GraphQL mutation operation: CreateEdu
 // ====================================================
 
-export interface createEdu_CreateEdu {
+export interface CreateEdu_CreateEdu {
   __typename: "CreateEduOutput";
   error: string | null;
   ok: boolean;
 }
 
-export interface createEdu {
-  CreateEdu: createEdu_CreateEdu;
+export interface CreateEdu {
+  CreateEdu: CreateEdu_CreateEdu;
 }
 
-export interface createEduVariables {
-  createEduInput: CreateEduInput;
+export interface CreateEduVariables {
+  input: CreateEduInput;
 }
