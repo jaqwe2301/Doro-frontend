@@ -5,13 +5,13 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import lineTracerImg from "../../images/detailContents/slide/education_detail_lineTracer/upperBannerTracerImage.png";
-import lineTracerKitImg1 from "../../images/detailContents/slide/education_detail_lineTracer/TracerImage.png";
-import lineTracerClass1 from "../../images/detailContents/slide/education_detail_lineTracer/IRClassImage1.png";
-import lineTracerClass2 from "../../images/detailContents/slide/education_detail_lineTracer/IRClassImage2.png";
-import lineTracerClass3 from "../../images/detailContents/slide/education_detail_lineTracer/IRClassImage3.png";
-import lineTracerClass4 from "../../images/detailContents/slide/education_detail_lineTracer/IRClassImage4.png";
-import lineTracerClass5 from "../../images/detailContents/slide/education_detail_lineTracer/IRClassImage5.png";
+import lineTracerImg from "../../images/detailContents/slide/edu_detail_lineTracer/upperBannerTracerImage.png";
+import lineTracerKitImg1 from "../../images/detailContents/slide/edu_detail_lineTracer/TracerImage.png";
+import lineTracerClass1 from "../../images/detailContents/slide/edu_detail_lineTracer/IRClassImage1.png";
+import lineTracerClass2 from "../../images/detailContents/slide/edu_detail_lineTracer/IRClassImage2.png";
+import lineTracerClass3 from "../../images/detailContents/slide/edu_detail_lineTracer/IRClassImage3.png";
+import lineTracerClass4 from "../../images/detailContents/slide/edu_detail_lineTracer/IRClassImage4.png";
+import lineTracerClass5 from "../../images/detailContents/slide/edu_detail_lineTracer/IRClassImage5.png";
 
 export const Tracer: React.FC = () => {
   return (

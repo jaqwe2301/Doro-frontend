@@ -5,12 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import pythonBrainImg from "../../images/detailContents/slide/education_detail_pythonbrain/upperBannerPythonBrain.png";
-import pythonBrainClass1 from "../../images/detailContents/slide/education_detail_pythonbrain/pythonBrainClassImage1.png";
-import pythonBrainClass2 from "../../images/detailContents/slide/education_detail_pythonbrain/pythonBrainClassImage2.png";
-import pythonBrainClass3 from "../../images/detailContents/slide/education_detail_pythonbrain/pythonBrainClassImage3.png";
-import pythonBrainClass4 from "../../images/detailContents/slide/education_detail_pythonbrain/pythonBrainClassImage4.png";
-import pythonBrainClass5 from "../../images/detailContents/slide/education_detail_pythonbrain/pythonBrainClassImage5.png";
+import pythonBrainImg from "../../images/detailContents/slide/edu_detail_pythonbrain/upperBannerPythonBrain.png";
+import pythonBrainClass1 from "../../images/detailContents/slide/edu_detail_pythonbrain/pythonBrainClassImage1.png";
+import pythonBrainClass2 from "../../images/detailContents/slide/edu_detail_pythonbrain/pythonBrainClassImage2.png";
+import pythonBrainClass3 from "../../images/detailContents/slide/edu_detail_pythonbrain/pythonBrainClassImage3.png";
+import pythonBrainClass4 from "../../images/detailContents/slide/edu_detail_pythonbrain/pythonBrainClassImage4.png";
+import pythonBrainClass5 from "../../images/detailContents/slide/edu_detail_pythonbrain/pythonBrainClassImage5.png";
 
 export const Python: React.FC = () => {
   return (

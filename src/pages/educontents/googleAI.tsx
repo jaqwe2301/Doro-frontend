@@ -5,12 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import teachableImg from "../../images/detailContents/slide/education_detail_teachable/upperBannerTeachable.png";
-import teachableClass1 from "../../images/detailContents/slide/education_detail_teachable/teachableClassImage1.png";
-import teachableClass2 from "../../images/detailContents/slide/education_detail_teachable/teachableClassImage2.png";
-import teachableClass3 from "../../images/detailContents/slide/education_detail_teachable/teachableClassImage3.png";
-import teachableClass4 from "../../images/detailContents/slide/education_detail_teachable/teachableClassImage4.png";
-import teachableClass5 from "../../images/detailContents/slide/education_detail_teachable/teachableClassImage5.png";
+import teachableImg from "../../images/detailContents/slide/edu_detail_teachable/upperBannerTeachable.png";
+import teachableClass1 from "../../images/detailContents/slide/edu_detail_teachable/teachableClassImage1.png";
+import teachableClass2 from "../../images/detailContents/slide/edu_detail_teachable/teachableClassImage2.png";
+import teachableClass3 from "../../images/detailContents/slide/edu_detail_teachable/teachableClassImage3.png";
+import teachableClass4 from "../../images/detailContents/slide/edu_detail_teachable/teachableClassImage4.png";
+import teachableClass5 from "../../images/detailContents/slide/edu_detail_teachable/teachableClassImage5.png";
 
 export const GoogleAI: React.FC = () => {
   return (

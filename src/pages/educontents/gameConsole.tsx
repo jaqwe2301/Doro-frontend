@@ -5,14 +5,14 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import gameConsoleImg from "../../images/detailContents/slide/education_detail_gameConsole/upperBannerGameConsole.png";
-import gameConsoleKitImg1 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleImage1.png";
-import gameConsoleKitImg2 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleImage2.png";
-import gameConsoleClass1 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleClassImage1.png";
-import gameConsoleClass2 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleClassImage2.png";
-import gameConsoleClass3 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleClassImage3.png";
-import gameConsoleClass4 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleClassImage4.png";
-import gameConsoleClass5 from "../../images/detailContents/slide/education_detail_gameConsole/gameConsoleClassImage5.png";
+import gameConsoleImg from "../../images/detailContents/slide/edu_detail_gameConsole/upperBannerGameConsole.png";
+import gameConsoleKitImg1 from "../../images/detailContents/slide/edu_detail_gameConsole/gameConsoleImage1.png";
+import gameConsoleKitImg2 from "../../images/detailContents/slide/edu_detail_gameConsole/gameConsoleImage2.png";
+import gameConsoleClass1 from "../../images/detailContents/slide/edu_detail_gameConsole/gameConsoleClassImage1.png";
+import gameConsoleClass2 from "../../images/detailContents/slide/edu_detail_gameConsole/gameConsoleClassImage2.png";
+import gameConsoleClass3 from "../../images/detailContents/slide/edu_detail_gameConsole/gameConsoleClassImage3.png";
+import gameConsoleClass4 from "../../images/detailContents/slide/edu_detail_gameConsole/gameConsoleClassImage4.png";
+import gameConsoleClass5 from "../../images/detailContents/slide/edu_detail_gameConsole/gameConsoleClassImage5.png";
 
 export const GameConsole: React.FC = () => {
   return (

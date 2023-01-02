@@ -5,12 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import aiexampleImg from "../../images/detailContents/slide/education_detail_aiexample/upperBannerAIExample.png";
-import aiexampleClass1 from "../../images/detailContents/slide/education_detail_aiexample/AIExampleClassImage1.png";
-import aiexampleClass2 from "../../images/detailContents/slide/education_detail_aiexample/AIExampleClassImage2.png";
-import aiexampleClass3 from "../../images/detailContents/slide/education_detail_aiexample/AIExampleClassImage3.png";
-import aiexampleClass4 from "../../images/detailContents/slide/education_detail_aiexample/AIExampleClassImage4.png";
-import aiexampleClass5 from "../../images/detailContents/slide/education_detail_aiexample/AIExampleClassImage5.png";
+import aiexampleImg from "../../images/detailContents/slide/edu_detail_aiexample/upperBannerAIExample.png";
+import aiexampleClass1 from "../../images/detailContents/slide/edu_detail_aiexample/AIExampleClassImage1.png";
+import aiexampleClass2 from "../../images/detailContents/slide/edu_detail_aiexample/AIExampleClassImage2.png";
+import aiexampleClass3 from "../../images/detailContents/slide/edu_detail_aiexample/AIExampleClassImage3.png";
+import aiexampleClass4 from "../../images/detailContents/slide/edu_detail_aiexample/AIExampleClassImage4.png";
+import aiexampleClass5 from "../../images/detailContents/slide/edu_detail_aiexample/AIExampleClassImage5.png";
 
 export const GoogleOpen: React.FC = () => {
   return (

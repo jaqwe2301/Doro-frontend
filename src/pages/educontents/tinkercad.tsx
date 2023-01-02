@@ -5,12 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import thinkerCADImg from "../../images/detailContents/slide/education_detail_thinkercad/upperBannerTinkerCAD.png";
-import thinkerCADClass1 from "../../images/detailContents/slide/education_detail_thinkercad/thinkerCADClassImage1.png";
-import thinkerCADClass2 from "../../images/detailContents/slide/education_detail_thinkercad/thinkerCADClassImage2.png";
-import thinkerCADClass3 from "../../images/detailContents/slide/education_detail_thinkercad/thinkerCADClassImage3.png";
-import thinkerCADClass4 from "../../images/detailContents/slide/education_detail_thinkercad/thinkerCADClassImage4.png";
-import thinkerCADClass5 from "../../images/detailContents/slide/education_detail_thinkercad/thinkerCADClassImage5.png";
+import thinkerCADImg from "../../images/detailContents/slide/edu_detail_thinkercad/upperBannerTinkerCAD.png";
+import thinkerCADClass1 from "../../images/detailContents/slide/edu_detail_thinkercad/thinkerCADClassImage1.png";
+import thinkerCADClass2 from "../../images/detailContents/slide/edu_detail_thinkercad/thinkerCADClassImage2.png";
+import thinkerCADClass3 from "../../images/detailContents/slide/edu_detail_thinkercad/thinkerCADClassImage3.png";
+import thinkerCADClass4 from "../../images/detailContents/slide/edu_detail_thinkercad/thinkerCADClassImage4.png";
+import thinkerCADClass5 from "../../images/detailContents/slide/edu_detail_thinkercad/thinkerCADClassImage5.png";
 
 export const Tinkercad: React.FC = () => {
   return (

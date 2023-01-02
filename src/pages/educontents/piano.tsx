@@ -5,13 +5,13 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import pianoImg from "../../images/detailContents/slide/education_detail_piano/upperBannerPiano.png";
-import pianoKitImg1 from "../../images/detailContents/slide/education_detail_piano/pianoImage.png";
-import pianoClass1 from "../../images/detailContents/slide/education_detail_piano/pianoClassImage1.png";
-import pianoClass2 from "../../images/detailContents/slide/education_detail_piano/pianoClassImage2.png";
-import pianoClass3 from "../../images/detailContents/slide/education_detail_piano/pianoClassImage3.png";
-import pianoClass4 from "../../images/detailContents/slide/education_detail_piano/pianoClassImage4.png";
-import pianoClass5 from "../../images/detailContents/slide/education_detail_piano/pianoClassImage5.png";
+import pianoImg from "../../images/detailContents/slide/edu_detail_piano/upperBannerPiano.png";
+import pianoKitImg1 from "../../images/detailContents/slide/edu_detail_piano/pianoImage.png";
+import pianoClass1 from "../../images/detailContents/slide/edu_detail_piano/pianoClassImage1.png";
+import pianoClass2 from "../../images/detailContents/slide/edu_detail_piano/pianoClassImage2.png";
+import pianoClass3 from "../../images/detailContents/slide/edu_detail_piano/pianoClassImage3.png";
+import pianoClass4 from "../../images/detailContents/slide/edu_detail_piano/pianoClassImage4.png";
+import pianoClass5 from "../../images/detailContents/slide/edu_detail_piano/pianoClassImage5.png";
 
 export const Piano: React.FC = () => {
   return (

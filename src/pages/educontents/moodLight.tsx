@@ -5,14 +5,14 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import moodLightImg from "../../images/detailContents/slide/education_detail_moodLight/banner-moodLight.png";
-import moodLightKitImg1 from "../../images/detailContents/slide/education_detail_moodLight/moodLightImage.png";
-import moodLightKitImg2 from "../../images/detailContents/slide/education_detail_moodLight/moodLightPartImage.png";
-import moodLightClass1 from "../../images/detailContents/slide/education_detail_moodLight/moodLightClassImage1.png";
-import moodLightClass2 from "../../images/detailContents/slide/education_detail_moodLight/moodLightClassImage2.png";
-import moodLightClass3 from "../../images/detailContents/slide/education_detail_moodLight/moodLightClassImage3.png";
-import moodLightClass4 from "../../images/detailContents/slide/education_detail_moodLight/moodLightClassImage4.png";
-import moodLightClass5 from "../../images/detailContents/slide/education_detail_moodLight/moodLightClassImage5.png";
+import moodLightImg from "../../images/detailContents/slide/edu_detail_moodLight/banner-moodLight.png";
+import moodLightKitImg1 from "../../images/detailContents/slide/edu_detail_moodLight/moodLightImage.png";
+import moodLightKitImg2 from "../../images/detailContents/slide/edu_detail_moodLight/moodLightPartImage.png";
+import moodLightClass1 from "../../images/detailContents/slide/edu_detail_moodLight/moodLightClassImage1.png";
+import moodLightClass2 from "../../images/detailContents/slide/edu_detail_moodLight/moodLightClassImage2.png";
+import moodLightClass3 from "../../images/detailContents/slide/edu_detail_moodLight/moodLightClassImage3.png";
+import moodLightClass4 from "../../images/detailContents/slide/edu_detail_moodLight/moodLightClassImage4.png";
+import moodLightClass5 from "../../images/detailContents/slide/edu_detail_moodLight/moodLightClassImage5.png";
 
 export const MoonLight: React.FC = () => {
   return (

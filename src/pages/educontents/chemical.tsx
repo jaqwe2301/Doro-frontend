@@ -5,13 +5,13 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import chemicalGardenImg from "../../images/detailContents/slide/education_detail_chemicalgarden/upperBannerChemicalGarden.png";
-import chemicalGardenKitImg1 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenImage.png";
-import chemicalGardenClass1 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenClassImage1.png";
-import chemicalGardenClass2 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenClassImage2.png";
-import chemicalGardenClass3 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenClassImage3.png";
-import chemicalGardenClass4 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenClassImage4.png";
-import chemicalGardenClass5 from "../../images/detailContents/slide/education_detail_chemicalgarden/chemicalGardenClassImage5.png";
+import chemicalGardenImg from "../../images/detailContents/slide/edu_detail_chemicalgarden/upperBannerChemicalGarden.png";
+import chemicalGardenKitImg1 from "../../images/detailContents/slide/edu_detail_chemicalgarden/chemicalGardenImage.png";
+import chemicalGardenClass1 from "../../images/detailContents/slide/edu_detail_chemicalgarden/chemicalGardenClassImage1.png";
+import chemicalGardenClass2 from "../../images/detailContents/slide/edu_detail_chemicalgarden/chemicalGardenClassImage2.png";
+import chemicalGardenClass3 from "../../images/detailContents/slide/edu_detail_chemicalgarden/chemicalGardenClassImage3.png";
+import chemicalGardenClass4 from "../../images/detailContents/slide/edu_detail_chemicalgarden/chemicalGardenClassImage4.png";
+import chemicalGardenClass5 from "../../images/detailContents/slide/edu_detail_chemicalgarden/chemicalGardenClassImage5.png";
 
 export const Chemical: React.FC = () => {
   return (

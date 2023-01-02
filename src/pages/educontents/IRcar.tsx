@@ -5,14 +5,14 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import IRcarImg from "../../images/detailContents/slide/education_detail_IRcar/upperBannerIR.png";
-import IRcarKitImg1 from "../../images/detailContents/slide/education_detail_IRcar/IRImage1.png";
-import IRcarKitImg2 from "../../images/detailContents/slide/education_detail_IRcar/IRImage2.png";
-import IRcarClass1 from "../../images/detailContents/slide/education_detail_IRcar/IRClassImage1.png";
-import IRcarClass2 from "../../images/detailContents/slide/education_detail_IRcar/IRClassImage2.png";
-import IRcarClass3 from "../../images/detailContents/slide/education_detail_IRcar/IRClassImage3.png";
-import IRcarClass4 from "../../images/detailContents/slide/education_detail_IRcar/IRClassImage4.png";
-import IRcarClass5 from "../../images/detailContents/slide/education_detail_IRcar/IRClassImage5.png";
+import IRcarImg from "../../images/detailContents/slide/edu_detail_IRcar/upperBannerIR.png";
+import IRcarKitImg1 from "../../images/detailContents/slide/edu_detail_IRcar/IRImage1.png";
+import IRcarKitImg2 from "../../images/detailContents/slide/edu_detail_IRcar/IRImage2.png";
+import IRcarClass1 from "../../images/detailContents/slide/edu_detail_IRcar/IRClassImage1.png";
+import IRcarClass2 from "../../images/detailContents/slide/edu_detail_IRcar/IRClassImage2.png";
+import IRcarClass3 from "../../images/detailContents/slide/edu_detail_IRcar/IRClassImage3.png";
+import IRcarClass4 from "../../images/detailContents/slide/edu_detail_IRcar/IRClassImage4.png";
+import IRcarClass5 from "../../images/detailContents/slide/edu_detail_IRcar/IRClassImage5.png";
 
 export const IRcar: React.FC = () => {
   return (

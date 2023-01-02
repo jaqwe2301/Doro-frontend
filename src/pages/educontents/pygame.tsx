@@ -5,12 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import pyGameImg from "../../images/detailContents/slide/education_detail_pygame/upperBannerPyGame.png";
-import pyGameClass1 from "../../images/detailContents/slide/education_detail_pygame/pyGameClassImage1.png";
-import pyGameClass2 from "../../images/detailContents/slide/education_detail_pygame/pyGameClassImage2.png";
-import pyGameClass3 from "../../images/detailContents/slide/education_detail_pygame/pyGameClassImage3.png";
-import pyGameClass4 from "../../images/detailContents/slide/education_detail_pygame/pyGameClassImage4.png";
-import pyGameClass5 from "../../images/detailContents/slide/education_detail_pygame/pyGameClassImage5.png";
+import pyGameImg from "../../images/detailContents/slide/edu_detail_pygame/upperBannerPyGame.png";
+import pyGameClass1 from "../../images/detailContents/slide/edu_detail_pygame/pyGameClassImage1.png";
+import pyGameClass2 from "../../images/detailContents/slide/edu_detail_pygame/pyGameClassImage2.png";
+import pyGameClass3 from "../../images/detailContents/slide/edu_detail_pygame/pyGameClassImage3.png";
+import pyGameClass4 from "../../images/detailContents/slide/edu_detail_pygame/pyGameClassImage4.png";
+import pyGameClass5 from "../../images/detailContents/slide/edu_detail_pygame/pyGameClassImage5.png";
 
 export const Pygame: React.FC = () => {
   return (

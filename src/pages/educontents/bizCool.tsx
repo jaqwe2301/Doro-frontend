@@ -5,12 +5,12 @@ import { ContentsSlide } from "../../components/eduDetailContents/contentsSlide"
 import { KitPicture } from "../../components/eduDetailContents/kitPicture";
 import { Notice } from "../../components/eduDetailContents/notice";
 
-import bizCoolImg from "../../images/detailContents/slide/education_detail_bizcool/upperBanneBizCool.png";
-import bizCoolClass1 from "../../images/detailContents/slide/education_detail_bizcool/bizCoolClassImage1.png";
-import bizCoolClass2 from "../../images/detailContents/slide/education_detail_bizcool/bizCoolClassImage2.png";
-import bizCoolClass3 from "../../images/detailContents/slide/education_detail_bizcool/bizCoolClassImage3.png";
-import bizCoolClass4 from "../../images/detailContents/slide/education_detail_bizcool/bizCoolClassImage4.png";
-import bizCoolClass5 from "../../images/detailContents/slide/education_detail_bizcool/bizCoolClassImage5.png";
+import bizCoolImg from "../../images/detailContents/slide/edu_detail_bizcool/upperBanneBizCool.png";
+import bizCoolClass1 from "../../images/detailContents/slide/edu_detail_bizcool/bizCoolClassImage1.png";
+import bizCoolClass2 from "../../images/detailContents/slide/edu_detail_bizcool/bizCoolClassImage2.png";
+import bizCoolClass3 from "../../images/detailContents/slide/edu_detail_bizcool/bizCoolClassImage3.png";
+import bizCoolClass4 from "../../images/detailContents/slide/edu_detail_bizcool/bizCoolClassImage4.png";
+import bizCoolClass5 from "../../images/detailContents/slide/edu_detail_bizcool/bizCoolClassImage5.png";
 
 export const BizCool: React.FC = () => {
   return (
