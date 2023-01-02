@@ -88,10 +88,7 @@ interface ICreateEduForm {
 }
 
 interface IAuthForm {
-  name: string;
-  phoneNumber: string;
   authNum: string;
-  Option: sendOption;
 }
 
 export const MakeNewApplication = () => {
@@ -126,6 +123,17 @@ export const MakeNewApplication = () => {
 
   const [isHovering, setIsHovering] = useState(0);
   const navigate = useNavigate();
+
+  const onCompletedCreate = (data: createEdu) => {
+    const {
+      CreateEdu: { ok, error },
+    } = data;
+    if (ok) {
+      navigate("/showApplication", { replace: true });
+    } else {
+      console.log(error);
+    }
+  };
 
   const onCompleted = (data: SendAuthNum) => {
     console.log("oncompleted");
@@ -188,7 +196,8 @@ export const MakeNewApplication = () => {
     console.log("ㅑinvalid 통과");
   };
 
-  const onSubmit_send = () => {
+  const onSubmit_send = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
     const { name, phone_number } = getValues();
     console.log(name, phone_number);
     console.log("submit");
@@ -260,7 +269,8 @@ export const MakeNewApplication = () => {
   };
 
   const [createEduMutation] = useMutation<createEdu, createEduVariables>(
-    CREATE_EDU_MUTATION
+    CREATE_EDU_MUTATION,
+    { onCompleted: onCompletedCreate }
   );
 
   const [sendAuthNumMutation, { data: sendAuthNum }] = useMutation<
@@ -355,7 +365,7 @@ export const MakeNewApplication = () => {
 
               <button
                 className="Create-post-input-input-content"
-                onClick={handleSubmit_auth(onSubmit_send, onInvalid_send)}
+                onClick={onSubmit_send}
               >
                 카카오톡 인증
               </button>
@@ -524,7 +534,7 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Create-post-input-textarea-div">
               <textarea
-                {...register("overall_remark", { required: true })}
+                {...register("overall_remark")}
                 name="overall_remark"
                 placeholder="교육 특이사항을 입력해주세요"
                 className="Create-post-textarea"
@@ -534,8 +544,9 @@ export const MakeNewApplication = () => {
 
           <div className=" Create-post-submit-button-parent">
             <button
+              type="submit"
               className={`${
-                formState.isValid
+                true
                   ? "Create-post-submit-button-on"
                   : "Create-post-submit-button-off"
               }`}
