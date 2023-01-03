@@ -19,7 +19,7 @@ import {
 } from "react-hook-form";
 import { isLoggedInVar } from "../apollo";
 import { Banner } from "../components/banner";
-import { createEdu, createEduVariables } from "../__generated__/createEdu";
+import { CreateEdu, CreateEduVariables } from "../__generated__/CreateEdu";
 import createEduRoute from "../images/bannerCategory/createEdu.png";
 import { Helmet } from "react-helmet-async";
 import infoConfirm from "../images/Frame68.svg";
@@ -38,8 +38,8 @@ import { setAppElement } from "react-modal";
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 
 const CREATE_EDU_MUTATION = gql`
-  mutation createEdu($createEduInput: CreateEduInput!) {
-    CreateEdu(CreateEduInput: $createEduInput) {
+  mutation CreateEdu($input: CreateEduInput!) {
+    CreateEdu(input: $input) {
       error
       ok
     }
@@ -63,6 +63,7 @@ const CHECK_AUTH_NUM_QUERY = gql`
     }
   }
 `;
+
 interface Detail_class_item {
   class_name: string;
   edu_concept: string;
@@ -112,14 +113,14 @@ interface ICheckAuthForm {
 export const ShowApplication = () => {
   const [startDate, setapplyDate] = useState(new Date());
   const navigate = useNavigate();
- 
+
   const navigateToMakeNewApplication = () => {
     navigate("/makeNewApplication");
   };
 
   const navigateToShowApplication = () => {
-      navigate("/showApplication");
-    };
+    navigate("/showApplication");
+  };
   const { register, getValues, handleSubmit, formState, control } =
     useForm<ICreateEduForm>({
       defaultValues: {
@@ -185,7 +186,7 @@ export const ShowApplication = () => {
 
     createEduMutation({
       variables: {
-        createEduInput: {
+        input: {
           name,
           institution_name,
           position,
@@ -286,7 +287,7 @@ export const ShowApplication = () => {
     }
   };
 
-  const [createEduMutation] = useMutation<createEdu, createEduVariables>(
+  const [createEduMutation] = useMutation<CreateEdu, CreateEduVariables>(
     CREATE_EDU_MUTATION
   );
 
@@ -314,14 +315,20 @@ export const ShowApplication = () => {
         content="희망 교육과 문의 사항을 작성해주시면 빠르게 답변해드리겠습니다."
         rightImg="none"
       />
-        <div className="typeSelect-container">
-            <button onClick={navigateToMakeNewApplication} className="typeSelect-button">
-                교육 신청하기
-            </button>
-            <button onClick={navigateToShowApplication} className="typeSelect-button">
-                교육 신청내역 확인하기
-            </button>          
-        </div>
+      <div className="typeSelect-container">
+        <button
+          onClick={navigateToMakeNewApplication}
+          className="typeSelect-button"
+        >
+          교육 신청하기
+        </button>
+        <button
+          onClick={navigateToShowApplication}
+          className="typeSelect-button"
+        >
+          교육 신청내역 확인하기
+        </button>
+      </div>
       <div className="CreateEdu-content-root">
         <div className="CreateEdu-title">교육 신청 내역 확인하기</div>
         <form
@@ -390,25 +397,21 @@ export const ShowApplication = () => {
               </button>
             </div>
           </div>
-
         </form>
 
         <div className="h-screen Posts-container">
           <div style={{ fontSize: "0.778rem", marginBottom: "0.583rem" }}>
             <span>총 </span>
-            <span style={{ color: "#005c97" }}>
-            </span>
+            <span style={{ color: "#005c97" }}></span>
             <span>건</span>
           </div>
           <>
-            <div className="Posts-postlist w-full flex flex-col">
-            </div>
+            <div className="Posts-postlist w-full flex flex-col"></div>
           </>
 
           <div className="flex items-center justify-between Posts-bottom-container">
             <div className="Posts-empty"></div>
-            <div className="Posts-pagination-container">
-            </div>
+            <div className="Posts-pagination-container"></div>
           </div>
         </div>
       </div>
