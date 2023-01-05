@@ -12,14 +12,24 @@ const EduDetailContents = () => {
 
   const { state } = useLocation();
   let checkState = state
-
+  console.log(checkState)
   useEffect(() => {
-    console.log(checkState)
-    if (checkState === null) {
+    if (checkState === (null || 10) ) {
       mainBtnControl("IsMain1");
       subBtnControl('IsSub1');
       checkState = false;
-      console.log(checkState)
+    } else if (checkState === 11 ) {
+      mainBtnControl("IsMain1");
+      subBtnControl('IsSub2');
+      checkState = false;
+    } else if (checkState === 12 ) {
+      mainBtnControl("IsMain1");
+      subBtnControl('IsSub3');
+      checkState = false;
+    } else if (checkState === 13 ) {
+      mainBtnControl("IsMain1");
+      subBtnControl('IsSub4');
+      checkState = false;
     } else if (checkState === 1) {
       mainBtnControl("IsMain2")
       subBtnControl('None')
