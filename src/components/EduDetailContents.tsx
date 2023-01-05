@@ -1,13 +1,55 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
+
 
 
 const EduDetailContents = () => {
 
-  const [main1, setMainBtn1] = useState(true);
+  const [main1, setMainBtn1] = useState(false);
   const [main2, setMainBtn2] = useState(false);
   const [main3, setMainBtn3] = useState(false);
   const [main4, setMainBtn4] = useState(false);
+
+  const { state } = useLocation();
+  let checkState = state
+
+  useEffect(() => {
+    if (checkState === 0) {
+      console.log(checkState)
+      setMainBtn1(true);
+      setMainBtn2(false);
+      setMainBtn3(false);
+      setMainBtn4(false);
+      checkState = false;
+      console.log(checkState)
+    } else if (checkState === 1) {
+      console.log(checkState)
+
+      setMainBtn1(false);
+      setMainBtn2(true);
+      setMainBtn3(false);
+      setMainBtn4(false);
+      checkState = false;
+      console.log(checkState)
+    } else if (checkState === 2) {
+      console.log(checkState)
+      setMainBtn1(false);
+      setMainBtn2(false);
+      setMainBtn3(true);
+      setMainBtn4(false);
+      checkState = false;
+      console.log(checkState)
+    } else if (checkState === 3) {
+      console.log(checkState)
+      setMainBtn1(false);
+      setMainBtn2(false);
+      setMainBtn3(false);
+      setMainBtn4(true);
+      checkState = false;
+      console.log(checkState)
+    }
+
+  },[])
 
   const mainBtnControl = (btn: string) => {
     setMainBtn1(false);
@@ -309,7 +351,7 @@ const EduDetailContents = () => {
 
 
 
-  const [sub1, setSubBtn1] = useState(true);
+  const [sub1, setSubBtn1] = useState(false);
   const [sub2, setSubBtn2] = useState(false);
   const [sub3, setSubBtn3] = useState(false);
   const [sub4, setSubBtn4] = useState(false);
@@ -531,7 +573,6 @@ const EduDetailContents = () => {
             type="button"
             onClick={() => {
               subBtnControl('IsSub1');
-              // changeMap();
             }}
           >
             로봇 교육
@@ -542,7 +583,6 @@ const EduDetailContents = () => {
             type="button"
             onClick={() => {
               subBtnControl('IsSub2');
-              // changeMap();
             }}
           >
             소프트웨어 교육

@@ -1,5 +1,5 @@
 import React, { useEffect} from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 import type1 from "../images/icon_people1.png";
@@ -84,7 +84,7 @@ const Line = styled.div`
     margin-bottom: 2.944rem;
     background-color: var(--doro-deep);
 `
-const Container = styled.div<{ hoverimg: string }>`
+const Container = styled.button<{ hoverimg: string }>`
     width: 26.667rem;
     height: 17.556rem;
     border-radius: 9.9px;
@@ -224,6 +224,11 @@ const Container = styled.div<{ hoverimg: string }>`
 
 const MainEduContent = () => {
 
+    const navigate = useNavigate();
+    const DetailContentsRoutes = (index : number) => {
+        navigate('/showDetailContent', {state : index});
+      }
+
     function preloading (imageArray : any) {
         let n = imageArray.length;
         for (let i = 0; i < n; i++) {
@@ -294,7 +299,7 @@ const MainEduContent = () => {
             <Box>
 
                 {dummyData.map((data, idx) =>
-                    <Container key={idx} hoverimg={data.hoverimg}>
+                    <Container key={idx} hoverimg={data.hoverimg} onClick={()=>{DetailContentsRoutes(idx)}}>
                         <img src={data.iconURL} alt="icon" />
                         <p>
                             {data.textblue}
