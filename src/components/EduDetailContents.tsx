@@ -14,7 +14,7 @@ const EduDetailContents = () => {
   let checkState = state
   console.log(checkState)
   useEffect(() => {
-    if (checkState === (null || 10) ) {
+    if (checkState === null || checkState === 10) {
       mainBtnControl("IsMain1");
       subBtnControl('IsSub1');
       checkState = false;
