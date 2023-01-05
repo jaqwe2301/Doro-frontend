@@ -14,39 +14,24 @@ const EduDetailContents = () => {
   let checkState = state
 
   useEffect(() => {
-    if (checkState === 0) {
-      console.log(checkState)
-      setMainBtn1(true);
-      setMainBtn2(false);
-      setMainBtn3(false);
-      setMainBtn4(false);
+    console.log(checkState)
+    if (checkState === null) {
+      mainBtnControl("IsMain1");
+      subBtnControl('IsSub1');
       checkState = false;
       console.log(checkState)
     } else if (checkState === 1) {
-      console.log(checkState)
-
-      setMainBtn1(false);
-      setMainBtn2(true);
-      setMainBtn3(false);
-      setMainBtn4(false);
+      mainBtnControl("IsMain2")
+      subBtnControl('None')
       checkState = false;
-      console.log(checkState)
     } else if (checkState === 2) {
-      console.log(checkState)
-      setMainBtn1(false);
-      setMainBtn2(false);
-      setMainBtn3(true);
-      setMainBtn4(false);
+      mainBtnControl("IsMain3")
+      subBtnControl('None')
       checkState = false;
-      console.log(checkState)
     } else if (checkState === 3) {
-      console.log(checkState)
-      setMainBtn1(false);
-      setMainBtn2(false);
-      setMainBtn3(false);
-      setMainBtn4(true);
+      mainBtnControl("IsMain4")
+      subBtnControl('None')
       checkState = false;
-      console.log(checkState)
     }
 
   },[])
