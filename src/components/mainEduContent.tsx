@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
 import robot from "../images/icon_robot.png";
@@ -59,7 +59,7 @@ const Line = styled.div`
     background-color: var(--doro-deep);
 `
 // 콘텐츠 박스
-const Container = styled.div`
+const Container = styled.button`
     width: 15.556rem;
     height: 23.5rem;
     border-radius: 10px;
@@ -126,7 +126,8 @@ const Container = styled.div`
 const Image = styled.img`
     width: 5.994rem;
     height: 6.51rem;
-    margin-top: 1.889rem;
+    // margin-top: 1.889rem;
+    margin-top: -2.93rem;
     margin-left: auto;
     margin-right: auto;
 `
@@ -142,6 +143,12 @@ const Rightarrow = styled.img`
 
 
 const MainEduContent = () => {
+
+    const navigate = useNavigate();
+    const DetailContentsRoutes = (index : number) => {
+        navigate('/showDetailContent', {state : index+10});
+      }
+
     const dummyData = [
         {
             imgURL: robot,
@@ -188,7 +195,7 @@ const MainEduContent = () => {
             <Box>
 
                 {dummyData.map((data, idx) =>
-                    <Container key={idx}>
+                    <Container key={idx} onClick={()=>{DetailContentsRoutes(idx)}}>
                         <Image src={data.imgURL} alt="icon" />
                         <p>
                             {data.title}
