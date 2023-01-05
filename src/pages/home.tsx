@@ -211,19 +211,25 @@ export const HomePage = () => {
               className="Main3-bottom-container"
             >
               <SwiperSlide>
+                
                 <div className="Main3-bottom-image1-container">
-                  <img
-                    src={speaker}
-                    alt="Program"
-                    className="Main3-bottom-image1"
-                  ></img>
+                  <Link to="/speaker">
+                    <img
+                      src={speaker}
+                      alt="Program"
+                      className="Main3-bottom-image1"
+                    />
+                  </Link>
                   <div className="Main3-bottom-image1-letters">
-                    <p className="Main3-bottom-image-title">
-                      DORO DIY 블루투스 스피커
-                    </p>
+                    <Link to="/speaker">
+                      <p className="Main3-bottom-image-title">
+                        DORO DIY 블루투스 스피커
+                      </p>
+                    </Link>
                     <p className="Main3-bottom-image-subtitle">
                       #IOT #블루투스 #음향학
                     </p>
+                    
 
                     <Link to="/createPost" className="Main3-bottom-image-button">
                       <button className="Main3-bottom-image-button">
@@ -239,15 +245,19 @@ export const HomePage = () => {
 
               <SwiperSlide>
                 <div className="Main3-bottom-image3-container">
-                  <img
-                    src={game}
-                    alt="Program"
-                    className="Main3-bottom-image3"
-                  ></img>
+                  <Link to="/gameconsole">
+                    <img
+                      src={game}
+                      alt="Program"
+                      className="Main3-bottom-image3"
+                    />
+                  </Link>
                   <div className="Main3-bottom-image3-letters">
-                    <p className="Main3-bottom-image-title">
-                      DORO DIY 아두이노 게임기
-                    </p>
+                    <Link to="/gameconsole">
+                      <p className="Main3-bottom-image-title">
+                        DORO DIY 아두이노 게임기
+                      </p>
+                    </Link>
                     <p className="Main3-bottom-image-subtitle">
                       #중급회로 #임베디드 #아두이노 #코딩
                     </p>
@@ -266,13 +276,17 @@ export const HomePage = () => {
 
               <SwiperSlide>
                 <div className="Main3-bottom-walking-container">
-                  <img
-                    src={walking}
-                    alt="Program"
-                    className="Main3-bottom-walking"
-                  ></img>
+                  <Link to="/walking">
+                    <img
+                      src={walking}
+                      alt="Program"
+                      className="Main3-bottom-walking"
+                    />
+                  </Link>
                   <div className="Main3-bottom-walking-letters">
-                    <p className="Main3-bottom-image-title">DORO DIY 워킹로봇</p>
+                    <Link to="/walking">
+                      <p className="Main3-bottom-image-title">DORO DIY 워킹로봇</p>
+                    </Link>
                     <p className="Main3-bottom-image-subtitle">
                       #기초회로 #IR센서 #기구학
                     </p>
@@ -291,15 +305,19 @@ export const HomePage = () => {
               </SwiperSlide>
               <SwiperSlide>
                 <div className="Main3-bottom-image4-container">
-                  <img
-                    src={balancing}
-                    alt="Program"
-                    className="Main3-bottom-image4"
-                  ></img>
+                  <Link to="/balancing">
+                    <img
+                      src={balancing}
+                      alt="Program"
+                      className="Main3-bottom-image4"
+                    />
+                  </Link>
                   <div className="Main3-bottom-image4-letters">
-                    <p className="Main3-bottom-image-title">
-                      DORO DIY 밸런싱 로봇
-                    </p>
+                    <Link to="/balancing">
+                      <p className="Main3-bottom-image-title">
+                        DORO DIY 밸런싱 로봇
+                      </p>
+                    </Link>
                     <p className="Main3-bottom-image-subtitle">
                       #제어공학 #PID #아두이노 #코딩
                     </p>
@@ -318,15 +336,19 @@ export const HomePage = () => {
 
               <SwiperSlide>
                 <div className="Main3-bottom-image2-container">
-                  <img
-                    src={mood}
-                    alt="Program"
-                    className="Main3-bottom-image2"
-                  ></img>
+                  <Link to="/moodlight">
+                    <img
+                      src={mood}
+                      alt="Program"
+                      className="Main3-bottom-image2"
+                    />
+                  </Link>
                   <div className="Main3-bottom-image2-letters">
-                    <p className="Main3-bottom-image-title">
-                      DORO DIY 미니 무드등
-                    </p>
+                    <Link to="/moodlight">
+                      <p className="Main3-bottom-image-title">
+                        DORO DIY 미니 무드등
+                      </p>
+                    </Link>
                     <p className="Main3-bottom-image-subtitle">
                       #기초회로 #조도센서 #전자공학
                     </p>
@@ -343,9 +365,13 @@ export const HomePage = () => {
 
               <SwiperSlide>
                 <div className="Main3-bottom-car-container">
-                  <img src={car} alt="Program" className="Main3-bottom-car"></img>
+                  <Link to="/ircar">
+                    <img src={car} alt="Program" className="Main3-bottom-car"/>
+                  </Link>
                   <div className="Main3-bottom-car-letters">
-                    <p className="Main3-bottom-image-title">DORO DIY IR 자동차</p>
+                    <Link to="/ircar">
+                      <p className="Main3-bottom-image-title">DORO DIY IR 자동차</p>
+                    </Link>
                     <p className="Main3-bottom-image-subtitle">
                       #기초회로 #IR센서 #동역학
                     </p>
@@ -364,9 +390,13 @@ export const HomePage = () => {
 
               <SwiperSlide>
                 <div className="Main3-bottom-tracer-container">
-                  <img src={tracer} alt="Program" className="Main3-bottom-tracer"></img>
+                  <Link to="/tracer">
+                    <img src={tracer} alt="Program" className="Main3-bottom-tracer"/>
+                  </Link>
                   <div className="Main3-bottom-tracer-letters">
-                    <p className="Main3-bottom-image-title">DORO Line Tracer Robot</p>
+                    <Link to="/tracer">
+                      <p className="Main3-bottom-image-title">DORO Line Tracer Robot</p>
+                    </Link>
                     <p className="Main3-bottom-image-subtitle">
                       #센서처리 #모터제어 #아두이노 #알고리즘
                     </p>
