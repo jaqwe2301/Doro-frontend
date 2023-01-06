@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useRef } from 'react'
 import "../styles/applyEdu.css";
 
 import {
@@ -22,7 +21,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { isLoggedInVar } from "../apollo";
 import { Banner } from "../components/banner";
-import { createEdu, createEduVariables } from "../__generated__/createEdu";
 import createEduRoute from "../images/bannerCategory/createEdu.png";
 import { Helmet } from "react-helmet-async";
 import infoConfirm from "../images/Frame68.svg";
@@ -36,13 +34,29 @@ import {
   checkAuthNumQueryVariables,
 } from "../__generated__/checkAuthNumQuery";
 import DatePicker from "react-multi-date-picker";
+import type { Value } from "react-multi-date-picker";
 import { setAppElement } from "react-modal";
+import InputIcon from "react-multi-date-picker/components/input_icon";
+import { CreateEdu, CreateEduVariables } from "../__generated__/CreateEdu";
 
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
-
+const months = [
+  "1월",
+  "2월",
+  "3월",
+  "4월",
+  "5월",
+  "6월",
+  "7월",
+  "8월",
+  "9월",
+  "10월",
+  "11월",
+  "12월",
+];
 const CREATE_EDU_MUTATION = gql`
-  mutation createEdu($createEduInput: CreateEduInput!) {
-    CreateEdu(CreateEduInput: $createEduInput) {
+  mutation CreateEdu($input: CreateEduInput!) {
+    CreateEdu(input: $input) {
       error
       ok
     }
@@ -89,14 +103,11 @@ interface ICreateEduForm {
 }
 
 interface IAuthForm {
-  name: string;
-  phoneNumber: string;
   authNum: string;
-  Option: sendOption;
 }
 
 export const MakeNewApplication = () => {
-  const [startDate, setapplyDate] = useState(new Date());
+  const [startDate, setapplyDate] = useState<Value>(new Date());
   const { register, getValues, handleSubmit, formState, control } =
     useForm<ICreateEduForm>({
       defaultValues: {
@@ -128,6 +139,17 @@ export const MakeNewApplication = () => {
   const [isHovering, setIsHovering] = useState(0);
   const navigate = useNavigate();
 
+  const onCompletedCreate = (data: CreateEdu) => {
+    const {
+      CreateEdu: { ok, error },
+    } = data;
+    if (ok) {
+      navigate("/showApplication", { replace: true });
+    } else {
+      console.log(error);
+    }
+  };
+
   const onCompleted = (data: SendAuthNum) => {
     console.log("oncompleted");
     const {
@@ -155,10 +177,14 @@ export const MakeNewApplication = () => {
       overall_remark,
       detail_classes,
     } = getValues();
-
+    const fordateformat = getValues();
+    console.log(fordateformat);
+    fordateformat.detail_classes.map((data) => {
+      data.date = data.date.toString();
+    });
     createEduMutation({
       variables: {
-        createEduInput: {
+        input: {
           name,
           institution_name,
           position,
@@ -168,7 +194,7 @@ export const MakeNewApplication = () => {
           school_rank,
           budget,
           overall_remark,
-          detail_classes,
+          detail_classes: fordateformat.detail_classes,
         },
       },
     });
@@ -189,7 +215,8 @@ export const MakeNewApplication = () => {
     console.log("ㅑinvalid 통과");
   };
 
-  const onSubmit_send = () => {
+  const onSubmit_send = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
     const { name, phone_number } = getValues();
     console.log(name, phone_number);
     console.log("submit");
@@ -238,6 +265,7 @@ export const MakeNewApplication = () => {
 
   const click_append_buttion = () => {
     const { detail_classes } = getValues();
+    console.log(detail_classes);
     const detail_len = detail_classes.length;
     if (detail_len > 0) {
       append({
@@ -260,8 +288,9 @@ export const MakeNewApplication = () => {
     }
   };
 
-  const [createEduMutation] = useMutation<createEdu, createEduVariables>(
-    CREATE_EDU_MUTATION
+  const [createEduMutation] = useMutation<CreateEdu, CreateEduVariables>(
+    CREATE_EDU_MUTATION,
+    { onCompleted: onCompletedCreate }
   );
 
   const [sendAuthNumMutation, { data: sendAuthNum }] = useMutation<
@@ -273,55 +302,6 @@ export const MakeNewApplication = () => {
     checkAuthNumQuery,
     checkAuthNumQueryVariables
   >(CHECK_AUTH_NUM_QUERY, { onCompleted: onCompleted_check });
-
-  
-  // 왼쪽 배너 기능
-  const leftRef = useRef<any>(null);
-  const formRef = useRef<any>(null);
-  const line1Ref = useRef<any>(null);
-  const line2Ref = useRef<any>(null);
-  const line3Ref = useRef<any>(null);
-  const line4Ref = useRef<any>(null);
-  const circleRef = useRef<any>(null);
-
-  useEffect(() => {
-    const progressStyle = leftRef.current.style
-    const line1Style = line1Ref.current.style
-    const line2Style = line2Ref.current.style
-    const line3Style = line3Ref.current.style
-    const line4Style = line4Ref.current.style
-
-
-    const progressSpace = () => {
-      let formStyle = window.getComputedStyle(formRef.current)
-      let formMarginLeft = formStyle.getPropertyValue('margin-left')
-      progressStyle.width = formMarginLeft
-
-      let circleStyle = window.getComputedStyle(circleRef.current)
-      let CircleWidth = circleStyle.getPropertyValue('width')
-      line1Style.marginLeft = `${parseFloat(CircleWidth)/2-0.789}px`
-      line2Style.marginLeft = `${parseFloat(CircleWidth)/2-0.789}px`
-      line3Style.marginLeft = `${parseFloat(CircleWidth)/2-0.789}px`
-      line4Style.marginLeft = `${parseFloat(CircleWidth)/2-0.789}px`
-    }
-
-    progressSpace();
-    
-    window.addEventListener("resize", function(){
-      progressSpace();
-    });
-
-    progressStyle.top = `${461.328}px`
-
-    window.addEventListener('scroll', function(){
-      let scrollY = 461.328 + window.scrollY;
-      progressStyle.top = `${scrollY}px`
-      if (scrollY >= 2183.33) {
-        progressStyle.top = `${2183.33}px`
-      }
-    });
-  },)
-
 
   return (
     <div className="Create-post-root">
@@ -337,41 +317,8 @@ export const MakeNewApplication = () => {
         content="희망 교육과 문의 사항을 작성해주시면 빠르게 답변해드리겠습니다."
         rightImg="none"
       />
-      <div ref={leftRef} className="Progress-container">
-        <div>
-          <div className="circleNum-text-box">
-            <p ref={circleRef} className="circleNum">1</p>
-            <p className="Progress-text">신청자 정보</p>
-          </div>
-          <div ref={line1Ref} className="Progress-line"/>
-
-          <div className="circleNum-text-box">
-            <p className="circleNum">2</p>
-            <p className="Progress-text">교육생 정보</p>
-          </div>
-          <div ref={line2Ref} className="Progress-line"/>
-
-          <div className="circleNum-text-box">
-            <p className="circleNum">3</p>
-            <p className="Progress-text">학급별 교육 일정</p>
-          </div>
-          <div ref={line3Ref} className="Progress-line"/>
-
-          <div className="circleNum-text-box">
-            <p className="circleNum">4</p>
-            <p className="Progress-text">교육 특이사항</p>
-          </div>
-          <div ref={line4Ref} className="Progress-line"/>
-
-          <div className="circleNum-text-box">
-            <p className="circleNum">5</p>
-            <p className="Progress-text">교육 특이사항</p>
-          </div>
-
-        </div>
-      </div>
-      <div ref={formRef} className="CreateEdu-content-root">
-        <div className="CreateEdu-title">최종 신청</div>
+      <div className="CreateEdu-content-root">
+        <div className="CreateEdu-title">신청자 정보</div>
         <form
           className="Create-post-form"
           onSubmit={handleSubmit(onSubmit_create, onInvalid_create)}
@@ -438,7 +385,7 @@ export const MakeNewApplication = () => {
 
               <button
                 className="Create-post-input-input-content"
-                onClick={handleSubmit_auth(onSubmit_send, onInvalid_send)}
+                onClick={onSubmit_send}
               >
                 카카오톡 인증
               </button>
@@ -484,7 +431,7 @@ export const MakeNewApplication = () => {
           </div>
 
           {/* 교육생 정보 */}
-          <div className="CreateEdu-title Box-marginTop">교육생 정보</div>
+          <div className="CreateEdu-title">교육생 정보</div>
           <div className=" Create-post-input-parent">
             <div className="Create-post-input-description-box">
               <span className="Create-post-input-description-text">
@@ -493,7 +440,11 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Create-post-input-input-box">
               <input
-                {...register("student_count", { required: true })}
+                {...register("student_count", {
+                  required: true,
+                  valueAsNumber: true,
+                })}
+                type="number"
                 className="Create-post-input-input-content"
                 name="student_count"
                 placeholder="총 학생 수를 입력해주세요."
@@ -509,8 +460,8 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Create-post-input-input-box">
               <input
-                {...register("institution_name", { required: true })}
-                name="institution_name"
+                {...register("school_rank", { required: true })}
+                name="school_rank"
                 placeholder="초등학교 1학년, 3학년"
                 className="Create-post-input-input-content"
               />
@@ -525,15 +476,15 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Create-post-input-input-box">
               <input
-                {...register("position", { required: true })}
-                name="position"
+                {...register("budget", { required: true, valueAsNumber: true })}
+                name="budget"
                 placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
                 className="Create-post-input-input-content"
               />
             </div>
           </div>
 
-          <div className="CreateEdu-title Box-marginTop">학급별 교육 일정</div>
+          <div className="CreateEdu-title">학급별 교육 일정</div>
           <div>
             {fields.map((field, index) => {
               return (
@@ -585,7 +536,22 @@ export const MakeNewApplication = () => {
                     </div>
                     <div>
                       <span>교육 날짜</span>
-                      <DatePicker weekDays={weekDays} />
+                      <Controller
+                        control={control}
+                        name={`detail_classes.${index}.date`}
+                        render={(props) => (
+                          <>
+                            <DatePicker
+                              onChange={(e) => props.field.onChange(e)}
+                              minDate={new Date()}
+                              weekDays={weekDays}
+                              format="YYYY년 MM월 DD일"
+                              months={months}
+                              render={<InputIcon />}
+                            />
+                          </>
+                        )}
+                      />
                     </div>
                   </section>
                 </div>
@@ -597,7 +563,7 @@ export const MakeNewApplication = () => {
             </button>
           </div>
 
-          <div className="CreateEdu-title Box-marginTop">교육 특이사항</div>
+          <div className="CreateEdu-title">교육 특이사항</div>
 
           <div className=" Create-post-input-textarea-parent">
             <div className="Create-post-input-textarea-span-box">
@@ -607,7 +573,7 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Create-post-input-textarea-div">
               <textarea
-                {...register("overall_remark", { required: true })}
+                {...register("overall_remark")}
                 name="overall_remark"
                 placeholder="교육 특이사항을 입력해주세요"
                 className="Create-post-textarea"
@@ -617,8 +583,9 @@ export const MakeNewApplication = () => {
 
           <div className=" Create-post-submit-button-parent">
             <button
+              type="submit"
               className={`${
-                formState.isValid
+                true
                   ? "Create-post-submit-button-on"
                   : "Create-post-submit-button-off"
               }`}
