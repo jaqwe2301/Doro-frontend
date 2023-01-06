@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useRef } from 'react'
 import "../styles/applyEdu.css";
 
 import {
@@ -303,6 +304,55 @@ export const MakeNewApplication = () => {
     checkAuthNumQueryVariables
   >(CHECK_AUTH_NUM_QUERY, { onCompleted: onCompleted_check });
 
+  
+  // 왼쪽 배너 기능
+  const leftRef = useRef<any>(null);
+  const formRef = useRef<any>(null);
+  const line1Ref = useRef<any>(null);
+  const line2Ref = useRef<any>(null);
+  const line3Ref = useRef<any>(null);
+  const line4Ref = useRef<any>(null);
+  const circleRef = useRef<any>(null);
+
+  useEffect(() => {
+    const progressStyle = leftRef.current.style
+    const line1Style = line1Ref.current.style
+    const line2Style = line2Ref.current.style
+    const line3Style = line3Ref.current.style
+    const line4Style = line4Ref.current.style
+
+
+    const progressSpace = () => {
+      let formStyle = window.getComputedStyle(formRef.current)
+      let formMarginLeft = formStyle.getPropertyValue('margin-left')
+      progressStyle.width = formMarginLeft
+
+      let circleStyle = window.getComputedStyle(circleRef.current)
+      let CircleWidth = circleStyle.getPropertyValue('width')
+      line1Style.marginLeft = `${parseFloat(CircleWidth)/2-0.789}px`
+      line2Style.marginLeft = `${parseFloat(CircleWidth)/2-0.789}px`
+      line3Style.marginLeft = `${parseFloat(CircleWidth)/2-0.789}px`
+      line4Style.marginLeft = `${parseFloat(CircleWidth)/2-0.789}px`
+    }
+
+    progressSpace();
+    
+    window.addEventListener("resize", function(){
+      progressSpace();
+    });
+
+    progressStyle.top = `${461.328}px`
+
+    window.addEventListener('scroll', function(){
+      let scrollY = 461.328 + window.scrollY;
+      progressStyle.top = `${scrollY}px`
+      if (scrollY >= 2183.33) {
+        progressStyle.top = `${2183.33}px`
+      }
+    });
+  },)
+
+
   return (
     <div className="Create-post-root">
       <Helmet>
@@ -317,8 +367,41 @@ export const MakeNewApplication = () => {
         content="희망 교육과 문의 사항을 작성해주시면 빠르게 답변해드리겠습니다."
         rightImg="none"
       />
-      <div className="CreateEdu-content-root">
-        <div className="CreateEdu-title">신청자 정보</div>
+      <div ref={leftRef} className="Progress-container">
+        <div>
+          <div className="circleNum-text-box">
+            <p ref={circleRef} className="circleNum">1</p>
+            <p className="Progress-text">신청자 정보</p>
+          </div>
+          <div ref={line1Ref} className="Progress-line"/>
+
+          <div className="circleNum-text-box">
+            <p className="circleNum">2</p>
+            <p className="Progress-text">교육생 정보</p>
+          </div>
+          <div ref={line2Ref} className="Progress-line"/>
+
+          <div className="circleNum-text-box">
+            <p className="circleNum">3</p>
+            <p className="Progress-text">학급별 교육 일정</p>
+          </div>
+          <div ref={line3Ref} className="Progress-line"/>
+
+          <div className="circleNum-text-box">
+            <p className="circleNum">4</p>
+            <p className="Progress-text">교육 특이사항</p>
+          </div>
+          <div ref={line4Ref} className="Progress-line"/>
+
+          <div className="circleNum-text-box">
+            <p className="circleNum">5</p>
+            <p className="Progress-text">교육 특이사항</p>
+          </div>
+
+        </div>
+      </div>
+      <div ref={formRef} className="CreateEdu-content-root">
+        <div className="CreateEdu-title">최종 신청</div>
         <form
           className="Create-post-form"
           onSubmit={handleSubmit(onSubmit_create, onInvalid_create)}
@@ -431,7 +514,7 @@ export const MakeNewApplication = () => {
           </div>
 
           {/* 교육생 정보 */}
-          <div className="CreateEdu-title">교육생 정보</div>
+          <div className="CreateEdu-title Box-marginTop">교육생 정보</div>
           <div className=" Create-post-input-parent">
             <div className="Create-post-input-description-box">
               <span className="Create-post-input-description-text">
@@ -484,7 +567,7 @@ export const MakeNewApplication = () => {
             </div>
           </div>
 
-          <div className="CreateEdu-title">학급별 교육 일정</div>
+          <div className="CreateEdu-title Box-marginTop">학급별 교육 일정</div>
           <div>
             {fields.map((field, index) => {
               return (
@@ -563,7 +646,7 @@ export const MakeNewApplication = () => {
             </button>
           </div>
 
-          <div className="CreateEdu-title">교육 특이사항</div>
+          <div className="CreateEdu-title Box-marginTop">교육 특이사항</div>
 
           <div className=" Create-post-input-textarea-parent">
             <div className="Create-post-input-textarea-span-box">
