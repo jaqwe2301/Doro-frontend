@@ -88,6 +88,11 @@ export interface FindAllPostsInput {
   page?: number | null;
 }
 
+export interface FindOverallClassesInput {
+  phone_number: string;
+  name: string;
+}
+
 export interface FindPostInput {
   postId: number;
 }

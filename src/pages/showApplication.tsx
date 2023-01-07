@@ -1,28 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/applyEdu.css";
 
-import {
-  gql,
-  useMutation,
-  useReactiveVar,
-  useLazyQuery,
-  useQuery,
-} from "@apollo/client";
+import { gql, useMutation, useLazyQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import {
-  appendErrors,
-  Control,
-  Controller,
-  useFieldArray,
-  useForm,
-  useWatch,
-} from "react-hook-form";
-import { isLoggedInVar } from "../apollo";
+import { useForm } from "react-hook-form";
+
 import { Banner } from "../components/banner";
-import { CreateEdu, CreateEduVariables } from "../__generated__/CreateEdu";
+
 import createEduRoute from "../images/bannerCategory/createEdu.png";
 import { Helmet } from "react-helmet-async";
-import infoConfirm from "../images/Frame68.svg";
+
 import {
   SendAuthNum,
   SendAuthNumVariables,
@@ -32,15 +19,24 @@ import {
   checkAuthNumQuery,
   checkAuthNumQueryVariables,
 } from "../__generated__/checkAuthNumQuery";
-import DatePicker from "react-multi-date-picker";
-import { setAppElement } from "react-modal";
+
+import {
+  FindOverallClasses,
+  FindOverallClassesVariables,
+} from "../__generated__/FindOverallClasses";
 
 const FIND_OVERALL_CLASSES_QUERY = gql`
   query FindOverallClasses($input: FindOverallClassesInput!) {
     FindOverallClasses(input: $input) {
       ok
       error
-      overallClasses
+      overallClasses {
+        createdAt
+        id
+        client {
+          institution_name
+        }
+      }
     }
   }
 `;
@@ -139,16 +135,41 @@ export const ShowApplication = () => {
 
   const onCompleted_check = (data: checkAuthNumQuery) => {
     console.log("oncompleted_check");
+    const { name, phone_number } = getValues();
     const {
       CheckAuthNum: { ok, error },
     } = data;
     if (ok) {
       alert("인증번호 일치 , 확인 완료 ");
+
+      findOverallClasses({
+        variables: {
+          input: {
+            name,
+            phone_number,
+          },
+        },
+      });
     } else {
       console.log(error);
       alert(error);
     }
     // 게시물 보여주기
+  };
+
+  const onFindOverallClassesCompleted = (data: FindOverallClasses) => {
+    console.log(data);
+  };
+
+  const deleteApplication = (
+    postId: number,
+    e: { preventDefault: () => void }
+  ) => {
+    e.preventDefault();
+    console.log("delete", postId);
+  };
+  const editApplication = () => {
+    console.log("edit");
   };
 
   const [sendAuthNumMutation, { data: sendAuthNum }] = useMutation<
@@ -160,6 +181,11 @@ export const ShowApplication = () => {
     checkAuthNumQuery,
     checkAuthNumQueryVariables
   >(CHECK_AUTH_NUM_QUERY, { onCompleted: onCompleted_check });
+
+  const [findOverallClasses, { data: overallClassesData }] = useLazyQuery<
+    FindOverallClasses,
+    FindOverallClassesVariables
+  >(FIND_OVERALL_CLASSES_QUERY, { onCompleted: onFindOverallClassesCompleted });
 
   return (
     <div className="Create-post-root">
@@ -269,6 +295,22 @@ export const ShowApplication = () => {
             <div className="Posts-empty"></div>
             <div className="Posts-pagination-container"></div>
           </div>
+        </div>
+      </div>
+      <div className="FindOverallClasses-result">
+        <div>
+          {overallClassesData?.FindOverallClasses.overallClasses?.map(
+            (element, index) => (
+              <div key={index}>
+                <span>{element.client.institution_name}</span>
+                <span>{element.createdAt}</span>
+                <button onClick={editApplication}>수정하기</button>
+                <button onClick={(e) => deleteApplication(element.id, e)}>
+                  삭제하기
+                </button>
+              </div>
+            )
+          )}
         </div>
       </div>
     </div>
