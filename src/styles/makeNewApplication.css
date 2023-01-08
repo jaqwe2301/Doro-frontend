@@ -1,3 +1,64 @@
+.Create-post-kakao-modal-container {
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.Create-post-kakao-modal {
+  width: 27.944rem;
+  height: 11.005rem;
+  flex-grow: 0;
+  border: solid 1px #777;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.Create-post-kakao-modal-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.116rem;
+  background: var(--doro-medium);
+  font-family: Pretendard;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.Create-post-kakao-modal-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 7.889rem;
+  background: white;
+}
+
+.Create-post-kakao-modal-bottom-text {
+  font-family: Pretendard;
+  color: var(--doro-grey);
+  font-size: 1rem;
+}
+
+.Create-post-kakao-modal-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.556rem;
+  width: 6.158rem;
+  height: 2.313rem;
+  border-radius: 3.1px;
+  background: var(--doro-medium);
+  font-family: Pretendard;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
 .Progress-container {
   position: absolute;
   display: flex;
@@ -16,14 +77,26 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: #0072b9;
+  /* background: #0072b9; */
   width: 1.8vw;
   height: 1.8vw;
-  color: white;
+  /* color: white; */
+  border: 0.099rem solid var(--doro-medium);
   font-family: Pretendard;
   font-size: 1.1vw;
   font-weight: 500;
 }
+
+.circleNum-active {
+  background: #0072b9;
+  color: white;
+}
+
+.circleNum-nonActive {
+  background: white;
+  color: #0072b9;
+}
+
 
 .Progress-line {
   height: 1vw;
@@ -39,8 +112,12 @@
   font-weight: 600;
 }
 
-.Box-marginTop {
+/* .Box-marginTop {
   margin-top : 17.222rem;
+} */
+
+.Create-post-individual-form {
+  
 }
 
 .CreateEdu-content-root {
@@ -66,15 +143,13 @@
   color: #000;
 }
 
-.Create-post-form {
-  border-top: solid 1px var(--doro-light-grey);
-}
-
 .Create-post-input-parent {
   display: flex;
   height: 4.056rem;
 }
+
 .Create-post-input-input-box {
+  display: flex;
   width: 84%;
   height: 4.056rem;
   flex-grow: 0;
@@ -109,7 +184,7 @@
   margin: 0.167rem 0 0;
   font-family: Pretendard;
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.44;
@@ -117,6 +192,51 @@
   text-align: left;
   color: var(--doro-grey);
 }
+
+.Create-post-input-description-flex {
+  display: flex;
+  align-items: center;
+  padding-left: 0.6rem;
+  width: 84%;
+  border-bottom: solid 1px var(--doro-light-grey);
+}
+
+.Create-post-input-phoneNum {
+  height: 1.444rem;
+  width: 9rem;
+  border : solid 1px var(--doro-light-grey);
+  height: 2.556rem;
+  border-radius: 4px;
+  padding-left: 0.778rem;
+  font-family: Pretendard;
+  font-size: 1rem;
+}
+
+.Create-post-input-phoneNum::placeholder {
+  font-family: Pretendard;
+  color: #d9d9d9;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.Create-post-input-phoneNum-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.6rem;
+  height: 1.444rem;
+  width: 7.444rem;
+  border : solid 1px var(--doro-light-grey);
+  height: 2.556rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: Pretendard;
+  /* color: #3A1D1D;
+  background: #f1e64b; */
+  color: var(--doro-medium)
+}
+
 .Create-post-Group-43 {
   width: 5.222rem;
   height: 1.611rem;
@@ -124,17 +244,23 @@
 }
 
 .Create-post-input-input-content {
+  display: flex;
   width: 99%;
   height: 2.556rem;
   flex-grow: 0;
-  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 8px;
   padding: 0.556rem 0.778rem;
   border-radius: 4px;
   border: solid 1px var(--doro-light-grey);
+}
+
+.Create-post-input-input-content::placeholder {
+  font-family: Pretendard;
+  color: #d9d9d9;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .Create-post-input-checkbox {
@@ -241,22 +367,21 @@
   margin-top: 2.444rem;
 }
 .Create-post-submit-button-on {
-  width: 9.944rem;
-  height: 3.667rem;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 1.111rem 3.167rem;
-  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 3.667rem;
   background-color: var(--doro-medium);
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 1rem;
 }
 
-.Create-post-submit-button-on:hover {
+/* .Create-post-submit-button-on:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25),
     0 0.35rem 0.35rem rgba(0, 0, 0, 0.22);
-}
+} */
 
 .Create-post-submit-button-off {
   width: 9.944rem;
@@ -329,4 +454,21 @@
 
 .Create-post-agree-checkbox-parent {
   align-items: center;
+}
+
+.Create-post-next-button-parent {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 2.5rem;
+}
+
+.Create-post-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 3.667rem;
+  font-family: Pretendard;
+  font-size: 1rem;
 }

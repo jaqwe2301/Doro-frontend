@@ -19,7 +19,7 @@ import {
 } from "react-hook-form";
 import { isLoggedInVar } from "../apollo";
 import { Banner } from "../components/banner";
-import { CreateEdu, CreateEduVariables } from "../__generated__/CreateEdu";
+import { CreateEdu, CreateEduVariables } from "../__generated__/createEdu";
 import createEduRoute from "../images/bannerCategory/createEdu.png";
 import { Helmet } from "react-helmet-async";
 import infoConfirm from "../images/Frame68.svg";
