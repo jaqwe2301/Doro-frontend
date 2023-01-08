@@ -20,5 +20,5 @@ export interface CreateEdu {
 }
 
 export interface CreateEduVariables {
-  input: CreateEduInput\
+  input: CreateEduInput;
 }
