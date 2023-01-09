@@ -33,7 +33,8 @@ import {
   checkAuthNumQuery,
   checkAuthNumQueryVariables,
 } from "../__generated__/checkAuthNumQuery";
-import DatePicker from "react-multi-date-picker";
+import DatePicker, { DateObject } from "react-multi-date-picker";
+import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import type { Value } from "react-multi-date-picker";
 import { setAppElement } from "react-modal";
 import InputIcon from "react-multi-date-picker/components/input_icon";
@@ -133,7 +134,17 @@ const useInterval: IUseInterval = (callback, interval) => {
 };
 
 export const MakeNewApplication = () => {
-  const [startDate, setapplyDate] = useState<Value>(new Date());
+  // 질문 바뀌는 부분
+  const [formNum, setformNum] = useState(0);
+  // 모달창
+  const [kakaoModal, setKakaoModal] = useState(false);
+  // 카톡 인증 카운트다운
+  const [min, setMin] = useState<number>(4);
+  const [sec, setSec] = useState<number>(59);
+
+  const [resend, setResend] = useState(false);
+  const [isActiveTimer, setIsActiveTimer] = useState<boolean>(false);
+  const [authState, setAuthState] = useState(false);
   const { register, getValues, handleSubmit, formState, control } =
     useForm<ICreateEduForm>({
       defaultValues: {
@@ -183,7 +194,11 @@ export const MakeNewApplication = () => {
     } = data;
     console.log("dddd");
     if (ok) {
-      alert("카톡 왔는지 확인");
+      setKakaoModal(true);
+      if (resend === false) {
+        setResend(true);
+      }
+      setIsActiveTimer(true);
     } else {
       console.log(error);
       alert("카톡 안 옴");
@@ -285,6 +300,9 @@ export const MakeNewApplication = () => {
     console.log("dddd");
     if (ok) {
       alert("인증번호 일치 , 확인 완료 ");
+      setAuthState(true);
+      setResend(false);
+      setIsActiveTimer(false);
     } else {
       console.log(error);
       alert(error);
@@ -377,29 +395,14 @@ export const MakeNewApplication = () => {
     });
   });
 
-  // 질문 바뀌는 부분
-  const [formNum, setformNum] = useState(0);
-
-  // 모달창
-  const [kakaoModal, setKakaoModal] = useState(false);
-
-  // 카톡 인증
-  const [kakaoVerify, setKakaoVerify] = useState(false);
-
-  // 카톡 인증 카운트다운
-  const [min, setMin] = useState<number>(4);
-  const [sec, setSec] = useState<number>(49);
-
-  const [isPlaying, setPlaying] = useState<boolean>(false);
-
   useInterval(() => {
     // logic 자리
-    if (isPlaying) {
+    if (isActiveTimer) {
       if (sec > 0) {
         setSec(sec - 1);
       } else if (sec === 0) {
         if (min === 0) {
-          setPlaying(false);
+          setIsActiveTimer(false);
         } else {
           setMin(min - 1);
           setSec(59);
@@ -536,9 +539,9 @@ export const MakeNewApplication = () => {
               <div className="CreateEdu-title">신청자 정보</div>
               <div className=" Create-post-input-parent">
                 <div className="Create-post-input-description-box">
-                  <span className="Create-post-input-description-text">
+                  <p className="Create-post-input-description-text">
                     신청자 성함
-                  </span>
+                  </p>
                 </div>
                 <div className="Create-post-input-input-box">
                   <input
@@ -584,31 +587,32 @@ export const MakeNewApplication = () => {
 
               <div className=" Create-post-input-parent">
                 <div className="Create-post-input-description-box">
-                  <p className="Create-post-input-description-text">
+                  <span className="Create-post-input-description-text">
                     휴대폰 번호
-                  </p>
+                  </span>
                 </div>
                 <div className="Create-post-input-description-flex">
                   <input
-                    {...register("phone_number", { required: true })}
+                    {...register("phone_number", {
+                      required: true,
+                    })}
                     name="phone_number"
                     placeholder="01012345678"
                     className="Create-post-input-phoneNum"
                   />
-                  {!kakaoVerify ? (
+                  {!authState ? (
                     <button
+                      type="button"
                       className="Create-post-input-phoneNum-button"
                       onClick={() => {
                         onSubmit_send();
-                        setKakaoModal(true);
-                        setKakaoVerify(true);
-                        setPlaying(true);
                       }}
                     >
                       카카오톡 인증
                     </button>
                   ) : (
                     <button
+                      type="button"
                       className="Create-post-input-phoneNum-button"
                       style={{ color: "#777777", fontSize: "0.859rem" }}
                       onClick={() => {}}
@@ -633,13 +637,14 @@ export const MakeNewApplication = () => {
                     className="Create-post-input-phoneNum"
                   />
                   <button
+                    type="button"
                     className="Create-post-input-phoneNum-button"
-                    style={{ color: !kakaoVerify ? "#d9d9d9" : "" }}
+                    style={{ color: !authState ? "#d9d9d9" : "" }}
                     onClick={handleSubmit_auth(onSubmit_check)}
                   >
-                    인증 하기
+                    인증하기
                   </button>
-                  {isPlaying ? (
+                  {isActiveTimer ? (
                     <div className="Create-post-input-phoneNum-button">
                       <p style={{ color: "#777777", fontSize: "1rem" }}>
                         {min}:{sec}
@@ -754,7 +759,7 @@ export const MakeNewApplication = () => {
                     <div key={field.id}>
                       <section className={"section"} key={field.id}>
                         <button type="button" onClick={() => remove(index)}>
-                          DELETE
+                          X
                         </button>
                         <div>
                           <span>학급 이름</span>
@@ -808,13 +813,34 @@ export const MakeNewApplication = () => {
                                   onChange={(e) => props.field.onChange(e)}
                                   minDate={new Date()}
                                   weekDays={weekDays}
-                                  format="YYYY년 MM월 DD일"
+                                  format="YYYY/MM/DD"
                                   months={months}
-                                  render={<InputIcon />}
+                                  multiple
+                                  plugins={[<DatePanel sort="date" />]}
                                 />
                               </>
                             )}
                           />
+                        </div>
+                        <div>
+                          <span>희망 교육 시간</span>
+                          <input
+                            placeholder="희망하시는 교육 시간을 적어주세요.\n미정 일시 하단 체크박스를 체크해주세요."
+                            {...register(
+                              `detail_classes.${index}.remark` as const
+                            )}
+                            name={`detail_classes.${index}.remark`}
+                          />
+                        </div>
+                        <div>
+                          <input
+                            {...register(
+                              `detail_classes.${index}.unfixed` as const
+                            )}
+                            name={`detail_classes.${index}.unfixed`}
+                            type="checkbox"
+                          />
+                          <span>교육 시간 미정</span>
                         </div>
                       </section>
                     </div>
@@ -822,7 +848,7 @@ export const MakeNewApplication = () => {
                 })}
 
                 <button type="button" onClick={() => click_append_buttion()}>
-                  APPEND
+                  +학급추가
                 </button>
               </div>
             </div>
@@ -861,6 +887,7 @@ export const MakeNewApplication = () => {
                   ""
                 ) : (
                   <button
+                    type="button"
                     className="Create-post-button"
                     style={{
                       background: "#d9d9d9",
@@ -879,6 +906,7 @@ export const MakeNewApplication = () => {
                   ""
                 ) : (
                   <button
+                    type="button"
                     className="Create-post-button"
                     style={{ background: "#0072b9", color: "#fff" }}
                     onClick={() => {
@@ -894,6 +922,7 @@ export const MakeNewApplication = () => {
             <div className="Create-post-submit-button-parent">
               {formNum === 4 ? (
                 <button
+                  type="button"
                   className="Create-post-button"
                   style={{
                     background: "#D9D9D9",
