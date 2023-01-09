@@ -9,6 +9,7 @@ interface Notice {
   contentsText4?: string;
   contentsText5?: string;
   contentsText6?: string;
+  contentsText7?: string;
 }
 
 export const Notice: React.FC<Notice> = ({
@@ -20,6 +21,7 @@ export const Notice: React.FC<Notice> = ({
   contentsText4,
   contentsText5,
   contentsText6,
+  contentsText7,
 }) => (
   <>
     <div className="Body" style={{ marginTop: `${titleMarginTop}rem` }}>
@@ -35,6 +37,7 @@ export const Notice: React.FC<Notice> = ({
         <p>{contentsText4}</p>
         <p>{contentsText5}</p>
         <p>{contentsText6}</p>
+        <p>{contentsText7}</p>
       </div>
     </div>
   </>

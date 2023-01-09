@@ -146,7 +146,7 @@ const MainEduContent = () => {
 
     const navigate = useNavigate();
     const DetailContentsRoutes = (index : number) => {
-        navigate('/showDetailContent', {state : index+10});
+        navigate('/showDetailContent', {state : index+11});
       }
 
     const dummyData = [

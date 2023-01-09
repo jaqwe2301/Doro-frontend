@@ -1,9 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import instructor1 from "../images/instructor1.png";
-import instructor2 from "../images/instructor2.png";
-import instructor3 from "../images/instructor3.png";
-import instructor4 from "../images/instructor4.png";
 import leftButton from "../images/left-button.png";
 import rightButton from "../images/right-button.png";
 import speaker from "../images/speaker.png";
