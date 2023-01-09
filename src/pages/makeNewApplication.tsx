@@ -141,11 +141,12 @@ export const MakeNewApplication = () => {
   // 카톡 인증 카운트다운
   const [min, setMin] = useState<number>(4);
   const [sec, setSec] = useState<number>(59);
-
+  const [authCheckModal, setAuthCheckModal] = useState(false);
   const [resend, setResend] = useState(false);
   const [isActiveTimer, setIsActiveTimer] = useState<boolean>(false);
   const [authState, setAuthState] = useState(false);
-  const { register, getValues, handleSubmit, formState, control } =
+  const [sendBtnActive, setSendBtnActive] = useState(true);
+  const { register, getValues, handleSubmit, formState, control, watch } =
     useForm<ICreateEduForm>({
       defaultValues: {
         detail_classes: [
@@ -164,6 +165,14 @@ export const MakeNewApplication = () => {
     getValues: getValues_auth,
     handleSubmit: handleSubmit_auth,
   } = useForm<IAuthForm>();
+
+  useEffect(() => {
+    if (watch("phone_number").length === 11 && watch("name")) {
+      setSendBtnActive(false);
+    } else {
+      setSendBtnActive(true);
+    }
+  }, [watch()]);
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -296,7 +305,7 @@ export const MakeNewApplication = () => {
     } = data;
     console.log("dddd");
     if (ok) {
-      alert("인증번호 일치 , 확인 완료 ");
+      setAuthCheckModal(true);
       setAuthState(true);
       setResend(false);
       setIsActiveTimer(false);
@@ -618,14 +627,26 @@ export const MakeNewApplication = () => {
                     name="phone_number"
                     placeholder="01012345678"
                     className="Create-post-input-phoneNum"
+                    onChange={() => {
+                      if (authState === true) {
+                        setAuthState(false);
+                      }
+                      if (resend === true) {
+                        setResend(false);
+                      }
+                      if (isActiveTimer) {
+                        setIsActiveTimer(false);
+                      }
+                    }}
                   />
-                  {!authState ? (
+                  {!resend ? (
                     <button
                       type="button"
                       className="Create-post-input-phoneNum-button"
                       onClick={() => {
                         onSubmit_send();
                       }}
+                      disabled={sendBtnActive}
                     >
                       카카오톡 인증
                     </button>
@@ -634,7 +655,9 @@ export const MakeNewApplication = () => {
                       type="button"
                       className="Create-post-input-phoneNum-button"
                       style={{ color: "#777777", fontSize: "0.859rem" }}
-                      onClick={() => {}}
+                      onClick={() => {
+                        onSubmit_send();
+                      }}
                     >
                       인증번호 재전송
                     </button>
@@ -657,17 +680,19 @@ export const MakeNewApplication = () => {
                   />
                   <button
                     type="button"
-                    className="Create-post-input-phoneNum-button"
-                    style={{ color: !authState ? "#d9d9d9" : "" }}
+                    className="Create-post-input-phoneNum-button-auth"
+                    style={{ color: authState ? "#0072B9" : "" }}
                     onClick={handleSubmit_auth(onSubmit_check)}
                   >
-                    인증하기
+                    {authState ? "인증 완료" : "인증하기"}
                   </button>
                   {isActiveTimer ? (
                     <div className="Create-post-input-phoneNum-button">
-                      <p style={{ color: "#777777", fontSize: "1rem" }}>
-                        {min}:{sec}
-                      </p>
+                      <span style={{ color: "#777777", fontSize: "1rem" }}>
+                        {min === 0 && sec === 0
+                          ? "인증번호 만료"
+                          : `${min}:${sec < 10 ? `0${sec}` : sec}`}
+                      </span>
                     </div>
                   ) : (
                     ""
