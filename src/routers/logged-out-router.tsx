@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ScrollToTop from "../components/scrollToTop" // 페이지 렌더링 시 스크롤 최상단
 import { Foot } from "../components/foot";
 import { Header } from "../components/header";
 import { NotFound } from "../pages/404";
@@ -37,6 +38,7 @@ import { Piano } from "../pages/educontents/piano";
 export const LoggedOutRouter = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop/>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
