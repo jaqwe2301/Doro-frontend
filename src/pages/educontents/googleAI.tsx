@@ -37,9 +37,9 @@ export const GoogleAI: React.FC = () => {
         tabletitle2="기대 효과"
         tabletitle3="교육 형태"
         contents1_1="중학생, 고등학생"
-        contents2_1=" 아두이노와 인공지능의 원리와 개념을 학습한다."
-        contents2_2=" 아두이노와 인공지능을 접목하여 활용해봄으로써 인공지능을 직접 만들어본다."
-        contents2_3=" 대학생 전공 강사와의 멘토링을 통해 인공지능, 프로그래밍지식을 학습하며 진로경험을 함양한다."
+        contents2_1="&nbsp; • 아두이노와 인공지능의 원리와 개념을 학습한다."
+        contents2_2="&nbsp; • 아두이노와 인공지능을 접목하여 활용해봄으로써 인공지능을 직접 만들어본다."
+        contents2_3="&nbsp; • 대학생 전공 강사와의 멘토링을 통해 인공지능, 프로그래밍지식을 학습하며 진로경험을 함양한다."
         contents3_1="찾아 가는 현장교육, 체험형 교육 부스"
         liClass1="EduTable-table-subContents"
         liClass2_1="EduTable-table-subContents List-style-dics"
@@ -88,12 +88,13 @@ export const GoogleAI: React.FC = () => {
       <Notice
         title="공지사항"
         titleMarginTop={12.222}
-        contentsText1="- DORO 교육 콘텐츠는 전공 지식을 갖춘 대학생 강사님이 진행합니다."
-        contentsText2="- DORO 교육 콘텐츠는 강사님의 진로 스토리를 포함하고 있습니다."
-        contentsText3="- 원활한 교육 자료 시청을 위해 스크린, 빔 프로젝트 등의 시청각 장비를 준비해주세요."
-        contentsText4="- 해당 교육을 진행하기 위해선 1인 메이킹 활동이 가능한 사이즈의 책상이 필요합니다."
-        contentsText5="- 코로나-19 감염병 예방 및 안전한 교육을 위해 메이킹 안전 수칙을 준수해주세요."
-        contentsText6="- 문의 : 010-7633-0371"
+        contentsText1="- 캠이 달려있는 노트북이나 컴퓨터를 준비해주세요."
+        contentsText2="- DORO 교육 콘텐츠는 전공 지식을 갖춘 대학생 강사님이 진행합니다."
+        contentsText3="- DORO 교육 콘텐츠는 강사님의 진로 스토리를 포함하고 있습니다."
+        contentsText4="- 원활한 교육 자료 시청을 위해 스크린, 빔 프로젝트 등의 시청각 장비를 준비해주세요."
+        contentsText5="- 해당 교육을 진행하기 위해선 1인 메이킹 활동이 가능한 사이즈의 책상이 필요합니다."
+        contentsText6="- 코로나-19 감염병 예방 및 안전한 교육을 위해 메이킹 안전 수칙을 준수해주세요."
+        contentsText7="- 문의 : 010-7633-0371"
       />
     </>
   );

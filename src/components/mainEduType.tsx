@@ -299,7 +299,7 @@ const MainEduContent = () => {
             <Box>
 
                 {dummyData.map((data, idx) =>
-                    <Container key={idx} hoverimg={data.hoverimg} onClick={()=>{DetailContentsRoutes(idx)}}>
+                    <Container key={idx} hoverimg={data.hoverimg} onClick={()=>{DetailContentsRoutes(idx+1)}}>
                         <img src={data.iconURL} alt="icon" />
                         <p>
                             {data.textblue}

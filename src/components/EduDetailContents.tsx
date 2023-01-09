@@ -9,39 +9,53 @@ const EduDetailContents = () => {
   const [main2, setMainBtn2] = useState(false);
   const [main3, setMainBtn3] = useState(false);
   const [main4, setMainBtn4] = useState(false);
-
+  
+  // 메인 페이지에서 해더가 아닌 내용에서 클릭해서 넘어왔을 때 사용
   const { state } = useLocation();
-  let checkState = state
-  console.log(checkState)
+
+  let changeNum = ""
+  const saveState = (num : number) => {
+    changeNum = String(num)
+    localStorage.setItem('checkLocation',changeNum)
+  }
+
+
   useEffect(() => {
-    if (checkState === null || checkState === 10) {
+    console.log("getItem:",localStorage.getItem('checkLocation'))
+    if (localStorage.getItem('homeHistory') !== String(state)) {
+      localStorage.setItem('homeHistory', String(state))
+      localStorage.setItem('checkLocation', String(state))
+    }
+    
+    if (localStorage.getItem('checkLocation') === "1" || localStorage.getItem('checkLocation') === "11") {
       mainBtnControl("IsMain1");
       subBtnControl('IsSub1');
-      checkState = false;
-    } else if (checkState === 11 ) {
+    } else if (localStorage.getItem('checkLocation') === "12" ) {
       mainBtnControl("IsMain1");
       subBtnControl('IsSub2');
-      checkState = false;
-    } else if (checkState === 12 ) {
+    } else if (localStorage.getItem('checkLocation') === "13" ) {
       mainBtnControl("IsMain1");
       subBtnControl('IsSub3');
-      checkState = false;
-    } else if (checkState === 13 ) {
+    } else if (localStorage.getItem('checkLocation') === "14" ) {
       mainBtnControl("IsMain1");
       subBtnControl('IsSub4');
-      checkState = false;
-    } else if (checkState === 1) {
+    } else if (localStorage.getItem('checkLocation') === "15" ) {
+      mainBtnControl("IsMain1");
+      subBtnControl('IsSub5');
+    } else if (localStorage.getItem('checkLocation') === "16" ) {
+      mainBtnControl("IsMain1");
+      subBtnControl('IsSub6');
+    } else if (localStorage.getItem('checkLocation') === "2") {
       mainBtnControl("IsMain2")
       subBtnControl('None')
-      checkState = false;
-    } else if (checkState === 2) {
+    } else if (localStorage.getItem('checkLocation') === "3") {
       mainBtnControl("IsMain3")
       subBtnControl('None')
-      checkState = false;
-    } else if (checkState === 3) {
+    } else if (localStorage.getItem('checkLocation') === "4") {
       mainBtnControl("IsMain4")
       subBtnControl('None')
-      checkState = false;
+
+      window.scrollTo(0, 0);
     }
 
   },[])
@@ -67,6 +81,7 @@ const EduDetailContents = () => {
         break;
     }
   }
+
 
   let item = [{
     a1: [
@@ -187,18 +202,18 @@ const EduDetailContents = () => {
       },
     ],
     a4: [
-      {
-        img: 'literacy',
-        hash: '#디지털리터러시 #디지털역량 #정보활용',
-        title: '디지털 리터러시',
-        link: ""
+      // {
+      //   // img: 'literacy',
+      //   // hash: '#디지털리터러시 #디지털역량 #정보활용',
+      //   // title: '디지털 리터러시',
+      //   // link: ""
 
-      },
+      // },
       {
         img: "googleEarth",
         hash: "#구글 #구글어스 #정보활용",
         title: "Google 어스",
-        link: ""
+        link: "/googleearth"
 
       },
       {
@@ -238,13 +253,6 @@ const EduDetailContents = () => {
         link: "/tinkercad"
 
       },
-      // {
-      //   img: "luminol",
-      //   hash: "#루미놀반응 #헤모글로빈 #혈흔반응",
-      //   title: "루미놀 발광 키트",
-      //   link: "/luminol"
-
-      // },
     ],
     a6: [
       {
@@ -528,7 +536,7 @@ const EduDetailContents = () => {
         <button
           className={(main1 ? "MainCategory-click" : "MainCategory-click-off")}
           type="button"
-          onClick={() => { mainBtnControl('IsMain1'); subBtnControl('IsSub1'); }}
+          onClick={() => { mainBtnControl('IsMain1'); subBtnControl('IsSub1'); saveState(11) }}
         >
           찾아가는 현장 교육
         </button>
@@ -536,7 +544,7 @@ const EduDetailContents = () => {
         <button
           className={(main2 ? "MainCategory-click" : "MainCategory-click-off")}
           type="button"
-          onClick={() => { mainBtnControl('IsMain2'); subBtnControl('None'); }}
+          onClick={() => { mainBtnControl('IsMain2'); subBtnControl('None'); saveState(2) }}
         >
           체험형 교육 부스
         </button>
@@ -544,7 +552,7 @@ const EduDetailContents = () => {
         <button
           className={(main3 ? "MainCategory-click" : "MainCategory-click-off")}
           type="button"
-          onClick={() => { mainBtnControl('IsMain3'); subBtnControl('None'); }}
+          onClick={() => { mainBtnControl('IsMain3'); subBtnControl('None'); saveState(3) }}
         >
           DORO 챌린지
         </button>
@@ -552,7 +560,7 @@ const EduDetailContents = () => {
         <button
           className={(main4 ? "MainCategory-click" : "MainCategory-click-off")}
           type="button"
-          onClick={() => { mainBtnControl('IsMain4'); subBtnControl('None'); }}
+          onClick={() => { mainBtnControl('IsMain4'); subBtnControl('None'); saveState(4) }}
         >
           비대면 온라인 교육
         </button>
@@ -568,6 +576,7 @@ const EduDetailContents = () => {
             type="button"
             onClick={() => {
               subBtnControl('IsSub1');
+              saveState(11)
             }}
           >
             로봇 교육
@@ -578,6 +587,7 @@ const EduDetailContents = () => {
             type="button"
             onClick={() => {
               subBtnControl('IsSub2');
+              saveState(12)
             }}
           >
             소프트웨어 교육
@@ -586,7 +596,7 @@ const EduDetailContents = () => {
           <button
             className={(sub3 ? "SubCategory-click" : "SubCategory-click-off")}
             type="button"
-            onClick={() => subBtnControl('IsSub3')}
+            onClick={() => {subBtnControl('IsSub3'); saveState(13)}} 
           >
             메이커 교육
           </button>
@@ -594,7 +604,7 @@ const EduDetailContents = () => {
           <button
             className={(sub4 ? "SubCategory-click" : "SubCategory-click-off")}
             type="button"
-            onClick={() => subBtnControl('IsSub4')}
+            onClick={() => {subBtnControl('IsSub4'); saveState(14)}}
           >
             AI 교육
           </button>
@@ -602,7 +612,7 @@ const EduDetailContents = () => {
           <button
             className={(sub5 ? "SubCategory-click" : "SubCategory-click-off")}
             type="button"
-            onClick={() => subBtnControl('IsSub5')}
+            onClick={() => {subBtnControl('IsSub5'); saveState(15)}}
           >
             3D 교육
           </button>
@@ -610,7 +620,7 @@ const EduDetailContents = () => {
           <button
             className={(sub6 ? "SubCategory-click" : "SubCategory-click-off")}
             type="button"
-            onClick={() => subBtnControl('IsSub6')}
+            onClick={() => {subBtnControl('IsSub6'); saveState(16)}}
           >
             ETC
           </button>
