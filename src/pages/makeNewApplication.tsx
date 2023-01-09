@@ -257,9 +257,6 @@ export const MakeNewApplication = () => {
   };
 
   const onSubmit_send = () => {
-    // 괄호 인자 안에 있던 것
-    // e: { preventDefault: () => void }
-    // e.preventDefault();
     const { name, phone_number } = getValues();
     console.log(name, phone_number);
     console.log("submit");
@@ -414,6 +411,28 @@ export const MakeNewApplication = () => {
   return (
     // 모달창
     <>
+      {authCheckModal ? (
+        <div className="Create-post-kakao-modal-container">
+          <div className="Create-post-kakao-modal">
+            <p className="Create-post-kakao-modal-top">인증 성공</p>
+            <div className="Create-post-kakao-modal-bottom">
+              <p className="Create-post-kakao-modal-bottom-text">
+                인증되었습니다.
+              </p>
+              <button
+                className="Create-post-kakao-modal-button"
+                onClick={() => {
+                  setAuthCheckModal(false);
+                }}
+              >
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
       {kakaoModal ? (
         <div className="Create-post-kakao-modal-container">
           <div className="Create-post-kakao-modal">
