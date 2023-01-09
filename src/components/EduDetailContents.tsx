@@ -21,7 +21,10 @@ const EduDetailContents = () => {
 
 
   useEffect(() => {
-    console.log("getItem:",localStorage.getItem('checkLocation'))
+    console.log(state)
+    if (state === null) {
+      saveState(1)
+    }
     if (localStorage.getItem('homeHistory') !== String(state)) {
       localStorage.setItem('homeHistory', String(state))
       localStorage.setItem('checkLocation', String(state))
