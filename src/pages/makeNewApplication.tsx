@@ -561,7 +561,7 @@ export const MakeNewApplication = () => {
               style={
                 formNum === 0 || formNum === 4
                   ? { display: "" }
-                  : { display: "none" }
+                  : { visibility: "hidden", height : 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">신청자 정보</div>
@@ -727,7 +727,7 @@ export const MakeNewApplication = () => {
               style={
                 formNum === 1 || formNum === 4
                   ? { display: "" }
-                  : { display: "none" }
+                  : { visibility: "hidden", height : 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">교육생 정보</div>
@@ -793,7 +793,7 @@ export const MakeNewApplication = () => {
               style={
                 formNum === 2 || formNum === 4
                   ? { display: "" }
-                  : { display: "none" }
+                  : { visibility: "hidden", height : 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">학급별 교육 일정</div>
@@ -903,7 +903,7 @@ export const MakeNewApplication = () => {
               style={
                 formNum === 3 || formNum === 4
                   ? { display: "" }
-                  : { display: "none" }
+                  : { visibility: "hidden", height : 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">교육 특이사항</div>
