@@ -67,6 +67,10 @@ export interface CreateUserInput {
   role: UserRole;
 }
 
+export interface DeleteOverallClassInput {
+  overallClassId: number;
+}
+
 export interface DeletePostInput {
   postId: number;
 }

@@ -24,6 +24,10 @@ import {
   FindOverallClasses,
   FindOverallClassesVariables,
 } from "../__generated__/FindOverallClasses";
+import {
+  DeleteOverallClass,
+  DeleteOverallClassVariables,
+} from "../__generated__/DeleteOverallClass";
 
 const FIND_OVERALL_CLASSES_QUERY = gql`
   query FindOverallClasses($input: FindOverallClassesInput!) {
@@ -53,6 +57,14 @@ const SEND_AUTH_NUM_MUTATION = gql`
 const CHECK_AUTH_NUM_QUERY = gql`
   query checkAuthNumQuery($input: CheckAuthNumInput!) {
     CheckAuthNum(input: $input) {
+      ok
+      error
+    }
+  }
+`;
+const DELETE_OVERALL_CLASS = gql`
+  mutation DeleteOverallClass($input: DeleteOverallClassInput!) {
+    DeleteOverallClass(input: $input) {
       ok
       error
     }
@@ -160,13 +172,23 @@ export const ShowApplication = () => {
   const onFindOverallClassesCompleted = (data: FindOverallClasses) => {
     console.log(data);
   };
+  const onDeleteOverallClassCompleted = () => {
+    OverallClassRefetch();
+  };
 
   const deleteApplication = (
-    postId: number,
+    overallClassId: number,
     e: { preventDefault: () => void }
   ) => {
     e.preventDefault();
-    console.log("delete", postId);
+    console.log("delete", overallClassId);
+    DeleteOverallClass({
+      variables: {
+        input: {
+          overallClassId,
+        },
+      },
+    });
   };
   const editApplication = () => {
     console.log("edit");
@@ -182,10 +204,18 @@ export const ShowApplication = () => {
     checkAuthNumQueryVariables
   >(CHECK_AUTH_NUM_QUERY, { onCompleted: onCompleted_check });
 
-  const [findOverallClasses, { data: overallClassesData }] = useLazyQuery<
-    FindOverallClasses,
-    FindOverallClassesVariables
-  >(FIND_OVERALL_CLASSES_QUERY, { onCompleted: onFindOverallClassesCompleted });
+  const [
+    findOverallClasses,
+    { data: overallClassesData, refetch: OverallClassRefetch },
+  ] = useLazyQuery<FindOverallClasses, FindOverallClassesVariables>(
+    FIND_OVERALL_CLASSES_QUERY,
+    { onCompleted: onFindOverallClassesCompleted }
+  );
+
+  const [DeleteOverallClass, { data: DeleteOverallClassData }] = useMutation<
+    DeleteOverallClass,
+    DeleteOverallClassVariables
+  >(DELETE_OVERALL_CLASS, { onCompleted: onDeleteOverallClassCompleted });
 
   return (
     <div className="Create-post-root">
