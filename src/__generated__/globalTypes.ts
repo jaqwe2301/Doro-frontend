@@ -67,6 +67,10 @@ export interface CreateUserInput {
   role: UserRole;
 }
 
+export interface DeleteOverallClassInput {
+  overallClassId: number;
+}
+
 export interface DeletePostInput {
   postId: number;
 }
@@ -86,6 +90,11 @@ export interface FindAllCommentsInput {
 
 export interface FindAllPostsInput {
   page?: number | null;
+}
+
+export interface FindOverallClassesInput {
+  phone_number: string;
+  name: string;
 }
 
 export interface FindPostInput {

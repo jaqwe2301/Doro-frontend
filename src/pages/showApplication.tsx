@@ -1,28 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/applyEdu.css";
 
-import {
-  gql,
-  useMutation,
-  useReactiveVar,
-  useLazyQuery,
-  useQuery,
-} from "@apollo/client";
+import { gql, useMutation, useLazyQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
-import {
-  appendErrors,
-  Control,
-  Controller,
-  useFieldArray,
-  useForm,
-  useWatch,
-} from "react-hook-form";
-import { isLoggedInVar } from "../apollo";
+import { useForm } from "react-hook-form";
+
 import { Banner } from "../components/banner";
-import { CreateEdu, CreateEduVariables } from "../__generated__/createEdu";
+
 import createEduRoute from "../images/bannerCategory/createEdu.png";
 import { Helmet } from "react-helmet-async";
-import infoConfirm from "../images/Frame68.svg";
+
 import {
   SendAuthNum,
   SendAuthNumVariables,
@@ -32,16 +19,28 @@ import {
   checkAuthNumQuery,
   checkAuthNumQueryVariables,
 } from "../__generated__/checkAuthNumQuery";
-import DatePicker from "react-multi-date-picker";
-import { setAppElement } from "react-modal";
 
-const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
+import {
+  FindOverallClasses,
+  FindOverallClassesVariables,
+} from "../__generated__/FindOverallClasses";
+import {
+  DeleteOverallClass,
+  DeleteOverallClassVariables,
+} from "../__generated__/DeleteOverallClass";
 
-const CREATE_EDU_MUTATION = gql`
-  mutation CreateEdu($input: CreateEduInput!) {
-    CreateEdu(input: $input) {
-      error
+const FIND_OVERALL_CLASSES_QUERY = gql`
+  query FindOverallClasses($input: FindOverallClassesInput!) {
+    FindOverallClasses(input: $input) {
       ok
+      error
+      overallClasses {
+        createdAt
+        id
+        client {
+          institution_name
+        }
+      }
     }
   }
 `;
@@ -63,55 +62,25 @@ const CHECK_AUTH_NUM_QUERY = gql`
     }
   }
 `;
+const DELETE_OVERALL_CLASS = gql`
+  mutation DeleteOverallClass($input: DeleteOverallClassInput!) {
+    DeleteOverallClass(input: $input) {
+      ok
+      error
+    }
+  }
+`;
 
-interface Detail_class_item {
-  class_name: string;
-  edu_concept: string;
-  student_number: number;
-  date: string;
-  remark: string;
-  unfixed: boolean;
-}
-
-interface ICreateEduForm {
+interface ICheckUserForm {
   name: string;
-  institution_name: string;
-  position: string;
   phone_number: string;
-  email: string;
-  student_count: number;
-  school_rank: string;
-  budget: number;
-  overall_remark: string;
-  detail_classes: Detail_class_item[];
 }
 
-interface ICreateEduForm {
-  name: string;
-  institution_name: string;
-  position: string;
-  phone_number: string;
-  email: string;
-  student_count: number;
-  school_rank: string;
-  budget: number;
-  overall_remark: string;
-  detail_classes: Detail_class_item[];
-}
-
-interface ISendAuthNumForm {
-  name: string;
-  phoneNumber: string;
-  Option: sendOption;
-}
-
-interface ICheckAuthForm {
+interface IAuthForm {
   authNum: string;
-  phoneNumber: string;
 }
 
 export const ShowApplication = () => {
-  const [startDate, setapplyDate] = useState(new Date());
   const navigate = useNavigate();
 
   const navigateToMakeNewApplication = () => {
@@ -121,47 +90,20 @@ export const ShowApplication = () => {
   const navigateToShowApplication = () => {
     navigate("/showApplication");
   };
-  const { register, getValues, handleSubmit, formState, control } =
-    useForm<ICreateEduForm>({
-      defaultValues: {
-        detail_classes: [
-          {
-            class_name: "",
-            edu_concept: "",
-            date: "",
-            remark: "",
-            unfixed: false,
-          },
-        ],
-      },
-    });
-  const {
-    register: register_send,
-    getValues: getValues_send,
-    handleSubmit: handleSubmit_send,
-  } = useForm<ISendAuthNumForm>();
-  const {
-    register: register_check,
-    getValues: getValues_check,
-    handleSubmit: handleSubmit_check,
-  } = useForm<ICheckAuthForm>();
 
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "detail_classes",
-    rules: {
-      minLength: 1,
-    },
-  });
+  const {
+    register: register_auth,
+    getValues: getValues_auth,
+    handleSubmit: handleSubmit_auth,
+  } = useForm<IAuthForm>();
 
-  const [isHovering, setIsHovering] = useState(0);
+  const { register, getValues, handleSubmit } = useForm<ICheckUserForm>();
 
   const onCompleted = (data: SendAuthNum) => {
     console.log("oncompleted");
     const {
       SendAuthNum: { ok, error },
     } = data;
-    console.log("dddd");
     if (ok) {
       alert("카톡 왔는지 확인");
     } else {
@@ -170,63 +112,17 @@ export const ShowApplication = () => {
     }
   };
 
-  const onSubmit_create = () => {
-    const {
-      name,
-      institution_name,
-      position,
-      phone_number,
-      email,
-      student_count,
-      school_rank,
-      budget,
-      overall_remark,
-      detail_classes,
-    } = getValues();
-
-    createEduMutation({
-      variables: {
-        input: {
-          name,
-          institution_name,
-          position,
-          phone_number,
-          email,
-          student_count,
-          school_rank,
-          budget,
-          overall_remark,
-          detail_classes,
-        },
-      },
-    });
-  };
-
-  const onInvalid_create = () => {
-    alert("교육 신청 중 오류가 발생하였습니다.");
-  };
-
-  const onInvalid_send = () => {
-    try {
-      const { name, phoneNumber } = getValues_send();
-      console.log(name, phoneNumber);
-      console.log("try)");
-    } catch (error) {
-      console.log(error);
-    }
-    console.log("ㅑinvalid 통과");
-  };
-
-  const onSubmit_send = () => {
-    const { name, phoneNumber } = getValues_send();
-    console.log(name, phoneNumber);
+  const onSubmit_send = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const { name, phone_number } = getValues();
+    console.log(name, phone_number);
     console.log("submit");
     try {
       sendAuthNumMutation({
         variables: {
           input: {
             name,
-            phoneNumber,
+            phoneNumber: phone_number,
             Option: sendOption.auth,
           },
         },
@@ -234,16 +130,16 @@ export const ShowApplication = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log("submi22t");
   };
 
   const onSubmit_check = () => {
-    const { authNum, phoneNumber } = getValues_check();
+    const { authNum } = getValues_auth();
+    const { phone_number } = getValues();
     checkAuthNumQuery({
       variables: {
         input: {
           authNum,
-          phoneNumber,
+          phoneNumber: phone_number,
         },
       },
     });
@@ -251,45 +147,52 @@ export const ShowApplication = () => {
 
   const onCompleted_check = (data: checkAuthNumQuery) => {
     console.log("oncompleted_check");
+    const { name, phone_number } = getValues();
     const {
       CheckAuthNum: { ok, error },
     } = data;
-    console.log("dddd");
     if (ok) {
       alert("인증번호 일치 , 확인 완료 ");
+
+      findOverallClasses({
+        variables: {
+          input: {
+            name,
+            phone_number,
+          },
+        },
+      });
     } else {
       console.log(error);
       alert(error);
     }
+    // 게시물 보여주기
   };
 
-  const click_append_buttion = () => {
-    const { detail_classes } = getValues();
-    const detail_len = detail_classes.length;
-    if (detail_len > 0) {
-      append({
-        class_name: detail_classes[detail_len - 1].class_name,
-        edu_concept: detail_classes[detail_len - 1].edu_concept,
-        student_number: detail_classes[detail_len - 1].student_number,
-        date: detail_classes[detail_len - 1].date,
-        remark: "",
-        unfixed: false,
-      });
-    } else {
-      append({
-        class_name: "",
-        edu_concept: "",
-        student_number: 30,
-        date: "",
-        remark: "",
-        unfixed: false,
-      });
-    }
+  const onFindOverallClassesCompleted = (data: FindOverallClasses) => {
+    console.log(data);
+  };
+  const onDeleteOverallClassCompleted = () => {
+    OverallClassRefetch();
   };
 
-  const [createEduMutation] = useMutation<CreateEdu, CreateEduVariables>(
-    CREATE_EDU_MUTATION
-  );
+  const deleteApplication = (
+    overallClassId: number,
+    e: { preventDefault: () => void }
+  ) => {
+    e.preventDefault();
+    console.log("delete", overallClassId);
+    DeleteOverallClass({
+      variables: {
+        input: {
+          overallClassId,
+        },
+      },
+    });
+  };
+  const editApplication = () => {
+    console.log("edit");
+  };
 
   const [sendAuthNumMutation, { data: sendAuthNum }] = useMutation<
     SendAuthNum,
@@ -300,6 +203,19 @@ export const ShowApplication = () => {
     checkAuthNumQuery,
     checkAuthNumQueryVariables
   >(CHECK_AUTH_NUM_QUERY, { onCompleted: onCompleted_check });
+
+  const [
+    findOverallClasses,
+    { data: overallClassesData, refetch: OverallClassRefetch },
+  ] = useLazyQuery<FindOverallClasses, FindOverallClassesVariables>(
+    FIND_OVERALL_CLASSES_QUERY,
+    { onCompleted: onFindOverallClassesCompleted }
+  );
+
+  const [DeleteOverallClass, { data: DeleteOverallClassData }] = useMutation<
+    DeleteOverallClass,
+    DeleteOverallClassVariables
+  >(DELETE_OVERALL_CLASS, { onCompleted: onDeleteOverallClassCompleted });
 
   return (
     <div className="Create-post-root">
@@ -333,7 +249,7 @@ export const ShowApplication = () => {
         <div className="CreateEdu-title">교육 신청 내역 확인하기</div>
         <form
           className="Create-post-form"
-          onSubmit={handleSubmit(onSubmit_create, onInvalid_create)}
+          // onSubmit={handleSubmit(onSubmit_create, onInvalid_create)}
         >
           <div className=" Create-post-input-parent">
             <div className="Create-post-input-description-box">
@@ -344,7 +260,6 @@ export const ShowApplication = () => {
             <div className="Create-post-input-input-box">
               <input
                 {...register("name", { required: true })}
-                {...register_send("name", { required: true })}
                 className="Create-post-input-input-content"
                 name="name"
                 placeholder="신청자 성함"
@@ -360,17 +275,14 @@ export const ShowApplication = () => {
             </div>
             <div>
               <input
-                {...register_send("phoneNumber", { required: true })}
-                // {...register("phone_number", { required: true })}
-                {...register_check("phoneNumber", { required: true })}
-                name="phoneNumber"
+                {...register("phone_number", { required: true })}
+                name="phone_number"
                 placeholder="01012345678"
-                // className="Create-post-input-input-content"
               />
 
               <button
                 className="Create-post-input-input-content"
-                onClick={handleSubmit_send(onSubmit_send, onInvalid_send)}
+                onClick={onSubmit_send}
               >
                 카카오톡 인증
               </button>
@@ -385,13 +297,13 @@ export const ShowApplication = () => {
             </div>
             <div>
               <input
-                {...register_check("authNum", { required: true })}
+                {...register_auth("authNum", { required: true })}
                 name="authNum"
                 placeholder="인증번호 입력"
               />
               <button
                 className="Create-post-input-input-content"
-                onClick={handleSubmit_check(onSubmit_check)}
+                onClick={handleSubmit_auth(onSubmit_check)}
               >
                 인증 하기
               </button>
@@ -413,6 +325,22 @@ export const ShowApplication = () => {
             <div className="Posts-empty"></div>
             <div className="Posts-pagination-container"></div>
           </div>
+        </div>
+      </div>
+      <div className="FindOverallClasses-result">
+        <div>
+          {overallClassesData?.FindOverallClasses.overallClasses?.map(
+            (element, index) => (
+              <div key={index}>
+                <span>{element.client.institution_name}</span>
+                <span>{element.createdAt}</span>
+                <button onClick={editApplication}>수정하기</button>
+                <button onClick={(e) => deleteApplication(element.id, e)}>
+                  삭제하기
+                </button>
+              </div>
+            )
+          )}
         </div>
       </div>
     </div>
