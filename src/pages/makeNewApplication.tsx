@@ -8,7 +8,7 @@ import {
   useLazyQuery,
   useQuery,
 } from "@apollo/client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import {
   appendErrors,
@@ -33,11 +33,13 @@ import {
   checkAuthNumQuery,
   checkAuthNumQueryVariables,
 } from "../__generated__/checkAuthNumQuery";
-import DatePicker from "react-multi-date-picker";
+import DatePicker, { DateObject } from "react-multi-date-picker";
+import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import type { Value } from "react-multi-date-picker";
 import { setAppElement } from "react-modal";
 import InputIcon from "react-multi-date-picker/components/input_icon";
-import { CreateEdu, CreateEduVariables } from "../__generated__/CreateEdu";
+import { CreateEdu, CreateEduVariables } from "../__generated__/createEdu";
+import { displayPartsToString } from "typescript";
 
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 const months = [
@@ -106,9 +108,45 @@ interface IAuthForm {
   authNum: string;
 }
 
+// 카톡 인증 카운트다운
+
+interface IUseInterval {
+  (callback: () => void, interval: number): void;
+}
+
+const useInterval: IUseInterval = (callback, interval) => {
+  const savedCallback = useRef<(() => void) | null>(null);
+  // After every render, save the latest callback into our ref.
+  useEffect(() => {
+    savedCallback.current = callback;
+  });
+
+  useEffect(() => {
+    function tick() {
+      if (savedCallback.current) {
+        savedCallback.current();
+      }
+    }
+
+    let id = setInterval(tick, interval);
+    return () => clearInterval(id);
+  }, [interval]);
+};
+
 export const MakeNewApplication = () => {
-  const [startDate, setapplyDate] = useState<Value>(new Date());
-  const { register, getValues, handleSubmit, formState, control } =
+  // 질문 바뀌는 부분
+  const [formNum, setformNum] = useState(0);
+  // 모달창
+  const [kakaoModal, setKakaoModal] = useState(false);
+  // 카톡 인증 카운트다운
+  const [min, setMin] = useState<number>(4);
+  const [sec, setSec] = useState<number>(59);
+  const [authCheckModal, setAuthCheckModal] = useState(false);
+  const [resend, setResend] = useState(false);
+  const [isActiveTimer, setIsActiveTimer] = useState<boolean>(false);
+  const [authState, setAuthState] = useState(false);
+  const [sendBtnActive, setSendBtnActive] = useState(true);
+  const { register, getValues, handleSubmit, formState, control, watch } =
     useForm<ICreateEduForm>({
       defaultValues: {
         detail_classes: [
@@ -127,6 +165,14 @@ export const MakeNewApplication = () => {
     getValues: getValues_auth,
     handleSubmit: handleSubmit_auth,
   } = useForm<IAuthForm>();
+
+  useEffect(() => {
+    if (watch("phone_number").length === 11 && watch("name")) {
+      setSendBtnActive(false);
+    } else {
+      setSendBtnActive(true);
+    }
+  }, [watch()]);
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -157,7 +203,11 @@ export const MakeNewApplication = () => {
     } = data;
     console.log("dddd");
     if (ok) {
-      alert("카톡 왔는지 확인");
+      setKakaoModal(true);
+      if (resend === false) {
+        setResend(true);
+      }
+      setIsActiveTimer(true);
     } else {
       console.log(error);
       alert("카톡 안 옴");
@@ -215,8 +265,7 @@ export const MakeNewApplication = () => {
     console.log("ㅑinvalid 통과");
   };
 
-  const onSubmit_send = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const onSubmit_send = () => {
     const { name, phone_number } = getValues();
     console.log(name, phone_number);
     console.log("submit");
@@ -256,7 +305,10 @@ export const MakeNewApplication = () => {
     } = data;
     console.log("dddd");
     if (ok) {
-      alert("인증번호 일치 , 확인 완료 ");
+      setAuthCheckModal(true);
+      setAuthState(true);
+      setResend(false);
+      setIsActiveTimer(false);
     } else {
       console.log(error);
       alert(error);
@@ -303,302 +355,651 @@ export const MakeNewApplication = () => {
     checkAuthNumQueryVariables
   >(CHECK_AUTH_NUM_QUERY, { onCompleted: onCompleted_check });
 
+  // 왼쪽 배너 기능
+  const leftRef = useRef<any>(null);
+  const WholeFormRef = useRef<any>(null);
+  const line1Ref = useRef<any>(null);
+  const line2Ref = useRef<any>(null);
+  const line3Ref = useRef<any>(null);
+  const line4Ref = useRef<any>(null);
+  const circleRef = useRef<any>(null);
+  const form1Ref = useRef<any>(null);
+  const form2Ref = useRef<any>(null);
+  const form3Ref = useRef<any>(null);
+  const form4Ref = useRef<any>(null);
+
+  useEffect(() => {
+    const progressStyle = leftRef.current.style;
+    const line1Style = line1Ref.current.style;
+    const line2Style = line2Ref.current.style;
+    const line3Style = line3Ref.current.style;
+    const line4Style = line4Ref.current.style;
+
+    const progressSpace = () => {
+      let formStyle = window.getComputedStyle(WholeFormRef.current);
+      let formMarginLeft = formStyle.getPropertyValue("margin-left");
+      progressStyle.width = formMarginLeft;
+
+      let circleStyle = window.getComputedStyle(circleRef.current);
+      let CircleWidth = circleStyle.getPropertyValue("width");
+      line1Style.marginLeft = `${parseFloat(CircleWidth) / 2 - 0.789}px`;
+      line2Style.marginLeft = `${parseFloat(CircleWidth) / 2 - 0.789}px`;
+      line3Style.marginLeft = `${parseFloat(CircleWidth) / 2 - 0.789}px`;
+      line4Style.marginLeft = `${parseFloat(CircleWidth) / 2 - 0.789}px`;
+    };
+
+    progressSpace();
+
+    progressStyle.top = `${461.328}px`;
+
+    window.addEventListener("scroll", function () {
+      let scrollY = 461.328 + window.scrollY;
+      progressStyle.top = `${scrollY}px`;
+      if (scrollY >= 2183.33) {
+        progressStyle.top = `${2183.33}px`;
+      }
+    });
+  });
+
+  useInterval(() => {
+    // logic 자리
+    if (isActiveTimer) {
+      if (sec > 0) {
+        setSec(sec - 1);
+      } else if (sec === 0) {
+        if (min === 0) {
+          setIsActiveTimer(false);
+        } else {
+          setMin(min - 1);
+          setSec(59);
+        }
+      }
+    }
+  }, 1000);
+
   return (
-    <div className="Create-post-root">
-      <Helmet>
-        <title>Create | DORO</title>
-      </Helmet>
-      <Banner
-        wid={10.278}
-        route={createEduRoute}
-        contentClass="Subtitle-bigFont"
-        title="교육 신청"
-        subtitle="Education Application"
-        content="희망 교육과 문의 사항을 작성해주시면 빠르게 답변해드리겠습니다."
-        rightImg="none"
-      />
-      <div className="CreateEdu-content-root">
-        <div className="CreateEdu-title">신청자 정보</div>
-        <form
-          className="Create-post-form"
-          onSubmit={handleSubmit(onSubmit_create, onInvalid_create)}
-        >
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                신청자 성함
-              </span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("name", { required: true })}
-                className="Create-post-input-input-content"
-                name="name"
-                placeholder="신청자 성함"
-              />
-            </div>
-          </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                소속 기관명
-              </span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("institution_name", { required: true })}
-                name="institution_name"
-                placeholder="도로 초등학교"
-                className="Create-post-input-input-content"
-              />
-            </div>
-          </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">직위</span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("position", { required: true })}
-                name="position"
-                placeholder="진로 선생님"
-                className="Create-post-input-input-content"
-              />
-            </div>
-          </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                휴대폰 번호
-              </span>
-            </div>
-            <div>
-              <input
-                {...register("phone_number", { required: true })}
-                name="phone_number"
-                placeholder="01012345678"
-                // className="Create-post-input-input-content"
-              />
-
+    // 모달창
+    <>
+      {authCheckModal ? (
+        <div className="Create-post-kakao-modal-container">
+          <div className="Create-post-kakao-modal">
+            <p className="Create-post-kakao-modal-top">인증 성공</p>
+            <div className="Create-post-kakao-modal-bottom">
+              <p className="Create-post-kakao-modal-bottom-text">
+                인증되었습니다.
+              </p>
               <button
-                className="Create-post-input-input-content"
-                onClick={onSubmit_send}
+                className="Create-post-kakao-modal-button"
+                onClick={() => {
+                  setAuthCheckModal(false);
+                }}
               >
-                카카오톡 인증
+                확인
               </button>
             </div>
           </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                카카오톡 인증
-              </span>
-            </div>
-            <div>
-              <input
-                {...register_auth("authNum", { required: true })}
-                name="authNum"
-                placeholder="인증번호 입력"
-              />
+        </div>
+      ) : (
+        ""
+      )}
+      {kakaoModal ? (
+        <div className="Create-post-kakao-modal-container">
+          <div className="Create-post-kakao-modal">
+            <p className="Create-post-kakao-modal-top">인증 메시지 전송</p>
+            <div className="Create-post-kakao-modal-bottom">
+              <p className="Create-post-kakao-modal-bottom-text">
+                입력하신 번호의 카카오톡으로 인증번호를 발송하였습니다.
+              </p>
               <button
-                className="Create-post-input-input-content"
-                onClick={handleSubmit_auth(onSubmit_check)}
+                className="Create-post-kakao-modal-button"
+                onClick={() => {
+                  setKakaoModal(false);
+                }}
               >
-                인증 하기
+                확인
               </button>
             </div>
           </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">이메일</span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("email", {
-                  required: true,
-                  validate: (email: string) => email.includes("@"),
-                })}
-                name="email"
-                placeholder="E-Mail"
-                className="Create-post-input-input-content"
-              />
-            </div>
-          </div>
-
-          {/* 교육생 정보 */}
-          <div className="CreateEdu-title">교육생 정보</div>
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                교육 학생 수
-              </span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("student_count", {
-                  required: true,
-                  valueAsNumber: true,
-                })}
-                type="number"
-                className="Create-post-input-input-content"
-                name="student_count"
-                placeholder="총 학생 수를 입력해주세요."
-              />
-            </div>
-          </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                학생 정보
-              </span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("school_rank", { required: true })}
-                name="school_rank"
-                placeholder="초등학교 1학년, 3학년"
-                className="Create-post-input-input-content"
-              />
-            </div>
-          </div>
-
-          <div className=" Create-post-input-parent">
-            <div className="Create-post-input-description-box">
-              <span className="Create-post-input-description-text">
-                교육 예산
-              </span>
-            </div>
-            <div className="Create-post-input-input-box">
-              <input
-                {...register("budget", { required: true, valueAsNumber: true })}
-                name="budget"
-                placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
-                className="Create-post-input-input-content"
-              />
-            </div>
-          </div>
-
-          <div className="CreateEdu-title">학급별 교육 일정</div>
+        </div>
+      ) : (
+        ""
+      )}
+      <div className="Create-post-root">
+        <Helmet>
+          <title>Create | DORO</title>
+        </Helmet>
+        <Banner
+          wid={10.278}
+          route={createEduRoute}
+          contentClass="Subtitle-bigFont"
+          title="교육 신청"
+          subtitle="Education Application"
+          content="희망 교육과 문의 사항을 작성해주시면 빠르게 답변해드리겠습니다."
+          rightImg="none"
+        />
+        <div ref={leftRef} className="Progress-container">
           <div>
-            {fields.map((field, index) => {
-              return (
-                <div key={field.id}>
-                  <section className={"section"} key={field.id}>
-                    <button type="button" onClick={() => remove(index)}>
-                      DELETE
-                    </button>
-                    <div>
-                      <span>학급 이름</span>
-                      <input
-                        placeholder="6학년 3반"
-                        {...register(
-                          `detail_classes.${index}.class_name` as const,
-                          {
-                            required: true,
-                          }
-                        )}
-                        name={`detail_classes.${index}.class_name`}
-                      />
-                    </div>
-                    <div>
-                      <span>교육 컨셉</span>
-                      <input
-                        placeholder="AI, 로봇"
-                        {...register(
-                          `detail_classes.${index}.edu_concept` as const,
-                          {
-                            required: true,
-                          }
-                        )}
-                        name={`detail_classes.${index}.edu_concept`}
-                      />
-                    </div>
-                    <div>
-                      <span>학생 수</span>
-                      <input
-                        placeholder="120"
-                        type="number"
-                        {...register(
-                          `detail_classes.${index}.student_number` as const,
-                          {
-                            valueAsNumber: true,
-                            required: true,
-                          }
-                        )}
-                        name={`detail_classes.${index}.student_number`}
-                      />
-                    </div>
-                    <div>
-                      <span>교육 날짜</span>
-                      <Controller
-                        control={control}
-                        name={`detail_classes.${index}.date`}
-                        render={(props) => (
-                          <>
-                            <DatePicker
-                              onChange={(e) => props.field.onChange(e)}
-                              minDate={new Date()}
-                              weekDays={weekDays}
-                              format="YYYY년 MM월 DD일"
-                              months={months}
-                              render={<InputIcon />}
-                            />
-                          </>
-                        )}
-                      />
-                    </div>
-                  </section>
-                </div>
-              );
-            })}
-
-            <button type="button" onClick={() => click_append_buttion()}>
-              APPEND
-            </button>
-          </div>
-
-          <div className="CreateEdu-title">교육 특이사항</div>
-
-          <div className=" Create-post-input-textarea-parent">
-            <div className="Create-post-input-textarea-span-box">
-              <span className="Create-post-input-description-text">
-                교육 특이사항
-              </span>
+            <div className="circleNum-text-box">
+              <p
+                ref={circleRef}
+                className={
+                  formNum >= 0
+                    ? "circleNum circleNum-active"
+                    : "circleNum circleNum-nonActive"
+                }
+              >
+                1
+              </p>
+              <p className="Progress-text">신청자 정보</p>
             </div>
-            <div className="Create-post-input-textarea-div">
-              <textarea
-                {...register("overall_remark")}
-                name="overall_remark"
-                placeholder="교육 특이사항을 입력해주세요"
-                className="Create-post-textarea"
-              />
+            <div ref={line1Ref} className="Progress-line" />
+
+            <div className="circleNum-text-box">
+              <p
+                className={
+                  formNum >= 1
+                    ? "circleNum circleNum-active"
+                    : "circleNum circleNum-nonActive"
+                }
+              >
+                2
+              </p>
+              <p className="Progress-text">교육생 정보</p>
+            </div>
+            <div ref={line2Ref} className="Progress-line" />
+
+            <div className="circleNum-text-box">
+              <p
+                className={
+                  formNum >= 2
+                    ? "circleNum circleNum-active"
+                    : "circleNum circleNum-nonActive"
+                }
+              >
+                3
+              </p>
+              <p className="Progress-text">학급별 교육 일정</p>
+            </div>
+            <div ref={line3Ref} className="Progress-line" />
+
+            <div className="circleNum-text-box">
+              <p
+                className={
+                  formNum >= 3
+                    ? "circleNum circleNum-active"
+                    : "circleNum circleNum-nonActive"
+                }
+              >
+                4
+              </p>
+              <p className="Progress-text">교육 특이사항</p>
+            </div>
+            <div ref={line4Ref} className="Progress-line" />
+
+            <div className="circleNum-text-box">
+              <p
+                className={
+                  formNum >= 4
+                    ? "circleNum circleNum-active"
+                    : "circleNum circleNum-nonActive"
+                }
+              >
+                5
+              </p>
+              <p className="Progress-text">최종 신청</p>
             </div>
           </div>
-
-          <div className=" Create-post-submit-button-parent">
-            <button
-              type="submit"
-              className={`${
-                true
-                  ? "Create-post-submit-button-on"
-                  : "Create-post-submit-button-off"
-              }`}
+        </div>
+        <div ref={WholeFormRef} className="CreateEdu-content-root">
+          <form
+            className="Create-post-form"
+            onSubmit={handleSubmit(onSubmit_create, onInvalid_create)}
+          >
+            <div
+              ref={form1Ref}
+              className="Create-post-individual-form"
+              style={
+                formNum === 0 || formNum === 4
+                  ? { display: "" }
+                  : { display: "none" }
+              }
             >
-              {/* {loading ? (
+              <div className="CreateEdu-title">신청자 정보</div>
+              <div className=" Create-post-input-parent">
+                <div className="Create-post-input-description-box">
+                  <p className="Create-post-input-description-text">
+                    신청자 성함
+                  </p>
+                </div>
+                <div className="Create-post-input-input-box">
+                  <input
+                    {...register("name", { required: true })}
+                    className="Create-post-input-input-content"
+                    name="name"
+                    placeholder="신청자 성함"
+                  />
+                </div>
+              </div>
+
+              <div className=" Create-post-input-parent">
+                <div className="Create-post-input-description-box">
+                  <span className="Create-post-input-description-text">
+                    소속 기관명
+                  </span>
+                </div>
+                <div className="Create-post-input-input-box">
+                  <input
+                    {...register("institution_name", { required: true })}
+                    name="institution_name"
+                    placeholder="도로 초등학교"
+                    className="Create-post-input-input-content"
+                  />
+                </div>
+              </div>
+
+              <div className=" Create-post-input-parent">
+                <div className="Create-post-input-description-box">
+                  <span className="Create-post-input-description-text">
+                    직위
+                  </span>
+                </div>
+                <div className="Create-post-input-input-box">
+                  <input
+                    {...register("position", { required: true })}
+                    name="position"
+                    placeholder="진로 선생님"
+                    className="Create-post-input-input-content"
+                  />
+                </div>
+              </div>
+
+              <div className=" Create-post-input-parent">
+                <div className="Create-post-input-description-box">
+                  <span className="Create-post-input-description-text">
+                    휴대폰 번호
+                  </span>
+                </div>
+                <div className="Create-post-input-description-flex">
+                  <input
+                    {...register("phone_number", {
+                      required: true,
+                    })}
+                    name="phone_number"
+                    placeholder="01012345678"
+                    className="Create-post-input-phoneNum"
+                    onChange={() => {
+                      if (authState === true) {
+                        setAuthState(false);
+                      }
+                      if (resend === true) {
+                        setResend(false);
+                      }
+                      if (isActiveTimer) {
+                        setIsActiveTimer(false);
+                      }
+                    }}
+                  />
+                  {!resend ? (
+                    <button
+                      type="button"
+                      className="Create-post-input-phoneNum-button"
+                      onClick={() => {
+                        onSubmit_send();
+                      }}
+                      disabled={sendBtnActive}
+                    >
+                      카카오톡 인증
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="Create-post-input-phoneNum-button"
+                      style={{ color: "#777777", fontSize: "0.859rem" }}
+                      onClick={() => {
+                        onSubmit_send();
+                      }}
+                    >
+                      인증번호 재전송
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <div className=" Create-post-input-parent">
+                <div className="Create-post-input-description-box">
+                  <p className="Create-post-input-description-text">
+                    카카오톡 인증
+                  </p>
+                </div>
+                <div className="Create-post-input-description-flex">
+                  <input
+                    {...register_auth("authNum", { required: true })}
+                    name="authNum"
+                    placeholder="인증번호 입력"
+                    className="Create-post-input-phoneNum"
+                  />
+                  <button
+                    type="button"
+                    className="Create-post-input-phoneNum-button-auth"
+                    style={{ color: authState ? "#0072B9" : "" }}
+                    onClick={handleSubmit_auth(onSubmit_check)}
+                  >
+                    {authState ? "인증 완료" : "인증하기"}
+                  </button>
+                  {isActiveTimer ? (
+                    <div className="Create-post-input-phoneNum-button">
+                      <span style={{ color: "#777777", fontSize: "1rem" }}>
+                        {min === 0 && sec === 0
+                          ? "인증번호 만료"
+                          : `${min}:${sec < 10 ? `0${sec}` : sec}`}
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
+
+              <div className=" Create-post-input-parent">
+                <div className="Create-post-input-description-box">
+                  <span className="Create-post-input-description-text">
+                    이메일
+                  </span>
+                </div>
+                <div className="Create-post-input-input-box">
+                  <input
+                    {...register("email", {
+                      required: true,
+                      validate: (email: string) => email.includes("@"),
+                    })}
+                    name="email"
+                    placeholder="E-Mail"
+                    className="Create-post-input-input-content"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 교육생 정보 */}
+            <div
+              ref={form2Ref}
+              className="Create-post-individual-form"
+              style={
+                formNum === 1 || formNum === 4
+                  ? { display: "" }
+                  : { display: "none" }
+              }
+            >
+              <div className="CreateEdu-title">교육생 정보</div>
+              <div className=" Create-post-input-parent">
+                <div className="Create-post-input-description-box">
+                  <span className="Create-post-input-description-text">
+                    교육 학생 수
+                  </span>
+                </div>
+                <div className="Create-post-input-input-box">
+                  <input
+                    {...register("student_count", {
+                      required: true,
+                      valueAsNumber: true,
+                    })}
+                    type="number"
+                    className="Create-post-input-input-content"
+                    name="student_count"
+                    placeholder="총 학생 수를 입력해주세요."
+                  />
+                </div>
+              </div>
+
+              <div className=" Create-post-input-parent">
+                <div className="Create-post-input-description-box">
+                  <span className="Create-post-input-description-text">
+                    학생 정보
+                  </span>
+                </div>
+                <div className="Create-post-input-input-box">
+                  <input
+                    {...register("school_rank", { required: true })}
+                    name="school_rank"
+                    placeholder="초등학교 1학년, 3학년"
+                    className="Create-post-input-input-content"
+                  />
+                </div>
+              </div>
+
+              <div className=" Create-post-input-parent">
+                <div className="Create-post-input-description-box">
+                  <span className="Create-post-input-description-text">
+                    교육 예산
+                  </span>
+                </div>
+                <div className="Create-post-input-input-box">
+                  <input
+                    {...register("budget", {
+                      required: true,
+                      valueAsNumber: true,
+                    })}
+                    name="budget"
+                    placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
+                    className="Create-post-input-input-content"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              ref={form3Ref}
+              className="Create-post-individual-form"
+              style={
+                formNum === 2 || formNum === 4
+                  ? { display: "" }
+                  : { display: "none" }
+              }
+            >
+              <div className="CreateEdu-title">학급별 교육 일정</div>
+              <div>
+                {fields.map((field, index) => {
+                  return (
+                    <div key={field.id}>
+                      <section className={"section"} key={field.id}>
+                        <button type="button" onClick={() => remove(index)}>
+                          X
+                        </button>
+                        <div>
+                          <span>학급 이름</span>
+                          <input
+                            placeholder="6학년 3반"
+                            {...register(
+                              `detail_classes.${index}.class_name` as const,
+                              {
+                                required: true,
+                              }
+                            )}
+                            name={`detail_classes.${index}.class_name`}
+                          />
+                        </div>
+                        <div>
+                          <span>교육 컨셉</span>
+                          <input
+                            placeholder="AI, 로봇"
+                            {...register(
+                              `detail_classes.${index}.edu_concept` as const,
+                              {
+                                required: true,
+                              }
+                            )}
+                            name={`detail_classes.${index}.edu_concept`}
+                          />
+                        </div>
+                        <div>
+                          <span>학생 수</span>
+                          <input
+                            placeholder="120"
+                            type="number"
+                            {...register(
+                              `detail_classes.${index}.student_number` as const,
+                              {
+                                valueAsNumber: true,
+                                required: true,
+                              }
+                            )}
+                            name={`detail_classes.${index}.student_number`}
+                          />
+                        </div>
+                        <div>
+                          <span>교육 날짜</span>
+                          <Controller
+                            control={control}
+                            name={`detail_classes.${index}.date`}
+                            render={(props) => (
+                              <>
+                                <DatePicker
+                                  onChange={(e) => props.field.onChange(e)}
+                                  minDate={new Date()}
+                                  weekDays={weekDays}
+                                  format="YYYY/MM/DD"
+                                  months={months}
+                                  multiple
+                                  plugins={[<DatePanel sort="date" />]}
+                                />
+                              </>
+                            )}
+                          />
+                        </div>
+                        <div>
+                          <span>희망 교육 시간</span>
+                          <input
+                            placeholder="희망하시는 교육 시간을 적어주세요.\n미정 일시 하단 체크박스를 체크해주세요."
+                            {...register(
+                              `detail_classes.${index}.remark` as const
+                            )}
+                            name={`detail_classes.${index}.remark`}
+                          />
+                        </div>
+                        <div>
+                          <input
+                            {...register(
+                              `detail_classes.${index}.unfixed` as const
+                            )}
+                            name={`detail_classes.${index}.unfixed`}
+                            type="checkbox"
+                          />
+                          <span>교육 시간 미정</span>
+                        </div>
+                      </section>
+                    </div>
+                  );
+                })}
+
+                <button type="button" onClick={() => click_append_buttion()}>
+                  +학급추가
+                </button>
+              </div>
+            </div>
+
+            <div
+              ref={form4Ref}
+              className="Create-post-individual-form"
+              style={
+                formNum === 3 || formNum === 4
+                  ? { display: "" }
+                  : { display: "none" }
+              }
+            >
+              <div className="CreateEdu-title">교육 특이사항</div>
+
+              <div className=" Create-post-input-textarea-parent">
+                <div className="Create-post-input-textarea-span-box">
+                  <span className="Create-post-input-description-text">
+                    교육 특이사항
+                  </span>
+                </div>
+                <div className="Create-post-input-textarea-div">
+                  <textarea
+                    {...register("overall_remark")}
+                    name="overall_remark"
+                    placeholder="교육 특이사항을 입력해주세요"
+                    className="Create-post-textarea"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="Create-post-next-button-container">
+              <div className="Create-post-next-button-parent">
+                {formNum === 0 || formNum === 4 ? (
+                  ""
+                ) : (
+                  <button
+                    type="button"
+                    className="Create-post-button"
+                    style={{
+                      background: "#d9d9d9",
+                      color: "#0072b9",
+                      marginRight: "1rem",
+                    }}
+                    onClick={() => {
+                      setformNum(formNum - 1);
+                    }}
+                  >
+                    이전
+                  </button>
+                )}
+
+                {formNum === 4 ? (
+                  ""
+                ) : (
+                  <button
+                    type="button"
+                    className="Create-post-button"
+                    style={{ background: "#0072b9", color: "#fff" }}
+                    onClick={() => {
+                      setformNum(formNum + 1);
+                    }}
+                  >
+                    다음
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className="Create-post-submit-button-parent">
+              {formNum === 4 ? (
+                <button
+                  type="button"
+                  className="Create-post-button"
+                  style={{
+                    background: "#D9D9D9",
+                    color: "#005C97",
+                    marginRight: "1.111rem",
+                  }}
+                  onClick={() => {
+                    setformNum(formNum - 1);
+                  }}
+                >
+                  수정 하기
+                </button>
+              ) : (
+                ""
+              )}
+              <button
+                type="submit"
+                className={`${
+                  true
+                    ? "Create-post-submit-button-on"
+                    : "Create-post-submit-button-off"
+                }`}
+              >
+                {/* {loading ? (
                 <span className="Create-post-submit-text">로딩 중</span>
               ) : ( */}
-              <span className="Create-post-submit-text">접수하기</span>
-              {/* )} */}
-            </button>
-          </div>
-        </form>
+                교육 신청
+                {/* )} */}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
