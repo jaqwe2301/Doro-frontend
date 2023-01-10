@@ -21,7 +21,6 @@ const EduDetailContents = () => {
 
 
   useEffect(() => {
-    console.log(state)
     if (state === null) {
       saveState(1)
     }
@@ -111,7 +110,7 @@ const EduDetailContents = () => {
       {
         img: "tracer",
         hash: "#센서처리 #모터제어 #아두이노 #알고리즘",
-        title: "LINE TRACER",
+        title: "라인 트레이서",
         link: "/tracer"
 
       },
@@ -141,7 +140,7 @@ const EduDetailContents = () => {
       {
         img: "tracer",
         hash: "#센서처리 #모터제어 #아두이노 #알고리즘",
-        title: "LINE TRACER",
+        title: "라인 트레이서",
         link: "/tracer"
 
       },
@@ -192,7 +191,7 @@ const EduDetailContents = () => {
       {
         img: "tracer",
         hash: "#센서처리 #모터제어 #아두이노 #알고리즘",
-        title: "LINE TRACER",
+        title: "라인 트레이서",
         link: "/tracer"
 
       },
@@ -320,7 +319,7 @@ const EduDetailContents = () => {
       {
         img: "tracer",
         hash: "#센서처리 #모터제어 #아두이노 #알고리즘",
-        title: "LINE TRACER",
+        title: "라인 트레이서",
         link: "/tracer"
 
       },
