@@ -45,15 +45,6 @@ export const GameConsole: React.FC = () => {
         contents3_1="찾아 가는 현장교육, 체험형 교육 부스"
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
-        liClass2_1="List-style-dics"
-        liClass2_2="List-style-dics"
-        liClass2_3="List-style-dics"
-        liClass2_4="List-style-dics"
-        liClass2_5="List-style-none"
-        liClass2_6="List-style-none"
-        liClass2_7="List-style-none"
-        liClass2_8="List-style-none"
-        liClass2_9="List-style-none"
         liClass3="EduTable-table-subContents"
         titleMarginTop={5}
       />
