@@ -230,7 +230,7 @@ export const HomePage = () => {
                     <Link to="/createPost" className="Main3-bottom-image-button">
                       <button className="Main3-bottom-image-button">
                         <span className="Main3-bottom-image-inquiry">
-                          프로그램 문의하기
+                          자세히 보기
                         </span>
                         <span className="Main3-bottom-image-arrow">&rsaquo;</span>
                       </button>
@@ -261,7 +261,7 @@ export const HomePage = () => {
                     <Link to="/createPost" className="Main3-bottom-image-button">
                       <button className="Main3-bottom-image-button">
                         <span className="Main3-bottom-image-inquiry">
-                          프로그램 문의하기
+                          자세히 보기
                         </span>
                         <span className="Main3-bottom-image-arrow">&rsaquo;</span>
                       </button>
@@ -290,7 +290,7 @@ export const HomePage = () => {
                     <Link to="/createPost" className="Main3-bottom-image-button">
                       <button className="Main3-bottom-image-button">
                         <span className="Main3-bottom-image-inquiry">
-                          프로그램 문의하기
+                          자세히 보기
                         </span>
                         <span className="Main3-bottom-image-arrow">&rsaquo;</span>
                       </button>
@@ -321,7 +321,7 @@ export const HomePage = () => {
                     <Link to="/createPost" className="Main3-bottom-image-button">
                       <button className="Main3-bottom-image-button">
                         <span className="Main3-bottom-image-inquiry">
-                          프로그램 문의하기
+                          자세히 보기
                         </span>
                         <span className="Main3-bottom-image-arrow">&rsaquo;</span>
                       </button>
@@ -350,7 +350,7 @@ export const HomePage = () => {
                     </p>
                     <button className="Main3-bottom-image-button">
                       <span className="Main3-bottom-image-inquiry">
-                        프로그램 문의하기
+                        자세히 보기
                       </span>
 
                       <span className="Main3-bottom-image-arrow">&rsaquo;</span>
@@ -375,7 +375,7 @@ export const HomePage = () => {
                     <Link to="/createPost" className="Main3-bottom-image-button">
                       <button className="Main3-bottom-image-button">
                         <span className="Main3-bottom-image-inquiry">
-                          프로그램 문의하기
+                          자세히 보기
                         </span>
                         <span className="Main3-bottom-image-arrow">&rsaquo;</span>
                       </button>
@@ -400,7 +400,7 @@ export const HomePage = () => {
                     <Link to="/createPost" className="Main3-bottom-image-button">
                       <button className="Main3-bottom-image-button">
                         <span className="Main3-bottom-image-inquiry">
-                          프로그램 문의하기
+                          자세히 보기
                         </span>
                         <span className="Main3-bottom-image-arrow">&rsaquo;</span>
                       </button>
