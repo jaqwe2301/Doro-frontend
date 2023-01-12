@@ -37,9 +37,9 @@ export const GoogleEarth: React.FC = () => {
         tabletitle2="기대 효과"
         tabletitle3="교육 형태"
         contents1_1="초등학생"
-        contents2_1="&nbsp; • 디지털 장비의 올바른 사용법을 숙지한다."
-        contents2_2="&nbsp; • ‘나라’, ‘지도’, ‘여행’의 개념을 익히며 디지털 장비를 이용하는 방법에 숙달한다."
-        contents2_3="&nbsp; • 위성사진 및 3D뷰를 통해 지구의 다양한 지역을 탐험한다."
+        contents2_1=" • 디지털 장비의 올바른 사용법을 숙지한다."
+        contents2_2=" • ‘나라’, ‘지도’, ‘여행’의 개념을 익히며 디지털 장비를 이용하는 방법에 숙달한다."
+        contents2_3=" • 위성사진 및 3D뷰를 통해 지구의 다양한 지역을 탐험한다."
         contents3_1="찾아 가는 현장교육"
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
@@ -55,15 +55,12 @@ export const GoogleEarth: React.FC = () => {
         contents1_1="1. Google 사용 방법을 익히고, Google Earth 기능을 이해한다."
         contents1_2="2. 현재 본인의 위치(학교)를 Google Earth를 이용해 찾는다."
         contents1_3="3. 지도의 개념을 이해하고 학생 스스로 희망하는 나라와 여행지를 선택한다."
-
         contents2_1="1. 여행을 희망한 장소를 Google Earth를 이용해 찾아본다."
         contents2_2="2. 해당 장소를 Youtube를 이용해 검색한다."
         contents2_3="3. 구글 PPT를 이용하여 선택한 여행지를 소개하는 PPT를 직접 제작한다."
-
         contents3_1="1. 본인이 찾은 지역의 나라 및 Google Earth상의 사진을 공유한다."
         contents3_2="2. 제작한 PPT를 통해 여행하고 싶은 나라 정보를 공유한다."
         contents3_3="3. PPT 제작을 위한 정보를 조사하며, 올바른 디지털 리터러시 개념을 습득한다."
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"
