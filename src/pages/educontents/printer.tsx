@@ -38,9 +38,9 @@ export const Printer: React.FC = () => {
         tabletitle2="기대 효과"
         tabletitle3="교육 형태"
         contents1_1="중학생, 고등학생"
-        contents2_1="&nbsp; •  3D 프린터의 원리를 이해하고 직접 3D프린터를 사용할 수 있다."
-        contents2_2="&nbsp; •  3D 설계 파일을 이용하여 3D 프린터를 사용하기 위한 G코드로 변환할 수 있다."
-        contents2_3="&nbsp; •  오픈소스의 개념과 사회적 원리를 습득하여 학생 스스로 오픈소스를 이용할 수 있다."
+        contents2_1=" •  3D 프린터의 원리를 이해하고 직접 3D프린터를 사용할 수 있다."
+        contents2_2=" •  3D 설계 파일을 이용하여 3D 프린터를 사용하기 위한 G코드로 변환할 수 있다."
+        contents2_3=" •  오픈소스의 개념과 사회적 원리를 습득하여 학생 스스로 오픈소스를 이용할 수 있다."
         contents3_1="찾아 가는 현장교육, 체험형 교육 부스"
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
@@ -57,14 +57,11 @@ export const Printer: React.FC = () => {
         contents1_2="2. 3D 프린터 구성요소를 이해한다."
         contents1_3="3. 오픈소스의 개념과 사회의 긍정적 영향력을 이해한다."
         contents1_4="4. 슬라이싱 개념과 G코드를 이해한다."
-
         contents2_1="1. XYZ 큐브 STL 파일을 g코드로 변환하는 슬라이싱을 수행한다."
         contents2_2="2. 슬라이싱한 G 드 파일을 가지고 3D 프린터를 직접 조작하여 출력한다."
         contents2_3="2. 띵기버스에서 오픈소스 STL을 다운받은 후 직접 G코드로 변환한다."
-
         contents3_1="1. 출력이 완료된 XYZ 큐브를 3D프리터에서 제거 후 출력물을 확인한다."
         contents3_2="2. 본인이 직접 제작한 G코드 파일을 3D 프린터에 출력한다."
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"

@@ -38,9 +38,9 @@ export const Luminol: React.FC = () => {
         tabletitle2="기대 효과"
         tabletitle3="교육 형태"
         contents1_1="초등학생, 중학생"
-        contents2_1="&nbsp; •  루미놀 발광 반응을 통해 생화학적 지식과 이공학적 활용 능력 향상을 기대한다."
-        contents2_2="&nbsp; •  산과 염기, 화학 발광의 개념을 이해하고 학생들의 생물 및 화학적 상상력을 자극한다."
-        contents2_3="&nbsp; •  항원-항체 반응을 배우며, 인체의 면역 메커니즘을 알아볼 수 있다."
+        contents2_1=" •  루미놀 발광 반응을 통해 생화학적 지식과 이공학적 활용 능력 향상을 기대한다."
+        contents2_2=" •  산과 염기, 화학 발광의 개념을 이해하고 학생들의 생물 및 화학적 상상력을 자극한다."
+        contents2_3=" •  항원-항체 반응을 배우며, 인체의 면역 메커니즘을 알아볼 수 있다."
         contents3_1="찾아 가는 현장교육, 체험형 교육 부스"
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
@@ -57,15 +57,12 @@ export const Luminol: React.FC = () => {
         contents1_2="2. 시약을 활용한 인체 구성 성분의 발광 반응 과정을 이해하여, 과학 실험 실습 경험을 키운다."
         contents1_3="3. 항원, 항체의 개념과 특성을 통한 항원-항체 반응을 이해하고, 항원-항체 반응을 치료 및 의료 과정에 적용한 사례를 알아본다."
         contents1_4="4. 혈청의 응집반응을 통한 혈액형 판별 원리를 이해한다."
-
         contents2_1="1. 실제 발광 반응을 확인하고 사용한 시약과 헤모글로빈의 양에 따른 발광 정도와 발광 시간을 비교해본다."
         contents2_2="2. 혈액에 항A,, B 혈청을 떨어뜨려 응집반응을 관찰해돈다.."
         contents2_3="3. 채혈침을 사용해 자신의 혈액을 채취하고, 혈청을 떨어뜨려 자신의 혈액형을 판별해본다."
-
         contents3_1="1. 불을 끄고 발광 정도를 직접 관찰해본다."
         contents3_2="2. 혈청을 떨어뜨릴 때, 혈액의 농도 및 용량에 따른 응집 속도를 비교해본다."
         contents3_3="3. 혈액의 응집 반응과, 항원-항체 반응을 통해 우리 몸의 면역 메커니즘을 이해한다."
-
         liClass1="EduTable-table-subContents"
         liClass2="EduTable-table-subContents"
         liClass3="EduTable-table-subContents"
