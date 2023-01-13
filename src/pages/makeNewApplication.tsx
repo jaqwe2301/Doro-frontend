@@ -177,9 +177,6 @@ export const MakeNewApplication = () => {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "detail_classes",
-    rules: {
-      minLength: 1,
-    },
   });
 
   const [isHovering, setIsHovering] = useState(0);
@@ -324,7 +321,7 @@ export const MakeNewApplication = () => {
         class_name: detail_classes[detail_len - 1].class_name,
         edu_concept: detail_classes[detail_len - 1].edu_concept,
         student_number: detail_classes[detail_len - 1].student_number,
-        date: detail_classes[detail_len - 1].date,
+        date: "",
         remark: "",
         unfixed: false,
       });
@@ -416,6 +413,62 @@ export const MakeNewApplication = () => {
       }
     }
   }, 1000);
+
+  const [nextBtnActive, setNextBtnActive] = useState<boolean>(true);
+  useEffect(() => {
+    if (formNum === 0) {
+      if (
+        watch([
+          "name",
+          "institution_name",
+          "position",
+          "phone_number",
+          "email",
+        ]).every((item) => item !== "") &&
+        authState === true
+      ) {
+        setNextBtnActive(false);
+      } else {
+        setNextBtnActive(true);
+      }
+    }
+    if (formNum === 1) {
+      if (
+        watch(["student_count", "school_rank"]).every((item) => item !== "") &&
+        !Number.isNaN(watch("budget"))
+      ) {
+        setNextBtnActive(false);
+      } else {
+        setNextBtnActive(true);
+      }
+    }
+    if (formNum === 2) {
+      let len = watch("detail_classes").length;
+      let judge = false;
+      let check_num = 0;
+      while (len > 0) {
+        len = len - 1;
+        if (
+          watch([
+            `detail_classes.${len}.class_name`,
+            `detail_classes.${len}.edu_concept`,
+            `detail_classes.${len}.date`,
+          ]).every((item) => item !== "") &&
+          !Number.isNaN(watch(`detail_classes.${len}.student_number`))
+        ) {
+          check_num += 1;
+        }
+        if (check_num === watch("detail_classes").length) {
+          judge = true;
+        }
+      }
+      if (judge) {
+        setNextBtnActive(false);
+      } else {
+        setNextBtnActive(true);
+      }
+    }
+  }, [watch()]);
 
   return (
     // 모달창
@@ -561,7 +614,7 @@ export const MakeNewApplication = () => {
               style={
                 formNum === 0 || formNum === 4
                   ? { display: "" }
-                  : { visibility: "hidden", height : 0, overflow: "hidden" }
+                  : { visibility: "hidden", height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">신청자 정보</div>
@@ -577,6 +630,7 @@ export const MakeNewApplication = () => {
                     className="Create-post-input-input-content"
                     name="name"
                     placeholder="신청자 성함"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -593,6 +647,7 @@ export const MakeNewApplication = () => {
                     name="institution_name"
                     placeholder="도로 초등학교"
                     className="Create-post-input-input-content"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -609,6 +664,7 @@ export const MakeNewApplication = () => {
                     name="position"
                     placeholder="진로 선생님"
                     className="Create-post-input-input-content"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -627,6 +683,7 @@ export const MakeNewApplication = () => {
                     name="phone_number"
                     placeholder="01012345678"
                     className="Create-post-input-phoneNum"
+                    readOnly={formNum === 4}
                     onChange={() => {
                       if (authState === true) {
                         setAuthState(false);
@@ -646,7 +703,7 @@ export const MakeNewApplication = () => {
                       onClick={() => {
                         onSubmit_send();
                       }}
-                      disabled={sendBtnActive}
+                      disabled={sendBtnActive || formNum === 4}
                     >
                       카카오톡 인증
                     </button>
@@ -655,6 +712,7 @@ export const MakeNewApplication = () => {
                       type="button"
                       className="Create-post-input-phoneNum-button"
                       style={{ color: "#777777", fontSize: "0.859rem" }}
+                      disabled={formNum === 4}
                       onClick={() => {
                         onSubmit_send();
                       }}
@@ -677,12 +735,14 @@ export const MakeNewApplication = () => {
                     name="authNum"
                     placeholder="인증번호 입력"
                     className="Create-post-input-phoneNum"
+                    readOnly={formNum === 4}
                   />
                   <button
                     type="button"
                     className="Create-post-input-phoneNum-button-auth"
                     style={{ color: authState ? "#0072B9" : "" }}
                     onClick={handleSubmit_auth(onSubmit_check)}
+                    disabled={formNum === 4}
                   >
                     {authState ? "인증 완료" : "인증하기"}
                   </button>
@@ -715,6 +775,7 @@ export const MakeNewApplication = () => {
                     name="email"
                     placeholder="E-Mail"
                     className="Create-post-input-input-content"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -727,7 +788,7 @@ export const MakeNewApplication = () => {
               style={
                 formNum === 1 || formNum === 4
                   ? { display: "" }
-                  : { visibility: "hidden", height : 0, overflow: "hidden" }
+                  : { visibility: "hidden", height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">교육생 정보</div>
@@ -747,6 +808,7 @@ export const MakeNewApplication = () => {
                     className="Create-post-input-input-content"
                     name="student_count"
                     placeholder="총 학생 수를 입력해주세요."
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -763,6 +825,7 @@ export const MakeNewApplication = () => {
                     name="school_rank"
                     placeholder="초등학교 1학년, 3학년"
                     className="Create-post-input-input-content"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -782,6 +845,7 @@ export const MakeNewApplication = () => {
                     name="budget"
                     placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
                     className="Create-post-input-input-content"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -793,7 +857,7 @@ export const MakeNewApplication = () => {
               style={
                 formNum === 2 || formNum === 4
                   ? { display: "" }
-                  : { visibility: "hidden", height : 0, overflow: "hidden" }
+                  : { visibility: "hidden", height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">학급별 교육 일정</div>
@@ -802,9 +866,16 @@ export const MakeNewApplication = () => {
                   return (
                     <div key={field.id}>
                       <section className={"section"} key={field.id}>
-                        <button type="button" onClick={() => remove(index)}>
-                          X
-                        </button>
+                        {index !== 0 && (
+                          <button
+                            type="button"
+                            onClick={() => remove(index)}
+                            disabled={formNum === 4}
+                          >
+                            X
+                          </button>
+                        )}
+
                         <div>
                           <span>학급 이름</span>
                           <input
@@ -816,6 +887,7 @@ export const MakeNewApplication = () => {
                               }
                             )}
                             name={`detail_classes.${index}.class_name`}
+                            readOnly={formNum === 4}
                           />
                         </div>
                         <div>
@@ -829,6 +901,7 @@ export const MakeNewApplication = () => {
                               }
                             )}
                             name={`detail_classes.${index}.edu_concept`}
+                            readOnly={formNum === 4}
                           />
                         </div>
                         <div>
@@ -844,6 +917,7 @@ export const MakeNewApplication = () => {
                               }
                             )}
                             name={`detail_classes.${index}.student_number`}
+                            readOnly={formNum === 4}
                           />
                         </div>
                         <div>
@@ -854,6 +928,7 @@ export const MakeNewApplication = () => {
                             render={(props) => (
                               <>
                                 <DatePicker
+                                  disabled={formNum === 4}
                                   onChange={(e) => props.field.onChange(e)}
                                   minDate={new Date()}
                                   weekDays={weekDays}
@@ -874,6 +949,7 @@ export const MakeNewApplication = () => {
                               `detail_classes.${index}.remark` as const
                             )}
                             name={`detail_classes.${index}.remark`}
+                            readOnly={formNum === 4}
                           />
                         </div>
                         <div>
@@ -883,6 +959,7 @@ export const MakeNewApplication = () => {
                             )}
                             name={`detail_classes.${index}.unfixed`}
                             type="checkbox"
+                            readOnly={formNum === 4}
                           />
                           <span>교육 시간 미정</span>
                         </div>
@@ -891,7 +968,11 @@ export const MakeNewApplication = () => {
                   );
                 })}
 
-                <button type="button" onClick={() => click_append_buttion()}>
+                <button
+                  type="button"
+                  onClick={() => click_append_buttion()}
+                  disabled={formNum === 4}
+                >
                   +학급추가
                 </button>
               </div>
@@ -903,7 +984,7 @@ export const MakeNewApplication = () => {
               style={
                 formNum === 3 || formNum === 4
                   ? { display: "" }
-                  : { visibility: "hidden", height : 0, overflow: "hidden" }
+                  : { visibility: "hidden", height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">교육 특이사항</div>
@@ -920,6 +1001,7 @@ export const MakeNewApplication = () => {
                     name="overall_remark"
                     placeholder="교육 특이사항을 입력해주세요"
                     className="Create-post-textarea"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -956,6 +1038,7 @@ export const MakeNewApplication = () => {
                     onClick={() => {
                       setformNum(formNum + 1);
                     }}
+                    disabled={nextBtnActive}
                   >
                     다음
                   </button>
@@ -965,37 +1048,39 @@ export const MakeNewApplication = () => {
 
             <div className="Create-post-submit-button-parent">
               {formNum === 4 ? (
-                <button
-                  type="button"
-                  className="Create-post-button"
-                  style={{
-                    background: "#D9D9D9",
-                    color: "#005C97",
-                    marginRight: "1.111rem",
-                  }}
-                  onClick={() => {
-                    setformNum(formNum - 1);
-                  }}
-                >
-                  수정 하기
-                </button>
+                <>
+                  <button
+                    type="button"
+                    className="Create-post-button"
+                    style={{
+                      background: "#D9D9D9",
+                      color: "#005C97",
+                      marginRight: "1.111rem",
+                    }}
+                    onClick={() => {
+                      setformNum(formNum - 1);
+                    }}
+                  >
+                    수정 하기
+                  </button>
+                  <button
+                    type="submit"
+                    className={`${
+                      true
+                        ? "Create-post-submit-button-on"
+                        : "Create-post-submit-button-off"
+                    }`}
+                  >
+                    {/* {loading ? (
+    <span className="Create-post-submit-text">로딩 중</span>
+  ) : ( */}
+                    교육 신청
+                    {/* )} */}
+                  </button>
+                </>
               ) : (
                 ""
               )}
-              <button
-                type="submit"
-                className={`${
-                  true
-                    ? "Create-post-submit-button-on"
-                    : "Create-post-submit-button-off"
-                }`}
-              >
-                {/* {loading ? (
-                <span className="Create-post-submit-text">로딩 중</span>
-              ) : ( */}
-                교육 신청
-                {/* )} */}
-              </button>
             </div>
           </form>
         </div>
