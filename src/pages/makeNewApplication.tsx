@@ -630,6 +630,7 @@ export const MakeNewApplication = () => {
                     className="Create-post-input-input-content"
                     name="name"
                     placeholder="신청자 성함"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -646,6 +647,7 @@ export const MakeNewApplication = () => {
                     name="institution_name"
                     placeholder="도로 초등학교"
                     className="Create-post-input-input-content"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -662,6 +664,7 @@ export const MakeNewApplication = () => {
                     name="position"
                     placeholder="진로 선생님"
                     className="Create-post-input-input-content"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -680,6 +683,7 @@ export const MakeNewApplication = () => {
                     name="phone_number"
                     placeholder="01012345678"
                     className="Create-post-input-phoneNum"
+                    readOnly={formNum === 4}
                     onChange={() => {
                       if (authState === true) {
                         setAuthState(false);
@@ -699,7 +703,7 @@ export const MakeNewApplication = () => {
                       onClick={() => {
                         onSubmit_send();
                       }}
-                      disabled={sendBtnActive}
+                      disabled={sendBtnActive || formNum === 4}
                     >
                       카카오톡 인증
                     </button>
@@ -708,6 +712,7 @@ export const MakeNewApplication = () => {
                       type="button"
                       className="Create-post-input-phoneNum-button"
                       style={{ color: "#777777", fontSize: "0.859rem" }}
+                      disabled={formNum === 4}
                       onClick={() => {
                         onSubmit_send();
                       }}
@@ -730,12 +735,14 @@ export const MakeNewApplication = () => {
                     name="authNum"
                     placeholder="인증번호 입력"
                     className="Create-post-input-phoneNum"
+                    readOnly={formNum === 4}
                   />
                   <button
                     type="button"
                     className="Create-post-input-phoneNum-button-auth"
                     style={{ color: authState ? "#0072B9" : "" }}
                     onClick={handleSubmit_auth(onSubmit_check)}
+                    disabled={formNum === 4}
                   >
                     {authState ? "인증 완료" : "인증하기"}
                   </button>
@@ -768,6 +775,7 @@ export const MakeNewApplication = () => {
                     name="email"
                     placeholder="E-Mail"
                     className="Create-post-input-input-content"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -800,6 +808,7 @@ export const MakeNewApplication = () => {
                     className="Create-post-input-input-content"
                     name="student_count"
                     placeholder="총 학생 수를 입력해주세요."
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -816,6 +825,7 @@ export const MakeNewApplication = () => {
                     name="school_rank"
                     placeholder="초등학교 1학년, 3학년"
                     className="Create-post-input-input-content"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -835,6 +845,7 @@ export const MakeNewApplication = () => {
                     name="budget"
                     placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
                     className="Create-post-input-input-content"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
@@ -856,7 +867,11 @@ export const MakeNewApplication = () => {
                     <div key={field.id}>
                       <section className={"section"} key={field.id}>
                         {index !== 0 && (
-                          <button type="button" onClick={() => remove(index)}>
+                          <button
+                            type="button"
+                            onClick={() => remove(index)}
+                            disabled={formNum === 4}
+                          >
                             X
                           </button>
                         )}
@@ -872,6 +887,7 @@ export const MakeNewApplication = () => {
                               }
                             )}
                             name={`detail_classes.${index}.class_name`}
+                            readOnly={formNum === 4}
                           />
                         </div>
                         <div>
@@ -885,6 +901,7 @@ export const MakeNewApplication = () => {
                               }
                             )}
                             name={`detail_classes.${index}.edu_concept`}
+                            readOnly={formNum === 4}
                           />
                         </div>
                         <div>
@@ -900,6 +917,7 @@ export const MakeNewApplication = () => {
                               }
                             )}
                             name={`detail_classes.${index}.student_number`}
+                            readOnly={formNum === 4}
                           />
                         </div>
                         <div>
@@ -910,6 +928,7 @@ export const MakeNewApplication = () => {
                             render={(props) => (
                               <>
                                 <DatePicker
+                                  disabled={formNum === 4}
                                   onChange={(e) => props.field.onChange(e)}
                                   minDate={new Date()}
                                   weekDays={weekDays}
@@ -930,6 +949,7 @@ export const MakeNewApplication = () => {
                               `detail_classes.${index}.remark` as const
                             )}
                             name={`detail_classes.${index}.remark`}
+                            readOnly={formNum === 4}
                           />
                         </div>
                         <div>
@@ -939,6 +959,7 @@ export const MakeNewApplication = () => {
                             )}
                             name={`detail_classes.${index}.unfixed`}
                             type="checkbox"
+                            readOnly={formNum === 4}
                           />
                           <span>교육 시간 미정</span>
                         </div>
@@ -947,7 +968,11 @@ export const MakeNewApplication = () => {
                   );
                 })}
 
-                <button type="button" onClick={() => click_append_buttion()}>
+                <button
+                  type="button"
+                  onClick={() => click_append_buttion()}
+                  disabled={formNum === 4}
+                >
                   +학급추가
                 </button>
               </div>
@@ -976,6 +1001,7 @@ export const MakeNewApplication = () => {
                     name="overall_remark"
                     placeholder="교육 특이사항을 입력해주세요"
                     className="Create-post-textarea"
+                    readOnly={formNum === 4}
                   />
                 </div>
               </div>
