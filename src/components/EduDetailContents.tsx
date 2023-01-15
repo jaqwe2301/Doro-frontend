@@ -23,8 +23,7 @@ const EduDetailContents = () => {
   useEffect(() => {
     if (state === null) {
       saveState(1)
-    }
-    if (localStorage.getItem('homeHistory') !== String(state)) {
+    } else if (localStorage.getItem('homeHistory') !== String(state)) {
       localStorage.setItem('homeHistory', String(state))
       localStorage.setItem('checkLocation', String(state))
     }
