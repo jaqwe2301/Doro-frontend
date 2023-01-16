@@ -147,7 +147,9 @@ export const ShowApplication = () => {
 
   const onCompleted_check = (data: checkAuthNumQuery) => {
     console.log("oncompleted_check");
+
     const { name, phone_number } = getValues();
+    console.log(name, phone_number);
     const {
       CheckAuthNum: { ok, error },
     } = data;
@@ -190,8 +192,8 @@ export const ShowApplication = () => {
       },
     });
   };
-  const editApplication = () => {
-    console.log("edit");
+  const editApplication = (applicationId: number) => {
+    navigate("/editApplication", { state: { id: applicationId } });
   };
 
   const [sendAuthNumMutation, { data: sendAuthNum }] = useMutation<
@@ -334,7 +336,9 @@ export const ShowApplication = () => {
               <div key={index}>
                 <span>{element.client.institution_name}</span>
                 <span>{element.createdAt}</span>
-                <button onClick={editApplication}>수정하기</button>
+                <button onClick={(e) => editApplication(element.id)}>
+                  수정하기
+                </button>
                 <button onClick={(e) => deleteApplication(element.id, e)}>
                   삭제하기
                 </button>
