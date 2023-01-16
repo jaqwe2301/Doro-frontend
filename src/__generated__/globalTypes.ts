@@ -79,7 +79,7 @@ export interface Detail_class_item {
   class_name: string;
   edu_concept: string;
   student_number: number;
-  date: string;
+  date: any[];
   remark?: string | null;
   unfixed: boolean;
 }

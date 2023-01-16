@@ -21,13 +21,13 @@ import {
 } from "../__generated__/checkAuthNumQuery";
 
 import {
-  FindOverallClasses,
-  FindOverallClassesVariables,
-} from "../__generated__/FindOverallClasses";
-import {
   DeleteOverallClass,
   DeleteOverallClassVariables,
 } from "../__generated__/DeleteOverallClass";
+import {
+  FindOverallClasses,
+  FindOverallClassesVariables,
+} from "../__generated__/FindOverallClasses";
 
 const FIND_OVERALL_CLASSES_QUERY = gql`
   query FindOverallClasses($input: FindOverallClassesInput!) {

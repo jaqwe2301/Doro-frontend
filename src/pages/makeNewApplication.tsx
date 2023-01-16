@@ -86,7 +86,7 @@ interface Detail_class_item {
   class_name: string;
   edu_concept: string;
   student_number: number;
-  date: string;
+  date: Date[];
   remark: string;
   unfixed: boolean;
 }
@@ -153,7 +153,7 @@ export const MakeNewApplication = () => {
           {
             class_name: "",
             edu_concept: "",
-            date: "",
+            date: [],
             remark: "",
             unfixed: false,
           },
@@ -224,11 +224,11 @@ export const MakeNewApplication = () => {
       overall_remark,
       detail_classes,
     } = getValues();
-    const fordateformat = getValues();
-    console.log(fordateformat);
-    fordateformat.detail_classes.map((data) => {
-      data.date = data.date.toString();
-    });
+    // const fordateformat = getValues();
+    // console.log(fordateformat);
+    // fordateformat.detail_classes.map((data) => {
+    //   data.date = data.date.toString();
+    // });
     createEduMutation({
       variables: {
         input: {
@@ -241,7 +241,7 @@ export const MakeNewApplication = () => {
           school_rank,
           budget,
           overall_remark,
-          detail_classes: fordateformat.detail_classes,
+          detail_classes,
         },
       },
     });
@@ -321,7 +321,7 @@ export const MakeNewApplication = () => {
         class_name: detail_classes[detail_len - 1].class_name,
         edu_concept: detail_classes[detail_len - 1].edu_concept,
         student_number: detail_classes[detail_len - 1].student_number,
-        date: "",
+        date: detail_classes[detail_len - 1].date,
         remark: "",
         unfixed: false,
       });
@@ -330,7 +330,7 @@ export const MakeNewApplication = () => {
         class_name: "",
         edu_concept: "",
         student_number: 30,
-        date: "",
+        date: [],
         remark: "",
         unfixed: false,
       });
@@ -453,9 +453,9 @@ export const MakeNewApplication = () => {
           watch([
             `detail_classes.${len}.class_name`,
             `detail_classes.${len}.edu_concept`,
-            `detail_classes.${len}.date`,
           ]).every((item) => item !== "") &&
-          !Number.isNaN(watch(`detail_classes.${len}.student_number`))
+          !Number.isNaN(watch(`detail_classes.${len}.student_number`)) &&
+          watch(`detail_classes.${len}.date`).length !== 0
         ) {
           check_num += 1;
         }
