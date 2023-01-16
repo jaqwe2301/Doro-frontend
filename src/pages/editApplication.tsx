@@ -44,7 +44,7 @@ import {
   FindOverallClass,
   FindOverallClassVariables,
 } from "../__generated__/FindOverallClass";
-import { useDidMountEffect } from "../hooks/useDidMointEffect";
+import { useDidMountEffect } from "../hooks/useDidMountEffect";
 
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 const months = [
