@@ -44,6 +44,7 @@ import {
   FindOverallClass,
   FindOverallClassVariables,
 } from "../__generated__/FindOverallClass";
+import { useDidMountEffect } from "../hooks/useDidMountEffect";
 
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 const months = [
@@ -119,7 +120,7 @@ interface Detail_class_item {
   class_name: string;
   edu_concept: string;
   student_number: number;
-  date: string;
+  date: Date[];
   remark: string;
   unfixed: boolean;
 }
@@ -177,22 +178,29 @@ export const EditApplication = () => {
   const [authCheckModal, setAuthCheckModal] = useState(false);
   const [resend, setResend] = useState(false);
   const [isActiveTimer, setIsActiveTimer] = useState<boolean>(false);
-  const [authState, setAuthState] = useState(false);
+  const [authState, setAuthState] = useState(true);
   const [sendBtnActive, setSendBtnActive] = useState(true);
-  const { register, getValues, handleSubmit, formState, control, watch } =
-    useForm<ICreateEduForm>({
-      defaultValues: {
-        detail_classes: [
-          {
-            class_name: "",
-            edu_concept: "",
-            date: "",
-            remark: "",
-            unfixed: false,
-          },
-        ],
-      },
-    });
+  const {
+    register,
+    getValues,
+    handleSubmit,
+    formState,
+    control,
+    watch,
+    reset,
+  } = useForm<ICreateEduForm>({
+    defaultValues: {
+      detail_classes: [
+        {
+          class_name: "",
+          edu_concept: "",
+          date: [],
+          remark: "",
+          unfixed: false,
+        },
+      ],
+    },
+  });
   const {
     register: register_auth,
     getValues: getValues_auth,
@@ -261,11 +269,11 @@ export const EditApplication = () => {
       overall_remark,
       detail_classes,
     } = getValues();
-    const fordateformat = getValues();
-    console.log(fordateformat);
-    fordateformat.detail_classes.map((data) => {
-      data.date = data.date.toString();
-    });
+    // const fordateformat = getValues();
+    // console.log(fordateformat);
+    // fordateformat.detail_classes.map((data) => {
+    //   data.date = data.date.toString();
+    // });
     createEduMutation({
       variables: {
         input: {
@@ -278,7 +286,7 @@ export const EditApplication = () => {
           school_rank,
           budget,
           overall_remark,
-          detail_classes: fordateformat.detail_classes,
+          detail_classes,
         },
       },
     });
@@ -358,7 +366,7 @@ export const EditApplication = () => {
         class_name: detail_classes[detail_len - 1].class_name,
         edu_concept: detail_classes[detail_len - 1].edu_concept,
         student_number: detail_classes[detail_len - 1].student_number,
-        date: "",
+        date: detail_classes[detail_len - 1].date,
         remark: "",
         unfixed: false,
       });
@@ -367,7 +375,7 @@ export const EditApplication = () => {
         class_name: "",
         edu_concept: "",
         student_number: 30,
-        date: "",
+        date: [],
         remark: "",
         unfixed: false,
       });
@@ -400,26 +408,32 @@ export const EditApplication = () => {
     }
   );
 
-  useEffect(() => {
-    if (!error && !loading) {
-      const results =
-        findOverallClassData?.FindOverallClass.overallClass?.Detail_class_infos;
-
-      results?.map((result) =>
-        append({
-          class_name: result.class_name,
-          edu_concept: result.edu_concept,
-          student_number: result.student_number,
-          date: result.date,
-          //@ts-ignore
-          remark: result.remark,
-          unfixed: result.unfixed,
-        })
-      );
-      console.log(results);
-      console.log(fields);
-    }
-  }, [findOverallClassData, error, loading]);
+  // useDidMountEffect(() => {
+  //   if (!error && !loading) {
+  //     fields.map((value, index) => {
+  //       console.log(value);
+  //       console.log(index);
+  //       remove(index);
+  //     });
+  //     const results =
+  //       findOverallClassData?.FindOverallClass.overallClass?.Detail_class_infos;
+  //     results?.map((result) => {
+  //       // // String -> Date Object
+  //       // const datelist = result.date.split(",");
+  //       // const dateObject: object[] = [];
+  //       // datelist.forEach((date) => dateObject.push(new Date(date)));
+  //       append({
+  //         class_name: result.class_name,
+  //         edu_concept: result.edu_concept,
+  //         student_number: result.student_number,
+  //         date: result.date,
+  //         //@ts-ignore
+  //         remark: result.remark,
+  //         unfixed: result.unfixed,
+  //       });
+  //     });
+  //   }
+  // }, [findOverallClassData]);
 
   // 왼쪽 배너 기능
   const leftRef = useRef<any>(null);
@@ -486,6 +500,9 @@ export const EditApplication = () => {
   const [nextBtnActive, setNextBtnActive] = useState<boolean>(true);
   useEffect(() => {
     if (formNum === 0) {
+      console.log(
+        watch(["name", "institution_name", "position", "phone_number", "email"])
+      );
       if (
         watch([
           "name",
@@ -522,9 +539,9 @@ export const EditApplication = () => {
           watch([
             `detail_classes.${len}.class_name`,
             `detail_classes.${len}.edu_concept`,
-            `detail_classes.${len}.date`,
           ]).every((item) => item !== "") &&
-          !Number.isNaN(watch(`detail_classes.${len}.student_number`))
+          !Number.isNaN(watch(`detail_classes.${len}.student_number`)) &&
+          watch(`detail_classes.${len}.date`).length !== 0
         ) {
           check_num += 1;
         }
@@ -538,7 +555,71 @@ export const EditApplication = () => {
         setNextBtnActive(true);
       }
     }
-  }, [watch()]);
+  }, [authState, findOverallClassData, formNum, watch()]);
+
+  useDidMountEffect(() => {
+    if (!error && !loading) {
+      reset({
+        name: findOverallClassData?.FindOverallClass.overallClass?.client.name
+          ? findOverallClassData?.FindOverallClass.overallClass?.client.name
+          : "",
+        institution_name: findOverallClassData?.FindOverallClass.overallClass
+          ?.client.institution_name
+          ? findOverallClassData?.FindOverallClass.overallClass?.client
+              .institution_name
+          : "",
+        position: findOverallClassData?.FindOverallClass.overallClass?.client
+          .position
+          ? findOverallClassData?.FindOverallClass.overallClass?.client.position
+          : "",
+        phone_number: findOverallClassData?.FindOverallClass.overallClass
+          ?.client.phone_number
+          ? findOverallClassData?.FindOverallClass.overallClass?.client
+              .phone_number
+          : "",
+        email: findOverallClassData?.FindOverallClass.overallClass?.client.email
+          ? findOverallClassData?.FindOverallClass.overallClass?.client.email
+          : "",
+        student_count: findOverallClassData?.FindOverallClass.overallClass
+          ?.student_count
+          ? findOverallClassData?.FindOverallClass.overallClass?.student_count
+          : 0,
+        school_rank: findOverallClassData?.FindOverallClass.overallClass
+          ?.school_rank
+          ? findOverallClassData?.FindOverallClass.overallClass?.school_rank
+          : "",
+        budget: findOverallClassData?.FindOverallClass.overallClass?.budget
+          ? findOverallClassData?.FindOverallClass.overallClass?.budget
+          : 0,
+        overall_remark: findOverallClassData?.FindOverallClass.overallClass
+          ?.overall_remark
+          ? findOverallClassData?.FindOverallClass.overallClass?.overall_remark
+          : "",
+      });
+    }
+    if (!error && !loading) {
+      fields.map((value, index) => {
+        remove(index);
+      });
+      const results =
+        findOverallClassData?.FindOverallClass.overallClass?.Detail_class_infos;
+      results?.map((result) => {
+        // // String -> Date Object
+        // const datelist = result.date.split(",");
+        // const dateObject: object[] = [];
+        // datelist.forEach((date) => dateObject.push(new Date(date)));
+        append({
+          class_name: result.class_name,
+          edu_concept: result.edu_concept,
+          student_number: result.student_number,
+          date: result.date,
+          //@ts-ignore
+          remark: result.remark,
+          unfixed: result.unfixed,
+        });
+      });
+    }
+  }, [findOverallClassData, error, loading]);
 
   return (
     // 모달창
