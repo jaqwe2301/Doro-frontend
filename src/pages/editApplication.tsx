@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../styles/applyEdu.css";
 
 import {
@@ -40,6 +40,10 @@ import { setAppElement } from "react-modal";
 import InputIcon from "react-multi-date-picker/components/input_icon";
 import { CreateEdu, CreateEduVariables } from "../__generated__/CreateEdu";
 import { displayPartsToString } from "typescript";
+import {
+  FindOverallClass,
+  FindOverallClassVariables,
+} from "../__generated__/FindOverallClass";
 
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 const months = [
@@ -82,6 +86,35 @@ const CHECK_AUTH_NUM_QUERY = gql`
     }
   }
 `;
+
+const FIND_OVERALL_CLASS_QUERY = gql`
+  query FindOverallClass($input: FindOverallClassInput!) {
+    FindOverallClass(input: $input) {
+      overallClass {
+        student_count
+        school_rank
+        budget
+        overall_remark
+        client {
+          name
+          institution_name
+          position
+          phone_number
+          email
+        }
+        Detail_class_infos {
+          class_name
+          edu_concept
+          student_number
+          date
+          remark
+          unfixed
+        }
+      }
+    }
+  }
+`;
+
 interface Detail_class_item {
   class_name: string;
   edu_concept: string;
@@ -133,7 +166,7 @@ const useInterval: IUseInterval = (callback, interval) => {
   }, [interval]);
 };
 
-export const MakeNewApplication = () => {
+export const EditApplication = () => {
   // 질문 바뀌는 부분
   const [formNum, setformNum] = useState(0);
   // 모달창
@@ -174,6 +207,10 @@ export const MakeNewApplication = () => {
     }
   }, [watch()]);
 
+  const location = useLocation();
+  const state = location.state as { id: number };
+  const overall_Class_Id = state.id;
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "detail_classes",
@@ -187,7 +224,7 @@ export const MakeNewApplication = () => {
       CreateEdu: { ok, error },
     } = data;
     if (ok) {
-      navigate("/");
+      navigate("/showApplication", { replace: true });
     } else {
       console.log(error);
     }
@@ -351,6 +388,38 @@ export const MakeNewApplication = () => {
     checkAuthNumQuery,
     checkAuthNumQueryVariables
   >(CHECK_AUTH_NUM_QUERY, { onCompleted: onCompleted_check });
+
+  const {
+    data: findOverallClassData,
+    loading,
+    error,
+  } = useQuery<FindOverallClass, FindOverallClassVariables>(
+    FIND_OVERALL_CLASS_QUERY,
+    {
+      variables: { input: { overall_Class_Id } },
+    }
+  );
+
+  useEffect(() => {
+    if (!error && !loading) {
+      const results =
+        findOverallClassData?.FindOverallClass.overallClass?.Detail_class_infos;
+
+      results?.map((result) =>
+        append({
+          class_name: result.class_name,
+          edu_concept: result.edu_concept,
+          student_number: result.student_number,
+          date: result.date,
+          //@ts-ignore
+          remark: result.remark,
+          unfixed: result.unfixed,
+        })
+      );
+      console.log(results);
+      console.log(fields);
+    }
+  }, [findOverallClassData, error, loading]);
 
   // 왼쪽 배너 기능
   const leftRef = useRef<any>(null);
@@ -627,9 +696,13 @@ export const MakeNewApplication = () => {
                 </div>
                 <div className="Create-post-input-input-box">
                   <input
-                    {...register("name", { required: true })}
+                    {...register("name")}
                     className="Create-post-input-input-content"
                     name="name"
+                    defaultValue={
+                      findOverallClassData?.FindOverallClass?.overallClass
+                        ?.client?.name
+                    }
                     placeholder="신청자 성함"
                     readOnly={formNum === 4}
                   />
@@ -644,9 +717,13 @@ export const MakeNewApplication = () => {
                 </div>
                 <div className="Create-post-input-input-box">
                   <input
-                    {...register("institution_name", { required: true })}
+                    {...register("institution_name")}
                     name="institution_name"
                     placeholder="도로 초등학교"
+                    defaultValue={
+                      findOverallClassData?.FindOverallClass?.overallClass
+                        ?.client?.institution_name
+                    }
                     className="Create-post-input-input-content"
                     readOnly={formNum === 4}
                   />
@@ -661,9 +738,13 @@ export const MakeNewApplication = () => {
                 </div>
                 <div className="Create-post-input-input-box">
                   <input
-                    {...register("position", { required: true })}
+                    {...register("position")}
                     name="position"
                     placeholder="진로 선생님"
+                    defaultValue={
+                      findOverallClassData?.FindOverallClass?.overallClass
+                        ?.client?.position
+                    }
                     className="Create-post-input-input-content"
                     readOnly={formNum === 4}
                   />
@@ -678,12 +759,14 @@ export const MakeNewApplication = () => {
                 </div>
                 <div className="Create-post-input-description-flex">
                   <input
-                    {...register("phone_number", {
-                      required: true,
-                    })}
+                    {...register("phone_number", {})}
                     name="phone_number"
                     placeholder="01012345678"
                     className="Create-post-input-phoneNum"
+                    defaultValue={
+                      findOverallClassData?.FindOverallClass?.overallClass
+                        ?.client?.phone_number
+                    }
                     readOnly={formNum === 4}
                     onChange={() => {
                       if (authState === true) {
@@ -732,7 +815,7 @@ export const MakeNewApplication = () => {
                 </div>
                 <div className="Create-post-input-description-flex">
                   <input
-                    {...register_auth("authNum", { required: true })}
+                    {...register_auth("authNum")}
                     name="authNum"
                     placeholder="인증번호 입력"
                     className="Create-post-input-phoneNum"
@@ -770,12 +853,15 @@ export const MakeNewApplication = () => {
                 <div className="Create-post-input-input-box">
                   <input
                     {...register("email", {
-                      required: true,
                       validate: (email: string) => email.includes("@"),
                     })}
                     name="email"
                     placeholder="E-Mail"
                     className="Create-post-input-input-content"
+                    defaultValue={
+                      findOverallClassData?.FindOverallClass?.overallClass
+                        ?.client?.email
+                    }
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -802,13 +888,16 @@ export const MakeNewApplication = () => {
                 <div className="Create-post-input-input-box">
                   <input
                     {...register("student_count", {
-                      required: true,
                       valueAsNumber: true,
                     })}
                     type="number"
                     className="Create-post-input-input-content"
                     name="student_count"
                     placeholder="총 학생 수를 입력해주세요."
+                    defaultValue={
+                      findOverallClassData?.FindOverallClass?.overallClass
+                        ?.student_count
+                    }
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -822,9 +911,13 @@ export const MakeNewApplication = () => {
                 </div>
                 <div className="Create-post-input-input-box">
                   <input
-                    {...register("school_rank", { required: true })}
+                    {...register("school_rank")}
                     name="school_rank"
                     placeholder="초등학교 1학년, 3학년"
+                    defaultValue={
+                      findOverallClassData?.FindOverallClass?.overallClass
+                        ?.school_rank
+                    }
                     className="Create-post-input-input-content"
                     readOnly={formNum === 4}
                   />
@@ -840,12 +933,15 @@ export const MakeNewApplication = () => {
                 <div className="Create-post-input-input-box">
                   <input
                     {...register("budget", {
-                      required: true,
                       valueAsNumber: true,
                     })}
                     name="budget"
                     placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
                     className="Create-post-input-input-content"
+                    defaultValue={
+                      findOverallClassData?.FindOverallClass?.overallClass
+                        ?.budget
+                    }
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -883,9 +979,7 @@ export const MakeNewApplication = () => {
                             placeholder="6학년 3반"
                             {...register(
                               `detail_classes.${index}.class_name` as const,
-                              {
-                                required: true,
-                              }
+                              {}
                             )}
                             name={`detail_classes.${index}.class_name`}
                             readOnly={formNum === 4}
@@ -897,9 +991,7 @@ export const MakeNewApplication = () => {
                             placeholder="AI, 로봇"
                             {...register(
                               `detail_classes.${index}.edu_concept` as const,
-                              {
-                                required: true,
-                              }
+                              {}
                             )}
                             name={`detail_classes.${index}.edu_concept`}
                             readOnly={formNum === 4}
@@ -914,7 +1006,6 @@ export const MakeNewApplication = () => {
                               `detail_classes.${index}.student_number` as const,
                               {
                                 valueAsNumber: true,
-                                required: true,
                               }
                             )}
                             name={`detail_classes.${index}.student_number`}
@@ -930,6 +1021,7 @@ export const MakeNewApplication = () => {
                               <>
                                 <DatePicker
                                   disabled={formNum === 4}
+                                  value={props.field.value || ""}
                                   onChange={(e) => props.field.onChange(e)}
                                   minDate={new Date()}
                                   weekDays={weekDays}
@@ -1002,6 +1094,11 @@ export const MakeNewApplication = () => {
                     name="overall_remark"
                     placeholder="교육 특이사항을 입력해주세요"
                     className="Create-post-textarea"
+                    //@ts-ignore
+                    defaultValue={
+                      findOverallClassData?.FindOverallClass?.overallClass
+                        ?.overall_remark
+                    }
                     readOnly={formNum === 4}
                   />
                 </div>

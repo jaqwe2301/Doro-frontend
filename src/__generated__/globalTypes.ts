@@ -92,6 +92,10 @@ export interface FindAllPostsInput {
   page?: number | null;
 }
 
+export interface FindOverallClassInput {
+  overall_Class_Id: number;
+}
+
 export interface FindOverallClassesInput {
   phone_number: string;
   name: string;
