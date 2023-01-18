@@ -173,6 +173,7 @@ export const ShowApplication = () => {
 
   const onFindOverallClassesCompleted = (data: FindOverallClasses) => {
     console.log(data);
+    OverallClassRefetch();
   };
   const onDeleteOverallClassCompleted = () => {
     OverallClassRefetch();
