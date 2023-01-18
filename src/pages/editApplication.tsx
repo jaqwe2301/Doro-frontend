@@ -1,29 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import "../styles/applyEdu.css";
 
-import {
-  gql,
-  useMutation,
-  useReactiveVar,
-  useLazyQuery,
-  useQuery,
-} from "@apollo/client";
+import { gql, useMutation, useLazyQuery, useQuery } from "@apollo/client";
 import React, { useEffect, useState, useRef } from "react";
 
-import {
-  appendErrors,
-  Control,
-  Controller,
-  useFieldArray,
-  useForm,
-  useWatch,
-} from "react-hook-form";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { isLoggedInVar } from "../apollo";
+
 import { Banner } from "../components/banner";
 import createEduRoute from "../images/bannerCategory/createEdu.png";
 import { Helmet } from "react-helmet-async";
-import infoConfirm from "../images/Frame68.svg";
+
 import {
   SendAuthNum,
   SendAuthNumVariables,
@@ -35,16 +22,18 @@ import {
 } from "../__generated__/checkAuthNumQuery";
 import DatePicker, { DateObject } from "react-multi-date-picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
-import type { Value } from "react-multi-date-picker";
-import { setAppElement } from "react-modal";
-import InputIcon from "react-multi-date-picker/components/input_icon";
+
 import { CreateEdu, CreateEduVariables } from "../__generated__/CreateEdu";
-import { displayPartsToString } from "typescript";
+
 import {
   FindOverallClass,
   FindOverallClassVariables,
 } from "../__generated__/FindOverallClass";
 import { useDidMountEffect } from "../hooks/useDidMountEffect";
+import {
+  DeleteOverallClass,
+  DeleteOverallClassVariables,
+} from "../__generated__/DeleteOverallClass";
 
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 const months = [
@@ -82,6 +71,15 @@ const SEND_AUTH_NUM_MUTATION = gql`
 const CHECK_AUTH_NUM_QUERY = gql`
   query checkAuthNumQuery($input: CheckAuthNumInput!) {
     CheckAuthNum(input: $input) {
+      ok
+      error
+    }
+  }
+`;
+
+const DELETE_OVERALL_CLASS = gql`
+  mutation DeleteOverallClass($input: DeleteOverallClassInput!) {
+    DeleteOverallClass(input: $input) {
       ok
       error
     }
@@ -234,16 +232,14 @@ export const EditApplication = () => {
     if (ok) {
       navigate("/showApplication", { replace: true });
     } else {
-      console.log(error);
     }
   };
 
   const onCompleted = (data: SendAuthNum) => {
-    console.log("oncompleted");
     const {
       SendAuthNum: { ok, error },
     } = data;
-    console.log("dddd");
+
     if (ok) {
       setKakaoModal(true);
       if (resend === false) {
@@ -251,7 +247,6 @@ export const EditApplication = () => {
       }
       setIsActiveTimer(true);
     } else {
-      console.log(error);
       alert("카톡 안 옴");
     }
   };
@@ -269,11 +264,7 @@ export const EditApplication = () => {
       overall_remark,
       detail_classes,
     } = getValues();
-    // const fordateformat = getValues();
-    // console.log(fordateformat);
-    // fordateformat.detail_classes.map((data) => {
-    //   data.date = data.date.toString();
-    // });
+
     createEduMutation({
       variables: {
         input: {
@@ -290,21 +281,19 @@ export const EditApplication = () => {
         },
       },
     });
+
+    DeleteOverallClass({
+      variables: {
+        input: {
+          //변수 통일 필요
+          overallClassId: overall_Class_Id,
+        },
+      },
+    });
   };
 
   const onInvalid_create = () => {
     alert("교육 신청 중 오류가 발생하였습니다.");
-  };
-
-  const onInvalid_send = () => {
-    try {
-      const { name, phone_number } = getValues();
-      console.log(name, phone_number);
-      console.log("try)");
-    } catch (error) {
-      console.log(error);
-    }
-    console.log("ㅑinvalid 통과");
   };
 
   const onSubmit_send = () => {
@@ -324,7 +313,6 @@ export const EditApplication = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log("submi22t");
   };
 
   const onSubmit_check = () => {
@@ -345,7 +333,7 @@ export const EditApplication = () => {
     const {
       CheckAuthNum: { ok, error },
     } = data;
-    console.log("dddd");
+
     if (ok) {
       setAuthCheckModal(true);
       setAuthState(true);
@@ -387,12 +375,12 @@ export const EditApplication = () => {
     { onCompleted: onCompletedCreate }
   );
 
-  const [sendAuthNumMutation, { data: sendAuthNum }] = useMutation<
-    SendAuthNum,
-    SendAuthNumVariables
-  >(SEND_AUTH_NUM_MUTATION, { onCompleted });
+  const [sendAuthNumMutation] = useMutation<SendAuthNum, SendAuthNumVariables>(
+    SEND_AUTH_NUM_MUTATION,
+    { onCompleted }
+  );
 
-  const [checkAuthNumQuery, { data: checkData }] = useLazyQuery<
+  const [checkAuthNumQuery] = useLazyQuery<
     checkAuthNumQuery,
     checkAuthNumQueryVariables
   >(CHECK_AUTH_NUM_QUERY, { onCompleted: onCompleted_check });
@@ -407,33 +395,6 @@ export const EditApplication = () => {
       variables: { input: { overall_Class_Id } },
     }
   );
-
-  // useDidMountEffect(() => {
-  //   if (!error && !loading) {
-  //     fields.map((value, index) => {
-  //       console.log(value);
-  //       console.log(index);
-  //       remove(index);
-  //     });
-  //     const results =
-  //       findOverallClassData?.FindOverallClass.overallClass?.Detail_class_infos;
-  //     results?.map((result) => {
-  //       // // String -> Date Object
-  //       // const datelist = result.date.split(",");
-  //       // const dateObject: object[] = [];
-  //       // datelist.forEach((date) => dateObject.push(new Date(date)));
-  //       append({
-  //         class_name: result.class_name,
-  //         edu_concept: result.edu_concept,
-  //         student_number: result.student_number,
-  //         date: result.date,
-  //         //@ts-ignore
-  //         remark: result.remark,
-  //         unfixed: result.unfixed,
-  //       });
-  //     });
-  //   }
-  // }, [findOverallClassData]);
 
   // 왼쪽 배너 기능
   const leftRef = useRef<any>(null);
@@ -604,10 +565,6 @@ export const EditApplication = () => {
       const results =
         findOverallClassData?.FindOverallClass.overallClass?.Detail_class_infos;
       results?.map((result) => {
-        // // String -> Date Object
-        // const datelist = result.date.split(",");
-        // const dateObject: object[] = [];
-        // datelist.forEach((date) => dateObject.push(new Date(date)));
         append({
           class_name: result.class_name,
           edu_concept: result.edu_concept,
@@ -620,6 +577,11 @@ export const EditApplication = () => {
       });
     }
   }, [findOverallClassData, error, loading]);
+
+  const [DeleteOverallClass, { data: DeleteOverallClassData }] = useMutation<
+    DeleteOverallClass,
+    DeleteOverallClassVariables
+  >(DELETE_OVERALL_CLASS);
 
   return (
     // 모달창
