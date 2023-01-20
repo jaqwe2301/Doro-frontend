@@ -35,6 +35,8 @@ import {
   DeleteOverallClassVariables,
 } from "../__generated__/DeleteOverallClass";
 
+import { ReactComponent as Delete } from "../images/delete.svg";
+
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 const months = [
   "1월",
@@ -727,17 +729,17 @@ export const EditApplication = () => {
               style={
                 formNum === 0 || formNum === 4
                   ? { display: "" }
-                  : { visibility: "hidden", height: 0, overflow: "hidden" }
+                  : { opacity: 0, height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">신청자 정보</div>
               <div className=" Create-post-input-parent">
-                <div className="Create-post-input-description-box">
+                <div className="Create-post-input-description-box  Create-post-input-top">
                   <p className="Create-post-input-description-text">
                     신청자 성함
                   </p>
                 </div>
-                <div className="Create-post-input-input-box">
+                <div className="Create-post-input-input-box Create-post-input-top">
                   <input
                     {...register("name")}
                     className="Create-post-input-input-content"
@@ -916,19 +918,21 @@ export const EditApplication = () => {
               ref={form2Ref}
               className="Create-post-individual-form"
               style={
-                formNum === 1 || formNum === 4
+                formNum === 1
                   ? { display: "" }
-                  : { visibility: "hidden", height: 0, overflow: "hidden" }
+                  : formNum === 4
+                  ? { marginTop: "6.3rem" }
+                  : { opacity: 0, height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">교육생 정보</div>
               <div className=" Create-post-input-parent">
-                <div className="Create-post-input-description-box">
+                <div className="Create-post-input-description-box Create-post-input-top">
                   <span className="Create-post-input-description-text">
                     교육 학생 수
                   </span>
                 </div>
-                <div className="Create-post-input-input-box">
+                <div className="Create-post-input-input-box Create-post-input-top">
                   <input
                     {...register("student_count", {
                       valueAsNumber: true,
@@ -995,76 +999,104 @@ export const EditApplication = () => {
               ref={form3Ref}
               className="Create-post-individual-form"
               style={
-                formNum === 2 || formNum === 4
+                formNum === 2
                   ? { display: "" }
-                  : { visibility: "hidden", height: 0, overflow: "hidden" }
+                  : formNum === 4
+                  ? { marginTop: "6.3rem" }
+                  : { opacity: 0, height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">학급별 교육 일정</div>
-              <div>
+              <div className="classInfo-container">
                 {fields.map((field, index) => {
                   return (
-                    <div key={field.id}>
+                    <div key={field.id} className="classInfo-box">
                       <section className={"section"} key={field.id}>
-                        {index !== 0 && (
+                        <div className="classInfo-subtitle-container">
+                          <div className="classInfo-subtitle">학급 정보</div>
+                          {/* {index !== 0 && ( */}
                           <button
                             type="button"
                             onClick={() => remove(index)}
                             disabled={formNum === 4}
                           >
-                            X
+                            <Delete style={{ width: "0.833rem" }} />
                           </button>
-                        )}
+                          {/* )} */}
+                        </div>
 
-                        <div>
-                          <span>학급 이름</span>
+                        <div className="classInfo-topInfo-container">
+                          <span className="classInfo-topInfo-font">
+                            학급 이름
+                          </span>
                           <input
+                            className="classInfo-topInfo-input"
                             placeholder="6학년 3반"
                             {...register(
                               `detail_classes.${index}.class_name` as const,
-                              {}
+                              {
+                                required: true,
+                              }
                             )}
                             name={`detail_classes.${index}.class_name`}
                             readOnly={formNum === 4}
                           />
                         </div>
-                        <div>
-                          <span>교육 컨셉</span>
+                        <div className="classInfo-topInfo-container">
+                          <span className="classInfo-topInfo-font">
+                            교육 컨셉
+                          </span>
                           <input
+                            className="classInfo-topInfo-input"
                             placeholder="AI, 로봇"
                             {...register(
                               `detail_classes.${index}.edu_concept` as const,
-                              {}
+                              {
+                                required: true,
+                              }
                             )}
                             name={`detail_classes.${index}.edu_concept`}
                             readOnly={formNum === 4}
                           />
                         </div>
-                        <div>
-                          <span>학생 수</span>
+                        <div className="classInfo-topInfo-container">
+                          <span className="classInfo-topInfo-font">
+                            학생 수
+                          </span>
                           <input
+                            className="classInfo-topInfo-input"
                             placeholder="120"
                             type="number"
                             {...register(
                               `detail_classes.${index}.student_number` as const,
                               {
                                 valueAsNumber: true,
+                                required: true,
                               }
                             )}
                             name={`detail_classes.${index}.student_number`}
                             readOnly={formNum === 4}
                           />
                         </div>
-                        <div>
-                          <span>교육 날짜</span>
+                        <div className="classInfo-topInfo-container">
+                          <span className="classInfo-topInfo-font">
+                            교육 날짜
+                          </span>
                           <Controller
                             control={control}
                             name={`detail_classes.${index}.date`}
                             render={(props) => (
                               <>
                                 <DatePicker
+                                  style={{
+                                    fontFamily: "Pretendard",
+                                    border: "solid 1px var(--doro-light-grey)",
+                                    borderRadius: "4px",
+                                    height: "2rem",
+                                    paddingLeft: "0.778rem",
+                                    width: "192.6px",
+                                  }}
                                   disabled={formNum === 4}
-                                  value={props.field.value || ""}
                                   onChange={(e) => props.field.onChange(e)}
                                   minDate={new Date()}
                                   weekDays={weekDays}
@@ -1077,10 +1109,16 @@ export const EditApplication = () => {
                             )}
                           />
                         </div>
+                        <div className="classInfo-date-addExplanation">
+                          (다회차 교육인 경우 복수 선택 해주세요)
+                        </div>
                         <div>
-                          <span>희망 교육 시간</span>
-                          <input
-                            placeholder="희망하시는 교육 시간을 적어주세요.\n미정 일시 하단 체크박스를 체크해주세요."
+                          <div className="classInfo-bottomInfo-title">
+                            희망 교육 시간
+                          </div>
+                          <textarea
+                            className="classInfo-bottomInfo-input"
+                            placeholder="희망하시는 교육 시간을 적어주세요.&#13;&#10;미정 일시 하단 체크박스를 체크해주세요."
                             {...register(
                               `detail_classes.${index}.remark` as const
                             )}
@@ -1088,8 +1126,9 @@ export const EditApplication = () => {
                             readOnly={formNum === 4}
                           />
                         </div>
-                        <div>
+                        <div className="classInfo-checkbox-container">
                           <input
+                            className="classInfo-checkbox"
                             {...register(
                               `detail_classes.${index}.unfixed` as const
                             )}
@@ -1097,41 +1136,45 @@ export const EditApplication = () => {
                             type="checkbox"
                             readOnly={formNum === 4}
                           />
-                          <span>교육 시간 미정</span>
+                          <span className="classInfo-checkbox-text">
+                            교육 시간 미정
+                          </span>
                         </div>
                       </section>
                     </div>
                   );
                 })}
-
-                <button
-                  type="button"
-                  onClick={() => click_append_buttion()}
-                  disabled={formNum === 4}
-                >
-                  +학급추가
-                </button>
               </div>
+              <button
+                className="classInfo-addClass-box"
+                type="button"
+                onClick={() => click_append_buttion()}
+                disabled={formNum === 4}
+              >
+                + 학급 추가
+              </button>
             </div>
 
             <div
               ref={form4Ref}
               className="Create-post-individual-form"
               style={
-                formNum === 3 || formNum === 4
+                formNum === 3
                   ? { display: "" }
-                  : { visibility: "hidden", height: 0, overflow: "hidden" }
+                  : formNum === 4
+                  ? { marginTop: "6.3rem" }
+                  : { opacity: 0, height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">교육 특이사항</div>
 
               <div className=" Create-post-input-textarea-parent">
-                <div className="Create-post-input-textarea-span-box">
+                <div className="Create-post-input-textarea-span-box  Create-post-input-top">
                   <span className="Create-post-input-description-text">
                     교육 특이사항
                   </span>
                 </div>
-                <div className="Create-post-input-textarea-div">
+                <div className="Create-post-input-textarea-div Create-post-input-top">
                   <textarea
                     {...register("overall_remark")}
                     name="overall_remark"
