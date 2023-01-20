@@ -17,6 +17,17 @@
   border: solid 1px #777;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.Create-post-submit-modal {
+  width: 27.944rem;
+  height: 13.08rem;
+  flex-grow: 0;
+  border: solid 1px #777;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .Create-post-kakao-modal-top {
@@ -30,12 +41,29 @@
   font-size: 1rem;
 }
 
+.Create-post-submit-modal-button-container{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.15rem;
+  width: 100%;
+}
+
 .Create-post-kakao-modal-bottom {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 7.889rem;
+  background: white;
+}
+
+.Create-post-submit-modal-bottom {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  height: 10rem;
+  padding: 0.9rem 1.056rem 0 1.1rem;
   background: white;
 }
 
@@ -90,11 +118,13 @@
 .circleNum-active {
   background: #0072b9;
   color: white;
+  transition: 2.5s;
 }
 
 .circleNum-nonActive {
   background: white;
   color: #0072b9;
+  transition: 2.5s;
 }
 
 .Progress-line {
@@ -111,11 +141,8 @@
   font-weight: 600;
 }
 
-/* .Box-marginTop {
-  margin-top : 17.222rem;
-} */
-
 .Create-post-individual-form {
+  transition: 2.5s;
 }
 
 .CreateEdu-content-root {
@@ -125,10 +152,8 @@
 }
 
 .CreateEdu-title {
-  /* width: 6.944rem; */
   height: 1.611rem;
   margin-bottom: 1.167rem;
-  /* margin-top: 5.5rem; */
   flex-grow: 0;
   font-family: Pretendard;
   font-size: 1.333rem;
@@ -144,6 +169,10 @@
 .Create-post-input-parent {
   display: flex;
   height: 4.056rem;
+}
+
+.Create-post-input-top {
+  border-top: solid 1px var(--doro-light-grey);
 }
 
 .Create-post-input-input-box {
@@ -273,6 +302,7 @@
   padding: 0.556rem 0.778rem;
   border-radius: 4px;
   border: solid 1px var(--doro-light-grey);
+  font-family: Pretendard;
 }
 
 .Create-post-input-input-content::placeholder {
@@ -346,6 +376,7 @@
   padding: 0.722rem 0.778rem;
   border-radius: 4px;
   border: solid 1px var(--doro-light-grey);
+  font-family: Pretendard;
 }
 
 .Create-post-agree-notification-parent {
@@ -490,4 +521,123 @@
   height: 3.667rem;
   font-family: Pretendard;
   font-size: 1rem;
+}
+
+.classInfo-container{
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: 21.057rem 21.057rem 21.057rem; }
+
+.classInfo-box {
+  margin-bottom: 1.2rem;
+  padding: 1.444rem 1.389rem 1.278rem 1.278rem;
+  background: #f8f9fd;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.classInfo-subtitle-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.classInfo-subtitle {
+  font-family: Pretendard;
+  font-size: 1.111rem;
+  font-weight: bold;
+  color: #212121;
+}
+
+.classInfo-topInfo-container {
+  display: flex;
+  margin-top: 1.333rem;
+  width: 100%;
+  font-family: Pretendard;
+  align-items: center;
+}
+
+.classInfo-topInfo-font {
+  width: 56px;
+  color: #212121;
+  font-size: 0.889rem;
+  font-weight: 600;
+  margin-right: 1rem;
+}
+
+.classInfo-topInfo-input {
+  font-family: Pretendard;
+  border: solid 1px var(--doro-light-grey);
+  border-radius: 4px;
+  height: 2rem;
+  padding-left: 0.778rem;
+  width: 66%;
+}
+
+.classInfo-topInfo-input::placeholder {
+  font-family: Pretendard;
+}
+
+.classInfo-date-addExplanation {
+  display: flex;
+  font-family: Pretendard;
+  color: #777777;
+  font-size: 0.556rem;
+  justify-content: flex-end;
+  margin-right: 2.896rem;
+}
+
+.classInfo-bottomInfo-title {
+  margin: 2.33rem 0 0.388rem 0;
+  font-family: Pretendard;
+  color: #212121;
+  font-weight: 600;
+  font-size: 1.054rem;
+}
+
+.classInfo-bottomInfo-input {
+  padding: 0.48rem 0.666rem;
+  width: 90.4%;
+  height: 7.11rem;
+  border: solid 1px var(--doro-light-grey);
+  border-radius: 3px;
+  font-family: Pretendard;
+  font-size: 0.833rem;
+  font-weight: 600;
+}
+
+.classInfo-bottomInfo-input::placeholder {
+  font-family: Pretendard;
+  font-size: 0.833rem;
+  font-weight: 600;
+  color: #d9d9d9;
+  opacity: 1;
+}
+
+.classInfo-checkbox-container{
+  display: flex;
+}
+
+.classInfo-checkbox {
+  margin-right: 0.394rem;
+  height: 1.22rem;
+  width: 1.22rem;
+}
+
+.classInfo-checkbox-text { 
+  font-family: Pretendard;
+  font-size: 0.832rem;
+  color: #777;
+}
+
+.classInfo-addClass-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 3.28rem;
+  background-color: #0072b9;
+  font-family: Pretendard;
+  color: #f8f9fd;
+  font-size: 1.14rem;
+  font-weight: 600;
 }

@@ -14,6 +14,7 @@ import { ApplyEdu } from "../pages/applyEdu";
 import { MakeNewApplication } from "../pages/makeNewApplication";
 import { ShowApplication } from "../pages/showApplication";
 import { ShowDetailContent } from "../pages/showDetailContent";
+import { EditApplication } from "../pages/editApplication";
 
 import { Walking } from "../pages/educontents/walking";
 import { Balancing } from './../pages/educontents/balancing';
@@ -57,6 +58,7 @@ export const LoggedOutRouter = () => {
         <Route path="/makeNewApplication" element={<MakeNewApplication />}></Route>
         <Route path="/showApplication" element={<ShowApplication />}></Route>
         <Route path="/showDetailContent" element={<ShowDetailContent />}></Route>
+        <Route path="/editApplication" element={<EditApplication />}></Route>
 
         <Route path="/walking" element={<Walking />}></Route>
         <Route path="/balancing" element={<Balancing />}></Route>

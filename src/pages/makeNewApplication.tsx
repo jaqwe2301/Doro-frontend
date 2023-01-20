@@ -41,6 +41,8 @@ import InputIcon from "react-multi-date-picker/components/input_icon";
 import { CreateEdu, CreateEduVariables } from "../__generated__/CreateEdu";
 import { displayPartsToString } from "typescript";
 
+import { ReactComponent as Delete } from "../images/delete.svg";
+
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 const months = [
   "1월",
@@ -138,6 +140,7 @@ export const MakeNewApplication = () => {
   const [formNum, setformNum] = useState(0);
   // 모달창
   const [kakaoModal, setKakaoModal] = useState(false);
+  const [submitModal, setSubmitModal] = useState(false);
   // 카톡 인증 카운트다운
   const [min, setMin] = useState<number>(4);
   const [sec, setSec] = useState<number>(59);
@@ -166,13 +169,13 @@ export const MakeNewApplication = () => {
     handleSubmit: handleSubmit_auth,
   } = useForm<IAuthForm>();
 
-  useEffect(() => {
-    if (watch("phone_number").length === 11 && watch("name")) {
-      setSendBtnActive(false);
-    } else {
-      setSendBtnActive(true);
-    }
-  }, [watch()]);
+  // useEffect(() => {
+  //   if (watch("phone_number").length === 11 && watch("name")) {
+  //     setSendBtnActive(false);
+  //   } else {
+  //     setSendBtnActive(true);
+  //   }
+  // }, [watch()]);
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -198,7 +201,6 @@ export const MakeNewApplication = () => {
     const {
       SendAuthNum: { ok, error },
     } = data;
-    console.log("dddd");
     if (ok) {
       setKakaoModal(true);
       if (resend === false) {
@@ -260,6 +262,20 @@ export const MakeNewApplication = () => {
       console.log(error);
     }
     console.log("ㅑinvalid 통과");
+  };
+
+  const check_kakao_condtion = () => {
+    if (watch("phone_number").length === 11 && watch("name")) {
+      onSubmit_send()
+    } else {
+      if (!watch("name")) {
+        alert("성함을 입력해주십시오.");
+      } else if (watch("phone_number").length !== 11) {
+        alert("휴대폰 번호를 다시 확인하십시오.");
+      } else {
+        alert("성함과 휴대폰 번호를 입력하십시오.");
+      }
+    }
   };
 
   const onSubmit_send = () => {
@@ -355,6 +371,7 @@ export const MakeNewApplication = () => {
   // 왼쪽 배너 기능
   const leftRef = useRef<any>(null);
   const WholeFormRef = useRef<any>(null);
+  const mainFormRef = useRef<any>(null);
   const line1Ref = useRef<any>(null);
   const line2Ref = useRef<any>(null);
   const line3Ref = useRef<any>(null);
@@ -364,37 +381,68 @@ export const MakeNewApplication = () => {
   const form2Ref = useRef<any>(null);
   const form3Ref = useRef<any>(null);
   const form4Ref = useRef<any>(null);
+  const nextRef = useRef<any>(null);
 
   useEffect(() => {
-    const progressStyle = leftRef.current.style;
-    const line1Style = line1Ref.current.style;
-    const line2Style = line2Ref.current.style;
-    const line3Style = line3Ref.current.style;
-    const line4Style = line4Ref.current.style;
+    let progressStyle = leftRef.current.style;
+    let line1Style = line1Ref.current.style;
+    let line2Style = line2Ref.current.style;
+    let line3Style = line3Ref.current.style;
+    let line4Style = line4Ref.current.style;
 
     const progressSpace = () => {
-      let formStyle = window.getComputedStyle(WholeFormRef.current);
-      let formMarginLeft = formStyle.getPropertyValue("margin-left");
-      progressStyle.width = formMarginLeft;
+      let formLeft = mainFormRef.current.getBoundingClientRect().left;
+      progressStyle = leftRef.current.style;
+      line1Style = line1Ref.current.style;
+      line2Style = line2Ref.current.style;
+      line3Style = line3Ref.current.style;
+      line4Style = line4Ref.current.style;
+
+      // let formStyle = window.getComputedStyle(WholeFormRef.current);
+      // let formMarginLeft = formStyle.getPropertyValue("margin-left");
+
+      progressStyle.width = `${formLeft - 20}px`;
 
       let circleStyle = window.getComputedStyle(circleRef.current);
-      let CircleWidth = circleStyle.getPropertyValue("width");
-      line1Style.marginLeft = `${parseFloat(CircleWidth) / 2 - 0.789}px`;
-      line2Style.marginLeft = `${parseFloat(CircleWidth) / 2 - 0.789}px`;
-      line3Style.marginLeft = `${parseFloat(CircleWidth) / 2 - 0.789}px`;
-      line4Style.marginLeft = `${parseFloat(CircleWidth) / 2 - 0.789}px`;
+      let circleWidth = circleStyle.getPropertyValue("width");
+      let circleBorder = circleStyle.getPropertyValue("border-left-width");
+
+      let lineStyle = window.getComputedStyle(line1Ref.current);
+      let linewidth = lineStyle.getPropertyValue("width");
+      line1Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
+      line2Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
+      line3Style.marginLeft = `${
+        parseFloat(circleWidth) / 2 -
+        parseFloat(circleBorder) -
+        parseFloat(linewidth) / 2
+      }px`;
+      line4Style.marginLeft = `${
+        parseFloat(circleWidth) / 2 -
+        parseFloat(circleBorder) -
+        parseFloat(linewidth) / 2
+      }px`;
+      // console.log("border-left-width", circleStyle.getPropertyValue("border-left-width"))
+      // console.log("CircleWidth", circleWidth)
+      // console.log(`${parseFloat(circleWidth) / 2}px`)
+      // console.log(`${parseFloat(circleWidth) / 2 - 1.5875}px`)
     };
 
     progressSpace();
 
+    window.onresize = () => {
+      progressSpace();
+    };
+
     progressStyle.top = `${461.328}px`;
 
-    window.addEventListener("scroll", function () {
+    window.addEventListener("scroll", () => {
       let scrollY = 461.328 + window.scrollY;
-      progressStyle.top = `${scrollY}px`;
-      if (scrollY >= 2183.33) {
-        progressStyle.top = `${2183.33}px`;
+      if (scrollY <= 811.328) {
+        scrollY = 461.328;
+      } else {
+        scrollY = scrollY - 350;
       }
+      progressStyle.top = `${scrollY}px`;
     });
   });
 
@@ -472,8 +520,8 @@ export const MakeNewApplication = () => {
   }, [watch()]);
 
   return (
-    // 모달창
     <>
+      {/* 모달창 */}
       {authCheckModal ? (
         <div className="Create-post-kakao-modal-container">
           <div className="Create-post-kakao-modal">
@@ -607,25 +655,70 @@ export const MakeNewApplication = () => {
         <div ref={WholeFormRef} className="CreateEdu-content-root">
           <form
             className="Create-post-form"
+            ref={mainFormRef}
             onSubmit={handleSubmit(onSubmit_create, onInvalid_create)}
           >
+            {submitModal ? (
+              <div className="Create-post-kakao-modal-container">
+                <div className="Create-post-submit-modal">
+                  <p className="Create-post-kakao-modal-top">
+                    교육을 신청하시겠습니까 ?
+                  </p>
+                  <div className="Create-post-submit-modal-bottom">
+                    <p
+                      style={{ letterSpacing: "0.9px" }}
+                      className="Create-post-kakao-modal-bottom-text"
+                    >
+                      제출한 정보는 수정 가능하며, 입력해주신 정보를 기반으로
+                      DORO 교육 매니저가 예산과 컨셉에 맞는 최적의 교육
+                      커리큘럼을 제안 해드릴 예정이니 편하게 제출해주세요 !
+                    </p>
+                    <div className="Create-post-submit-modal-button-container">
+                      <button
+                        style={{
+                          background: "#d9d9d9",
+                          fontSize: "0.776rem",
+                          margin: "0 0.684rem 0 0",
+                        }}
+                        className="Create-post-kakao-modal-button"
+                        onClick={() => {
+                          setSubmitModal(false);
+                        }}
+                      >
+                        취소
+                      </button>
+                      <button
+                        type="submit"
+                        style={{ fontSize: "0.776rem", marginTop: "0" }}
+                        className="Create-post-kakao-modal-button"
+                        onClick={() => {}}
+                      >
+                        교육 신청
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
             <div
               ref={form1Ref}
               className="Create-post-individual-form"
               style={
                 formNum === 0 || formNum === 4
                   ? { display: "" }
-                  : { visibility: "hidden", height: 0, overflow: "hidden" }
+                  : { opacity: 0, height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">신청자 정보</div>
-              <div className=" Create-post-input-parent">
-                <div className="Create-post-input-description-box">
+              <div className="Create-post-input-parent">
+                <div className="Create-post-input-description-box Create-post-input-top">
                   <p className="Create-post-input-description-text">
                     신청자 성함
                   </p>
                 </div>
-                <div className="Create-post-input-input-box">
+                <div className="Create-post-input-input-box  Create-post-input-top">
                   <input
                     {...register("name", { required: true })}
                     className="Create-post-input-input-content"
@@ -636,7 +729,7 @@ export const MakeNewApplication = () => {
                 </div>
               </div>
 
-              <div className=" Create-post-input-parent">
+              <div className="Create-post-input-parent">
                 <div className="Create-post-input-description-box">
                   <span className="Create-post-input-description-text">
                     소속 기관명
@@ -702,9 +795,12 @@ export const MakeNewApplication = () => {
                       type="button"
                       className="Create-post-input-phoneNum-button"
                       onClick={() => {
-                        onSubmit_send();
+                        // const kakaoCheck_name = getValues("name");
+                        // const kakaoCheck_phone = getValues("phone_number");
+                        check_kakao_condtion();
                       }}
-                      disabled={sendBtnActive || formNum === 4}
+                      // disabled={sendBtnActive || formNum === 4}
+                      disabled={formNum === 4}
                     >
                       카카오톡 인증
                     </button>
@@ -745,7 +841,7 @@ export const MakeNewApplication = () => {
                     onClick={handleSubmit_auth(onSubmit_check)}
                     disabled={formNum === 4}
                   >
-                    {authState ? "인증 완료" : "인증하기"}
+                    {authState ? "인증 완료" : "인증 하기"}
                   </button>
                   {isActiveTimer ? (
                     <div className="Create-post-input-phoneNum-button">
@@ -787,19 +883,21 @@ export const MakeNewApplication = () => {
               ref={form2Ref}
               className="Create-post-individual-form"
               style={
-                formNum === 1 || formNum === 4
+                formNum === 1
                   ? { display: "" }
-                  : { visibility: "hidden", height: 0, overflow: "hidden" }
+                  : formNum === 4
+                  ? { marginTop: "6.3rem" }
+                  : { opacity: 0, height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">교육생 정보</div>
               <div className=" Create-post-input-parent">
-                <div className="Create-post-input-description-box">
+                <div className="Create-post-input-description-box  Create-post-input-top">
                   <span className="Create-post-input-description-text">
                     교육 학생 수
                   </span>
                 </div>
-                <div className="Create-post-input-input-box">
+                <div className="Create-post-input-input-box  Create-post-input-top">
                   <input
                     {...register("student_count", {
                       required: true,
@@ -856,30 +954,38 @@ export const MakeNewApplication = () => {
               ref={form3Ref}
               className="Create-post-individual-form"
               style={
-                formNum === 2 || formNum === 4
+                formNum === 2
                   ? { display: "" }
-                  : { visibility: "hidden", height: 0, overflow: "hidden" }
+                  : formNum === 4
+                  ? { marginTop: "6.3rem" }
+                  : { opacity: 0, height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">학급별 교육 일정</div>
-              <div>
+              <div className="classInfo-container">
                 {fields.map((field, index) => {
                   return (
-                    <div key={field.id}>
+                    <div key={field.id} className="classInfo-box">
                       <section className={"section"} key={field.id}>
-                        {index !== 0 && (
+                        <div className="classInfo-subtitle-container">
+                          <div className="classInfo-subtitle">학급 정보</div>
+                          {/* {index !== 0 && ( */}
                           <button
                             type="button"
                             onClick={() => remove(index)}
                             disabled={formNum === 4}
                           >
-                            X
+                            <Delete style={{ width: "0.833rem" }} />
                           </button>
-                        )}
+                          {/* )} */}
+                        </div>
 
-                        <div>
-                          <span>학급 이름</span>
+                        <div className="classInfo-topInfo-container">
+                          <span className="classInfo-topInfo-font">
+                            학급 이름
+                          </span>
                           <input
+                            className="classInfo-topInfo-input"
                             placeholder="6학년 3반"
                             {...register(
                               `detail_classes.${index}.class_name` as const,
@@ -891,9 +997,12 @@ export const MakeNewApplication = () => {
                             readOnly={formNum === 4}
                           />
                         </div>
-                        <div>
-                          <span>교육 컨셉</span>
+                        <div className="classInfo-topInfo-container">
+                          <span className="classInfo-topInfo-font">
+                            교육 컨셉
+                          </span>
                           <input
+                            className="classInfo-topInfo-input"
                             placeholder="AI, 로봇"
                             {...register(
                               `detail_classes.${index}.edu_concept` as const,
@@ -905,9 +1014,12 @@ export const MakeNewApplication = () => {
                             readOnly={formNum === 4}
                           />
                         </div>
-                        <div>
-                          <span>학생 수</span>
+                        <div className="classInfo-topInfo-container">
+                          <span className="classInfo-topInfo-font">
+                            학생 수
+                          </span>
                           <input
+                            className="classInfo-topInfo-input"
                             placeholder="120"
                             type="number"
                             {...register(
@@ -921,14 +1033,24 @@ export const MakeNewApplication = () => {
                             readOnly={formNum === 4}
                           />
                         </div>
-                        <div>
-                          <span>교육 날짜</span>
+                        <div className="classInfo-topInfo-container">
+                          <span className="classInfo-topInfo-font">
+                            교육 날짜
+                          </span>
                           <Controller
                             control={control}
                             name={`detail_classes.${index}.date`}
                             render={(props) => (
                               <>
                                 <DatePicker
+                                  style={{
+                                    fontFamily: "Pretendard",
+                                    border: "solid 1px var(--doro-light-grey)",
+                                    borderRadius: "4px",
+                                    height: "2rem",
+                                    paddingLeft: "0.778rem",
+                                    width: "192.6px",
+                                  }}
                                   disabled={formNum === 4}
                                   onChange={(e) => props.field.onChange(e)}
                                   minDate={new Date()}
@@ -942,10 +1064,16 @@ export const MakeNewApplication = () => {
                             )}
                           />
                         </div>
+                        <div className="classInfo-date-addExplanation">
+                          (다회차 교육인 경우 복수 선택 해주세요)
+                        </div>
                         <div>
-                          <span>희망 교육 시간</span>
-                          <input
-                            placeholder="희망하시는 교육 시간을 적어주세요.\n미정 일시 하단 체크박스를 체크해주세요."
+                          <div className="classInfo-bottomInfo-title">
+                            희망 교육 시간
+                          </div>
+                          <textarea
+                            className="classInfo-bottomInfo-input"
+                            placeholder="희망하시는 교육 시간을 적어주세요.&#13;&#10;미정 일시 하단 체크박스를 체크해주세요."
                             {...register(
                               `detail_classes.${index}.remark` as const
                             )}
@@ -953,8 +1081,9 @@ export const MakeNewApplication = () => {
                             readOnly={formNum === 4}
                           />
                         </div>
-                        <div>
+                        <div className="classInfo-checkbox-container">
                           <input
+                            className="classInfo-checkbox"
                             {...register(
                               `detail_classes.${index}.unfixed` as const
                             )}
@@ -962,41 +1091,45 @@ export const MakeNewApplication = () => {
                             type="checkbox"
                             readOnly={formNum === 4}
                           />
-                          <span>교육 시간 미정</span>
+                          <span className="classInfo-checkbox-text">
+                            교육 시간 미정
+                          </span>
                         </div>
                       </section>
                     </div>
                   );
                 })}
-
-                <button
-                  type="button"
-                  onClick={() => click_append_buttion()}
-                  disabled={formNum === 4}
-                >
-                  +학급추가
-                </button>
               </div>
+              <button
+                className="classInfo-addClass-box"
+                type="button"
+                onClick={() => click_append_buttion()}
+                disabled={formNum === 4}
+              >
+                + 학급 추가
+              </button>
             </div>
 
             <div
               ref={form4Ref}
               className="Create-post-individual-form"
               style={
-                formNum === 3 || formNum === 4
+                formNum === 3
                   ? { display: "" }
-                  : { visibility: "hidden", height: 0, overflow: "hidden" }
+                  : formNum === 4
+                  ? { marginTop: "6.3rem" }
+                  : { opacity: 0, height: 0, overflow: "hidden" }
               }
             >
               <div className="CreateEdu-title">교육 특이사항</div>
 
               <div className=" Create-post-input-textarea-parent">
-                <div className="Create-post-input-textarea-span-box">
+                <div className="Create-post-input-textarea-span-box Create-post-input-top">
                   <span className="Create-post-input-description-text">
                     교육 특이사항
                   </span>
                 </div>
-                <div className="Create-post-input-textarea-div">
+                <div className="Create-post-input-textarea-div Create-post-input-top">
                   <textarea
                     {...register("overall_remark")}
                     name="overall_remark"
@@ -1033,9 +1166,14 @@ export const MakeNewApplication = () => {
                   ""
                 ) : (
                   <button
+                    ref={nextRef}
                     type="button"
                     className="Create-post-button"
-                    style={{ background: "#0072b9", color: "#fff" }}
+                    style={
+                      nextBtnActive === false
+                        ? { background: "#0072b9", color: "#fff" }
+                        : { background: "#d9d9d9", color: "#0072b9" }
+                    }
                     onClick={() => {
                       setformNum(formNum + 1);
                     }}
@@ -1065,7 +1203,10 @@ export const MakeNewApplication = () => {
                     수정 하기
                   </button>
                   <button
-                    type="submit"
+                    type="button"
+                    onClick={() => {
+                      setSubmitModal(true);
+                    }}
                     className={`${
                       true
                         ? "Create-post-submit-button-on"

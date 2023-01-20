@@ -29,6 +29,7 @@ import "./styles/eduDetailContentsStyles.css";
 import "./styles/bannerStyles.css";
 import "./styles/bodyStyles.css";
 import "./styles/makeNewApplication.css";
+import "./styles/retrieveStyles.css"
 
 
 const root = ReactDOM.createRoot(
