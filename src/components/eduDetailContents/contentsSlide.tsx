@@ -84,9 +84,14 @@ export function ContentsSlide(props: ContentsSlide) {
                 }}
               />
             </div>
+<<<<<<< HEAD
           </div>
         </div>
       </div>
     </>
   );
+=======
+        </>
+    );
+>>>>>>> feature_branch
 }

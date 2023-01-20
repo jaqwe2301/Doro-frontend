@@ -12,6 +12,16 @@ export enum UserRole {
   Manager = "Manager",
 }
 
+export enum sendOption {
+  auth = "auth",
+  mypage = "mypage",
+}
+
+export interface CheckAuthNumInput {
+  authNum: string;
+  phoneNumber: string;
+}
+
 export interface CheckPasswordInput {
   password?: string | null;
   postId: number;
@@ -20,6 +30,19 @@ export interface CheckPasswordInput {
 export interface CreateCommentInput {
   content: string;
   postId: number;
+}
+
+export interface CreateEduInput {
+  name: string;
+  institution_name: string;
+  position: string;
+  phone_number: string;
+  email: string;
+  student_count: number;
+  school_rank: string;
+  budget: number;
+  overall_remark?: string | null;
+  detail_classes: Detail_class_item[];
 }
 
 export interface CreatePostInput {
@@ -44,8 +67,21 @@ export interface CreateUserInput {
   role: UserRole;
 }
 
+export interface DeleteOverallClassInput {
+  overallClassId: number;
+}
+
 export interface DeletePostInput {
   postId: number;
+}
+
+export interface Detail_class_item {
+  class_name: string;
+  edu_concept: string;
+  student_number: number;
+  date: any[];
+  remark?: string | null;
+  unfixed: boolean;
 }
 
 export interface FindAllCommentsInput {
@@ -56,6 +92,15 @@ export interface FindAllPostsInput {
   page?: number | null;
 }
 
+export interface FindOverallClassInput {
+  overall_Class_Id: number;
+}
+
+export interface FindOverallClassesInput {
+  phone_number: string;
+  name: string;
+}
+
 export interface FindPostInput {
   postId: number;
 }
@@ -63,6 +108,12 @@ export interface FindPostInput {
 export interface LoginInput {
   email: string;
   password: string;
+}
+
+export interface SendAuthNumInput {
+  name: string;
+  phoneNumber: string;
+  Option: sendOption;
 }
 
 export interface UpdatePostInput {

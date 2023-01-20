@@ -24,11 +24,11 @@ export const Header: React.FC = () => {
                   교육 콘텐츠
                 </Link>
               </li>
-              {/* <li>
-                <Link to="/applyNewEducation" className="Header-link-inquiry">
+              <li>
+                <Link to="/applyEdu" className="Header-link-inquiry">
                   교육 신청
                 </Link>
-              </li> */}
+              </li>
               <li>
                 <Link
                   to="/posts"
@@ -43,28 +43,5 @@ export const Header: React.FC = () => {
         </div>
       </header>
     </>
-    // <>
-    //   <header className="Header-header">
-    //     <div className="Header-container">
-    //       <div className="Header-logo-frame">
-    //         <Link to="/">
-    //           <img src={doroLogo} alt="Doro" />
-    //         </Link>
-    //       </div>
-    //       <div className="Header-link-container">
-    //         <Link
-    //           to="/posts"
-    //           className="Header-education-inquiry"
-    //           aria-current="page"
-    //         >
-    //           커뮤니티
-    //         </Link>
-    //         <Link to="/createPost" className="Header-board">
-    //           교육문의
-    //         </Link>
-    //       </div>
-    //     </div>
-    //   </header>
-    // </>
   );
 };

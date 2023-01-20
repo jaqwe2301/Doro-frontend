@@ -10,7 +10,9 @@ import { HomePage } from "../pages/home";
 import { Post } from "../pages/post";
 import { Posts } from "../pages/posts";
 import { EditUser } from "../pages/user/editUser";
-import { ApplyNewEducation } from "../pages/applyNewEducation";
+import { ApplyEdu } from "../pages/applyEdu";
+import { MakeNewApplication } from "../pages/makeNewApplication";
+import { ShowApplication } from "../pages/showApplication";
 import { ShowDetailContent } from "../pages/showDetailContent";
 
 import { Walking } from "../pages/educontents/walking";
@@ -47,10 +49,13 @@ export const LoggedInRouter = () => {
         <Route path="/post/:id/edit" element={<EditPost />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="*" element={<NotFound />}></Route>
+        <Route path="/applyEdu" element={<ApplyEdu />}></Route>
         <Route
-          path="/applyNewEducation"
-          element={<ApplyNewEducation />}
+          path="/makeNewApplication"
+          element={<MakeNewApplication />}
         ></Route>
+        <Route path="/showApplication" element={<ShowApplication />}></Route>
+        <Route path="/editApplication" element={<EditApplication />}></Route>
         <Route
           path="/showDetailContent"
           element={<ShowDetailContent />}
