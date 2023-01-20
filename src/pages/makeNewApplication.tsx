@@ -266,7 +266,7 @@ export const MakeNewApplication = () => {
 
   const check_kakao_condtion = () => {
     if (watch("phone_number").length === 11 && watch("name")) {
-      onSubmit_send()
+      onSubmit_send();
     } else {
       if (!watch("name")) {
         alert("성함을 입력해주십시오.");
@@ -571,12 +571,18 @@ export const MakeNewApplication = () => {
           <title>Create | DORO</title>
         </Helmet>
         <Banner
-          wid={10.278}
-          route={createEduRoute}
-          contentClass="Subtitle-bigFont"
+          routeDot1="•"
+          routeName1="커뮤니티"
+          route1=""
+          route1Opacity={0.7}
+          routeDot2="•"
+          routeName2="교육 신청"
+          route2="/applyEdu"
+          route2Opacity={1}
           title="교육 신청"
           subtitle="Education Application"
           content="희망 교육과 문의 사항을 작성해주시면 빠르게 답변해드리겠습니다."
+          contentClass="Subtitle-smallFont"
           rightImg="none"
         />
         <div ref={leftRef} className="Progress-container">
@@ -691,7 +697,6 @@ export const MakeNewApplication = () => {
                         type="submit"
                         style={{ fontSize: "0.776rem", marginTop: "0" }}
                         className="Create-post-kakao-modal-button"
-                        onClick={() => {}}
                       >
                         교육 신청
                       </button>
@@ -892,12 +897,12 @@ export const MakeNewApplication = () => {
             >
               <div className="CreateEdu-title">교육생 정보</div>
               <div className=" Create-post-input-parent">
-                <div className="Create-post-input-description-box  Create-post-input-top">
+                <div className="Create-post-input-description-box Create-post-input-top">
                   <span className="Create-post-input-description-text">
                     교육 학생 수
                   </span>
                 </div>
-                <div className="Create-post-input-input-box  Create-post-input-top">
+                <div className="Create-post-input-input-box Create-post-input-top">
                   <input
                     {...register("student_count", {
                       required: true,

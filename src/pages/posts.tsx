@@ -151,15 +151,20 @@ export const Posts = () => {
         <title>Board | DORO</title>
       </Helmet>
       <Banner
-        routeName1="• 커뮤니티"
-        routeName2="• 문의게시판"
-        route1=""
-        title="문의 게시판"
-        subtitle="Education inquiry board"
-        content="문의 답변을 확인할 수 있습니다."
-        contentClass="Subtitle-bigFont"
-        rightImg="none"
-      />
+            routeDot1="•"
+            routeName1="커뮤니티"
+            route1=""
+            route1Opacity={0.7}
+            routeDot2="•"
+            routeName2="문의게시판"
+            route2="/posts"
+            route2Opacity={1}
+            title="문의 게시판"
+            subtitle="Education inquiry board"
+            content="문의 답변을 확인할 수 있습니다"
+            contentClass="Subtitle-bigFont"
+            rightImg="none"
+          />
       {!loading && (
         <div className="h-screen Posts-container">
           <div style={{ fontSize: "0.778rem", marginBottom: "0.583rem" }}>

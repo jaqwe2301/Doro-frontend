@@ -249,20 +249,26 @@ export const Post = () => {
       <Helmet>
         <title>Post | DORO</title>
       </Helmet>
+      <Banner
+            routeDot1="•"
+            routeName1="커뮤니티"
+            route1=""
+            route1Opacity={0.7}
+            routeDot2="•"
+            routeName2="문의게시판"
+            route2="/posts"
+            route2Opacity={1}
+            title="교육 신청"
+            subtitle="Education inquiry board"
+            content="문의 답변을 확인할 수 있습니다"
+            contentClass="Subtitle-smallFont"
+            rightImg="none"
+          />
 
       {(data?.findPost.ok && state) ||
       (hashedpassword && hashedpassword === data?.findPost.post?.password) ? (
         <div>
-          <Banner
-            routeName1="• 커뮤니티"
-            routeName2="• 문의게시판"
-            route1=""
-            title="문의 게시판"
-            subtitle="Education inquiry board"
-            content="문의 답변을 확인할 수 있습니다"
-            contentClass="Subtitle-bigFont"
-            rightImg="none"
-          />{" "}
+
           <div className="Education-inquiry-board_after-answer ">
             <div className=" Post-title-frame63-parent">
               <span className="Post-title ">{data?.findPost.post?.title}</span>

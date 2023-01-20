@@ -110,16 +110,16 @@ export const CreatePost = () => {
       />
       <div className="Create-post-content-root">
         <div className="CreateEdu-content-root">
-          <div className="Create-post-title">문의신청정보</div>
+          <div className="CreateEdu-title">문의신청정보</div>
           <form className="Create-post-form" onSubmit={handleSubmit(onSubmit)}>
             <div className=" Create-post-input-parent ">
-              <div className="Create-post-input-description-box">
+              <div className="Create-post-input-description-box Create-post-input-top">
                 <span className="Create-post-input-description-text">
                   문의자 성함
                 </span>
                 <span style={{ color: "red" }}>*</span>
               </div>
-              <div className="Create-post-input-input-box">
+              <div className="Create-post-input-input-box Create-post-input-top">
                 <input
                   {...register("ownerName", { required: true, maxLength: 4 })}
                   className="Create-post-input-input-content"
@@ -219,7 +219,7 @@ export const CreatePost = () => {
               </div>
             </div>
 
-            <div className="Create-post-title">문의내용</div>
+            <div style={{marginTop: "5.5rem"}} className="CreateEdu-title">문의내용</div>
 
             <div className=" Create-post-input-parent">
               <div className="Create-post-input-description-box Create-for-border">
