@@ -32,9 +32,8 @@ import { useScrollFadeIn } from "../hooks/useScrollFadeIn";
 import { useScrollCount } from "../hooks/useScrollCountup";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
+import { Navigation } from "swiper";
+import "swiper/swiper.min.css";
 
 import styled from "styled-components"
 import MainEduContent from "../components/mainEduContent"

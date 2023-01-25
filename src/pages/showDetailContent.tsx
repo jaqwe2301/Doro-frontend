@@ -8,6 +8,8 @@ import "../styles/eduContentStyles.css";
 
 
 export const ShowDetailContent: React.FC = () => {
+
+
   return (
     <>
       <Banner

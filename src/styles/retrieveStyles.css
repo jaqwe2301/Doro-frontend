@@ -1,0 +1,39 @@
+.retrieve-container {
+    margin-top: 6.833rem;
+    width: 65.571rem;
+}
+
+.retrieve-contents{
+    display: flex;
+    align-items: center;
+    height: 4.722rem;
+    border-bottom: 0.056rem solid #777;
+    font-family: Pretendard;
+    font-size: 1rem;
+    color: #777;
+}
+
+.retrieve-index {
+    display: flex;
+    justify-content: center;
+    width: 5.4rem;
+    font-size: 0.778rem;
+    font-weight: 600;
+}
+
+.retrieve-count {
+    font-size: 0.778rem;
+    padding-bottom: 0.583rem;
+    border-bottom: 0.083rem solid #777;
+    font-family: Pretendard;
+}
+
+.retrieve-font-blue {
+    font-weight: bold;
+    color: #0072b9;
+}
+
+.retrieve-edit-btn {
+    color: black;
+    font-weight: bold;
+}

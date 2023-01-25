@@ -1,6 +1,4 @@
-.Create-post-root {
-}
-.Create-post-content-root {
+/* .Create-post-content-root {
   margin-left: auto;
   margin-right: auto;
   width: 65.571rem;
@@ -26,14 +24,11 @@
   color: #000;
 }
 
-.Create-post-form {
-  border-top: solid 1px var(--doro-light-grey);
-}
-
 .Create-post-input-parent {
   display: flex;
   height: 4.056rem;
 }
+
 .Create-post-input-input-box {
   width: 84%;
   height: 4.056rem;
@@ -47,6 +42,7 @@
   background-color: #fff;
   border-bottom: solid 1px var(--doro-light-grey);
 }
+
 .Create-post-input-description-box {
   width: 16%;
   height: 4.056rem;
@@ -63,6 +59,7 @@
   border-left: solid 1px var(--doro-light-grey);
   border-right: solid 1px var(--doro-light-grey);
 }
+
 .Create-post-input-description-text {
   height: 1.444rem;
   flex-grow: 0;
@@ -167,6 +164,7 @@
   margin-top: 0.944rem;
   height: 1.444rem;
 }
+
 .create-post-notification-checkbox-parent {
   display: flex;
   flex-direction: column;
@@ -249,7 +247,6 @@
 
 .Create-post-input-title-notification {
   width: 16%;
-
   flex-grow: 0;
   display: flex;
   flex-direction: column;
@@ -289,4 +286,4 @@
 
 .Create-post-agree-checkbox-parent {
   align-items: center;
-}
+} */

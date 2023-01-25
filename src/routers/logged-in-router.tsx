@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "../components/scrollToTop" // 페이지 렌더링 시 스크롤 최상단
+import ScrollToTop from "../components/scrollToTop"; // 페이지 렌더링 시 스크롤 최상단
 import { Foot } from "../components/foot";
 import { Header } from "../components/header";
 import { NotFound } from "../pages/404";
@@ -10,8 +10,11 @@ import { HomePage } from "../pages/home";
 import { Post } from "../pages/post";
 import { Posts } from "../pages/posts";
 import { EditUser } from "../pages/user/editUser";
-import { ApplyNewEducation } from "../pages/applyNewEducation";
+import { ApplyEdu } from "../pages/applyEdu";
+import { MakeNewApplication } from "../pages/makeNewApplication";
+import { ShowApplication } from "../pages/showApplication";
 import { ShowDetailContent } from "../pages/showDetailContent";
+import { EditApplication } from "../pages/editApplication";
 
 import { Walking } from "../pages/educontents/walking";
 import { Balancing } from "./../pages/educontents/balancing";
@@ -37,7 +40,7 @@ import { Piano } from "../pages/educontents/piano";
 export const LoggedInRouter = () => {
   return (
     <BrowserRouter>
-      <ScrollToTop/>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -47,10 +50,13 @@ export const LoggedInRouter = () => {
         <Route path="/post/:id/edit" element={<EditPost />} />
         <Route path="/post/:id" element={<Post />} />
         <Route path="*" element={<NotFound />}></Route>
+        <Route path="/applyEdu" element={<ApplyEdu />}></Route>
         <Route
-          path="/applyNewEducation"
-          element={<ApplyNewEducation />}
+          path="/makeNewApplication"
+          element={<MakeNewApplication />}
         ></Route>
+        <Route path="/showApplication" element={<ShowApplication />}></Route>
+        <Route path="/editApplication" element={<EditApplication />}></Route>
         <Route
           path="/showDetailContent"
           element={<ShowDetailContent />}
