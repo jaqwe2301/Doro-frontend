@@ -385,43 +385,43 @@ export const MakeNewApplication = () => {
 
   useEffect(() => {
     let progressStyle = leftRef.current.style;
-    let line1Style = line1Ref.current.style;
-    let line2Style = line2Ref.current.style;
-    let line3Style = line3Ref.current.style;
-    let line4Style = line4Ref.current.style;
+    // let line1Style = line1Ref.current.style;
+    // let line2Style = line2Ref.current.style;
+    // let line3Style = line3Ref.current.style;
+    // let line4Style = line4Ref.current.style;
 
     const progressSpace = () => {
       let formLeft = mainFormRef.current.getBoundingClientRect().left;
       progressStyle = leftRef.current.style;
-      line1Style = line1Ref.current.style;
-      line2Style = line2Ref.current.style;
-      line3Style = line3Ref.current.style;
-      line4Style = line4Ref.current.style;
+      // line1Style = line1Ref.current.style;
+      // line2Style = line2Ref.current.style;
+      // line3Style = line3Ref.current.style;
+      // line4Style = line4Ref.current.style;
 
       // let formStyle = window.getComputedStyle(WholeFormRef.current);
       // let formMarginLeft = formStyle.getPropertyValue("margin-left");
 
       progressStyle.width = `${formLeft - 20}px`;
 
-      let circleStyle = window.getComputedStyle(circleRef.current);
-      let circleWidth = circleStyle.getPropertyValue("width");
-      let circleBorder = circleStyle.getPropertyValue("border-left-width");
+      // let circleStyle = window.getComputedStyle(circleRef.current);
+      // let circleWidth = circleStyle.getPropertyValue("width");
+      // let circleBorder = circleStyle.getPropertyValue("border-left-width");
 
-      let lineStyle = window.getComputedStyle(line1Ref.current);
-      let linewidth = lineStyle.getPropertyValue("width");
-      line1Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
-      line2Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
-      line3Style.marginLeft = `${
-        parseFloat(circleWidth) / 2 -
-        parseFloat(circleBorder) -
-        parseFloat(linewidth) / 2
-      }px`;
-      line4Style.marginLeft = `${
-        parseFloat(circleWidth) / 2 -
-        parseFloat(circleBorder) -
-        parseFloat(linewidth) / 2
-      }px`;
-      // console.log("border-left-width", circleStyle.getPropertyValue("border-left-width"))
+      // let lineStyle = window.getComputedStyle(line1Ref.current);
+      // let linewidth = lineStyle.getPropertyValue("width");
+      // line1Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
+      // line2Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
+      // line3Style.marginLeft = `${
+      //   parseFloat(circleWidth) / 2 -
+      //   parseFloat(circleBorder) -
+      //   parseFloat(linewidth) / 2
+      // }px`;
+      // line4Style.marginLeft = `${
+      //   parseFloat(circleWidth) / 2 -
+      //   parseFloat(circleBorder) -
+      //   parseFloat(linewidth) / 2
+      // }px`;
+      // // console.log("border-left-width", circleStyle.getPropertyValue("border-left-width"))
       // console.log("CircleWidth", circleWidth)
       // console.log(`${parseFloat(circleWidth) / 2}px`)
       // console.log(`${parseFloat(circleWidth) / 2 - 1.5875}px`)
@@ -600,7 +600,10 @@ export const MakeNewApplication = () => {
               </p>
               <p className="Progress-text">신청자 정보</p>
             </div>
-            <div ref={line1Ref} className="Progress-line" />
+            <div className="Progress-line-container">
+              <div className="Progress-line" />
+              {/* ref={line1Ref}  */}
+            </div>
 
             <div className="circleNum-text-box">
               <p
@@ -614,7 +617,10 @@ export const MakeNewApplication = () => {
               </p>
               <p className="Progress-text">교육생 정보</p>
             </div>
-            <div ref={line2Ref} className="Progress-line" />
+            <div className="Progress-line-container">
+              <div className="Progress-line" />
+              {/* ref={line1Ref}  */}
+            </div>
 
             <div className="circleNum-text-box">
               <p
@@ -628,7 +634,10 @@ export const MakeNewApplication = () => {
               </p>
               <p className="Progress-text">학급별 교육 일정</p>
             </div>
-            <div ref={line3Ref} className="Progress-line" />
+            <div className="Progress-line-container">
+              <div className="Progress-line" />
+              {/* ref={line1Ref}  */}
+            </div>
 
             <div className="circleNum-text-box">
               <p
@@ -642,7 +651,9 @@ export const MakeNewApplication = () => {
               </p>
               <p className="Progress-text">교육 특이사항</p>
             </div>
-            <div ref={line4Ref} className="Progress-line" />
+            <div className="Progress-line-container">
+              <div className="Progress-line" />
+            </div>
 
             <div className="circleNum-text-box">
               <p

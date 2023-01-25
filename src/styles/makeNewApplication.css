@@ -54,6 +54,9 @@
   justify-content: center;
   align-items: center;
   height: 7.889rem;
+  padding: 0 1.056rem 0 1.1rem;
+  letter-spacing: 0.9px;
+  line-height: 1.44;
   background: white;
 }
 
@@ -105,10 +108,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  /* background: #0072b9; */
   width: 1.8vw;
   height: 1.8vw;
-  /* color: white; */
   border: 0.099rem solid var(--doro-medium);
   font-family: Pretendard;
   font-size: 1.1vw;
@@ -127,7 +128,14 @@
   transition: 2.5s;
 }
 
+.Progress-line-container{
+  width: 1.8vw;
+  display: flex;
+  justify-content: center;
+}
+
 .Progress-line {
+  min-height: 0.59rem;
   height: 1vw;
   width: 0.099rem;
   background: #0072b9;
