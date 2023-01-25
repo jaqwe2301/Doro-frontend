@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/applyEdu.css";
 
 import { gql, useMutation, useLazyQuery } from "@apollo/client";
@@ -132,7 +132,8 @@ export const ShowApplication = () => {
     handleSubmit: handleSubmit_auth,
   } = useForm<IAuthForm>();
 
-  const { register, getValues, handleSubmit, watch } = useForm<ICheckUserForm>();
+  const { register, getValues, handleSubmit, watch } =
+    useForm<ICheckUserForm>();
 
   const onCompleted = (data: SendAuthNum) => {
     console.log("oncompleted");

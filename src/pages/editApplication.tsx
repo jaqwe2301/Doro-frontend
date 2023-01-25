@@ -232,7 +232,14 @@ export const EditApplication = () => {
       CreateEdu: { ok, error },
     } = data;
     if (ok) {
-      navigate("/showApplication", { replace: true });
+      DeleteOverallClass({
+        variables: {
+          input: {
+            //변수 통일 필요
+            overallClassId: overall_Class_Id,
+          },
+        },
+      });
     } else {
     }
   };
@@ -266,7 +273,6 @@ export const EditApplication = () => {
       overall_remark,
       detail_classes,
     } = getValues();
-
     createEduMutation({
       variables: {
         input: {
@@ -280,15 +286,6 @@ export const EditApplication = () => {
           budget,
           overall_remark,
           detail_classes,
-        },
-      },
-    });
-
-    DeleteOverallClass({
-      variables: {
-        input: {
-          //변수 통일 필요
-          overallClassId: overall_Class_Id,
         },
       },
     });
@@ -580,10 +577,17 @@ export const EditApplication = () => {
     }
   }, [findOverallClassData, error, loading]);
 
-  const [DeleteOverallClass, { data: DeleteOverallClassData }] = useMutation<
+  const onDeleteOverallClassCompleted = () => {
+    navigate("/");
+    window.location.reload();
+  };
+  const [
     DeleteOverallClass,
-    DeleteOverallClassVariables
-  >(DELETE_OVERALL_CLASS);
+    { data: DeleteOverallClassData, error: DeleteOverallClassError },
+  ] = useMutation<DeleteOverallClass, DeleteOverallClassVariables>(
+    DELETE_OVERALL_CLASS,
+    { onCompleted: onDeleteOverallClassCompleted }
+  );
 
   return (
     // 모달창
