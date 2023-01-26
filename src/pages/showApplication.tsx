@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/applyEdu.css";
 
 import { gql, useMutation, useLazyQuery } from "@apollo/client";
