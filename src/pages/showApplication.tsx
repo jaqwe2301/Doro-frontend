@@ -6,8 +6,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 
 import { Banner } from "../components/banner";
+import ApplyButton from "../components/applyButton";
 
-import createEduRoute from "../images/bannerCategory/createEdu.png";
 import { Helmet } from "react-helmet-async";
 
 import {
@@ -359,24 +359,13 @@ export const ShowApplication = () => {
           contentClass="Subtitle-smallFont"
           rightImg="none"
         />
-        <div className="typeSelect-container">
-          <button
-            onClick={navigateToMakeNewApplication}
-            className="typeSelect-button"
-          >
-            교육 신청하기
-          </button>
-          <button
-            onClick={navigateToShowApplication}
-            className="typeSelect-button"
-          >
-            교육 신청내역 확인하기
-          </button>
-        </div>
+
         <div
           className="CreateEdu-content-root"
           style={{ marginBottom: "12rem" }}
         >
+          <ApplyButton />
+
           <div className="CreateEdu-title">교육 신청 내역 확인하기</div>
           <form
             className="Create-post-form"
