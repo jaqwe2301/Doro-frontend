@@ -131,9 +131,9 @@ interface ICreateEduForm {
   position: string;
   phone_number: string;
   email: string;
-  student_count: number;
+  student_count: string;
   school_rank: string;
-  budget: number;
+  budget: string;
   overall_remark: string;
   detail_classes: Detail_class_item[];
 }
@@ -543,14 +543,14 @@ export const EditApplication = () => {
         student_count: findOverallClassData?.FindOverallClass.overallClass
           ?.student_count
           ? findOverallClassData?.FindOverallClass.overallClass?.student_count
-          : 0,
+          : "",
         school_rank: findOverallClassData?.FindOverallClass.overallClass
           ?.school_rank
           ? findOverallClassData?.FindOverallClass.overallClass?.school_rank
           : "",
         budget: findOverallClassData?.FindOverallClass.overallClass?.budget
           ? findOverallClassData?.FindOverallClass.overallClass?.budget
-          : 0,
+          : "",
         overall_remark: findOverallClassData?.FindOverallClass.overallClass
           ?.overall_remark
           ? findOverallClassData?.FindOverallClass.overallClass?.overall_remark

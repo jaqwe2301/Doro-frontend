@@ -99,9 +99,9 @@ interface ICreateEduForm {
   position: string;
   phone_number: string;
   email: string;
-  student_count: number;
+  student_count: string;
   school_rank: string;
-  budget: number;
+  budget: string;
   overall_remark: string;
   detail_classes: Detail_class_item[];
 }
