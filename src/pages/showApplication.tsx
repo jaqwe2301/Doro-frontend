@@ -124,6 +124,7 @@ export const ShowApplication = () => {
   const [sec, setSec] = useState<number>(59);
   const [authCheckModal, setAuthCheckModal] = useState(false);
   const [resend, setResend] = useState(false);
+  const [authImPosibble, setAuthImPosibble] = useState<boolean>();
   const [isActiveTimer, setIsActiveTimer] = useState<boolean>(false);
   const [authState, setAuthState] = useState(false);
   const {
@@ -151,17 +152,30 @@ export const ShowApplication = () => {
     }
   };
 
+  const [inputCheck, setInputCheck] = useState<string>();
+
   const check_kakao_condtion = () => {
+    setInputCheck("");
     if (watch("phone_number").length === 11 && watch("name")) {
+      setInputCheck("");
       onSubmit_send();
     } else {
       if (!watch("name")) {
-        alert("성함을 입력해주십시오.");
+        setInputCheck("name");
+        alert("성함을 입력해주세요.");
       } else if (watch("phone_number").length !== 11) {
+        setInputCheck("phone_number");
         alert("휴대폰 번호를 다시 확인하십시오.");
       } else {
         alert("성함과 휴대폰 번호를 입력하십시오.");
       }
+    }
+  };
+
+  // '인증 하기' 버튼을 눌렀을 때 휴대폰 번호 입력 후 '카카토톡 인증' 버튼을 먼저 클릭했는지 확인
+  const check_auth_possible = () => {
+    if (!isActiveTimer) {
+      setAuthImPosibble(true);
     }
   };
 
@@ -209,6 +223,7 @@ export const ShowApplication = () => {
       setAuthCheckModal(true);
       setIsActiveTimer(false);
       setAuthState(true);
+      setAuthImPosibble(false);
 
       findOverallClasses({
         variables: {
@@ -373,14 +388,18 @@ export const ShowApplication = () => {
           >
             <div className="Create-post-input-parent">
               <div className="Create-post-input-description-box Create-post-input-top">
-                <span className="Create-post-input-description-text">
+                <p className="Create-post-input-description-text">
                   신청자 성함
-                </span>
+                </p>
               </div>
-              <div className="Create-post-input-input-box Create-post-input-top">
+              <div className="Create-post-input-box Create-post-input-top">
                 <input
                   {...register("name", { required: true })}
-                  className="Create-post-input-input-content"
+                  className={
+                    inputCheck === "name"
+                      ? "Create-post-input-content horizontal-shaking border-red"
+                      : "Create-post-input-content"
+                  }
                   name="name"
                   placeholder="신청자 성함"
                 />
@@ -398,7 +417,11 @@ export const ShowApplication = () => {
                   {...register("phone_number", { required: true })}
                   name="phone_number"
                   placeholder="01012345678"
-                  className="Create-post-input-phoneNum"
+                  className={
+                    inputCheck === "phone_number"
+                      ? "Create-post-input-phoneNum  horizontal-shaking border-red"
+                      : "Create-post-input-phoneNum"
+                  }
                 />
                 {!resend ? (
                   <button
@@ -441,13 +464,35 @@ export const ShowApplication = () => {
                   className="Create-post-input-phoneNum"
                 />
                 <button
-                  className="Create-post-input-phoneNum-button-auth"
-                  style={{ color: authState ? "#0072B9" : "" }}
-                  disabled={authState}
-                  onClick={handleSubmit_auth(onSubmit_check)}
+                  type="button"
+                  className={
+                    authImPosibble
+                      ? "Create-post-input-phoneNum-button horizontal-shaking"
+                      : "Create-post-input-phoneNum-button"
+                  }
+                  style={{
+                    color: isActiveTimer ? "#0072B9" : "var(--doro-light-grey)",
+                  }}
+                  onClick={() => {
+                    handleSubmit_auth(onSubmit_check);
+                    check_auth_possible();
+                  }}
                 >
                   {authState ? "인증 완료" : "인증 하기"}
                 </button>
+                {authImPosibble ? (
+                  <div
+                    style={{
+                      fontSize: "0.844rem",
+                      color: "red",
+                      marginLeft: "0.6rem",
+                    }}
+                  >
+                    카카오톡 인증을 먼저 해주세요.
+                  </div>
+                ) : (
+                  ""
+                )}
                 {isActiveTimer ? (
                   <div className="Create-post-input-phoneNum-button">
                     <span style={{ color: "#777777", fontSize: "1rem" }}>
