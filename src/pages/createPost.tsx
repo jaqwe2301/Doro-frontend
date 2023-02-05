@@ -119,10 +119,10 @@ export const CreatePost = () => {
                 </span>
                 <span style={{ color: "red" }}>*</span>
               </div>
-              <div className="Create-post-input-box Create-post-input-top">
+              <div className="Create-post-input-input-box Create-post-input-top">
                 <input
                   {...register("ownerName", { required: true, maxLength: 4 })}
-                  className="Create-post-input-content"
+                  className="Create-post-input-input-content"
                   name="ownerName"
                   placeholder="성함 입력"
                   maxLength={4}
@@ -136,12 +136,12 @@ export const CreatePost = () => {
                   소속 기관(학원)
                 </span>
               </div>
-              <div className="Create-post-input-box">
+              <div className="Create-post-input-input-box">
                 <input
                   {...register("institution")}
                   name="institution"
                   placeholder="도로 초등학교"
-                  className="Create-post-input-content"
+                  className="Create-post-input-input-content"
                   defaultValue={
                     userData?.me.institution ? userData?.me.institution : ""
                   }
@@ -156,12 +156,12 @@ export const CreatePost = () => {
                 </span>
                 <span style={{ color: "red" }}>*</span>
               </div>
-              <div className="Create-post-input-box">
+              <div className="Create-post-input-input-box">
                 <input
                   {...register("phoneNumber", { required: true })}
                   name="phoneNumber"
                   placeholder="하이픈(-) 없이 숫자만 입력"
-                  className="Create-post-input-content"
+                  className="Create-post-input-input-content"
                   defaultValue={
                     userData?.me.institution ? userData?.me.institution : ""
                   }
@@ -175,12 +175,12 @@ export const CreatePost = () => {
                   이메일
                 </span>
               </div>
-              <div className="Create-post-input-box">
+              <div className="Create-post-input-input-box">
                 <input
                   {...register("email")}
                   name="email"
                   placeholder="이메일 주소 입력"
-                  className="Create-post-input-content"
+                  className="Create-post-input-input-content"
                   // sdefaultValue={userData?.me.email ? userData?.me.email : ""}
                 />
               </div>
@@ -192,7 +192,7 @@ export const CreatePost = () => {
                   비밀글
                 </span>
               </div>
-              <div className="Create-post-input-box-checkbox">
+              <div className="Create-post-input-input-box-checkbox">
                 <input
                   {...register("isLocked")}
                   name="isLocked"
@@ -209,19 +209,17 @@ export const CreatePost = () => {
                 </span>
                 <span style={{ color: "red" }}>*</span>
               </div>
-              <div className="Create-post-input-box">
+              <div className="Create-post-input-input-box">
                 <input
                   {...register("password", { required: true })}
                   name="password"
-                  className="Create-post-input-content"
+                  className="Create-post-input-input-content"
                   placeholder="글 삭제 및 수정시 필요합니다"
                 />
               </div>
             </div>
 
-            <div style={{ marginTop: "5.5rem" }} className="CreateEdu-title">
-              문의내용
-            </div>
+            <div style={{marginTop: "5.5rem"}} className="CreateEdu-title">문의내용</div>
 
             <div className=" Create-post-input-parent">
               <div className="Create-post-input-description-box Create-for-border">
@@ -230,12 +228,12 @@ export const CreatePost = () => {
                 </span>
                 <span style={{ color: "red" }}>*</span>
               </div>
-              <div className="Create-post-input-box Create-for-border">
+              <div className="Create-post-input-input-box Create-for-border">
                 <input
                   {...register("title", { required: true })}
                   name="title"
                   maxLength={30}
-                  className="Create-post-input-content"
+                  className="Create-post-input-input-content"
                   placeholder=""
                 />
               </div>
@@ -264,7 +262,7 @@ export const CreatePost = () => {
               onMouseOut={() => setIsHovering(0)}
             >
               <div className="Create-post-input-title-notification"></div>
-              <div className="Create-post-input-box-notification">
+              <div className="Create-post-input-input-box-notification">
                 <div className=" create-post-notification-checkbox-parent">
                   <div className="Create-post-agree-checkbox-parent flex flex-row justify-center">
                     <input

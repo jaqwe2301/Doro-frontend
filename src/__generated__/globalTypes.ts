@@ -38,9 +38,9 @@ export interface CreateEduInput {
   position: string;
   phone_number: string;
   email: string;
-  student_count: string;
+  student_count: number;
   school_rank: string;
-  budget: string;
+  budget: number;
   overall_remark?: string | null;
   detail_classes: Detail_class_item[];
 }

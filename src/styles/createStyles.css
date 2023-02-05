@@ -29,7 +29,7 @@
   height: 4.056rem;
 }
 
-.Create-post-input-box {
+.Create-post-input-input-box {
   width: 84%;
   height: 4.056rem;
   flex-grow: 0;
@@ -80,7 +80,7 @@
   flex-grow: 0;
 }
 
-.Create-post-input-content {
+.Create-post-input-input-content {
   width: 99%;
   height: 2.556rem;
   flex-grow: 0;
@@ -105,7 +105,7 @@
   border-radius: 4px;
   border: solid 1px var(--doro-light-grey);
 }
-.Create-post-input-box-checkbox {
+.Create-post-input-input-box-checkbox {
   width: 84%;
   height: 4.056rem;
   flex-grow: 0;

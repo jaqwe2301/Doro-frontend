@@ -30,9 +30,9 @@ export interface FindOverallClass_FindOverallClass_overallClass_Detail_class_inf
 
 export interface FindOverallClass_FindOverallClass_overallClass {
   __typename: "Overall_class_info";
-  student_count: string;
+  student_count: number;
   school_rank: string;
-  budget: string;
+  budget: number;
   overall_remark: string | null;
   client: FindOverallClass_FindOverallClass_overallClass_client;
   Detail_class_infos: FindOverallClass_FindOverallClass_overallClass_Detail_class_infos[];

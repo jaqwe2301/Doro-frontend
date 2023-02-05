@@ -131,9 +131,9 @@ interface ICreateEduForm {
   position: string;
   phone_number: string;
   email: string;
-  student_count: string;
+  student_count: number;
   school_rank: string;
-  budget: string;
+  budget: number;
   overall_remark: string;
   detail_classes: Detail_class_item[];
 }
@@ -574,14 +574,14 @@ export const EditApplication = () => {
         student_count: findOverallClassData?.FindOverallClass.overallClass
           ?.student_count
           ? findOverallClassData?.FindOverallClass.overallClass?.student_count
-          : "",
+          : 0,
         school_rank: findOverallClassData?.FindOverallClass.overallClass
           ?.school_rank
           ? findOverallClassData?.FindOverallClass.overallClass?.school_rank
           : "",
         budget: findOverallClassData?.FindOverallClass.overallClass?.budget
           ? findOverallClassData?.FindOverallClass.overallClass?.budget
-          : "",
+          : 0,
         overall_remark: findOverallClassData?.FindOverallClass.overallClass
           ?.overall_remark
           ? findOverallClassData?.FindOverallClass.overallClass?.overall_remark
@@ -792,10 +792,10 @@ export const EditApplication = () => {
                     신청자 성함
                   </p>
                 </div>
-                <div className="Create-post-input-box Create-post-input-top">
+                <div className="Create-post-input-input-box Create-post-input-top">
                   <input
                     {...register("name")}
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     name="name"
                     defaultValue={
                       findOverallClassData?.FindOverallClass?.overallClass
@@ -813,7 +813,7 @@ export const EditApplication = () => {
                     소속 기관명
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("institution_name")}
                     name="institution_name"
@@ -822,7 +822,7 @@ export const EditApplication = () => {
                       findOverallClassData?.FindOverallClass?.overallClass
                         ?.client?.institution_name
                     }
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -834,7 +834,7 @@ export const EditApplication = () => {
                     직위
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("position")}
                     name="position"
@@ -843,7 +843,7 @@ export const EditApplication = () => {
                       findOverallClassData?.FindOverallClass?.overallClass
                         ?.client?.position
                     }
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -948,14 +948,14 @@ export const EditApplication = () => {
                     이메일
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("email", {
                       validate: (email: string) => email.includes("@"),
                     })}
                     name="email"
                     placeholder="E-Mail"
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     defaultValue={
                       findOverallClassData?.FindOverallClass?.overallClass
                         ?.client?.email
@@ -985,13 +985,13 @@ export const EditApplication = () => {
                     교육 학생 수
                   </span>
                 </div>
-                <div className="Create-post-input-box Create-post-input-top">
+                <div className="Create-post-input-input-box Create-post-input-top">
                   <input
                     {...register("student_count", {
                       valueAsNumber: true,
                     })}
                     type="number"
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     name="student_count"
                     placeholder="총 학생 수를 입력해주세요."
                     defaultValue={
@@ -1009,7 +1009,7 @@ export const EditApplication = () => {
                     학생 정보
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("school_rank")}
                     name="school_rank"
@@ -1018,7 +1018,7 @@ export const EditApplication = () => {
                       findOverallClassData?.FindOverallClass?.overallClass
                         ?.school_rank
                     }
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -1030,14 +1030,14 @@ export const EditApplication = () => {
                     교육 예산
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("budget", {
                       valueAsNumber: true,
                     })}
                     name="budget"
                     placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     defaultValue={
                       findOverallClassData?.FindOverallClass?.overallClass
                         ?.budget

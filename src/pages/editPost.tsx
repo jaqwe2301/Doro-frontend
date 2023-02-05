@@ -182,10 +182,10 @@ export const EditPost = () => {
                     문의자 성함
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("ownerName", { required: true, maxLength: 4 })}
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     name="ownerName"
                     placeholder="ownerName"
                     maxLength={4}
@@ -198,12 +198,12 @@ export const EditPost = () => {
                     소속 기관(학원)
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("institution")}
                     name="institution"
                     placeholder="institution"
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                   />
                 </div>
               </div>
@@ -214,12 +214,12 @@ export const EditPost = () => {
                     연락처
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("phoneNumber", { required: true })}
                     name="phoneNumber"
                     placeholder="phoneNumber"
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                   />
                 </div>
               </div>
@@ -230,12 +230,12 @@ export const EditPost = () => {
                     이메일
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("email")}
                     name="email"
                     placeholder="email"
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                   />
                 </div>
               </div>
@@ -246,7 +246,7 @@ export const EditPost = () => {
                     비밀글
                   </span>
                 </div>
-                <div className="Create-post-input-box-checkbox">
+                <div className="Create-post-input-input-box-checkbox">
                   <input
                     {...register("isLocked")}
                     name="isLocked"
@@ -262,11 +262,11 @@ export const EditPost = () => {
                     게시글 비밀번호
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("password", { required: true })}
                     name="password"
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     placeholder="password"
                   />
                 </div>
@@ -280,12 +280,12 @@ export const EditPost = () => {
                     글 제목
                   </span>
                 </div>
-                <div className="Create-post-input-box Create-for-border">
+                <div className="Create-post-input-input-box Create-for-border">
                   <input
                     {...register("title", { required: true })}
                     name="title"
                     maxLength={30}
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     placeholder="title"
                   />
                 </div>

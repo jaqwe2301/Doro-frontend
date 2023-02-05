@@ -99,9 +99,9 @@ interface ICreateEduForm {
   position: string;
   phone_number: string;
   email: string;
-  student_count: string;
+  student_count: number;
   school_rank: string;
-  budget: string;
+  budget: number;
   overall_remark: string;
   detail_classes: Detail_class_item[];
 }
@@ -147,7 +147,6 @@ export const MakeNewApplication = () => {
   const [authCheckModal, setAuthCheckModal] = useState(false);
   const [resend, setResend] = useState(false);
   const [isActiveTimer, setIsActiveTimer] = useState<boolean>(false);
-  const [authImPosibble, setAuthImPosibble] = useState<boolean>();
   const [authState, setAuthState] = useState(false);
   const [sendBtnActive, setSendBtnActive] = useState(true);
   const { register, getValues, handleSubmit, formState, control, watch } =
@@ -265,51 +264,16 @@ export const MakeNewApplication = () => {
     console.log("ㅑinvalid 통과");
   };
 
-  const [inputCheck, setInputCheck] = useState<string>();
-
   const check_kakao_condtion = () => {
-    setInputCheck("");
     if (watch("phone_number").length === 11 && watch("name")) {
-      setInputCheck("");
-      setAuthImPosibble(false);
       onSubmit_send();
     } else {
       if (!watch("name")) {
-        setInputCheck("name");
-        alert("성함을 입력해주세요.");
+        alert("성함을 입력해주십시오.");
       } else if (watch("phone_number").length !== 11) {
-        setInputCheck("phone_number");
         alert("휴대폰 번호를 다시 확인하십시오.");
       } else {
         alert("성함과 휴대폰 번호를 입력하십시오.");
-      }
-    }
-  };
-
-  // 신청자 정보 form 체크 (다음 버튼 눌렀을 때 작동)
-  const [checkForm1, setCheckform1] = useState<string>();
-
-  const input_title_list1: any = [
-    "name",
-    "institution_name",
-    "position",
-    "phone_number",
-    "email",
-  ];
-
-  const check_input_nextBtn = () => {
-    if (formNum === 0) {
-      if (!authState) {
-        setAuthImPosibble(true);
-      } else {
-        for (const t of input_title_list1) {
-          if (!watch(t)) {
-            setInputCheck(t);
-            console.log(t)
-            break;
-          }
-        }
-        setformNum(formNum + 1);
       }
     }
   };
@@ -358,7 +322,6 @@ export const MakeNewApplication = () => {
       setAuthState(true);
       setResend(false);
       setIsActiveTimer(false);
-      setAuthImPosibble(false);
     } else {
       console.log(error);
       alert(error);
@@ -409,6 +372,10 @@ export const MakeNewApplication = () => {
   const leftRef = useRef<any>(null);
   const WholeFormRef = useRef<any>(null);
   const mainFormRef = useRef<any>(null);
+  const line1Ref = useRef<any>(null);
+  const line2Ref = useRef<any>(null);
+  const line3Ref = useRef<any>(null);
+  const line4Ref = useRef<any>(null);
   const circleRef = useRef<any>(null);
   const form1Ref = useRef<any>(null);
   const form2Ref = useRef<any>(null);
@@ -418,12 +385,46 @@ export const MakeNewApplication = () => {
 
   useEffect(() => {
     let progressStyle = leftRef.current.style;
+    // let line1Style = line1Ref.current.style;
+    // let line2Style = line2Ref.current.style;
+    // let line3Style = line3Ref.current.style;
+    // let line4Style = line4Ref.current.style;
 
     const progressSpace = () => {
       let formLeft = mainFormRef.current.getBoundingClientRect().left;
       progressStyle = leftRef.current.style;
+      // line1Style = line1Ref.current.style;
+      // line2Style = line2Ref.current.style;
+      // line3Style = line3Ref.current.style;
+      // line4Style = line4Ref.current.style;
+
+      // let formStyle = window.getComputedStyle(WholeFormRef.current);
+      // let formMarginLeft = formStyle.getPropertyValue("margin-left");
 
       progressStyle.width = `${formLeft - 20}px`;
+
+      // let circleStyle = window.getComputedStyle(circleRef.current);
+      // let circleWidth = circleStyle.getPropertyValue("width");
+      // let circleBorder = circleStyle.getPropertyValue("border-left-width");
+
+      // let lineStyle = window.getComputedStyle(line1Ref.current);
+      // let linewidth = lineStyle.getPropertyValue("width");
+      // line1Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
+      // line2Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
+      // line3Style.marginLeft = `${
+      //   parseFloat(circleWidth) / 2 -
+      //   parseFloat(circleBorder) -
+      //   parseFloat(linewidth) / 2
+      // }px`;
+      // line4Style.marginLeft = `${
+      //   parseFloat(circleWidth) / 2 -
+      //   parseFloat(circleBorder) -
+      //   parseFloat(linewidth) / 2
+      // }px`;
+      // // console.log("border-left-width", circleStyle.getPropertyValue("border-left-width"))
+      // console.log("CircleWidth", circleWidth)
+      // console.log(`${parseFloat(circleWidth) / 2}px`)
+      // console.log(`${parseFloat(circleWidth) / 2 - 1.5875}px`)
     };
 
     progressSpace();
@@ -475,17 +476,15 @@ export const MakeNewApplication = () => {
         authState === true
       ) {
         setNextBtnActive(false);
-        setInputCheck("");
       } else {
         setNextBtnActive(true);
       }
     }
     if (formNum === 1) {
       if (
-        watch("school_rank") !== "" 
-        // &&
-        // !Number.isNaN(watch("budget")) &&
-        // !Number.isNaN(watch("student_count"))
+        watch("school_rank") !== "" &&
+        !Number.isNaN(watch("budget")) &&
+        !Number.isNaN(watch("student_count"))
       ) {
         setNextBtnActive(false);
       } else {
@@ -603,6 +602,7 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Progress-line-container">
               <div className="Progress-line" />
+              {/* ref={line1Ref}  */}
             </div>
 
             <div className="circleNum-text-box">
@@ -619,6 +619,7 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Progress-line-container">
               <div className="Progress-line" />
+              {/* ref={line1Ref}  */}
             </div>
 
             <div className="circleNum-text-box">
@@ -635,6 +636,7 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Progress-line-container">
               <div className="Progress-line" />
+              {/* ref={line1Ref}  */}
             </div>
 
             <div className="circleNum-text-box">
@@ -732,14 +734,10 @@ export const MakeNewApplication = () => {
                     신청자 성함
                   </p>
                 </div>
-                <div className="Create-post-input-box Create-post-input-top">
+                <div className="Create-post-input-input-box  Create-post-input-top">
                   <input
                     {...register("name", { required: true })}
-                    className={
-                      inputCheck === "name"
-                        ? "Create-post-input-content horizontal-shaking border-red"
-                        : "Create-post-input-content"
-                    }
+                    className="Create-post-input-input-content"
                     name="name"
                     placeholder="신청자 성함"
                     readOnly={formNum === 4}
@@ -753,16 +751,12 @@ export const MakeNewApplication = () => {
                     소속 기관명
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("institution_name", { required: true })}
                     name="institution_name"
                     placeholder="도로 초등학교"
-                    className={
-                      inputCheck === "institution_name"
-                        ? "Create-post-input-content horizontal-shaking border-red"
-                        : "Create-post-input-content"
-                    }
+                    className="Create-post-input-input-content"
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -774,16 +768,12 @@ export const MakeNewApplication = () => {
                     직위
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("position", { required: true })}
                     name="position"
                     placeholder="진로 선생님"
-                    className={
-                      inputCheck === "position"
-                        ? "Create-post-input-content horizontal-shaking border-red"
-                        : "Create-post-input-content"
-                    }
+                    className="Create-post-input-input-content"
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -802,12 +792,8 @@ export const MakeNewApplication = () => {
                     })}
                     name="phone_number"
                     placeholder="01012345678"
-                    className={
-                      inputCheck === "phone_number"
-                        ? "Create-post-input-phoneNum  horizontal-shaking border-red"
-                        : "Create-post-input-phoneNum"
-                    }
-                    readOnly={formNum === 4 || authState === true}
+                    className="Create-post-input-phoneNum"
+                    readOnly={formNum === 4}
                     onChange={() => {
                       if (authState === true) {
                         setAuthState(false);
@@ -823,15 +809,13 @@ export const MakeNewApplication = () => {
                   {!resend ? (
                     <button
                       type="button"
-                      className={
-                        inputCheck === "phone_number"
-                          ? "Create-post-input-phoneNum-button horizontal-shaking border-red"
-                          : "Create-post-input-phoneNum-button"
-                      }
+                      className="Create-post-input-phoneNum-button"
                       onClick={() => {
+                        // const kakaoCheck_name = getValues("name");
+                        // const kakaoCheck_phone = getValues("phone_number");
                         check_kakao_condtion();
-                        setInputCheck("");
                       }}
+                      // disabled={sendBtnActive || formNum === 4}
                       disabled={formNum === 4}
                     >
                       카카오톡 인증
@@ -843,7 +827,7 @@ export const MakeNewApplication = () => {
                       style={{ color: "#777777", fontSize: "0.859rem" }}
                       disabled={formNum === 4}
                       onClick={() => {
-                        check_kakao_condtion();
+                        onSubmit_send();
                       }}
                     >
                       인증번호 재전송
@@ -868,38 +852,13 @@ export const MakeNewApplication = () => {
                   />
                   <button
                     type="button"
-                    className={
-                      authImPosibble
-                        ? "Create-post-input-phoneNum-button horizontal-shaking"
-                        : "Create-post-input-phoneNum-button"
-                    }
-                    style={{
-                      color: isActiveTimer
-                        ? "#0072B9"
-                        : "var(--doro-light-grey)",
-                    }}
-                    onClick={
-                      !isActiveTimer
-                        ? () => setAuthImPosibble(true)
-                        : handleSubmit_auth(onSubmit_check)
-                    }
+                    className="Create-post-input-phoneNum-button-auth"
+                    style={{ color: authState ? "#0072B9" : "" }}
+                    onClick={handleSubmit_auth(onSubmit_check)}
                     disabled={formNum === 4}
                   >
                     {authState ? "인증 완료" : "인증 하기"}
                   </button>
-                  {authImPosibble ? (
-                    <div
-                      style={{
-                        fontSize: "0.844rem",
-                        color: "red",
-                        marginLeft: "0.6rem",
-                      }}
-                    >
-                      카카오톡 인증을 먼저 해주세요.
-                    </div>
-                  ) : (
-                    ""
-                  )}
                   {isActiveTimer ? (
                     <div className="Create-post-input-phoneNum-button">
                       <span style={{ color: "#777777", fontSize: "1rem" }}>
@@ -920,7 +879,7 @@ export const MakeNewApplication = () => {
                     이메일
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("email", {
                       required: true,
@@ -928,11 +887,7 @@ export const MakeNewApplication = () => {
                     })}
                     name="email"
                     placeholder="E-Mail"
-                    className={
-                      inputCheck === "email"
-                        ? "Create-post-input-content horizontal-shaking border-red"
-                        : "Create-post-input-content"
-                    }
+                    className="Create-post-input-input-content"
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -958,14 +913,14 @@ export const MakeNewApplication = () => {
                     교육 학생 수
                   </span>
                 </div>
-                <div className="Create-post-input-box Create-post-input-top">
+                <div className="Create-post-input-input-box Create-post-input-top">
                   <input
                     {...register("student_count", {
                       required: true,
                       valueAsNumber: true,
                     })}
                     type="number"
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     name="student_count"
                     placeholder="총 학생 수를 입력해주세요."
                     readOnly={formNum === 4}
@@ -979,12 +934,12 @@ export const MakeNewApplication = () => {
                     학생 정보
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("school_rank", { required: true })}
                     name="school_rank"
                     placeholder="초등학교 1학년, 3학년"
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -996,7 +951,7 @@ export const MakeNewApplication = () => {
                     교육 예산
                   </span>
                 </div>
-                <div className="Create-post-input-box">
+                <div className="Create-post-input-input-box">
                   <input
                     {...register("budget", {
                       required: true,
@@ -1004,9 +959,8 @@ export const MakeNewApplication = () => {
                     })}
                     name="budget"
                     placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
-                    className="Create-post-input-content"
+                    className="Create-post-input-input-content"
                     readOnly={formNum === 4}
-                    onChange={() => console.log("예산")}
                   />
                 </div>
               </div>
@@ -1232,14 +1186,14 @@ export const MakeNewApplication = () => {
                     type="button"
                     className="Create-post-button"
                     style={
-                      !nextBtnActive
+                      nextBtnActive === false
                         ? { background: "#0072b9", color: "#fff" }
                         : { background: "#d9d9d9", color: "#0072b9" }
                     }
                     onClick={() => {
-                      // setformNum(formNum + 1);
-                      check_input_nextBtn();
+                      setformNum(formNum + 1);
                     }}
+                    disabled={nextBtnActive}
                   >
                     다음
                   </button>
