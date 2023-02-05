@@ -483,8 +483,8 @@ export const MakeNewApplication = () => {
     if (formNum === 1) {
       if (
         watch("school_rank") !== "" &&
-        watch("budget") !== "" &&
-        watch("student_count") !== ""
+        !Number.isNaN(watch("budget")) &&
+        !Number.isNaN(watch("student_count"))
       ) {
         setNextBtnActive(false);
       } else {
