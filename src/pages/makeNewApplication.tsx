@@ -1340,8 +1340,8 @@ export const MakeNewApplication = () => {
                         : { background: "#d9d9d9", color: "#0072b9" }
                     }
                     onClick={() => {
-                      setFormNum(formNum + 1);
-                      // check_input_nextBtn();
+                      // setFormNum(formNum + 1);
+                      check_input_nextBtn();
                     }}
                   >
                     다음
