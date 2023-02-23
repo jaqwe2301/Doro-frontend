@@ -41,7 +41,7 @@
   font-size: 1rem;
 }
 
-.Create-post-submit-modal-button-container{
+.Create-post-submit-modal-button-container {
   display: flex;
   justify-content: flex-end;
   margin-top: 1.15rem;
@@ -128,7 +128,7 @@
   transition: 2.5s;
 }
 
-.Progress-line-container{
+.Progress-line-container {
   width: 1.8vw;
   display: flex;
   justify-content: center;
@@ -182,7 +182,7 @@
   border-top: solid 1px var(--doro-light-grey);
 }
 
-.Create-post-input-input-box {
+.Create-post-input-box {
   display: flex;
   width: 84%;
   height: 4.056rem;
@@ -266,29 +266,6 @@
   font-size: 1rem;
   font-weight: 500;
   font-family: Pretendard;
-  /* color: #3A1D1D;
-  background: #f1e64b; */
-  color: var(--doro-medium);
-}
-
-.Create-post-input-phoneNum-button-auth {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 0.6rem;
-  height: 1.444rem;
-  width: 7.444rem;
-  border: solid 1px var(--doro-light-grey);
-  height: 2.556rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 500;
-  font-family: Pretendard;
-  /* color: #3A1D1D;
-  background: #f1e64b; */
-  color: #d9d9d9;
-}
-.Create-post-input-phoneNum-button-auth:hover {
   color: var(--doro-medium);
 }
 
@@ -298,7 +275,7 @@
   flex-grow: 0;
 }
 
-.Create-post-input-input-content {
+.Create-post-input-content {
   display: flex;
   width: 99%;
   height: 2.556rem;
@@ -312,7 +289,7 @@
   font-family: Pretendard;
 }
 
-.Create-post-input-input-content::placeholder {
+.Create-post-input-content::placeholder {
   font-family: Pretendard;
   color: #d9d9d9;
   font-size: 1rem;
@@ -330,7 +307,7 @@
   border-radius: 4px;
   border: solid 1px var(--doro-light-grey);
 }
-.Create-post-input-input-box-checkbox {
+.Create-post-input-box-checkbox {
   width: 84%;
   height: 4.056rem;
   flex-grow: 0;
@@ -530,10 +507,11 @@
   font-size: 1rem;
 }
 
-.classInfo-container{
+.classInfo-container {
   display: grid;
   justify-content: space-between;
-  grid-template-columns: 21.057rem 21.057rem 21.057rem; }
+  grid-template-columns: 21.057rem 21.057rem 21.057rem;
+}
 
 .classInfo-box {
   margin-bottom: 1.2rem;
@@ -620,7 +598,7 @@
   opacity: 1;
 }
 
-.classInfo-checkbox-container{
+.classInfo-checkbox-container {
   display: flex;
 }
 
@@ -630,7 +608,7 @@
   width: 1.22rem;
 }
 
-.classInfo-checkbox-text { 
+.classInfo-checkbox-text {
   font-family: Pretendard;
   font-size: 0.832rem;
   color: #777;

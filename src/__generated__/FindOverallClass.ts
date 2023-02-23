@@ -22,7 +22,7 @@ export interface FindOverallClass_FindOverallClass_overallClass_Detail_class_inf
   __typename: "Detail_class_info";
   class_name: string;
   edu_concept: string;
-  student_number: number;
+  student_number: any;
   date: any[];
   remark: string | null;
   unfixed: boolean;
@@ -30,9 +30,9 @@ export interface FindOverallClass_FindOverallClass_overallClass_Detail_class_inf
 
 export interface FindOverallClass_FindOverallClass_overallClass {
   __typename: "Overall_class_info";
-  student_count: number;
+  student_count: any;
   school_rank: string;
-  budget: number;
+  budget: any;
   overall_remark: string | null;
   client: FindOverallClass_FindOverallClass_overallClass_client;
   Detail_class_infos: FindOverallClass_FindOverallClass_overallClass_Detail_class_infos[];

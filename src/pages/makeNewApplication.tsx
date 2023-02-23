@@ -87,7 +87,7 @@ const CHECK_AUTH_NUM_QUERY = gql`
 interface Detail_class_item {
   class_name: string;
   edu_concept: string;
-  student_number: number;
+  student_number: any;
   date: Date[];
   remark: string;
   unfixed: boolean;
@@ -99,9 +99,9 @@ interface ICreateEduForm {
   position: string;
   phone_number: string;
   email: string;
-  student_count: number;
+  student_count: any;
   school_rank: string;
-  budget: number;
+  budget: any;
   overall_remark: string;
   detail_classes: Detail_class_item[];
 }
@@ -137,7 +137,7 @@ const useInterval: IUseInterval = (callback, interval) => {
 
 export const MakeNewApplication = () => {
   // 질문 바뀌는 부분
-  const [formNum, setformNum] = useState(0);
+  const [formNum, setFormNum] = useState(0);
   // 모달창
   const [kakaoModal, setKakaoModal] = useState(false);
   const [submitModal, setSubmitModal] = useState(false);
@@ -147,22 +147,30 @@ export const MakeNewApplication = () => {
   const [authCheckModal, setAuthCheckModal] = useState(false);
   const [resend, setResend] = useState(false);
   const [isActiveTimer, setIsActiveTimer] = useState<boolean>(false);
+  const [authImPosibble, setAuthImPosibble] = useState<boolean>();
   const [authState, setAuthState] = useState(false);
   const [sendBtnActive, setSendBtnActive] = useState(true);
-  const { register, getValues, handleSubmit, formState, control, watch } =
-    useForm<ICreateEduForm>({
-      defaultValues: {
-        detail_classes: [
-          {
-            class_name: "",
-            edu_concept: "",
-            date: [],
-            remark: "",
-            unfixed: false,
-          },
-        ],
-      },
-    });
+  const {
+    register,
+    getValues,
+    handleSubmit,
+    setValue,
+    formState,
+    control,
+    watch,
+  } = useForm<ICreateEduForm>({
+    defaultValues: {
+      detail_classes: [
+        {
+          class_name: "",
+          edu_concept: "",
+          date: [],
+          remark: "",
+          unfixed: false,
+        },
+      ],
+    },
+  });
   const {
     register: register_auth,
     getValues: getValues_auth,
@@ -214,6 +222,33 @@ export const MakeNewApplication = () => {
   };
 
   const onSubmit_create = () => {
+
+    setValue(
+      "student_count",
+      parseInt(
+        watch("student_count").substr(0, watch("student_count").length - 1)
+      )
+    );
+    setValue(
+      "budget",
+      parseInt(watch("budget").substr(0, watch("budget").length - 1))
+    );
+    let len = watch("detail_classes").length;
+
+    while (len > 0) {
+      len = len - 1;
+      console.log(watch(`detail_classes.${len}.student_number`));
+      setValue(
+        `detail_classes.${len}.student_number`,
+        parseInt(
+          watch(`detail_classes.${len}.student_number`).substr(
+            0,
+            watch(`detail_classes.${len}.student_number`).length - 1
+          )
+        )
+      );
+    }
+
     const {
       name,
       institution_name,
@@ -264,17 +299,36 @@ export const MakeNewApplication = () => {
     console.log("ㅑinvalid 통과");
   };
 
+  const [inputCheck, setInputCheck] = useState<string>();
+
   const check_kakao_condtion = () => {
+    // 카톡 인증하기 버튼 눌렀을 때 실행될 함수
+    setInputCheck("");
     if (watch("phone_number").length === 11 && watch("name")) {
+      setInputCheck("");
+      setAuthImPosibble(false);
       onSubmit_send();
     } else {
       if (!watch("name")) {
-        alert("성함을 입력해주십시오.");
+        setInputCheck("name");
+        alert("성함을 입력해주세요.");
       } else if (watch("phone_number").length !== 11) {
+        setInputCheck("phone_number");
         alert("휴대폰 번호를 다시 확인하십시오.");
       } else {
         alert("성함과 휴대폰 번호를 입력하십시오.");
       }
+    }
+  };
+
+  // 신청자 정보 form 체크 (다음 버튼 눌렀을 때 작동)
+  const [checkForm1, setCheckform1] = useState<string>();
+
+  const check_input_nextBtn = () => {
+    if (!nextBtnActive) {
+      setFormNum(formNum + 1);
+    } else {
+      alert("모든 항목을 채워주십시오.");
     }
   };
 
@@ -322,6 +376,7 @@ export const MakeNewApplication = () => {
       setAuthState(true);
       setResend(false);
       setIsActiveTimer(false);
+      setAuthImPosibble(false);
     } else {
       console.log(error);
       alert(error);
@@ -372,10 +427,6 @@ export const MakeNewApplication = () => {
   const leftRef = useRef<any>(null);
   const WholeFormRef = useRef<any>(null);
   const mainFormRef = useRef<any>(null);
-  const line1Ref = useRef<any>(null);
-  const line2Ref = useRef<any>(null);
-  const line3Ref = useRef<any>(null);
-  const line4Ref = useRef<any>(null);
   const circleRef = useRef<any>(null);
   const form1Ref = useRef<any>(null);
   const form2Ref = useRef<any>(null);
@@ -385,46 +436,12 @@ export const MakeNewApplication = () => {
 
   useEffect(() => {
     let progressStyle = leftRef.current.style;
-    // let line1Style = line1Ref.current.style;
-    // let line2Style = line2Ref.current.style;
-    // let line3Style = line3Ref.current.style;
-    // let line4Style = line4Ref.current.style;
 
     const progressSpace = () => {
       let formLeft = mainFormRef.current.getBoundingClientRect().left;
       progressStyle = leftRef.current.style;
-      // line1Style = line1Ref.current.style;
-      // line2Style = line2Ref.current.style;
-      // line3Style = line3Ref.current.style;
-      // line4Style = line4Ref.current.style;
-
-      // let formStyle = window.getComputedStyle(WholeFormRef.current);
-      // let formMarginLeft = formStyle.getPropertyValue("margin-left");
 
       progressStyle.width = `${formLeft - 20}px`;
-
-      // let circleStyle = window.getComputedStyle(circleRef.current);
-      // let circleWidth = circleStyle.getPropertyValue("width");
-      // let circleBorder = circleStyle.getPropertyValue("border-left-width");
-
-      // let lineStyle = window.getComputedStyle(line1Ref.current);
-      // let linewidth = lineStyle.getPropertyValue("width");
-      // line1Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
-      // line2Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
-      // line3Style.marginLeft = `${
-      //   parseFloat(circleWidth) / 2 -
-      //   parseFloat(circleBorder) -
-      //   parseFloat(linewidth) / 2
-      // }px`;
-      // line4Style.marginLeft = `${
-      //   parseFloat(circleWidth) / 2 -
-      //   parseFloat(circleBorder) -
-      //   parseFloat(linewidth) / 2
-      // }px`;
-      // // console.log("border-left-width", circleStyle.getPropertyValue("border-left-width"))
-      // console.log("CircleWidth", circleWidth)
-      // console.log(`${parseFloat(circleWidth) / 2}px`)
-      // console.log(`${parseFloat(circleWidth) / 2 - 1.5875}px`)
     };
 
     progressSpace();
@@ -463,6 +480,35 @@ export const MakeNewApplication = () => {
   }, 1000);
 
   const [nextBtnActive, setNextBtnActive] = useState<boolean>(true);
+
+  const point_control = (name: any, point: string) => {
+    let leng = watch(name).length;
+
+    if (!watch(name)) {
+      // console.log("값 없음");
+      setValue(name, point);
+    } else if (
+      watch(name).substr(-1, 1) !== point &&
+      watch(name).substr(-2, 1) === point
+    ) {
+      // "명, 원" 뒤에 입력값이 생길 경우
+      setValue(name, watch(name).substr(0, leng - 2) + point);
+    } else if (watch(name).substr(-1, 1) !== point) {
+      setValue(name, watch(name).substr(0, leng) + point);
+    }
+    for (let i = 0; i < leng; i++) {
+      if (
+        watch(name).charAt(i) !== point &&
+        isNaN(watch(name).charAt(i)) === true
+      ) {
+        setValue(
+          name,
+          watch(name).substr(0, i) + watch(name).substr(i + 1, leng - i - 1)
+        );
+      }
+    }
+  };
+
   useEffect(() => {
     if (formNum === 0) {
       if (
@@ -480,29 +526,34 @@ export const MakeNewApplication = () => {
         setNextBtnActive(true);
       }
     }
+
     if (formNum === 1) {
+      point_control("student_count", "명");
+      point_control("budget", "원");
       if (
-        watch("school_rank") !== "" &&
-        !Number.isNaN(watch("budget")) &&
-        !Number.isNaN(watch("student_count"))
+        watch("student_count") !== "명" &&
+        watch("school_rank") &&
+        watch("budget") !== "원"
       ) {
         setNextBtnActive(false);
       } else {
         setNextBtnActive(true);
       }
     }
+
     if (formNum === 2) {
       let len = watch("detail_classes").length;
       let judge = false;
       let check_num = 0;
       while (len > 0) {
         len = len - 1;
+        point_control(`detail_classes.${len}.student_number`, "명");
         if (
           watch([
             `detail_classes.${len}.class_name`,
             `detail_classes.${len}.edu_concept`,
           ]).every((item) => item !== "") &&
-          !Number.isNaN(watch(`detail_classes.${len}.student_number`)) &&
+          watch(`detail_classes.${len}.student_number`) !== "명" &&
           watch(`detail_classes.${len}.date`).length !== 0
         ) {
           check_num += 1;
@@ -518,6 +569,58 @@ export const MakeNewApplication = () => {
       }
     }
   }, [watch()]);
+
+  const delete_added_point = () => {
+    setValue(
+      "student_count",
+      parseInt(
+        watch("student_count").substr(0, watch("student_count").length - 1)
+      )
+    );
+    setValue(
+      "budget",
+      parseInt(watch("budget").substr(0, watch("budget").length - 1))
+    );
+    let len = watch("detail_classes").length;
+
+    while (len > 0) {
+      len = len - 1;
+      console.log(watch(`detail_classes.${len}.student_number`));
+      setValue(
+        `detail_classes.${len}.student_number`,
+        parseInt(
+          watch(`detail_classes.${len}.student_number`).substr(
+            0,
+            watch(`detail_classes.${len}.student_number`).length - 1
+          )
+        )
+      );
+    }
+  };
+
+  const add_deleting_point = () => {
+    setValue(
+      "student_count",
+      watch("student_count").substr(0, watch("student_count").length + "명")
+    );
+    setValue(
+      "student_count",
+      watch("student_count").substr(0, watch("budget").length + "원")
+    );
+
+    // let len = watch("detail_classes").length;
+
+    // while (len > 0) {
+    //   len = len - 1;
+    //   setValue(
+    //     `detail_classes.${len}.student_number`,
+    //     watch(`detail_classes.${len}.student_number`).substr(
+    //       0,
+    //       watch(`detail_classes.${len}.student_number`).length + "명"
+    //     )
+    //   );
+    // }
+  };
 
   return (
     <>
@@ -602,7 +705,6 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Progress-line-container">
               <div className="Progress-line" />
-              {/* ref={line1Ref}  */}
             </div>
 
             <div className="circleNum-text-box">
@@ -619,7 +721,6 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Progress-line-container">
               <div className="Progress-line" />
-              {/* ref={line1Ref}  */}
             </div>
 
             <div className="circleNum-text-box">
@@ -636,7 +737,6 @@ export const MakeNewApplication = () => {
             </div>
             <div className="Progress-line-container">
               <div className="Progress-line" />
-              {/* ref={line1Ref}  */}
             </div>
 
             <div className="circleNum-text-box">
@@ -700,6 +800,7 @@ export const MakeNewApplication = () => {
                         className="Create-post-kakao-modal-button"
                         onClick={() => {
                           setSubmitModal(false);
+                          // add_deleting_point();
                         }}
                       >
                         취소
@@ -734,10 +835,14 @@ export const MakeNewApplication = () => {
                     신청자 성함
                   </p>
                 </div>
-                <div className="Create-post-input-input-box  Create-post-input-top">
+                <div className="Create-post-input-box Create-post-input-top">
                   <input
                     {...register("name", { required: true })}
-                    className="Create-post-input-input-content"
+                    className={
+                      inputCheck === "name"
+                        ? "Create-post-input-content horizontal-shaking border-red"
+                        : "Create-post-input-content"
+                    }
                     name="name"
                     placeholder="신청자 성함"
                     readOnly={formNum === 4}
@@ -751,12 +856,16 @@ export const MakeNewApplication = () => {
                     소속 기관명
                   </span>
                 </div>
-                <div className="Create-post-input-input-box">
+                <div className="Create-post-input-box">
                   <input
                     {...register("institution_name", { required: true })}
                     name="institution_name"
                     placeholder="도로 초등학교"
-                    className="Create-post-input-input-content"
+                    className={
+                      inputCheck === "institution_name"
+                        ? "Create-post-input-content horizontal-shaking border-red"
+                        : "Create-post-input-content"
+                    }
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -768,12 +877,16 @@ export const MakeNewApplication = () => {
                     직위
                   </span>
                 </div>
-                <div className="Create-post-input-input-box">
+                <div className="Create-post-input-box">
                   <input
                     {...register("position", { required: true })}
                     name="position"
                     placeholder="진로 선생님"
-                    className="Create-post-input-input-content"
+                    className={
+                      inputCheck === "position"
+                        ? "Create-post-input-content horizontal-shaking border-red"
+                        : "Create-post-input-content"
+                    }
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -792,8 +905,12 @@ export const MakeNewApplication = () => {
                     })}
                     name="phone_number"
                     placeholder="01012345678"
-                    className="Create-post-input-phoneNum"
-                    readOnly={formNum === 4}
+                    className={
+                      inputCheck === "phone_number"
+                        ? "Create-post-input-phoneNum  horizontal-shaking border-red"
+                        : "Create-post-input-phoneNum"
+                    }
+                    readOnly={formNum === 4 || authState === true}
                     onChange={() => {
                       if (authState === true) {
                         setAuthState(false);
@@ -809,13 +926,15 @@ export const MakeNewApplication = () => {
                   {!resend ? (
                     <button
                       type="button"
-                      className="Create-post-input-phoneNum-button"
+                      className={
+                        inputCheck === "phone_number"
+                          ? "Create-post-input-phoneNum-button horizontal-shaking border-red"
+                          : "Create-post-input-phoneNum-button"
+                      }
                       onClick={() => {
-                        // const kakaoCheck_name = getValues("name");
-                        // const kakaoCheck_phone = getValues("phone_number");
                         check_kakao_condtion();
+                        setInputCheck("");
                       }}
-                      // disabled={sendBtnActive || formNum === 4}
                       disabled={formNum === 4}
                     >
                       카카오톡 인증
@@ -827,7 +946,7 @@ export const MakeNewApplication = () => {
                       style={{ color: "#777777", fontSize: "0.859rem" }}
                       disabled={formNum === 4}
                       onClick={() => {
-                        onSubmit_send();
+                        check_kakao_condtion();
                       }}
                     >
                       인증번호 재전송
@@ -852,13 +971,38 @@ export const MakeNewApplication = () => {
                   />
                   <button
                     type="button"
-                    className="Create-post-input-phoneNum-button-auth"
-                    style={{ color: authState ? "#0072B9" : "" }}
-                    onClick={handleSubmit_auth(onSubmit_check)}
+                    className={
+                      authImPosibble
+                        ? "Create-post-input-phoneNum-button horizontal-shaking"
+                        : "Create-post-input-phoneNum-button"
+                    }
+                    style={{
+                      color: isActiveTimer
+                        ? "#0072B9"
+                        : "var(--doro-light-grey)",
+                    }}
+                    onClick={
+                      !isActiveTimer
+                        ? () => setAuthImPosibble(true)
+                        : handleSubmit_auth(onSubmit_check)
+                    }
                     disabled={formNum === 4}
                   >
                     {authState ? "인증 완료" : "인증 하기"}
                   </button>
+                  {authImPosibble ? (
+                    <div
+                      style={{
+                        fontSize: "0.844rem",
+                        color: "red",
+                        marginLeft: "0.6rem",
+                      }}
+                    >
+                      카카오톡 인증을 먼저 해주세요.
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   {isActiveTimer ? (
                     <div className="Create-post-input-phoneNum-button">
                       <span style={{ color: "#777777", fontSize: "1rem" }}>
@@ -879,7 +1023,7 @@ export const MakeNewApplication = () => {
                     이메일
                   </span>
                 </div>
-                <div className="Create-post-input-input-box">
+                <div className="Create-post-input-box">
                   <input
                     {...register("email", {
                       required: true,
@@ -887,7 +1031,11 @@ export const MakeNewApplication = () => {
                     })}
                     name="email"
                     placeholder="E-Mail"
-                    className="Create-post-input-input-content"
+                    className={
+                      inputCheck === "email"
+                        ? "Create-post-input-content horizontal-shaking border-red"
+                        : "Create-post-input-content"
+                    }
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -913,14 +1061,14 @@ export const MakeNewApplication = () => {
                     교육 학생 수
                   </span>
                 </div>
-                <div className="Create-post-input-input-box Create-post-input-top">
+                <div className="Create-post-input-box Create-post-input-top">
                   <input
                     {...register("student_count", {
                       required: true,
-                      valueAsNumber: true,
+                      // valueAsNumber: true,
                     })}
-                    type="number"
-                    className="Create-post-input-input-content"
+                    type="text"
+                    className="Create-post-input-content"
                     name="student_count"
                     placeholder="총 학생 수를 입력해주세요."
                     readOnly={formNum === 4}
@@ -934,12 +1082,12 @@ export const MakeNewApplication = () => {
                     학생 정보
                   </span>
                 </div>
-                <div className="Create-post-input-input-box">
+                <div className="Create-post-input-box">
                   <input
                     {...register("school_rank", { required: true })}
                     name="school_rank"
                     placeholder="초등학교 1학년, 3학년"
-                    className="Create-post-input-input-content"
+                    className="Create-post-input-content"
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -951,15 +1099,16 @@ export const MakeNewApplication = () => {
                     교육 예산
                   </span>
                 </div>
-                <div className="Create-post-input-input-box">
+                <div className="Create-post-input-box">
                   <input
                     {...register("budget", {
                       required: true,
-                      valueAsNumber: true,
+                      // valueAsNumber: true,
                     })}
+                    type="text"
                     name="budget"
                     placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
-                    className="Create-post-input-input-content"
+                    className="Create-post-input-content"
                     readOnly={formNum === 4}
                   />
                 </div>
@@ -1037,14 +1186,14 @@ export const MakeNewApplication = () => {
                           <input
                             className="classInfo-topInfo-input"
                             placeholder="120"
-                            type="number"
                             {...register(
                               `detail_classes.${index}.student_number` as const,
                               {
-                                valueAsNumber: true,
+                                // valueAsNumber: true,
                                 required: true,
                               }
                             )}
+                            type="text"
                             name={`detail_classes.${index}.student_number`}
                             readOnly={formNum === 4}
                           />
@@ -1171,7 +1320,7 @@ export const MakeNewApplication = () => {
                       marginRight: "1rem",
                     }}
                     onClick={() => {
-                      setformNum(formNum - 1);
+                      setFormNum(formNum - 1);
                     }}
                   >
                     이전
@@ -1186,14 +1335,14 @@ export const MakeNewApplication = () => {
                     type="button"
                     className="Create-post-button"
                     style={
-                      nextBtnActive === false
+                      !nextBtnActive
                         ? { background: "#0072b9", color: "#fff" }
                         : { background: "#d9d9d9", color: "#0072b9" }
                     }
                     onClick={() => {
-                      setformNum(formNum + 1);
+                      setFormNum(formNum + 1);
+                      // check_input_nextBtn();
                     }}
-                    disabled={nextBtnActive}
                   >
                     다음
                   </button>
@@ -1213,7 +1362,8 @@ export const MakeNewApplication = () => {
                       marginRight: "1.111rem",
                     }}
                     onClick={() => {
-                      setformNum(formNum - 1);
+                      setFormNum(formNum - 1);
+                      // delete_added_point();
                     }}
                   >
                     수정 하기

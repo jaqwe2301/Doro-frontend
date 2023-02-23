@@ -30,6 +30,7 @@ import "./styles/bannerStyles.css";
 import "./styles/bodyStyles.css";
 import "./styles/makeNewApplication.css";
 import "./styles/retrieveStyles.css"
+import "./styles/globalStyle.css"
 
 
 const root = ReactDOM.createRoot(
