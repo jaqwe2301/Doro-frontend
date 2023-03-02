@@ -88,6 +88,7 @@ interface Detail_class_item {
   class_name: string;
   edu_concept: string;
   student_number: any;
+  // date: Date[];
   date: Date[];
   remark: string;
   unfixed: boolean;
@@ -547,6 +548,7 @@ export const MakeNewApplication = () => {
       let check_num = 0;
       while (len > 0) {
         len = len - 1;
+        console.log((watch(`detail_classes.${len}.date`)))
         point_control(`detail_classes.${len}.student_number`, "명");
         if (
           watch([
@@ -569,58 +571,6 @@ export const MakeNewApplication = () => {
       }
     }
   }, [watch()]);
-
-  const delete_added_point = () => {
-    setValue(
-      "student_count",
-      parseInt(
-        watch("student_count").substr(0, watch("student_count").length - 1)
-      )
-    );
-    setValue(
-      "budget",
-      parseInt(watch("budget").substr(0, watch("budget").length - 1))
-    );
-    let len = watch("detail_classes").length;
-
-    while (len > 0) {
-      len = len - 1;
-      console.log(watch(`detail_classes.${len}.student_number`));
-      setValue(
-        `detail_classes.${len}.student_number`,
-        parseInt(
-          watch(`detail_classes.${len}.student_number`).substr(
-            0,
-            watch(`detail_classes.${len}.student_number`).length - 1
-          )
-        )
-      );
-    }
-  };
-
-  const add_deleting_point = () => {
-    setValue(
-      "student_count",
-      watch("student_count").substr(0, watch("student_count").length + "명")
-    );
-    setValue(
-      "student_count",
-      watch("student_count").substr(0, watch("budget").length + "원")
-    );
-
-    // let len = watch("detail_classes").length;
-
-    // while (len > 0) {
-    //   len = len - 1;
-    //   setValue(
-    //     `detail_classes.${len}.student_number`,
-    //     watch(`detail_classes.${len}.student_number`).substr(
-    //       0,
-    //       watch(`detail_classes.${len}.student_number`).length + "명"
-    //     )
-    //   );
-    // }
-  };
 
   return (
     <>
@@ -1340,8 +1290,8 @@ export const MakeNewApplication = () => {
                         : { background: "#d9d9d9", color: "#0072b9" }
                     }
                     onClick={() => {
-                      // setFormNum(formNum + 1);
-                      check_input_nextBtn();
+                      setFormNum(formNum + 1);
+                      // check_input_nextBtn();
                     }}
                   >
                     다음

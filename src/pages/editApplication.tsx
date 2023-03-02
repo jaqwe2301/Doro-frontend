@@ -120,6 +120,7 @@ interface Detail_class_item {
   class_name: string;
   edu_concept: string;
   student_number: any;
+  // date: Date[];
   date: Date[];
   remark: string;
   unfixed: boolean;
@@ -184,6 +185,7 @@ export const EditApplication = () => {
     register,
     getValues,
     handleSubmit,
+    setValue,
     formState,
     control,
     watch,
@@ -261,6 +263,32 @@ export const EditApplication = () => {
   };
 
   const onSubmit_create = () => {
+    setValue(
+      "student_count",
+      parseInt(
+        watch("student_count").substr(0, watch("student_count").length - 1)
+      )
+    );
+    setValue(
+      "budget",
+      parseInt(watch("budget").substr(0, watch("budget").length - 1))
+    );
+    let len = watch("detail_classes").length;
+
+    while (len > 0) {
+      len = len - 1;
+      // console.log(watch(`detail_classes.${len}.student_number`));
+      setValue(
+        `detail_classes.${len}.student_number`,
+        parseInt(
+          watch(`detail_classes.${len}.student_number`).substr(
+            0,
+            watch(`detail_classes.${len}.student_number`).length - 1
+          )
+        )
+      );
+    }
+
     const {
       name,
       institution_name,
@@ -411,46 +439,12 @@ export const EditApplication = () => {
 
   useEffect(() => {
     let progressStyle = leftRef.current.style;
-    // let line1Style = line1Ref.current.style;
-    // let line2Style = line2Ref.current.style;
-    // let line3Style = line3Ref.current.style;
-    // let line4Style = line4Ref.current.style;
 
     const progressSpace = () => {
       let formLeft = mainFormRef.current.getBoundingClientRect().left;
       progressStyle = leftRef.current.style;
-      // line1Style = line1Ref.current.style;
-      // line2Style = line2Ref.current.style;
-      // line3Style = line3Ref.current.style;
-      // line4Style = line4Ref.current.style;
-
-      // let formStyle = window.getComputedStyle(WholeFormRef.current);
-      // let formMarginLeft = formStyle.getPropertyValue("margin-left");
 
       progressStyle.width = `${formLeft - 20}px`;
-
-      // let circleStyle = window.getComputedStyle(circleRef.current);
-      // let circleWidth = circleStyle.getPropertyValue("width");
-      // let circleBorder = circleStyle.getPropertyValue("border-left-width");
-
-      // let lineStyle = window.getComputedStyle(line1Ref.current);
-      // let linewidth = lineStyle.getPropertyValue("width");
-      // line1Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
-      // line2Style.marginLeft = `${parseFloat(circleWidth) / 2}px`;
-      // line3Style.marginLeft = `${
-      //   parseFloat(circleWidth) / 2 -
-      //   parseFloat(circleBorder) -
-      //   parseFloat(linewidth) / 2
-      // }px`;
-      // line4Style.marginLeft = `${
-      //   parseFloat(circleWidth) / 2 -
-      //   parseFloat(circleBorder) -
-      //   parseFloat(linewidth) / 2
-      // }px`;
-      // // console.log("border-left-width", circleStyle.getPropertyValue("border-left-width"))
-      // console.log("CircleWidth", circleWidth)
-      // console.log(`${parseFloat(circleWidth) / 2}px`)
-      // console.log(`${parseFloat(circleWidth) / 2 - 1.5875}px`)
     };
 
     progressSpace();
@@ -489,11 +483,47 @@ export const EditApplication = () => {
   }, 1000);
 
   const [nextBtnActive, setNextBtnActive] = useState<boolean>(true);
+
+  const point_control = (name: any, point: string) => {
+    let leng = watch(name).length;
+
+    if (!watch(name)) {
+      // console.log("값 없음");
+      setValue(name, point);
+    } else if (
+      watch(name).substr(-1, 1) !== point &&
+      watch(name).substr(-2, 1) === point
+    ) {
+      // "명, 원" 뒤에 입력값이 생길 경우
+      setValue(name, watch(name).substr(0, leng - 2) + point);
+    } else if (watch(name).substr(-1, 1) !== point) {
+      setValue(name, watch(name).substr(0, leng) + point);
+    }
+    for (let i = 0; i < leng; i++) {
+      if (
+        watch(name).charAt(i) !== point &&
+        isNaN(watch(name).charAt(i)) === true
+      ) {
+        setValue(
+          name,
+          watch(name).substr(0, i) + watch(name).substr(i + 1, leng - i - 1)
+        );
+      }
+    }
+  };
+
+  const change_to_string = (name: any) => {
+    // 처음 불러왔을 때 input 값이 number인 값들을 string으로 바꿔줌 (~명, ~원인 항목에 해당)
+    if (typeof watch(name) === "number") {
+      setValue(name, String(watch(name)));
+    }
+  };
+
   useEffect(() => {
     if (formNum === 0) {
-      console.log(
-        watch(["name", "institution_name", "position", "phone_number", "email"])
-      );
+      // console.log(
+      //   watch(["name", "institution_name", "position", "phone_number", "email"])
+      // );
       if (
         watch([
           "name",
@@ -509,17 +539,23 @@ export const EditApplication = () => {
         setNextBtnActive(true);
       }
     }
+
     if (formNum === 1) {
+      change_to_string("student_count");
+      change_to_string("budget");
+      point_control("student_count", "명");
+      point_control("budget", "원");
       if (
-        watch("school_rank") !== "" &&
-        !Number.isNaN(watch("budget")) &&
-        !Number.isNaN(watch("student_count"))
+        watch("student_count") !== "명" &&
+        watch("school_rank") &&
+        watch("budget") !== "원"
       ) {
         setNextBtnActive(false);
       } else {
         setNextBtnActive(true);
       }
     }
+
     if (formNum === 2) {
       let len = watch("detail_classes").length;
       let judge = false;
@@ -531,7 +567,7 @@ export const EditApplication = () => {
             `detail_classes.${len}.class_name`,
             `detail_classes.${len}.edu_concept`,
           ]).every((item) => item !== "") &&
-          !Number.isNaN(watch(`detail_classes.${len}.student_number`)) &&
+          watch(`detail_classes.${len}.student_number`) !== "명" &&
           watch(`detail_classes.${len}.date`).length !== 0
         ) {
           check_num += 1;
@@ -547,6 +583,8 @@ export const EditApplication = () => {
       }
     }
   }, [authState, findOverallClassData, formNum, watch()]);
+
+  const [dateInput, setDateInput] = useState<boolean>();
 
   useDidMountEffect(() => {
     if (!error && !loading) {
@@ -588,6 +626,7 @@ export const EditApplication = () => {
           : "",
       });
     }
+
     if (!error && !loading) {
       fields.map((value, index) => {
         remove(index);
@@ -606,6 +645,7 @@ export const EditApplication = () => {
         });
       });
     }
+    
   }, [findOverallClassData, error, loading]);
 
   const onDeleteOverallClassCompleted = () => {
@@ -988,9 +1028,9 @@ export const EditApplication = () => {
                 <div className="Create-post-input-box Create-post-input-top">
                   <input
                     {...register("student_count", {
-                      valueAsNumber: true,
+                      // valueAsNumber: true,
                     })}
-                    type="number"
+                    type="text"
                     className="Create-post-input-content"
                     name="student_count"
                     placeholder="총 학생 수를 입력해주세요."
@@ -1033,8 +1073,9 @@ export const EditApplication = () => {
                 <div className="Create-post-input-box">
                   <input
                     {...register("budget", {
-                      valueAsNumber: true,
+                      // valueAsNumber: true,
                     })}
+                    type="text"
                     name="budget"
                     placeholder="교육 커리큘럼 제안에 활용되는 정보입니다."
                     className="Create-post-input-content"
@@ -1062,6 +1103,13 @@ export const EditApplication = () => {
               <div className="CreateEdu-title">학급별 교육 일정</div>
               <div className="classInfo-container">
                 {fields.map((field, index) => {
+                  const { detail_classes } = getValues();
+                  let get_date_Array = detail_classes[index].date
+                  let date_array_len = get_date_Array.length
+                  let processing_date_Array : Date[] = []
+                  for (let i=0;i<date_array_len;i++) {
+                    processing_date_Array.push(new Date(String(get_date_Array[i]).substr(0,23)))
+                  }
                   return (
                     <div key={field.id} className="classInfo-box">
                       <section className={"section"} key={field.id}>
@@ -1123,7 +1171,7 @@ export const EditApplication = () => {
                             {...register(
                               `detail_classes.${index}.student_number` as const,
                               {
-                                valueAsNumber: true,
+                                // valueAsNumber: true,
                                 required: true,
                               }
                             )}
@@ -1151,6 +1199,7 @@ export const EditApplication = () => {
                                   }}
                                   disabled={formNum === 4}
                                   onChange={(e) => props.field.onChange(e)}
+                                  value={processing_date_Array}
                                   minDate={new Date()}
                                   weekDays={weekDays}
                                   format="YYYY/MM/DD"

@@ -79,7 +79,8 @@ export interface Detail_class_item {
   class_name: string;
   edu_concept: string;
   student_number: any;
-  date: any[];
+  // date: any[];
+  date: Date[];
   remark?: string | null;
   unfixed: boolean;
 }

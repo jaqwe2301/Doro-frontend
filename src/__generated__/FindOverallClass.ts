@@ -23,7 +23,8 @@ export interface FindOverallClass_FindOverallClass_overallClass_Detail_class_inf
   class_name: string;
   edu_concept: string;
   student_number: any;
-  date: any[];
+  // date: any[];
+  date: Date[];
   remark: string | null;
   unfixed: boolean;
 }
