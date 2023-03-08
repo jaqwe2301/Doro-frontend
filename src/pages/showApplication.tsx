@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/applyEdu.css";
 
-import { gql, useMutation, useLazyQuery } from "@apollo/client";
+import { gql, useMutation, useLazyQuery, useReactiveVar } from "@apollo/client";
 import React, { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 
@@ -29,6 +29,8 @@ import {
   DeleteOverallClassVariables,
 } from "../__generated__/DeleteOverallClass";
 
+import { isLoggedInVar } from "../apollo";
+
 const FIND_OVERALL_CLASSES_QUERY = gql`
   query FindOverallClasses($input: FindOverallClassesInput!) {
     FindOverallClasses(input: $input) {
@@ -40,6 +42,18 @@ const FIND_OVERALL_CLASSES_QUERY = gql`
         client {
           institution_name
         }
+      }
+    }
+  }
+`;
+
+const FIND_ALL_OVERALL_CLASSES_QUER = gql`
+  query {
+    overallClasses {
+      createdAt
+      id
+      client {
+        institution_name
       }
     }
   }
@@ -307,6 +321,12 @@ export const ShowApplication = () => {
       }
     }
   }, 1000);
+
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
+
+  useEffect(() => {
+    console.log(isLoggedIn)
+  })
 
   return (
     <>
