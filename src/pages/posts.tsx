@@ -106,6 +106,7 @@ export const Posts = () => {
 
   const navigate = useNavigate();
 
+  // 문의 제목 클릭
   const openButton = (isLocked: boolean, id: number) => {
     if (isLocked) {
       setNum(id);
@@ -139,7 +140,7 @@ export const Posts = () => {
       variables: {
         input: {
           password: password + "",
-          postId: +(id ?? ""),
+          postId: + (id ?? ""),
         },
       },
     });

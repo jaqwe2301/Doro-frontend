@@ -55,6 +55,9 @@ export const Login = () => {
     }
   };
 
+  // useMutation React Query를 이용해 서버에 데이터 변경 작업을 요청할 때 사용
+  // 데이터베이스로 비유하자면 insert, update, delete가 모두 포함
+
   const [loginMutation, { data: loginData, loading }] = useMutation<
     login,
     loginVariables
