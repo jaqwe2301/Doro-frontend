@@ -49,7 +49,9 @@ export const Login = () => {
     } = data;
     if (ok && token) {
       localStorage.setItem(LOCALSTORAGE_TOKEN, token);
+      // localStorage.setItem(LOCALSTORAGE_TOKEN, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjc4MjY2NDM3fQ.4yUG_y_kp9SBWiiihHaaDRPFR0x_gwhRf9ZwAIiuEE8");
       authTokenVar(token);
+      // authTokenVar("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjc4MjY2NDM3fQ.4yUG_y_kp9SBWiiihHaaDRPFR0x_gwhRf9ZwAIiuEE8");
       isLoggedInVar(true);
       navigate("/", { replace: true });
     }

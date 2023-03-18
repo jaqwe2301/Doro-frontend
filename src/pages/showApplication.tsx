@@ -1,9 +1,16 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/applyEdu.css";
 
-import { gql, useMutation, useLazyQuery, useReactiveVar } from "@apollo/client";
+import {
+  gql,
+  useMutation,
+  useLazyQuery,
+  useReactiveVar,
+  useQuery,
+} from "@apollo/client";
 import React, { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useMe } from "../hooks/useMe";
 
 import { Banner } from "../components/banner";
 import ApplyButton from "../components/applyButton";
@@ -49,11 +56,13 @@ const FIND_OVERALL_CLASSES_QUERY = gql`
 
 const FIND_ALL_OVERALL_CLASSES_QUER = gql`
   query {
-    overallClasses {
-      createdAt
-      id
-      client {
-        institution_name
+    FindAllLectures {
+      results {
+        createdAt
+        id
+        client {
+          institution_name
+        }
       }
     }
   }
@@ -129,6 +138,8 @@ export const ShowApplication = () => {
   const navigateToShowApplication = () => {
     navigate("/showApplication");
   };
+
+  const { data: userData } = useMe();
 
   // 모달창
   const [kakaoModal, setKakaoModal] = useState(false);
@@ -322,11 +333,19 @@ export const ShowApplication = () => {
     }
   }, 1000);
 
-  const isLoggedIn = useReactiveVar(isLoggedInVar);
+  // const isLoggedIn = useReactiveVar(isLoggedInVar);
+
+  const {
+    loading,
+    error,
+    data: all_data,
+  } = useQuery(FIND_ALL_OVERALL_CLASSES_QUER);
 
   useEffect(() => {
-    console.log(isLoggedIn)
-  })
+    // console.log(isLoggedIn)
+    // console.log(all_data.FindAllLectures.results);
+
+  });
 
   return (
     <>
@@ -576,6 +595,86 @@ export const ShowApplication = () => {
                   </div>
                 );
               })}
+            {authState
+              ? ""
+              : userData?.me.role === "Manager"
+              ? all_data?.FindAllLectures.results
+                  ?.slice(0)
+                  .reverse()
+                  .map((element: any, index: number) => {
+                    arrayLength = all_data.FindAllLectures.results
+                      .length as number;
+                    let indexReverse = arrayLength - index;
+                    return (
+                      <div key={index} className="retrieve-contents">
+                        <p className="retrieve-index">{indexReverse}</p>
+                        <p className="retrieve-font-blue">
+                          {element.client.institution_name}
+                        </p>
+                        <p>에서 &nbsp;</p>
+                        <p className="retrieve-font-blue">
+                          {element.createdAt.substring(0, 4)}년{" "}
+                          {element.createdAt.substring(5, 7)}월{" "}
+                          {element.createdAt.substring(8, 10)}일 &nbsp;
+                        </p>
+                        <p style={{ marginRight: "24.6rem" }}>
+                          신청하신 교육 내역 입니다.
+                        </p>
+                        <button
+                          onClick={(e) => editApplication(element.id)}
+                          className="retrieve-edit-btn"
+                          style={{ marginRight: "1.889rem" }}
+                        >
+                          수정 하기
+                        </button>
+                        <button
+                          onClick={(e) => deleteApplication(element.id, e)}
+                          className="retrieve-edit-btn"
+                        >
+                          삭제
+                        </button>
+                      </div>
+                    );
+                  })
+              : ""}
+              {/* {all_data.FindAllLectures.results
+                  ?.slice(0)
+                  .reverse()
+                  .map((element: any, index: number) => {
+                    arrayLength = all_data.FindAllLectures.results
+                      .length as number;
+                    let indexReverse = arrayLength - index;
+                    return (
+                      <div key={index} className="retrieve-contents">
+                        <p className="retrieve-index">{indexReverse}</p>
+                        <p className="retrieve-font-blue">
+                          {element.client.institution_name}
+                        </p>
+                        <p>에서 &nbsp;</p>
+                        <p className="retrieve-font-blue">
+                          {element.createdAt.substring(0, 4)}년{" "}
+                          {element.createdAt.substring(5, 7)}월{" "}
+                          {element.createdAt.substring(8, 10)}일 &nbsp;
+                        </p>
+                        <p style={{ marginRight: "24.6rem" }}>
+                          신청하신 교육 내역 입니다.
+                        </p>
+                        <button
+                          onClick={(e) => editApplication(element.id)}
+                          className="retrieve-edit-btn"
+                          style={{ marginRight: "1.889rem" }}
+                        >
+                          수정 하기
+                        </button>
+                        <button
+                          onClick={(e) => deleteApplication(element.id, e)}
+                          className="retrieve-edit-btn"
+                        >
+                          삭제
+                        </button>
+                      </div>
+                    );
+                  })} */}
           </div>
         </div>
       </div>

@@ -95,7 +95,7 @@ export const HomePage = () => {
   }, [isOpenModal]);
 
   useEffect(() => {
-    console.log(localStorage.getItem(LOCALSTORAGE_TOKEN))
+    // console.log("토근: "+localStorage.getItem(LOCALSTORAGE_TOKEN))
   })
 
   const horizontalScrollRef = useRef<HTMLInputElement>(null);
