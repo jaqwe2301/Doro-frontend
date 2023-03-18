@@ -341,12 +341,6 @@ export const ShowApplication = () => {
     data: all_data,
   } = useQuery(FIND_ALL_OVERALL_CLASSES_QUER);
 
-  useEffect(() => {
-    // console.log(isLoggedIn)
-    // console.log(all_data.FindAllLectures.results);
-
-  });
-
   return (
     <>
       {authCheckModal ? (
