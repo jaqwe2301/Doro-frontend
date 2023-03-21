@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import "../styles/applyEdu.css";
 
+import { history } from "../hooks/history";
+
 import { gql, useMutation, useLazyQuery, useQuery } from "@apollo/client";
 import React, { useEffect, useState, useRef } from "react";
 
@@ -645,7 +647,6 @@ export const EditApplication = () => {
         });
       });
     }
-    
   }, [findOverallClassData, error, loading]);
 
   const onDeleteOverallClassCompleted = () => {
@@ -659,6 +660,14 @@ export const EditApplication = () => {
     DELETE_OVERALL_CLASS,
     { onCompleted: onDeleteOverallClassCompleted }
   );
+
+  // useEffect(() => {
+  //   window.history.pushState(null,"","")
+  //   // window.addEventListener('popstate', setformNum(formNum - 1))
+  //   window.onpopstate = () => {
+  //     alert("뒤로가기와 새로고침을 할 수 없습니다.")
+  //   }
+  // })
 
   return (
     // 모달창
@@ -1104,26 +1113,30 @@ export const EditApplication = () => {
               <div className="classInfo-container">
                 {fields.map((field, index) => {
                   const { detail_classes } = getValues();
-                  let get_date_Array = detail_classes[index].date
-                  let date_array_len = get_date_Array.length
-                  let processing_date_Array : Date[] = []
-                  for (let i=0;i<date_array_len;i++) {
-                    processing_date_Array.push(new Date(String(get_date_Array[i]).substr(0,23)))
+                  let get_date_Array = detail_classes[index].date;
+                  let date_array_len = get_date_Array.length;
+                  let processing_date_Array: Date[] = [];
+                  for (let i = 0; i < date_array_len; i++) {
+                    processing_date_Array.push(
+                      new Date(String(get_date_Array[i]).substr(0, 23))
+                    );
                   }
                   return (
                     <div key={field.id} className="classInfo-box">
                       <section className={"section"} key={field.id}>
                         <div className="classInfo-subtitle-container">
                           <div className="classInfo-subtitle">학급 정보</div>
-                          {/* {index !== 0 && ( */}
-                          <button
-                            type="button"
-                            onClick={() => remove(index)}
-                            disabled={formNum === 4}
-                          >
-                            <Delete style={{ width: "0.833rem" }} />
-                          </button>
-                          {/* )} */}
+                          {index === 0 ? (
+                            ""
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => remove(index)}
+                              disabled={formNum === 4}
+                            >
+                              <Delete style={{ width: "0.833rem" }} />
+                            </button>
+                          )}
                         </div>
 
                         <div className="classInfo-topInfo-container">

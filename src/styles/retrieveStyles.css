@@ -29,6 +29,7 @@
 }
 
 .retrieve-font-blue {
+    min-width: 6rem;
     font-weight: bold;
     color: #0072b9;
 }

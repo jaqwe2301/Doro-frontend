@@ -223,7 +223,6 @@ export const MakeNewApplication = () => {
   };
 
   const onSubmit_create = () => {
-
     setValue(
       "student_count",
       parseInt(
@@ -548,7 +547,7 @@ export const MakeNewApplication = () => {
       let check_num = 0;
       while (len > 0) {
         len = len - 1;
-        console.log((watch(`detail_classes.${len}.date`)))
+        console.log(watch(`detail_classes.${len}.date`));
         point_control(`detail_classes.${len}.student_number`, "명");
         if (
           watch([
@@ -1084,15 +1083,17 @@ export const MakeNewApplication = () => {
                       <section className={"section"} key={field.id}>
                         <div className="classInfo-subtitle-container">
                           <div className="classInfo-subtitle">학급 정보</div>
-                          {/* {index !== 0 && ( */}
-                          <button
-                            type="button"
-                            onClick={() => remove(index)}
-                            disabled={formNum === 4}
-                          >
-                            <Delete style={{ width: "0.833rem" }} />
-                          </button>
-                          {/* )} */}
+                          {index === 0 ? (
+                            ""
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => remove(index)}
+                              disabled={formNum === 4}
+                            >
+                              <Delete style={{ width: "0.833rem" }} />
+                            </button>
+                          )}
                         </div>
 
                         <div className="classInfo-topInfo-container">
