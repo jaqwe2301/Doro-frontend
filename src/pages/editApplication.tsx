@@ -1284,7 +1284,7 @@ export const EditApplication = () => {
               <div className="CreateEdu-title">교육 특이사항</div>
 
               <div className=" Create-post-input-textarea-parent">
-                <div className="Create-post-input-textarea-span-box  Create-post-input-top">
+                <div className="Create-post-input-textarea-span-box Create-post-input-top" style={{paddingRight:0}}>
                   <span className="Create-post-input-description-text">
                     교육 특이사항
                   </span>
