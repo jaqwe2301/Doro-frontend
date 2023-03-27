@@ -52,7 +52,7 @@ export const CreatePost = () => {
     if (ok) {
       navigate("/posts", { replace: true, state: true });
     } else {
-      console.log(error);
+      // console.log(error);
     }
   };
 

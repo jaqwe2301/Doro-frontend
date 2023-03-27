@@ -139,7 +139,7 @@ export const Post = () => {
     const {
       checkPassword: { isSame },
     } = data;
-    console.log(isSame);
+    // console.log(isSame);
     if (isSame === true) {
       navigate("edit", { state: true });
     } else {
@@ -150,14 +150,14 @@ export const Post = () => {
   };
 
   const onDeleteCompleted = (data: deletePost) => {
-    console.log(data);
+    // console.log(data);
     if (data.deletePost.ok === true) {
       setDeleteModalIsOpen(false);
       setDeleteIsDone(true);
     }
   };
   const onDeleteCompletedClick = () => {
-    console.log("deleted");
+    // console.log("deleted");
     setDeleteIsDone(false);
     navigate("/posts", { state: true });
   };
@@ -187,10 +187,10 @@ export const Post = () => {
     if (data.createComment.ok === true) {
       refetch();
       commentsRefetch();
-      console.log(commentsData?.findAllComments?.comments);
+      // console.log(commentsData?.findAllComments?.comments);
       navigate(`/post/${+(params.id ?? "")}`, { state: true });
     } else {
-      console.log("error");
+      // console.log("error");
     }
   };
   const [callQueryForEdit] = useLazyQuery<

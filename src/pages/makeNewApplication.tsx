@@ -201,12 +201,12 @@ export const MakeNewApplication = () => {
     if (ok) {
       navigate("/");
     } else {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   const onCompleted = (data: SendAuthNum) => {
-    console.log("oncompleted");
+    // console.log("oncompleted");
     const {
       SendAuthNum: { ok, error },
     } = data;
@@ -217,7 +217,7 @@ export const MakeNewApplication = () => {
       }
       setIsActiveTimer(true);
     } else {
-      console.log(error);
+      // console.log(error);
       alert("카톡 안 옴");
     }
   };
@@ -237,7 +237,6 @@ export const MakeNewApplication = () => {
 
     while (len > 0) {
       len = len - 1;
-      console.log(watch(`detail_classes.${len}.student_number`));
       setValue(
         `detail_classes.${len}.student_number`,
         parseInt(
@@ -291,12 +290,12 @@ export const MakeNewApplication = () => {
   const onInvalid_send = () => {
     try {
       const { name, phone_number } = getValues();
-      console.log(name, phone_number);
-      console.log("try)");
+      // console.log(name, phone_number);
+      // console.log("try)");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
-    console.log("ㅑinvalid 통과");
+    // console.log("ㅑinvalid 통과");
   };
 
   const [inputCheck, setInputCheck] = useState<string>();
@@ -334,8 +333,8 @@ export const MakeNewApplication = () => {
 
   const onSubmit_send = () => {
     const { name, phone_number } = getValues();
-    console.log(name, phone_number);
-    console.log("submit");
+    // console.log(name, phone_number);
+    // console.log("submit");
     try {
       sendAuthNumMutation({
         variables: {
@@ -347,9 +346,9 @@ export const MakeNewApplication = () => {
         },
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
-    console.log("submi22t");
+    // console.log("submi22t");
   };
 
   const onSubmit_check = () => {
@@ -366,11 +365,11 @@ export const MakeNewApplication = () => {
   };
 
   const onCompleted_check = (data: checkAuthNumQuery) => {
-    console.log("oncompleted_check");
+    // console.log("oncompleted_check");
     const {
       CheckAuthNum: { ok, error },
     } = data;
-    console.log("dddd");
+    // console.log("dddd");
     if (ok) {
       setAuthCheckModal(true);
       setAuthState(true);
@@ -378,14 +377,13 @@ export const MakeNewApplication = () => {
       setIsActiveTimer(false);
       setAuthImPosibble(false);
     } else {
-      console.log(error);
+      // console.log(error);
       alert(error);
     }
   };
 
   const click_append_buttion = () => {
     const { detail_classes } = getValues();
-    console.log(detail_classes);
     const detail_len = detail_classes.length;
     if (detail_len > 0) {
       append({
@@ -547,7 +545,6 @@ export const MakeNewApplication = () => {
       let check_num = 0;
       while (len > 0) {
         len = len - 1;
-        console.log(watch(`detail_classes.${len}.date`));
         point_control(`detail_classes.${len}.student_number`, "명");
         if (
           watch([

@@ -327,8 +327,8 @@ export const EditApplication = () => {
 
   const onSubmit_send = () => {
     const { name, phone_number } = getValues();
-    console.log(name, phone_number);
-    console.log("submit");
+    // console.log(name, phone_number);
+    // console.log("submit");
     try {
       sendAuthNumMutation({
         variables: {
@@ -340,7 +340,7 @@ export const EditApplication = () => {
         },
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -358,7 +358,7 @@ export const EditApplication = () => {
   };
 
   const onCompleted_check = (data: checkAuthNumQuery) => {
-    console.log("oncompleted_check");
+    // console.log("oncompleted_check");
     const {
       CheckAuthNum: { ok, error },
     } = data;
@@ -369,14 +369,14 @@ export const EditApplication = () => {
       setResend(false);
       setIsActiveTimer(false);
     } else {
-      console.log(error);
-      alert(error);
+      // console.log(error);
+      // alert(error);
     }
   };
 
   const click_append_buttion = () => {
     const { detail_classes } = getValues();
-    console.log(detail_classes);
+    // console.log(detail_classes);
     const detail_len = detail_classes.length;
     if (detail_len > 0) {
       append({

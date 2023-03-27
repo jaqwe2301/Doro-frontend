@@ -162,7 +162,7 @@ export const ShowApplication = () => {
     useForm<ICheckUserForm>();
 
   const onCompleted = (data: SendAuthNum) => {
-    console.log("oncompleted");
+    // console.log("oncompleted");
     const {
       SendAuthNum: { ok, error },
     } = data;
@@ -172,8 +172,8 @@ export const ShowApplication = () => {
       setIsActiveTimer(true);
       setAuthState(false);
     } else {
-      console.log(error);
-      alert("카톡 안 옴");
+      // console.log(error);
+      // alert("카톡 안 옴");
     }
   };
 
@@ -206,8 +206,8 @@ export const ShowApplication = () => {
 
   const onSubmit_send = () => {
     const { name, phone_number } = getValues();
-    console.log(name, phone_number);
-    console.log("submit");
+    // console.log(name, phone_number);
+    // console.log("submit");
     try {
       sendAuthNumMutation({
         variables: {
@@ -219,7 +219,7 @@ export const ShowApplication = () => {
         },
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -237,10 +237,10 @@ export const ShowApplication = () => {
   };
 
   const onCompleted_check = (data: checkAuthNumQuery) => {
-    console.log("oncompleted_check");
+    // console.log("oncompleted_check");
 
     const { name, phone_number } = getValues();
-    console.log(name, phone_number);
+    // console.log(name, phone_number);
     const {
       CheckAuthNum: { ok, error },
     } = data;
@@ -259,14 +259,14 @@ export const ShowApplication = () => {
         },
       });
     } else {
-      console.log(error);
-      alert(error);
+      // console.log(error);
+      // alert(error);
     }
     // 게시물 보여주기
   };
 
   const onFindOverallClassesCompleted = (data: FindOverallClasses) => {
-    console.log(data);
+    // console.log(data);
     OverallClassRefetch();
   };
   const onDeleteOverallClassCompleted = () => {
@@ -278,7 +278,7 @@ export const ShowApplication = () => {
     e: { preventDefault: () => void }
   ) => {
     e.preventDefault();
-    console.log("delete", overallClassId);
+    // console.log("delete", overallClassId);
     DeleteOverallClass({
       variables: {
         input: {

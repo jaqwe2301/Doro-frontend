@@ -95,7 +95,7 @@ export const Posts = () => {
     setPage((current) =>
       data?.findAllPosts.totalPages ? data?.findAllPosts.totalPages : 1
     );
-  console.log(data?.findAllPosts.results);
+  // console.log(data?.findAllPosts.results);
   refetch();
   data?.findAllPosts.results!.map(
     (post) => post.password === "doro2020" && (notice = notice + 1)
