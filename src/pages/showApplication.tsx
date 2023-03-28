@@ -333,13 +333,14 @@ export const ShowApplication = () => {
     }
   }, 1000);
 
-  // const isLoggedIn = useReactiveVar(isLoggedInVar);
-
   const {
-    loading,
-    error,
     data: all_data,
+    refetch
   } = useQuery(FIND_ALL_OVERALL_CLASSES_QUER);
+
+  useEffect(() => {
+    refetch()
+  }, [refetch, all_data])
 
   return (
     <>

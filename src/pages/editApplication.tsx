@@ -38,6 +38,7 @@ import {
 } from "../__generated__/DeleteOverallClass";
 
 import { ReactComponent as Delete } from "../images/delete.svg";
+import { isNumber } from "lodash";
 
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 const months = [
@@ -265,30 +266,48 @@ export const EditApplication = () => {
   };
 
   const onSubmit_create = () => {
-    setValue(
-      "student_count",
-      parseInt(
-        watch("student_count").substr(0, watch("student_count").length - 1)
-      )
-    );
-    setValue(
-      "budget",
-      parseInt(watch("budget").substr(0, watch("budget").length - 1))
-    );
+    if (!isNumber(watch("student_count"))) {
+      if (watch("student_count").substr(-1, 1) === "명") {
+        console.log("student_count");
+        setValue(
+          "student_count",
+          parseInt(
+            watch("student_count").substr(0, watch("student_count").length - 1)
+          )
+        );
+      }
+    }
+
+    if (!isNumber(watch("budget"))) {
+      if (watch("budget").substr(-1, 1) === "원") {
+        console.log("budget");
+        setValue(
+          "budget",
+          parseInt(watch("budget").substr(0, watch("budget").length - 1))
+        );
+      }
+    }
+
     let len = watch("detail_classes").length;
 
     while (len > 0) {
       len = len - 1;
-      // console.log(watch(`detail_classes.${len}.student_number`));
-      setValue(
-        `detail_classes.${len}.student_number`,
-        parseInt(
-          watch(`detail_classes.${len}.student_number`).substr(
-            0,
-            watch(`detail_classes.${len}.student_number`).length - 1
-          )
-        )
-      );
+      if (!isNumber(watch(`detail_classes.${len}.student_number`))) {
+        if (
+          watch(`detail_classes.${len}.student_number`).substr(-1, 1) === "명"
+        ) {
+          console.log("student_number");
+          setValue(
+            `detail_classes.${len}.student_number`,
+            parseInt(
+              watch(`detail_classes.${len}.student_number`).substr(
+                0,
+                watch(`detail_classes.${len}.student_number`).length - 1
+              )
+            )
+          );
+        }
+      }
     }
 
     const {
@@ -650,8 +669,9 @@ export const EditApplication = () => {
   }, [findOverallClassData, error, loading]);
 
   const onDeleteOverallClassCompleted = () => {
-    navigate("/");
-    window.location.reload();
+    alert("신청내역 수정이 완료되었습니다.");
+    navigate("/applyEdu");
+    // window.location.reload();
   };
   const [
     DeleteOverallClass,
@@ -1284,7 +1304,10 @@ export const EditApplication = () => {
               <div className="CreateEdu-title">교육 특이사항</div>
 
               <div className=" Create-post-input-textarea-parent">
-                <div className="Create-post-input-textarea-span-box Create-post-input-top" style={{paddingRight:0}}>
+                <div
+                  className="Create-post-input-textarea-span-box Create-post-input-top"
+                  style={{ paddingRight: 0 }}
+                >
                   <span className="Create-post-input-description-text">
                     교육 특이사항
                   </span>
