@@ -729,7 +729,7 @@ export const MakeNewApplication = () => {
             ref={mainFormRef}
             onSubmit={handleSubmit(onSubmit_create, onInvalid_create)}
           >
-            {submitModal ? (
+            {!submitModal ? (
               <div className="Create-post-kakao-modal-container">
                 <div className="Create-post-submit-modal">
                   <p className="Create-post-kakao-modal-top">
@@ -737,12 +737,12 @@ export const MakeNewApplication = () => {
                   </p>
                   <div className="Create-post-submit-modal-bottom">
                     <p
-                      style={{ letterSpacing: "0.9px" }}
-                      className="Create-post-kakao-modal-bottom-text"
+                      style={{ letterSpacing: "0.9px", textAlign: "center" }}
+                      className="Create-post-kakao-modal-bottom-text" 
                     >
-                      제출한 정보는 수정 가능하며, 입력해주신 정보를 기반으로
-                      DORO 교육 매니저가 예산과 컨셉에 맞는 최적의 교육
-                      커리큘럼을 제안 해드릴 예정이니 편하게 제출해주세요 !
+                      교육을 신청하시겠습니까?
+                      <br />
+                      신청하신 정보는 수정 가능합니다.
                     </p>
                     <div className="Create-post-submit-modal-button-container">
                       <button
@@ -1124,7 +1124,7 @@ export const MakeNewApplication = () => {
                           </span>
                           <input
                             className="classInfo-topInfo-input"
-                            placeholder="AI, 로봇"
+                            placeholder="AI, 로봇, 소프트웨어, 메이커, 3D 등"
                             {...register(
                               `detail_classes.${index}.edu_concept` as const,
                               {
@@ -1141,7 +1141,7 @@ export const MakeNewApplication = () => {
                           </span>
                           <input
                             className="classInfo-topInfo-input"
-                            placeholder="120"
+                            placeholder="학생 수를 입력해주세요."
                             {...register(
                               `detail_classes.${index}.student_number` as const,
                               {
@@ -1173,6 +1173,7 @@ export const MakeNewApplication = () => {
                                     width: "192.6px",
                                   }}
                                   disabled={formNum === 4}
+                                  placeholder="교육 날짜를 입력해주십시오."
                                   onChange={(e) => props.field.onChange(e)}
                                   minDate={new Date()}
                                   weekDays={weekDays}

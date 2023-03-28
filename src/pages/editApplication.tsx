@@ -1182,7 +1182,7 @@ export const EditApplication = () => {
                           </span>
                           <input
                             className="classInfo-topInfo-input"
-                            placeholder="AI, 로봇"
+                            placeholder="AI, 로봇, 소프트웨어, 메이커, 3D 등"
                             {...register(
                               `detail_classes.${index}.edu_concept` as const,
                               {
@@ -1199,7 +1199,7 @@ export const EditApplication = () => {
                           </span>
                           <input
                             className="classInfo-topInfo-input"
-                            placeholder="120"
+                            placeholder="학생 수를 입력해주세요."
                             type="number"
                             {...register(
                               `detail_classes.${index}.student_number` as const,
@@ -1231,6 +1231,7 @@ export const EditApplication = () => {
                                     width: "192.6px",
                                   }}
                                   disabled={formNum === 4}
+                                  placeholder="교육 날짜를 입력해주십시오."
                                   onChange={(e) => props.field.onChange(e)}
                                   value={processing_date_Array}
                                   minDate={new Date()}

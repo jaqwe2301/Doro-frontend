@@ -29,10 +29,12 @@ const ApplyButton = () => {
               style={{ height: "10.278rem" }}
               className="Create-post-kakao-modal-bottom"
             >
-              <p className="Create-post-kakao-modal-bottom-text">
-                입력해주신 정보를 기반으로 DORO 교육 매니저가 예산과 컨셉에 맞는
-                최적의 교육 커리큘럼을 제안 해드릴 예정이니 편안하게
-                작성해주세요 !
+              <p
+                className="Create-post-kakao-modal-bottom-text"
+                style={{textAlign: "center"}}
+              >
+                DORO 교육 매니저가 예산과 컨셉에 맞는 최적의 교육 커리큘럼을
+                제안 해드릴 예정이니 편안하게 작성해주세요 !
               </p>
               <button
                 style={{ fontSize: "0.7rem" }}
