@@ -224,35 +224,45 @@ export const MakeNewApplication = () => {
   };
 
   const onSubmit_create = () => {
-    if (watch("student_count")[-1] === "명") {
-      setValue(
-        "student_count",
-        parseInt(
-          watch("student_count").substr(0, watch("student_count").length - 1)
-        )
-      );
+
+    if (isNaN(watch("student_count"))) {
+      if (watch("student_count").substr(-1, 1) === "명") {
+        setValue(
+          "student_count",
+          parseInt(
+            watch("student_count").substr(0, watch("student_count").length - 1)
+          )
+        );
+      }
     }
-    if (watch("budget")[-1] === "원") {
-      setValue(
-        "budget",
-        parseInt(watch("budget").substr(0, watch("budget").length - 1))
-      );
+
+    if (isNaN(watch("budget"))) {
+      if (watch("budget").substr(-1, 1) === "원") {
+        setValue(
+          "budget",
+          parseInt(watch("budget").substr(0, watch("budget").length - 1))
+        );
+      }
     }
 
     let len = watch("detail_classes").length;
 
     while (len > 0) {
       len = len - 1;
-      if (watch(`detail_classes.${len}.student_number`)[-1] === "명") {
-        setValue(
-          `detail_classes.${len}.student_number`,
-          parseInt(
-            watch(`detail_classes.${len}.student_number`).substr(
-              0,
-              watch(`detail_classes.${len}.student_number`).length - 1
+      if (isNaN(watch(`detail_classes.${len}.student_number`))) {
+        if (
+          watch(`detail_classes.${len}.student_number`).substr(-1, 1) === "명"
+        ) {
+          setValue(
+            `detail_classes.${len}.student_number`,
+            parseInt(
+              watch(`detail_classes.${len}.student_number`).substr(
+                0,
+                watch(`detail_classes.${len}.student_number`).length - 1
+              )
             )
-          )
-        );
+          );
+        }
       }
     }
 
@@ -729,7 +739,7 @@ export const MakeNewApplication = () => {
             ref={mainFormRef}
             onSubmit={handleSubmit(onSubmit_create, onInvalid_create)}
           >
-            {!submitModal ? (
+            {submitModal ? (
               <div className="Create-post-kakao-modal-container">
                 <div className="Create-post-submit-modal">
                   <p className="Create-post-kakao-modal-top">

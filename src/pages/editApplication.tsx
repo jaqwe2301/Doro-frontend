@@ -266,9 +266,8 @@ export const EditApplication = () => {
   };
 
   const onSubmit_create = () => {
-    if (!isNumber(watch("student_count"))) {
+    if (isNaN(watch("student_count"))) {
       if (watch("student_count").substr(-1, 1) === "명") {
-        console.log("student_count");
         setValue(
           "student_count",
           parseInt(
@@ -278,9 +277,8 @@ export const EditApplication = () => {
       }
     }
 
-    if (!isNumber(watch("budget"))) {
+    if (isNaN(watch("budget"))) {
       if (watch("budget").substr(-1, 1) === "원") {
-        console.log("budget");
         setValue(
           "budget",
           parseInt(watch("budget").substr(0, watch("budget").length - 1))
@@ -292,11 +290,10 @@ export const EditApplication = () => {
 
     while (len > 0) {
       len = len - 1;
-      if (!isNumber(watch(`detail_classes.${len}.student_number`))) {
+      if (isNaN(watch(`detail_classes.${len}.student_number`))) {
         if (
           watch(`detail_classes.${len}.student_number`).substr(-1, 1) === "명"
         ) {
-          console.log("student_number");
           setValue(
             `detail_classes.${len}.student_number`,
             parseInt(
