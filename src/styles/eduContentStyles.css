@@ -1,120 +1,171 @@
 .MainCategory-container {
-    display: grid;
-    justify-content: center;
-    margin-top: 3.778rem;
-    grid-template-columns: 15.457rem 15.457rem 15.457rem 15.457rem;
-    grid-template-rows: 2.563rem;
-    gap: 1.25rem;
+  display: grid;
+  justify-content: center;
+  margin-top: 3.778rem;
+  grid-template-columns: 15.457rem 15.457rem 15.457rem 15.457rem;
+  grid-template-rows: 2.563rem;
+  gap: 1.25rem;
 }
 
 .MainCategory-click {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Pretendard;
-    font-size: 1.111rem;
-    border: 1px solid transparent;
-    background: #0072b9;
-    color: #f8f9fd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Pretendard;
+  font-size: 1.111rem;
+  border: 1px solid transparent;
+  background: #0072b9;
+  color: #f8f9fd;
 }
 
 .MainCategory-click-off {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Pretendard;
-    font-size: 1.111rem;
-    border: 1px solid #d9d9d9;
-    background: transparent;
-    color: #777777;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Pretendard;
+  font-size: 1.111rem;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  color: #777777;
 }
 
 .SubCategory {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .SubCategory-container {
-    display: flex;
-    margin-top: 0.994rem;
-    width: 65.556rem;
+  display: flex;
+  margin-top: 0.994rem;
+  width: 65.556rem;
 }
 
 .SubCategory-click {
-    display: flex;
-    align-items: center;
-    height: 2.278rem;
-    font-family: Pretendard;
-    padding: 0.833rem;
-    font-size: 0.833rem;
-    background: #0072b9;
-    color: #f8f9fd;
-    margin-right: 0.667rem;
+  display: flex;
+  align-items: center;
+  height: 2.278rem;
+  font-family: Pretendard;
+  padding: 0.833rem;
+  font-size: 0.833rem;
+  background: #0072b9;
+  color: #f8f9fd;
+  margin-right: 0.667rem;
 }
 
 .SubCategory-click-off {
-    display: flex;
-    align-items: center;
-    height: 2.278rem;
-    font-family: Pretendard;
-    padding: 0.833rem;
-    font-size: 0.833rem;
-    background: #d9d9d9;
-    color: #777777;
-    margin-right: 0.667rem;
+  display: flex;
+  align-items: center;
+  height: 2.278rem;
+  font-family: Pretendard;
+  padding: 0.833rem;
+  font-size: 0.833rem;
+  background: #d9d9d9;
+  color: #777777;
+  margin-right: 0.667rem;
 }
 
 .EduDetail-click {
-    display: grid;
-    justify-content: center;
-    margin-top: 4.611rem;
-    margin-bottom: 12.222rem;
-    grid-template-columns: 21.111rem 21.111rem 21.111rem;
-    grid-template-rows: 21.111rem;
-    gap: 1.111rem;
+  display: grid;
+  justify-content: center;
+  margin-top: 4.611rem;
+  margin-bottom: 12.222rem;
+  grid-template-columns: 21.111rem 21.111rem 21.111rem;
+  grid-template-rows: 21.111rem;
+  gap: 1.111rem;
 }
 
 .EduDetail-click-off {
-    display: none;
+  display: none;
 }
 
 .EduDetail-content-container {
-    display: flex;
-    flex-direction: column;
-    height: 21.111rem;
-    background: #f8f9fd;
+  display: flex;
+  flex-direction: column;
+  /* padding-bottom: 0.1rem; */
+  height: 21.111rem;
+  background: #f8f9fd;
+  border: 0.15rem solid var(--doro-super-light-grey);
+  border-radius: 10px;
+}
+
+.EduDetail-content-container img {
+  height: 239.988px;
+  width: 337.775px;
+}
+
+.EduDetail-content-container:hover {
+  /* background-color: #dddaff; */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+  border: 0.15rem solid transparent;
+  background-image: linear-gradient(
+      var(--doro-super-light-grey),
+      var(--doro-super-light-grey)
+    ),
+    linear-gradient(to bottom right, #48c6ef, #6f86d6);
+  background-clip: content-box, border-box;
+  /* transition-duration: 0.5s; */
+  transition: all 0.5s;
+}
+
+.EduDetail-content-container:hover img {
+  transition: all 0.5s;
+  /* transition-duration: 0.5s; */
+  height: calc(239.988 * 1.08px);
+  /* height: 263.9868px; */
+  width: calc(337.775 * 1.08px);
+  /* width: 371.5525px; */
+  object-fit: cover;
+}
+
+.EduDetail-content-container:hover .Title-text {
+  /* font-size: 1.5rem; */
+  /* line-height: 1.8rem; */
+  /* transition-duration: 0.5s; */
+  /* transition: all 0.5s; */
+}
+
+.EduDetail-content-container:hover .HashTag-text {
+  transition: all 0.5s;
+  margin-top: -1rem;
 }
 
 .HashTag-text {
-    display: flex;
-    margin-top: 0.5rem;
-    margin-left: 1.111rem;
-    font-family: Pretendard;
-    font-size: 0.778rem;
-}
-
-.HashTag-text-Main4 {
-    display: flex;
-    margin-top: -0.65rem;
-    margin-left: 1.111rem;
-    font-family: Pretendard;
-    font-size: 0.778rem;
+  display: flex;
+  /* margin-top: 0.5rem; */
+  margin-left: 1.111rem;
+  font-family: Pretendard;
+  font-size: 0.778rem;
 }
 
 .Title-text {
-    display: flex;
-    margin-left: 1.111rem;
-    font-family: Pretendard;
-    font-size: 1.889rem;
-    font-weight: Bold;
+  /* display: flex; */
+  margin-top: 0.2rem;
+  text-align: start;
+  margin-left: 1.111rem;
+  line-height: 2rem;
+  font-family: Pretendard;
+  font-size: 1.889rem;
+  /* font-size: 1.889rem; */
+  font-weight: Bold;
 }
 
-.Title-text-Main4 {
-    display: flex;
-    margin-bottom: -0.65rem;
-    margin-left: 1.111rem;
-    font-family: Pretendard;
-    font-size: 1.889rem;
-    font-weight: Bold;
+.TwoLineTitle {
+  /* display: flex; */
+  margin-top: 0.2rem;
+  text-align: start;
+  margin-left: 1.111rem;
+  line-height: 2rem;
+  font-family: Pretendard;
+  font-size: 1.889rem;
+  /* font-size: 1.889rem; */
+  font-weight: Bold;
 }
+
+.EduDetail-content-container:hover .TwoLineTitle {
+    /* 1.889rem; */
+    font-size: 1.5rem;
+    line-height: 1.8rem;
+    /* transition-duration: 0.5s; */
+    transition: all 0.5s;
+  }

@@ -519,9 +519,8 @@ const EduDetailContents = () => {
         <button className="EduDetail-content-container">
           <Link to={a.link}>
             <img src={require('../images/detailContents/' + a.img + '.png')} />
-            <p className="HashTag-text-Main4">{a.hash}</p>
-            <p className="Title-text-Main4">{a.title1}</p>
-            <p className="Title-text">{a.title2}</p>
+            <p className="HashTag-text">{a.hash}</p>
+            <p className="TwoLineTitle">{a.title1}<br/>{a.title2}</p>
           </Link>
         </button>
       );
