@@ -37,6 +37,7 @@ import { Speaker } from "./../pages/educontents/speaker";
 import { Tinkercad } from "./../pages/educontents/tinkercad";
 import { Tracer } from "./../pages/educontents/tracer";
 import { Piano } from "../pages/educontents/piano";
+import AppPrivacyPolicy from "../pages/appPrivacyPolicy";
 
 export const LoggedOutRouter = () => {
   return (
@@ -84,6 +85,7 @@ export const LoggedOutRouter = () => {
         <Route path="/tinkercad" element={<Tinkercad />}></Route>
         <Route path="/tracer" element={<Tracer />}></Route>
         <Route path="/piano" element={<Piano />}></Route>
+        <Route path="/appPrivacyPolicy" element={<AppPrivacyPolicy />}></Route>
       </Routes>
       <Foot />
     </BrowserRouter>
